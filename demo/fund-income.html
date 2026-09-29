@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>海外基金配息懶人包｜課堂示範頁</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf7f2; --card:#ffffff; --line:#e6dfd0;
+    --text:#241f16; --muted:#6d6455; --muted2:#a89e8c;
+    --gold:#b07812; --gold2:#d99a2b; --amber:#c2610f;
+    --mark:rgba(217,154,43,.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',-apple-system,sans-serif;line-height:1.85;font-size:17px;-webkit-text-size-adjust:100%}
+  .serif{font-family:'Noto Serif TC',serif}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px 80px}
+  img{max-width:100%}
+
+  .demo{background:var(--amber);color:#fff;text-align:center;font-size:13.5px;letter-spacing:.04em;padding:9px 16px;line-height:1.6;position:sticky;top:0;z-index:9}
+  .demo b{font-weight:700}
+
+  .profile{display:flex;gap:16px;align-items:center;padding:26px 0 22px;border-bottom:1px solid var(--line)}
+  .avatar{flex:0 0 76px;height:76px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),var(--amber));display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;font-weight:900;font-family:'Noto Serif TC',serif}
+  .pname{font-size:19px;font-weight:700;letter-spacing:.02em}
+  .pmeta{font-size:13.5px;color:var(--muted);line-height:1.7;margin-top:3px}
+  .pnums{display:flex;gap:18px;font-size:13.5px;color:var(--muted);margin-top:6px}
+  .pnums b{color:var(--text);font-weight:700}
+
+  h1{font-size:30px;line-height:1.35;font-weight:900;margin:30px 0 8px;font-family:'Noto Serif TC',serif}
+  h2{font-size:21px;font-weight:900;color:var(--gold);margin:38px 0 12px;font-family:'Noto Serif TC',serif}
+  h3{font-size:17.5px;font-weight:700;margin:26px 0 8px}
+  p{margin:14px 0}
+  ul{margin:14px 0 14px 22px}
+  li{margin:7px 0}
+  .mark{background:var(--mark);padding:1px 3px;border-radius:3px}
+  .u{border-bottom:2px solid var(--gold2);padding-bottom:1px}
+  a{color:var(--gold);font-weight:700}
+
+  .cta{background:var(--card);border:1px solid var(--gold);border-left:5px solid var(--gold);border-radius:12px;padding:18px 20px;margin:26px 0}
+  .cta .t{font-size:13px;letter-spacing:.14em;color:var(--gold);font-weight:700;margin-bottom:7px}
+  .btn{display:block;text-align:center;background:var(--gold);color:#fff;text-decoration:none;font-weight:700;font-size:17px;padding:14px 18px;border-radius:10px;margin-top:14px}
+  .btn.ghost{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}
+
+  .note{background:#f3ede2;border-radius:12px;padding:16px 18px;margin:22px 0;font-size:15.5px;color:var(--muted)}
+  .note b{color:var(--text)}
+
+  .tablewrap{overflow-x:auto;margin:16px 0;-webkit-overflow-scrolling:touch}
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px;background:var(--card);border-radius:10px;overflow:hidden}
+  th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+  th{background:#f3ede2;font-weight:700;font-size:14px;color:var(--muted)}
+
+  .case{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:18px 0}
+  .case .tag{font-size:12px;letter-spacing:.12em;color:var(--gold);font-weight:700;margin-bottom:8px}
+  .fig{background:#efe8dc;border:1px dashed var(--muted2);border-radius:10px;padding:14px 16px;margin:14px 0;font-size:14px;color:var(--muted)}
+  .fig .row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dotted var(--line)}
+  .fig .row:last-child{border:none}
+  .fig .row b{color:var(--text);font-size:16px}
+  .figtag{font-size:11.5px;letter-spacing:.1em;color:var(--amber);font-weight:700;margin-bottom:8px}
+
+
+  /* ---- 圖表 ---- */
+  .viz{--s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;
+       background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;margin:22px 0}
+  .viz h4{font-size:16.5px;font-weight:700;margin:0 0 3px}
+  .viz .sub{font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:14px}
+  .viz svg{display:block;width:100%;height:auto;overflow:visible}
+  .legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:12px;font-size:13px;color:var(--muted)}
+  .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .vnote{font-size:12.5px;color:var(--muted2);margin-top:10px;line-height:1.6}
+  .tiles{display:flex;gap:10px;margin:14px 0 0}
+  .tile{flex:1;background:#f3ede2;border-radius:10px;padding:12px 13px;text-align:center}
+  .tile .k{font-size:12px;color:var(--muted);letter-spacing:.05em}
+  .tile .v{font-family:'Noto Serif TC',serif;font-size:21px;font-weight:900;margin-top:3px;line-height:1.25}
+
+  .end{border-top:1px solid var(--line);margin-top:44px;padding-top:26px;font-size:15px;color:var(--muted);text-align:center}
+</style></head><body>
+
+<div class="demo">📎 <b>課堂示範頁</b>｜結構示範用，內文人物、客戶案例與所有數字皆為<b>虛構</b>，不構成投資建議</div>
+
+<div class="wrap">
+
+  <div class="profile">
+    <div class="avatar">J</div>
+    <div>
+      <div class="pname">jasonxtsai ✓</div>
+      <div class="pmeta">財務規劃 ｜ 現金流 ｜ 資產配置<br>幫上班族把薪水變成會自己長大的資產</div>
+      <div class="pnums"><span><b>128</b> 貼文</span><span><b>5.3 萬</b> 粉絲</span><span><b>412</b> 追蹤中</span></div>
+    </div>
+  </div>
+
+  <h1>海外基金配息懶人包</h1>
+
+  <div class="note">
+    <span class="u">看到這邊你也想開始正確理財</span>，但卻不知道怎麼開始？<br>
+    可以加 <b>官方 LINE</b> 填寫規劃表單，或 <b>私訊我</b>。<br>
+    📩 預約財務諮詢 ➡️ 開始你的理財規劃！看看有沒有可以幫上忙的地方～
+  </div>
+
+  <p>海外基金可以提供每月現金流，但挑選時不要只看<span class="mark">配息率</span>，還要看「<span class="mark">錢從哪裡來</span>」。</p>
+
+  <h2>配息的四種來源</h2>
+  <ul>
+    <li>債券利息</li>
+    <li>股票股利</li>
+    <li>已實現資本利得</li>
+    <li><b>基金本金</b></li>
+  </ul>
+  <p>配息率很高，不代表投資報酬很高；如果基金長期配得比賺得多，<span class="mark">淨值就可能持續下降</span>。</p>
+
+<div class="viz">
+    <h4>同樣配 6%，錢從哪裡來差很多</h4>
+    <div class="sub">兩檔基金的配息組成（示意）。看的不是配多少，是<b>哪一塊在出錢</b></div>
+    <svg viewBox="0 0 560 150" role="img" aria-label="兩檔基金配息來源組成對照">
+      <text x="0" y="13" font-size="13.5" font-weight="700" fill="var(--text)">基金 A ｜ 賺到的錢在配</text>
+      <rect x="0.0" y="22" width="306.0" height="34" rx="4" fill="var(--s1)"><title>債券利息　55%</title></rect>
+      <text x="153.0" y="44" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">55%</text>
+      <rect x="308.0" y="22" width="138.0" height="34" rx="4" fill="var(--s2)"><title>股票股利　25%</title></rect>
+      <text x="377.0" y="44" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">25%</text>
+      <rect x="448.0" y="22" width="82.0" height="34" rx="4" fill="var(--s3)"><title>已實現資本利得　15%</title></rect>
+      <text x="489.0" y="44" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">15%</text>
+      <rect x="532.0" y="22" width="26.0" height="34" rx="4" fill="var(--s4)"><title>基金本金　5%</title></rect>
+      <text x="0" y="93" font-size="13.5" font-weight="700" fill="var(--text)">基金 B ｜ 配得比賺得多</text>
+      <rect x="0.0" y="102" width="166.0" height="34" rx="4" fill="var(--s1)"><title>債券利息　30%</title></rect>
+      <text x="83.0" y="124" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">30%</text>
+      <rect x="168.0" y="102" width="54.0" height="34" rx="4" fill="var(--s2)"><title>股票股利　10%</title></rect>
+      <rect x="224.0" y="102" width="54.0" height="34" rx="4" fill="var(--s3)"><title>已實現資本利得　10%</title></rect>
+      <rect x="280.0" y="102" width="278.0" height="34" rx="4" fill="var(--s4)"><title>基金本金　50%</title></rect>
+      <text x="419.0" y="124" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">50%</text>
+    </svg>
+    <div class="legend">
+      <span><i style="background:var(--s1)"></i>債券利息</span>
+      <span><i style="background:var(--s2)"></i>股票股利</span>
+      <span><i style="background:var(--s3)"></i>已實現資本利得</span>
+      <span><i style="background:var(--s4)"></i>基金本金</span>
+    </div>
+    <div class="vnote">基金 B 有一半的配息是<b>從你自己的本金拿出來還你</b>——配息率一樣，體質完全不同。</div>
+  </div>
+
+  <h2>代表性標的</h2>
+  <div class="tablewrap">
+    <table>
+      <tr><th style="width:30%">標的</th><th style="width:36%">主要投資內容</th><th>特色</th></tr>
+      <tr><td>A 全球投資級別債券基金</td><td>全球投資等級公司債</td><td>信用品質相對較高</td></tr>
+      <tr><td>B 精選收益基金</td><td>公債、公司債、房貸債等</td><td>債種較分散、波動相對低</td></tr>
+      <tr><td>C 穩定月收益基金</td><td>美國股票 ＋ 各類債券</td><td>股債平衡、兼顧收益與成長</td></tr>
+      <tr><td>D 收益增長基金</td><td>全球股票 ＋ 債券</td><td>收益與資產成長並重</td></tr>
+      <tr><td>E 收益成長基金</td><td>美國股票、可轉債、非投資等級債</td><td>配息與成長潛力較高</td></tr>
+      <tr><td>F 環球非投資等級債券基金</td><td>全球非投資等級債</td><td>潛在債息較高</td></tr>
+    </table>
+  </div>
+<div class="viz">
+    <h4>配息率一樣，六年後的淨值不一樣</h4>
+    <div class="sub">兩檔都配 6%，但一檔的淨值撐得住，一檔一路往下（示意）</div>
+    <svg viewBox="-8 -14 576 196" role="img" aria-label="兩檔基金六年淨值走勢對照">
+      <line x1="0" y1="150" x2="520" y2="150" stroke="var(--line)" stroke-width="1"/>
+      <polyline points="0.0,50.0 104.0,43.3 208.0,46.7 312.0,36.7 416.0,30.0 520.0,23.3" fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round"/>
+      <polyline points="0.0,50.0 104.0,63.3 208.0,76.7 312.0,93.3 416.0,110.0 520.0,123.3" fill="none" stroke="var(--s2)" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="0.0" cy="50.0" r="4.5" fill="var(--s1)" stroke="#fff" stroke-width="2"><title>第1年　淨值 100</title></circle>
+      <circle cx="104.0" cy="43.3" r="4.5" fill="var(--s1)" stroke="#fff" stroke-width="2"><title>第2年　淨值 102</title></circle>
+      <circle cx="208.0" cy="46.7" r="4.5" fill="var(--s1)" stroke="#fff" stroke-width="2"><title>第3年　淨值 101</title></circle>
+      <circle cx="312.0" cy="36.7" r="4.5" fill="var(--s1)" stroke="#fff" stroke-width="2"><title>第4年　淨值 104</title></circle>
+      <circle cx="416.0" cy="30.0" r="4.5" fill="var(--s1)" stroke="#fff" stroke-width="2"><title>第5年　淨值 106</title></circle>
+      <circle cx="520.0" cy="23.3" r="4.5" fill="var(--s1)" stroke="#fff" stroke-width="2"><title>第6年　淨值 108</title></circle>
+      <circle cx="0.0" cy="50.0" r="4.5" fill="var(--s2)" stroke="#fff" stroke-width="2"><title>第1年　淨值 100</title></circle>
+      <circle cx="104.0" cy="63.3" r="4.5" fill="var(--s2)" stroke="#fff" stroke-width="2"><title>第2年　淨值 96</title></circle>
+      <circle cx="208.0" cy="76.7" r="4.5" fill="var(--s2)" stroke="#fff" stroke-width="2"><title>第3年　淨值 92</title></circle>
+      <circle cx="312.0" cy="93.3" r="4.5" fill="var(--s2)" stroke="#fff" stroke-width="2"><title>第4年　淨值 87</title></circle>
+      <circle cx="416.0" cy="110.0" r="4.5" fill="var(--s2)" stroke="#fff" stroke-width="2"><title>第5年　淨值 82</title></circle>
+      <circle cx="520.0" cy="123.3" r="4.5" fill="var(--s2)" stroke="#fff" stroke-width="2"><title>第6年　淨值 78</title></circle>
+      <text x="528" y="23.3" dy="4" font-size="13" font-weight="700" fill="var(--s1)">基金 A</text>
+      <text x="528" y="123.3" dy="4" font-size="13" font-weight="700" fill="var(--s2)">基金 B</text>
+      <text x="0" y="168" font-size="12" fill="var(--muted2)">第 1 年</text>
+      <text x="520" y="168" text-anchor="end" font-size="12" fill="var(--muted2)">第 6 年</text>
+    </svg>
+    <div class="legend"><span><i style="background:var(--s1)"></i>基金 A（淨值 100 → 108）</span><span><i style="background:var(--s2)"></i>基金 B（淨值 100 → 78）</span></div>
+    <div class="vnote">配息照領，但基金 B 的本金縮水了 22%。<b>領到的，其實是自己的錢。</b></div>
+  </div>
+
+  <p style="font-size:14.5px;color:var(--muted)">※ 以上為示範用的類別說明，不是特定商品推薦。</p>
+
+  <div class="cta">
+    <div class="t">如果你有閒置資金</div>
+    <p style="margin:0">不知道怎麼配置、想規劃每月現金流，或想開始定期定額——<br>歡迎加官方 LINE 或私訊我，<b>送你一場線上財務諮詢（免費）</b>，看看配置有沒有需要調整的地方。</p>
+    <a class="btn" href="#line">加官方 LINE，預約免費諮詢</a>
+  </div>
+
+  <h2>我平常怎麼陪客戶</h2>
+  <p>⭐ 我也會<b>定期協助客戶檢視投資績效</b>：分析市場趨勢、總體經濟變化，並依據市場狀況討論是否需要調整配置或進出場策略，陪伴客戶持續優化資產配置。</p>
+
+  <h2>實際客戶案例</h2>
+
+  <div class="case">
+    <div class="tag">案例一 ｜ 有本金、想要現金流</div>
+    <p style="margin-top:0">這位客戶<span class="u">投資本金 140 萬</span>，每個月大概有 <b>8,000 元配息</b>為生活做加分，減輕房貸車貸等負擔。我在做投資規劃的同時，也幫客戶<span class="u">增加一些市值型標的</span>，本金也長到 <b>192 萬</b>左右——每個月領到固定的配息，同時也讓本金有成長。</p>
+    <div class="tiles">
+      <div class="tile"><div class="k">累計投入</div><div class="v">140 萬</div></div>
+      <div class="tile"><div class="k">目前帳戶價值</div><div class="v">192 萬</div></div>
+      <div class="tile"><div class="k">每月現金流</div><div class="v">8,000</div></div>
+    </div>
+    <div class="vnote">示意數字，非真實帳戶。</div>
+  </div>
+
+  <div class="case">
+    <div class="tag">案例二 ｜ 剛出社會、本金小</div>
+    <p style="margin-top:0">這位客戶<span class="u">投資本金 30 萬</span>，是剛出社會的年輕人，身上還有學貸車貸要繳，所以幫他規劃配息標的，每個月大概有 <b>2,000 元配息</b>減輕生活負擔。因為年輕、規劃期長，也建議增加一些市值型標的，本金多了 <b>13 萬</b>左右。</p>
+    <div class="tiles">
+      <div class="tile"><div class="k">累計投入</div><div class="v">30 萬</div></div>
+      <div class="tile"><div class="k">目前帳戶價值</div><div class="v">43.5 萬</div></div>
+      <div class="tile"><div class="k">每月現金流</div><div class="v">2,000</div></div>
+    </div>
+    <div class="vnote">示意數字，非真實帳戶。</div>
+    <p style="margin-bottom:0;font-size:15.5px;color:var(--muted)">每個月領到固定的配息為生活加分，因為離退休還很長，本金也會隨著時間成長到一桶金。</p>
+  </div>
+
+  <div class="case">
+    <div class="tag">案例三 ｜ 沒有現金流需求、也沒有一筆本金</div>
+    <p style="margin-top:0">這位客戶是公務員，平常存錢都放在銀行定存。<span class="u">六年前開始每個月定期定額 1 萬元</span>，累計投入 72 萬，現在帳戶價值約 <span class="u">92 萬</span>。後來客戶說：早知道當初就找人談，不然錢還在銀行裡面放著 😅</p>
+    <div class="viz" style="margin:16px 0 0">
+      <h4 style="font-size:15.5px">六年，每個月一萬</h4>
+      <div class="sub" style="margin-bottom:10px">累計投入 72 萬，帳戶價值約 92 萬（示意）</div>
+      <svg viewBox="-6 -10 570 176" role="img" aria-label="定期定額六年累積走勢">
+        <path d="M0.0,122.6 L104.0,103.6 L208.0,82.6 L312.0,60.2 L416.0,36.4 L520.0,11.2 L520,140 L0,140 Z" fill="var(--s1)" opacity=".10"/>
+        <path d="M0.0,123.2 L104.0,106.4 L208.0,89.6 L312.0,72.8 L416.0,56.0 L520.0,39.2" fill="none" stroke="var(--muted2)" stroke-width="2" stroke-dasharray="5 4"/>
+        <path d="M0.0,122.6 L104.0,103.6 L208.0,82.6 L312.0,60.2 L416.0,36.4 L520.0,11.2" fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="0.0" cy="122.6" r="4.5" fill="var(--s1)" stroke="#fff" stroke-width="2"><title>第 1 年　帳戶 12.4 萬（累計投入 12 萬）</title></circle>
+      <circle cx="104.0" cy="103.6" r="4.5" fill="var(--s1)" stroke="#fff" stroke-width="2"><title>第 2 年　帳戶 26 萬（累計投入 24 萬）</title></circle>
+      <circle cx="208.0" cy="82.6" r="4.5" fill="var(--s1)" stroke="#fff" stroke-width="2"><title>第 3 年　帳戶 41 萬（累計投入 36 萬）</title></circle>
+      <circle cx="312.0" cy="60.2" r="4.5" fill="var(--s1)" stroke="#fff" stroke-width="2"><title>第 4 年　帳戶 57 萬（累計投入 48 萬）</title></circle>
+      <circle cx="416.0" cy="36.4" r="4.5" fill="var(--s1)" stroke="#fff" stroke-width="2"><title>第 5 年　帳戶 74 萬（累計投入 60 萬）</title></circle>
+      <circle cx="520.0" cy="11.2" r="4.5" fill="var(--s1)" stroke="#fff" stroke-width="2"><title>第 6 年　帳戶 92 萬（累計投入 72 萬）</title></circle>
+        <line x1="0" y1="140" x2="520" y2="140" stroke="var(--line)"/>
+        <text x="528" y="11.2" dy="4" font-size="12.5" font-weight="700" fill="var(--s1)">帳戶</text>
+        <text x="528" y="39.2" dy="14" font-size="12.5" font-weight="700" fill="var(--muted2)">投入</text>
+        <text x="0" y="160" font-size="12" fill="var(--muted2)">第 1 年</text>
+        <text x="520" y="160" text-anchor="end" font-size="12" fill="var(--muted2)">第 6 年</text>
+      </svg>
+      <div class="legend"><span><i style="background:var(--s1)"></i>帳戶價值</span><span><i style="background:var(--muted2)"></i>累計投入（虛線）</span></div>
+      <div class="vnote">示意數字，非真實帳戶。</div>
+    </div>
+  </div>
+
+  <h2>也謝謝當初的自己</h2>
+  <p>沒有因為遇到一些問題就放棄學習，而是持續累積專業。</p>
+  <p>因為我相信，每個人都有自己的專業。投資這件事，不一定要什麼都自己研究、自己承擔。<b>把投資交給專業，把時間留給自己更擅長的事情</b>，才是更有效率的選擇。</p>
+  <p>希望未來也能幫助更多人，在投資這條路上少走一些冤枉路。</p>
+
+  <div class="cta" id="line">
+    <div class="t">最後</div>
+    <p style="margin:0"><span class="u">看到這邊你也想開始正確理財</span>，但卻不知道怎麼開始？<br>可以加官方 LINE 填寫規劃表單，或私訊我，開始你的理財規劃。</p>
+    <a class="btn" href="#">加官方 LINE ➜ 填規劃表單</a>
+    <a class="btn ghost" href="#">直接私訊我</a>
+  </div>
+
+  <p style="text-align:center;margin-top:26px">最後謝謝你的留言～我們下次見 👋</p>
+
+  <div class="end">
+    課堂示範頁｜奇點學院 × D11 輪播貼文課<br>
+    內文人物、客戶案例與所有數字皆為虛構，不構成投資建議
+  </div>
+</div>
+</body></html>
