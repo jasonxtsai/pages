@@ -147,43 +147,43 @@ details.ch[open] .ch-mk::after{transform:rotate(90deg);opacity:0;}
 .ck input:checked + span{color:var(--faint);text-decoration:line-through;}
 .cklist{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:8px 18px;}
 
-/* ═════ ③ 研究所介紹 ═════ */
-.inst{position:relative;z-index:1;margin-top:20px;background:var(--dark);color:#fff;padding:52px 30px 46px;border-radius:var(--r-lg) var(--r-lg) 0 0;}
-.inst .kk{font-family:var(--mono);font-size:11px;letter-spacing:0.2em;color:var(--gold-bright);margin-bottom:14px;}
-.inst h2{font-family:var(--serif);font-weight:900;font-size:27px;line-height:1.45;margin-bottom:22px;}
-.inst h2 .g{color:var(--gold-bright);}
-.inst .lead{font-family:var(--serif);font-weight:700;font-size:16.5px;line-height:1.7;color:#fff;margin-bottom:18px;}
-.founder{margin-bottom:28px;}
-.founder p{font-size:14.5px;line-height:1.9;color:rgba(255,255,255,0.86);margin-bottom:10px;}
-.founder p b{color:var(--gold-bright);}
+/* ═════ ③ 研究所介紹：跟上面同一套米色＋白卡，不另外換成深色 ═════ */
+.inst{position:relative;z-index:1;padding:44px 30px 40px;border-top:1px solid var(--line);}
+.inst .kk{display:inline-block;background:rgba(212,144,42,0.14);color:var(--gold);font-size:12px;font-weight:700;padding:5px 15px;border:1px solid var(--gold-dim);border-radius:var(--pill);margin-bottom:16px;letter-spacing:0.05em;}
+.inst h2{font-family:var(--serif);font-weight:900;font-size:24px;line-height:1.42;margin-bottom:16px;color:var(--ink);}
+.inst h2 .g{color:var(--gold);}
+.inst .lead{font-family:var(--serif);font-weight:700;font-size:16.5px;line-height:1.7;color:var(--ink);margin-bottom:16px;padding-left:14px;border-left:3px solid var(--gold);}
+.founder{margin-bottom:24px;}
+.founder p{font-size:14.5px;line-height:1.9;color:var(--text);margin-bottom:10px;}
+.founder p b{color:var(--gold);}
 .big{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 30px;}
-.big .b{border:1px solid rgba(232,169,74,0.35);border-radius:var(--r-md);padding:16px 10px;text-align:center;background:rgba(255,255,255,0.03);}
-.big .bn{font-family:"Inter";font-weight:800;font-size:24px;color:var(--gold-bright);line-height:1.1;}
-.big .bl{font-size:12px;color:rgba(255,255,255,0.65);margin-top:6px;line-height:1.5;}
-.inst h3{font-family:var(--serif);font-weight:900;font-size:18px;margin:6px 0 14px;color:#fff;}
+.big .b{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:var(--r-md);padding:16px 10px;text-align:center;}
+.big .bn{font-family:"Inter";font-weight:800;font-size:24px;color:var(--gold);line-height:1.1;}
+.big .bl{font-size:12px;color:var(--dim);margin-top:6px;line-height:1.5;}
+.inst h3{font-family:var(--serif);font-weight:900;font-size:18px;margin:6px 0 14px;color:var(--ink);}
 .tools{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:30px;}
-.tool{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:var(--r-md);padding:16px;}
-.tool.main{grid-column:1 / -1;border-color:var(--gold-bright);background:rgba(232,169,74,0.10);}
-.tool .tn{font-weight:900;font-size:15px;color:#fff;margin-bottom:4px;}
-.tool .tn em{font-style:normal;font-size:11px;font-weight:700;color:#1a1406;background:var(--gold-bright);border-radius:50px;padding:1px 8px;margin-left:6px;vertical-align:2px;}
-.tool .tn em.soon{background:rgba(255,255,255,0.18);color:#fff;}
-.tool .td{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7;}
-.qa{margin-bottom:30px;}
-.qa .q{font-family:var(--serif);font-weight:700;font-size:15px;color:#fff;margin:14px 0 4px;}
-.qa .q::before{content:"Q";color:var(--gold-bright);font-family:"Inter";font-weight:800;margin-right:8px;}
-.qa .a{font-size:13.8px;color:rgba(255,255,255,0.72);line-height:1.8;}
-.fit .f{display:flex;gap:10px;font-size:14px;line-height:1.7;margin-bottom:9px;color:rgba(255,255,255,0.86);}
-.fit .f::before{content:"\2714";color:var(--gold-bright);font-weight:700;flex-shrink:0;}
-.btn-wrap{text-align:center;margin-top:30px;}
-.skbtn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#1a1406;border-radius:var(--pill);padding:17px 46px;font-weight:900;font-size:18px;box-shadow:0 8px 28px rgba(212,144,42,0.35);transition:transform var(--bounce);position:relative;overflow:hidden;}
+.tool{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:16px;}
+.tool.main{grid-column:1 / -1;border-color:var(--gold-dim);border-left:3px solid var(--gold);background:linear-gradient(165deg,var(--card) 0%,var(--card2) 100%);}
+.tool .tn{font-weight:900;font-size:15px;color:var(--ink);margin-bottom:4px;}
+.tool .tn em{font-style:normal;font-size:11px;font-weight:700;color:#1a1406;background:var(--gold);border-radius:50px;padding:1px 8px;margin-left:6px;vertical-align:2px;}
+.tool .tn em.soon{background:rgba(0,0,0,0.08);color:var(--dim);}
+.tool .td{font-size:13px;color:var(--dim);line-height:1.7;}
+.qa{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:4px 18px 16px;margin-bottom:30px;}
+.qa .q{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink);margin:14px 0 4px;}
+.qa .q::before{content:"Q";color:var(--gold);font-family:"Inter";font-weight:800;margin-right:8px;}
+.qa .a{font-size:13.8px;color:var(--dim);line-height:1.8;}
+.fit .f{display:flex;gap:10px;font-size:14px;line-height:1.7;margin-bottom:9px;color:var(--text);}
+.fit .f::before{content:"\2714";color:var(--gold);font-weight:700;flex-shrink:0;}
+.btn-wrap{text-align:center;margin-top:30px;background:linear-gradient(165deg,var(--card) 0%,var(--card2) 100%);border:1px solid var(--gold-dim);border-radius:var(--r-lg);padding:26px 18px;}
+.skbtn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#1a1406;border-radius:var(--pill);padding:17px 46px;font-weight:900;font-size:18px;box-shadow:0 8px 28px rgba(212,144,42,0.30);transition:transform var(--bounce);position:relative;overflow:hidden;}
 .skbtn:hover{transform:translateY(-3px);}
 .skbtn::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent);transform:skewX(-25deg);animation:shine 3.4s ease-in-out infinite;}
 @keyframes shine{0%{left:-100%;}22%{left:160%;}100%{left:160%;}}
-.btn-note{margin-top:14px;font-size:12.5px;color:rgba(255,255,255,0.55);}
+.btn-note{margin-top:14px;font-size:12.5px;color:var(--dim);}
 
-.footer{position:relative;z-index:1;background:#15110b;padding:22px 30px 40px;text-align:center;}
-.footer .fa{font-style:italic;font-size:14px;color:var(--gold-bright);font-weight:700;}
-.footer .fc{font-size:11px;color:rgba(255,255,255,0.4);margin-top:8px;line-height:1.7;}
+.footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:22px 30px 40px;text-align:center;}
+.footer .fa{font-style:italic;font-size:14px;color:var(--gold);font-weight:700;}
+.footer .fc{font-size:11px;color:var(--faint);margin-top:8px;line-height:1.7;}
 
 /* ── 手機版 ── */
 @media(max-width:600px){
@@ -201,8 +201,8 @@ details.ch[open] .ch-mk::after{transform:rotate(90deg);opacity:0;}
   details.ch summary{padding:15px 16px;align-items:flex-start;}
   .ch-t .en{display:block;margin-top:3px;}
   .ch-mk{margin-top:4px;}
-  .inst{padding:40px 20px 38px;}
-  .inst h2{font-size:23px;}
+  .inst{padding:34px 20px 32px;}
+  .inst h2{font-size:21px;}
   .big .bn{font-size:20px;}
   .tools{grid-template-columns:1fr;}
   .skbtn{font-size:16px;padding:15px 26px;white-space:nowrap;}
@@ -397,13 +397,12 @@ ChatGPT：
   <!-- ═════ ③ 研究所介紹（全站固定，不跟著乾貨改） ═════ -->
   <section class="inst" id="institute">
     <div class="kk">ABOUT · 奇點研究所 × D11</div>
-    <h2>我們本來就是<br><span class="g">一間自媒體公司</span></h2>
+    <h2>我們是一間自媒體公司<br><span class="g">正在把工作流程搬到 AI 上</span></h2>
 
-    <p class="lead">幫想做自媒體、但沒時間的人，用 AI 把一篇輪播從4小時壓到20分鐘。</p>
+    <p class="lead">搬好一個，就放進奇點研究所，給想做自媒體、但沒時間的人直接用。</p>
     <div class="founder">
-      <p>公司開了快兩年，產能全排給客戶，我自己的帳號一直躺著。方法從來沒缺過，缺的是時間。</p>
-      <p>後來我把公司內部那套判斷，企劃怎麼想、鉤子怎麼下、內容怎麼拆、畫面怎麼選，一件一件搬到 AI 上。</p>
-      <p>搬好一個，就放進研究所。</p>
+      <p>企劃、寫稿、做圖、剪片，以前每一步都要有人。公司的產能全排給客戶，我自己的帳號一直沒時間經營。</p>
+      <p>後來我們把這些判斷一件一件拆開，交給 AI。一篇輪播貼文，從4小時做到20分鐘。</p>
     </div>
 
     <div class="big">
@@ -412,12 +411,12 @@ ChatGPT：
       <div class="b"><div class="bn">164萬</div><div class="bl">一篇圖文<br>的觀看人數</div></div>
     </div>
 
-    <!-- 【預留】實戰證明：有了學員成果、外部授課紀錄再打開。放在自己的數字後面、「裡面有什麼」前面
+    <!-- 【預留】實戰證明：有了學員成果、外部授課紀錄再打開。放在自己的數字後面、「研究所裡有什麼」前面
     <h3>不只我做得到</h3>
     <div class="proof">…學員案例／授課照片…</div>
     -->
 
-    <h3>裡面有什麼</h3>
+    <h3>研究所裡有什麼</h3>
     <div class="tools">
       <div class="tool main"><div class="tn">輪播生成器<em>主打</em></div><div class="td">丟一個題目進去，出來是可以直接發的貼文。附教學影片，跟著做一次就會。</div></div>
       <div class="tool"><div class="tn">人設定位</div><div class="td">40分鐘，AI 一題一題問你，產出一份它認得你的人設檔。</div></div>
