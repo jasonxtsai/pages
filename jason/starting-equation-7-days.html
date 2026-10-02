@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- 【換】頁面標題、分享時顯示的描述 -->
+<title>起點方程式｜七天工作頁｜傑森所長</title>
+<meta name="description" content="從定位宣言、定價、免費磁鐵、蓋一個家，到一段語音變27篇內容、第七天開賣。每天都有填空、範例和 AI 輔助 Prompt。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── 版型：沿用 2026-08-06-chatgpt-setup／2026-10-01-7-habits 的米色＋金橘 ── */
+:root{
+  --gold:#D4902A; --gold-bright:#E8A94A; --gold-dim:rgba(212,144,42,0.30);
+  --bg:#F4F1EA; --bg2:#FBF8F2; --card:#FFFFFF; --card2:#FAF6EE;
+  --code:#12161f; --code-tx:#e6eaf2;
+  --text:#2c2a26; --dim:#6d6a62; --faint:#a8a39a; --ink:#2a2620;
+  --line:rgba(0,0,0,0.12);
+  --ok:#4a7c3f; --ok-bg:rgba(74,124,63,0.07); --ok-line:rgba(74,124,63,0.25);
+  --no:#b1431f; --no-bg:rgba(200,70,40,0.06); --no-line:rgba(200,70,40,0.22);
+  --dark:linear-gradient(160deg,#15110b 0%,#241a0e 100%);
+  --r-md:16px; --r-lg:22px; --pill:50px;
+  --bounce:400ms cubic-bezier(0.34,1.56,0.64,1);
+  --serif:"Noto Serif TC",serif; --sans:"Noto Sans TC","Inter",sans-serif; --mono:"JetBrains Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);color:var(--text);line-height:1.85;overflow-x:hidden;background:var(--bg);
+  background-image:radial-gradient(118% 54% at 50% 0%, rgba(212,144,42,0.16) 0%, rgba(212,144,42,0.05) 34%, rgba(244,241,234,0) 62%);
+  background-attachment:fixed;}
+.glow{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.g1{position:absolute;width:min(60vw,680px);height:min(60vw,680px);border-radius:50%;background:radial-gradient(circle, rgba(212,144,42,0.13), rgba(212,144,42,0));top:-18%;right:-14%;filter:blur(20px);}
+.g2{position:absolute;width:min(50vw,560px);height:min(50vw,560px);border-radius:50%;background:radial-gradient(circle, rgba(212,178,120,0.12), rgba(212,178,120,0));bottom:-14%;left:-12%;filter:blur(22px);}
+.wrap{max-width:720px;margin:0 auto;position:relative;}
+.js .fade{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
+.fade.vis{opacity:1;transform:translateY(0);}
+a{color:var(--gold);text-decoration:none;}
+.g{color:var(--gold);}
+
+/* ═════ ① 懸浮按鈕：電腦版掛右側、手機版浮在底部；滑到研究所介紹時自動收起 ═════ */
+.float-cta{position:fixed;z-index:40;transition:opacity .3s ease,transform .3s ease;}
+.float-cta.hide{opacity:0;pointer-events:none;}
+.fc-card{display:none;}
+.fc-pill{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:#1a1406;font-weight:900;font-size:15px;padding:14px 26px;border-radius:var(--pill);box-shadow:0 10px 28px rgba(120,80,20,0.32);white-space:nowrap;}
+.fc-pill .ar{transition:transform .2s;}
+.fc-pill:hover .ar{transform:translateX(3px);}
+/* 手機／平板：底部置中 */
+@media(max-width:1119px){
+  .float-cta{left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translateX(-50%);}
+  .float-cta.hide{transform:translate(-50%,20px);}
+  body{padding-bottom:84px;}
+}
+/* 電腦：右側卡片 */
+@media(min-width:1120px){
+  .float-cta{top:120px;right:max(24px,calc((100vw - 720px)/2 - 272px));width:240px;}
+  .float-cta.hide{transform:translateX(16px);}
+  .fc-pill{display:none;}
+  .fc-card{display:block;background:linear-gradient(165deg,var(--card) 0%,var(--card2) 100%);border:1px solid var(--gold-dim);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:20px 20px 22px;box-shadow:0 10px 34px rgba(120,90,30,0.13);}
+  .fc-card .k{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;color:var(--gold);margin-bottom:10px;font-weight:500;}
+  .fc-card h4{font-family:var(--serif);font-weight:900;font-size:17px;line-height:1.5;color:var(--ink);margin-bottom:9px;}
+  .fc-card p{font-size:12.5px;color:var(--dim);line-height:1.7;margin-bottom:16px;}
+  .fc-card a{display:block;text-align:center;background:var(--gold);color:#1a1406;font-weight:900;font-size:14px;padding:12px 14px;border-radius:var(--pill);box-shadow:0 6px 18px rgba(212,144,42,0.26);transition:transform var(--bounce);}
+  .fc-card a:hover{transform:translateY(-2px);}
+}
+
+/* ═════ 開頭：只交代「這頁是什麼」，自介移到最下面 ═════ */
+.hero{position:relative;z-index:1;padding:60px 30px 36px;}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:0.2em;color:var(--gold);margin-bottom:20px;font-weight:500;}
+.hero h1{font-family:var(--serif);font-weight:900;font-size:36px;line-height:1.36;margin-bottom:14px;color:var(--ink);}
+.hero .h-sub{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--gold);margin-bottom:14px;}
+.hero-sub{font-size:15px;color:var(--dim);line-height:1.85;margin-bottom:24px;}
+/* 這頁有什麼：數字跟單位寫在一起，點了直接跳到那一段 */
+.toc{margin-bottom:24px;}
+.toc .tt{font-size:12px;font-weight:700;color:var(--dim);letter-spacing:0.05em;margin-bottom:8px;}
+.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;}
+.toc a{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--gold-dim);border-radius:var(--pill);padding:7px 15px;font-size:14px;font-weight:700;color:var(--ink);transition:border-color .2s;}
+.toc a:hover{border-color:var(--gold);}
+.toc a b{font-family:"Inter";font-weight:800;color:var(--gold);}
+.toc a i{font-style:normal;color:var(--gold);font-size:12px;}
+/* 自介卡：全站固定。上面一句是對讀者的承諾，下面是證明 */
+.mid-intro{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:16px 20px;margin-bottom:24px;}
+.mid-intro .slogan{font-family:var(--serif);font-weight:900;font-size:min(18px,4vw);white-space:nowrap;line-height:1.45;color:var(--ink);margin-top:12px;}
+
+.mid-intro .who{display:flex;align-items:center;gap:14px;}
+.mid-intro .who img{width:76px;height:76px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);}
+.mid-intro .nm{font-weight:900;font-size:16px;line-height:1.3;color:var(--ink);}
+.mid-intro .tt2{font-size:12px;color:var(--dim);line-height:1.4;}
+.mid-intro .proof{display:flex;align-items:flex-end;gap:14px;border-top:1px dashed var(--line);margin-top:12px;padding-top:11px;}
+.mid-intro .num{flex-shrink:0;line-height:1.2;}
+.mid-intro .num .d{font-size:11px;color:var(--dim);}
+.mid-intro .num .v{font-family:"Inter";font-weight:800;font-size:18px;color:var(--gold);white-space:nowrap;}
+.mid-intro .txt{font-size:14.5px;line-height:1.6;color:var(--text);padding-left:14px;border-left:1px solid var(--line);}
+.mid-intro .txt b{color:var(--ink);}
+.m-br{display:none;}
+
+/* ═════ ② 乾貨區 ═════ */
+.sec{position:relative;z-index:1;padding:38px 30px;border-top:1px solid var(--line);}
+.sec-tag{display:inline-block;background:rgba(212,144,42,0.14);color:var(--gold);font-size:12px;font-weight:700;padding:5px 15px;border:1px solid var(--gold-dim);border-radius:var(--pill);margin-bottom:16px;letter-spacing:0.05em;}
+.sec h2{font-family:var(--serif);font-weight:900;font-size:24px;line-height:1.42;margin-bottom:14px;color:var(--ink);}
+.sec>p{font-size:15px;color:var(--text);line-height:1.9;margin-bottom:14px;}
+.tipline{font-size:13.5px;color:var(--dim);line-height:1.75;border-left:2px solid var(--gold-dim);padding-left:14px;margin:13px 0 2px;}
+.tipline b{color:var(--gold);}
+
+.tblwrap{overflow-x:auto;margin:12px 0 4px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--card);}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;}
+.tbl th{background:rgba(212,144,42,0.12);color:var(--gold);font-weight:700;text-align:left;padding:10px 13px;border-bottom:2px solid var(--gold-dim);white-space:nowrap;}
+.tbl td{padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6;}
+.tbl td:first-child{font-family:"Inter";font-weight:800;color:var(--gold);}
+.tbl td:nth-child(2){font-weight:700;color:var(--ink);white-space:nowrap;}
+.tbl tr:last-child td{border-bottom:none;}
+
+.acc{display:flex;flex-direction:column;gap:10px;}
+details.ch{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;}
+details.ch[open]{border-color:var(--gold-dim);box-shadow:0 4px 18px rgba(120,90,30,0.07);}
+details.ch summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:13px;padding:16px 18px;user-select:none;}
+details.ch summary::-webkit-details-marker{display:none;}
+.ch-n{flex-shrink:0;min-width:34px;height:30px;border-radius:8px;background:rgba(212,144,42,0.14);border:1px solid var(--gold-dim);color:var(--gold);font-family:var(--mono);font-size:12px;display:flex;align-items:center;justify-content:center;}
+.ch-t{flex:1;font-weight:700;font-size:14.5px;line-height:1.4;}
+.ch-t .en{font-weight:400;color:var(--dim);font-size:12.5px;}
+.ch-mk{flex-shrink:0;width:22px;height:22px;position:relative;}
+.ch-mk::before,.ch-mk::after{content:"";position:absolute;background:var(--gold);border-radius:2px;transition:transform .25s ease,opacity .25s;}
+.ch-mk::before{top:10px;left:4px;width:14px;height:2px;}
+.ch-mk::after{top:4px;left:10px;width:2px;height:14px;}
+details.ch[open] .ch-mk::after{transform:rotate(90deg);opacity:0;}
+.ch-body{padding:6px 18px 18px;border-top:1px solid var(--line);}
+.ch-body p{font-size:14px;line-height:1.82;margin:10px 0;}
+.pos{background:rgba(212,144,42,0.08);border:1px solid var(--gold-dim);border-radius:12px;padding:11px 14px;margin:10px 0 2px;font-size:13.6px;line-height:1.72;}
+.pos b{color:var(--gold);}
+.judge{border-radius:12px;padding:11px 14px;margin:7px 0;font-size:13.6px;line-height:1.72;}
+.judge.no{background:var(--no-bg);border:1px solid var(--no-line);color:#7a3320;}
+.judge.ok{background:var(--ok-bg);border:1px solid var(--ok-line);color:#2f5228;}
+.judge .jl{font-weight:700;font-size:11.5px;letter-spacing:0.05em;display:block;margin-bottom:2px;}
+.judge.no .jl{color:var(--no);}
+.judge.ok .jl{color:var(--ok);}
+
+.cp{background:var(--code);border:2px solid var(--gold);border-radius:var(--r-md);padding:16px;margin:12px 0 2px;position:relative;box-shadow:0 10px 34px rgba(120,90,30,0.16);}
+.cp .pl{font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;color:var(--gold-bright);margin-bottom:11px;max-width:calc(100% - 96px);}
+.cp pre{font-family:var(--mono);font-size:12px;line-height:1.85;color:var(--code-tx);white-space:pre-wrap;word-break:break-word;}
+.cp .ph{color:var(--gold-bright);}
+.copy-btn{position:absolute;top:11px;right:11px;background:var(--gold);border:1px solid var(--gold);color:#1a1406;font-family:var(--sans);font-size:12px;font-weight:700;padding:7px 16px;border-radius:50px;cursor:pointer;}
+
+.ck{display:flex;gap:11px;align-items:flex-start;padding:9px 0;cursor:pointer;border-bottom:1px dashed var(--line);}
+.ck:last-of-type{border-bottom:none;}
+.ck input{appearance:none;-webkit-appearance:none;flex-shrink:0;width:19px;height:19px;margin-top:4px;border:2px solid var(--gold-dim);border-radius:5px;background:var(--bg2);cursor:pointer;position:relative;transition:all .18s;}
+.ck input:checked{background:var(--gold);border-color:var(--gold);}
+.ck input:checked::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #1a1406;border-width:0 2.5px 2.5px 0;transform:rotate(45deg);}
+.ck span{font-size:14.5px;line-height:1.7;}
+.ck input:checked + span{color:var(--faint);text-decoration:line-through;}
+.cklist{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:8px 18px;}
+
+/* ═════ ③ 研究所介紹 ═════ */
+.inst{position:relative;z-index:1;margin-top:20px;background:var(--dark);color:#fff;padding:52px 30px 46px;border-radius:var(--r-lg) var(--r-lg) 0 0;}
+.inst .kk{font-family:var(--mono);font-size:11px;letter-spacing:0.2em;color:var(--gold-bright);margin-bottom:14px;}
+.inst h2{font-family:var(--serif);font-weight:900;font-size:27px;line-height:1.45;margin-bottom:22px;}
+.inst h2 .g{color:var(--gold-bright);}
+.inst .lead{font-family:var(--serif);font-weight:700;font-size:16.5px;line-height:1.7;color:#fff;margin-bottom:18px;}
+.founder{margin-bottom:28px;}
+.founder p{font-size:14.5px;line-height:1.9;color:rgba(255,255,255,0.86);margin-bottom:10px;}
+.founder p b{color:var(--gold-bright);}
+.big{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 30px;}
+.big .b{border:1px solid rgba(232,169,74,0.35);border-radius:var(--r-md);padding:16px 10px;text-align:center;background:rgba(255,255,255,0.03);}
+.big .bn{font-family:"Inter";font-weight:800;font-size:24px;color:var(--gold-bright);line-height:1.1;}
+.big .bl{font-size:12px;color:rgba(255,255,255,0.65);margin-top:6px;line-height:1.5;}
+.inst h3{font-family:var(--serif);font-weight:900;font-size:18px;margin:6px 0 14px;color:#fff;}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:30px;}
+.tool{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:var(--r-md);padding:16px;}
+.tool.main{grid-column:1 / -1;border-color:var(--gold-bright);background:rgba(232,169,74,0.10);}
+.tool .tn{font-weight:900;font-size:15px;color:#fff;margin-bottom:4px;}
+.tool .tn em{font-style:normal;font-size:11px;font-weight:700;color:#1a1406;background:var(--gold-bright);border-radius:50px;padding:1px 8px;margin-left:6px;vertical-align:2px;}
+.tool .tn em.soon{background:rgba(255,255,255,0.18);color:#fff;}
+.tool .td{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7;}
+.qa{margin-bottom:30px;}
+.qa .q{font-family:var(--serif);font-weight:700;font-size:15px;color:#fff;margin:14px 0 4px;}
+.qa .q::before{content:"Q";color:var(--gold-bright);font-family:"Inter";font-weight:800;margin-right:8px;}
+.qa .a{font-size:13.8px;color:rgba(255,255,255,0.72);line-height:1.8;}
+.fit .f{display:flex;gap:10px;font-size:14px;line-height:1.7;margin-bottom:9px;color:rgba(255,255,255,0.86);}
+.fit .f::before{content:"\2714";color:var(--gold-bright);font-weight:700;flex-shrink:0;}
+.btn-wrap{text-align:center;margin-top:30px;}
+.skbtn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#1a1406;border-radius:var(--pill);padding:17px 46px;font-weight:900;font-size:18px;box-shadow:0 8px 28px rgba(212,144,42,0.35);transition:transform var(--bounce);position:relative;overflow:hidden;}
+.skbtn:hover{transform:translateY(-3px);}
+.skbtn::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent);transform:skewX(-25deg);animation:shine 3.4s ease-in-out infinite;}
+@keyframes shine{0%{left:-100%;}22%{left:160%;}100%{left:160%;}}
+.btn-note{margin-top:14px;font-size:12.5px;color:rgba(255,255,255,0.55);}
+
+.footer{position:relative;z-index:1;background:#15110b;padding:22px 30px 40px;text-align:center;}
+.footer .fa{font-style:italic;font-size:14px;color:var(--gold-bright);font-weight:700;}
+.footer .fc{font-size:11px;color:rgba(255,255,255,0.4);margin-top:8px;line-height:1.7;}
+
+/* ── 手機版 ── */
+@media(max-width:600px){
+  .hero{padding:40px 20px 28px;}
+  .hero h1{font-size:28px;}
+  .sec{padding:32px 20px;}
+  .sec h2{font-size:21px;}
+  .mid-intro .proof{flex-direction:column;align-items:flex-start;gap:6px;}
+  .mid-intro .num{display:flex;align-items:baseline;gap:8px;}
+  .mid-intro .num .d{font-size:13px;}
+  .mid-intro .txt{padding-left:0;border-left:none;}
+  .m-br{display:inline;}
+  .tbl{font-size:13px;}
+  .tbl th,.tbl td{padding:10px 10px;}
+  details.ch summary{padding:15px 16px;align-items:flex-start;}
+  .ch-t .en{display:block;margin-top:3px;}
+  .ch-mk{margin-top:4px;}
+  .inst{padding:40px 20px 38px;}
+  .inst h2{font-size:23px;}
+  .big .bn{font-size:20px;}
+  .tools{grid-template-columns:1fr;}
+  .skbtn{font-size:16px;padding:15px 26px;white-space:nowrap;}
+  .footer{padding:20px 20px 36px;}
+}
+
+/* ── 產生器補充：Notion 內容常見的格式 ── */
+.sec p{font-size:15px;line-height:1.9;margin:0 0 12px;}
+.sec .sub-h{font-size:16.5px;}
+.sub-h{font-family:var(--serif);font-weight:700;color:var(--gold);margin:22px 0 8px;line-height:1.5;}
+.h4{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink);margin:18px 0 6px;}
+.sec ul.bul,.ch-body ul.bul{margin:6px 0 12px;}
+.bul li ul.bul,.steps li ul.bul{margin:6px 0 2px;}
+ol.steps{list-style:none;margin:8px 0 12px;counter-reset:s;}
+ol.steps>li{position:relative;padding-left:33px;margin-bottom:10px;font-size:14px;line-height:1.75;counter-increment:s;}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:22px;height:22px;border-radius:50%;background:var(--gold);color:#1a1406;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;}
+.bul li{list-style:none;position:relative;padding-left:20px;font-size:14px;line-height:1.75;margin-bottom:7px;}
+.bul li::before{content:"\2726";position:absolute;left:0;color:var(--gold);}
+.pos p{margin:0 0 6px;font-size:13.8px;}
+.pos p:last-child{margin-bottom:0;}
+.tipline p{margin:0;}
+code{font-family:var(--mono);font-size:.9em;background:rgba(212,144,42,0.12);border-radius:4px;padding:1px 5px;}
+.cp{padding-top:46px;}
+.cp{margin:10px 0 14px;box-shadow:none;border-width:1px;}
+.tbl.gen td:first-child{font-family:inherit;font-weight:700;color:var(--ink);}
+.tbl.gen td:nth-child(2){white-space:normal;font-weight:400;color:var(--text);}
+.tbl.gen th{white-space:normal;}
+details.mini{border:1px solid var(--line);border-radius:12px;background:var(--card);margin:8px 0;}
+details.mini summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:14px;}
+.mini-body{padding:0 14px 12px;}
+.cklist{margin:8px 0 12px;}
+@media(max-width:600px){
+  .sec p{font-size:14.5px;}
+  .tblwrap{overflow:visible;border:none;background:none;}
+  .tbl.gen thead{display:none;}
+  .tbl.gen,.tbl.gen tbody,.tbl.gen tr,.tbl.gen td{display:block;width:100%;}
+  .tbl.gen tr{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:8px;}
+  .tbl.gen td{border:none;padding:2px 0;font-size:13.5px;}
+  .tbl.gen td:first-child{font-size:14.5px;margin-bottom:2px;}
+  .tbl.gen td:not(:first-child)[data-label]:not([data-label=""])::before{content:attr(data-label) "：";color:var(--dim);font-size:12px;}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.className+=' js';</script>
+<div class="glow"><div class="g1"></div><div class="g2"></div></div>
+
+<!-- ═════ ① 懸浮按鈕（全站固定，只換卡片上的兩句話） ═════ -->
+<div class="float-cta" id="float-cta">
+  <a class="fc-pill" href="https://www.skool.com/d11-lab/about" target="_blank" rel="noopener">加入 奇點研究所 <span class="ar">→</span></a>
+  <div class="fc-card">
+    <div class="k">NEXT STEP</div>
+    <!-- 【換】這兩句跟著當篇乾貨改：「你拿到的是一小塊 → 完整的在研究所」 -->
+    <h4>七天做完了<br><span class="g">接著把內容做起來</span></h4>
+    <p>選題、寫稿到發文，我們把整套流程做成工具放在研究所裡。</p>
+    <a href="https://www.skool.com/d11-lab/about" target="_blank" rel="noopener">加入 奇點研究所 × D11</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ═════ 開頭：這頁是什麼 ═════ -->
+  <header class="hero">
+    <!-- 【換】kicker／標題／副標／說明／這頁有什麼 -->
+    <div class="kicker">7 DAYS · 個人品牌工作頁</div>
+    <h1>起點方程式<br><span class="g">七天工作頁</span></h1>
+    <div class="h-sub">一天一件事，第七天就有東西可以開始收錢</div>
+    <p class="hero-sub">從定位宣言、定價、免費磁鐵、蓋一個家，到一段語音變27篇內容、第七天開賣。每天都有填空、範例和 AI 輔助 Prompt。</p>
+    <!-- 自介卡：全站固定，放在乾貨說明之後、「這頁有」之前 -->
+    <div class="mid-intro">
+      <div class="who">
+        <img src="data:image/jpeg;base64,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" alt="傑森所長">
+        <div><div class="nm">傑森所長</div><div class="tt2">奇點研究所所長｜D11 行銷創辦人</div></div>
+      </div>
+      <div class="slogan">用 AI 跟自媒體，<span class="g">找到你突破現狀的起點。</span></div>
+      <div class="proof">
+        <div class="num"><div class="d">60天，我的粉絲</div><div class="v">3,000→5萬</div></div>
+        <div class="txt"><b>把一間自媒體公司搬到 AI 上。</b><br class="m-br">同一套流程，換作是你也可以做到。</div>
+      </div>
+    </div>
+
+    <nav class="toc">
+      <div class="tt">這頁有</div>
+      <ul>
+        <li><a href="#s3"><b>7</b>天工作頁<i>↓</i></a></li>
+        <li><a href="#s4">七天總覽<i>↓</i></a></li>
+        <li><a href="#s5">AI 工具總表<i>↓</i></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ═════ ② 乾貨區（由 Notion 自動轉出） ═════ -->
+<section class="sec fade" id="s1"><h2>這份工作頁怎麼用</h2><h3 class="sub-h">先講清楚三件事</h3><p><b>1. 這不用一次做完</b><br>七天，一天一件。每天 60 到 90 分鐘。打不完明天先補，不要往下跳。</p><p><b>2. 每一天都有一個「填空」</b><br>空格填完，你就有那一天的產出。七天下來你會有七句話，那七句話組起來就是你的品牌。</p><p><b>3. 每一天都有 AI 輔助 Prompt</b><br>直接複製貼上，換掉 <code>[方括號]</code> 裡的內容。我用的是 ChatGPT 跟 Claude，兩個都能跑，差異我在後面的工具表裡寫了。</p><h3 class="sub-h">使用建議</h3><p>把這份文件複製到你自己的 Notion，直接在裡面填。填過的東西之後要改、要調、要拿去餵 AI，都在同一個地方。</p></section>
+
+<section class="sec fade" id="s2"><h2>開始前：先做一件事</h2><p>打開你的手機備忘錄，寫下這個數字：</p><div class="tipline"><b>我希望第七天結束時，有 ＿＿ 個人付錢給我。</b></div><p>數字寫小一點。3 個、5 個都可以。第一批客戶的意義是驗證，不是營收。</p></section>
+
+<section class="sec fade" id="s3"><span class="sec-tag">7天工作頁</span><h2>七天，一天一件事</h2><div class="acc"><details class="ch" open><summary><span class="ch-n">DAY 1</span><span class="ch-t">定位宣言</span><span class="ch-mk"></span></summary><div class="ch-body"><h4 class="h4">今天的產出</h4><p><b>一句話，說清楚你在賣什麼。</b></p><h4 class="h4">為什麼從這裡開始</h4><p>陌生人看你的簡介，停留時間大概兩秒。兩秒之內他沒看懂你在幹嘛，後面六天做的所有東西都接不到他。</p><p>很多人跳過這一步，直接去做內容、做官網、做視覺。做了三個月，流量有了，錢沒有。原因就在第一天沒做完。</p><h4 class="h4">填空</h4><div class="cp"><button class="copy-btn" type="button">複製</button><pre>我幫 ＿＿＿＿＿＿＿＿（誰）
+用 ＿＿＿＿＿＿＿＿（什麼方法）
+拿到 ＿＿＿＿＿＿＿＿（什麼結果）</pre></div><h4 class="h4">三個填寫規則</h4><h4 class="h4">規則一：「誰」＝ 一年前的你</h4><p>不要寫「所有想學 AI 的人」。寫一個具體的人。</p><p>最好的對象是一年前的自己——你走過那段路，你知道他卡在哪、他用什麼詞、他半夜在 Google 什麼。</p><p>❌ 想提升效率的上班族<br>✅ 每天花兩小時做簡報、下班後還在改的行銷專員</p><h4 class="h4">規則二：「方法」要有名字</h4><p>沒有名字的方法，聽起來像通用建議。有名字的方法，聽起來像你的東西。</p><p>❌ 用 AI 幫你寫文案<br>✅ 一套「三段式提示詞」的文案流程</p><p>名字不用很厲害，能被記住、能被複述就好。客戶跟朋友介紹你的時候，他要說得出那個名字。</p><h4 class="h4">規則三：「結果」寫他想要的，不寫他需要的</h4><p>他需要的是「建立系統思維」。他想要的是「下班準時走」。</p><p>寫第二個。</p><p>❌ 建立一套可複製的內容生產系統<br>✅ 每週內容一次做完，其他六天不用碰</p><h4 class="h4">範例（完整版）</h4><div class="tipline">我幫<b>坐辦公室腰痠的上班族</b>，<br>用一套<b>十分鐘晨間伸展流程</b>，<br><b>三週內起床不再痛</b>。</div><p>再看幾個不同產業的：</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>產業</th><th>定位宣言</th></tr></thead><tbody><tr><td data-label="產業">記帳 / 財務</td><td data-label="定位宣言">我幫剛接案的自由工作者，用一套「單一帳戶分流法」，三個月內報稅不再手忙腳亂</td></tr><tr><td data-label="產業">英文教學</td><td data-label="定位宣言">我幫要外派卻不敢開口的工程師，用一套「十句話開場庫」，一個月內能主持英文會議</td></tr><tr><td data-label="產業">寵物訓練</td><td data-label="定位宣言">我幫養第一隻狗的新手，用一套「七天定點大小便流程」，一週內家裡不再有味道</td></tr><tr><td data-label="產業">AI 工具</td><td data-label="定位宣言">我幫每天做簡報到晚上的行銷專員，用一套「三段式提示詞」，簡報時間砍到 20 分鐘</td></tr></tbody></table></div><h4 class="h4">兩秒測試</h4><p>把你寫好的句子傳給三個不認識你工作的朋友，問他們一個問題：</p><div class="tipline">「你覺得我在賣什麼？」</div><p>三個人裡有兩個答錯，回去改。</p><h4 class="h4">常見卡關</h4><p><b>卡關一：我覺得我沒什麼專業</b><br>專業的定義是「你比某一群人多知道一點」。不需要是最強的，只需要比你要幫的人早一步。</p><p><b>卡關二：我想幫的人太多了</b><br>先選一群。定位窄不會少賺，定位窄會讓人記得住。記得住才會來找你。</p><p><b>卡關三：我的方法很普通</b><br>方法普通沒關係，包裝成一套流程、給它一個名字，它就變成你的。</p><h4 class="h4">AI 輔助 Prompt</h4><p>複製貼上，換掉方括號內容：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>你是一位個人品牌定位顧問。
+
+我的背景：[寫下你的工作經歷、擅長的事、常被朋友問的問題，三到五行]
+
+請幫我做三件事：
+
+1. 從我的背景裡，找出三個「我比別人早一步」的領域，
+   每個用一句話說明我的優勢來源。
+
+2. 針對每個領域，寫出一句定位宣言，格式是：
+   我幫 [具體的人]，用 [有名字的方法]，拿到 [他想要的結果]
+
+3. 幫我評估這三句話，哪一句「陌生人看兩秒能懂」，
+   並說明另外兩句的問題在哪。
+
+規則：
+- 「誰」要具體到能想像出一個人，不能用「想成長的人」這種寫法
+- 「方法」必須有一個好記的名字
+- 「結果」要寫對方想要的，不是對方需要的
+- 不要寫得太漂亮，用口語</pre></div><h4 class="h4">今天的完成標準</h4><div class="cklist"><label class="ck"><input type="checkbox"><span>三個空格都填好了</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>方法有名字</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>找過三個人做兩秒測試</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>句子存在手機裡（之後六天都會用到）</span></label></div></div></details><details class="ch"><summary><span class="ch-n">DAY 2</span><span class="ch-t">定一個價格</span><span class="ch-mk"></span></summary><div class="ch-body"><h4 class="h4">今天的產出</h4><p><b>一個月費價格，和那個價格對應的交付內容。</b></p><h4 class="h4">為什麼是月費</h4><p>單次賣課的結構是這樣：這個月賣 10 個人，收 10 筆錢。下個月從零開始，再找 10 個人。</p><p>一年 12 次從零開始。你花在「找人」上的時間，是花在「做內容」上的好幾倍。</p><p>月費的結構不一樣。這個月進來 10 個人，下個月他們還在，你只要再找 5 個。第三個月變 20 個。</p><p><b>單次賣課，賣完歸零。月費，下個月自動再來一次。</b></p><h4 class="h4">填空</h4><div class="cp"><button class="copy-btn" type="button">複製</button><pre>每個月付我 ＿＿＿＿ 元，
+我給他 ＿＿＿＿＿＿＿＿。</pre></div><h4 class="h4">定價怎麼抓</h4><h4 class="h4">第一個價格，定你自己願意付的數字</h4><p>不用市調，不用比價。問自己：如果有人提供這個服務，我願意每個月付多少？</p><p>寫下那個數字，就是你的起始價。</p><h4 class="h4">台灣市場常見區間參考</h4><div class="tblwrap"><table class="tbl gen"><thead><tr><th>價格帶</th><th>適合的交付密度</th><th>常見形式</th></tr></thead><tbody><tr><td data-label="價格帶">199–399</td><td data-label="適合的交付密度">每週一則內容 + 群組問答</td><td data-label="常見形式">知識型訂閱、模板庫</td></tr><tr><td data-label="價格帶">500–999</td><td data-label="適合的交付密度">每週內容 + 每月一次直播</td><td data-label="常見形式">社群 + 輕度陪跑</td></tr><tr><td data-label="價格帶">1000–2000</td><td data-label="適合的交付密度">每週內容 + 每月一對多諮詢</td><td data-label="常見形式">教練型社群</td></tr><tr><td data-label="價格帶">2000 以上</td><td data-label="適合的交付密度">高頻互動 + 個別回饋</td><td data-label="常見形式">陪跑型、諮詢型</td></tr></tbody></table></div><p>先從低的開始。價格可以往上調，往下調會傷到早期會員。</p><h4 class="h4">早鳥定價的做法</h4><p>前 20 位用一半的價格，並且承諾「只要不斷訂，這個價格跟著你」。</p><p>這會做到兩件事：早期會員有理由現在就進來，也有理由留下來。</p><h4 class="h4">次要填空</h4><div class="tipline">30 天內，他會拿到的第一個成果是：<b>＿＿＿＿＿＿＿＿</b></div><p>寫到能截圖的程度。</p><p>❌ 對 AI 工具更熟悉<br>✅ 手上有三個能直接用的提示詞，並且已經用它產出過一篇貼文</p><h4 class="h4">範例</h4><div class="cp"><button class="copy-btn" type="button">複製</button><pre>每個月 399，
+我給他每週一支課表影片 ＋ 群組問答。
+30 天內第一個成果：拍一張自己伸展的側面照，和第一天的照片對比</pre></div><h4 class="h4">AI 輔助 Prompt</h4><div class="cp"><button class="copy-btn" type="button">複製</button><pre>你是一位訂閱制產品設計顧問。
+
+我的定位宣言是：[貼上 Day 1 的句子]
+我打算定的月費是：[數字] 元
+
+請幫我：
+
+1. 設計這個價格帶「剛剛好」的交付內容，
+   列出每個月固定要交付的 3 到 4 項，
+   每項標註我大概需要花多少時間製作。
+
+2. 檢查這組交付會不會讓我做不完。
+   如果會，指出哪一項該砍掉。
+
+3. 設計一個「30 天第一個成果」，
+   條件是：具體、可截圖、會員自己做得到。
+
+4. 幫我寫一段 100 字以內的方案說明，
+   用會員的語言寫，不要用產品說明的語氣。
+
+規則：
+- 交付內容要能長期維持，不要設計出我三個月後會累死的東西
+- 不要建議我加「無限次一對一」這種會爆掉的項目</pre></div><h4 class="h4">今天的完成標準</h4><div class="cklist"><label class="ck"><input type="checkbox"><span>月費數字定好了</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>交付內容列出來了，而且你確定做得完</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>30 天第一個成果寫到能截圖</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>想好早鳥怎麼做</span></label></div></div></details><details class="ch"><summary><span class="ch-n">DAY 3</span><span class="ch-t">兩顆磁鐵</span><span class="ch-mk"></span></summary><div class="ch-body"><h4 class="h4">今天的產出</h4><p><b>一份免費送的東西，一個付費賣的東西。</b></p><h4 class="h4">兩顆磁鐵的分工</h4><p><b>第一顆：收名單。</b><br>免費送，解決一個很小的問題，五分鐘看得完。它的任務不是讓人學會什麼，是讓人願意留下聯絡方式、願意進到你的社群。</p><p><b>第二顆：收錢。</b><br>就是 Day 2 定好的月費方案。</p><p>兩顆磁鐵都要指向同一個地方。有人從免費磁鐵進來，看到的下一個東西必須是付費磁鐵。中間不要插別的。</p><h4 class="h4">填空</h4><div class="cp"><button class="copy-btn" type="button">複製</button><pre>免費送 ＿＿＿＿＿＿＿＿，
+付費賣 ＿＿＿＿＿＿＿＿。</pre></div><h4 class="h4">免費磁鐵的五個規格</h4><ol class="steps"><li><b>五分鐘看得完</b>（超過就沒人看完，沒看完就沒有信任）</li><li><b>解決一個具體問題</b>（不要做「完整指南」）</li><li><b>有立刻能用的東西</b>（模板、清單、提示詞、對照表）</li><li><b>結尾要有下一步</b>（指向你的社群或付費方案）</li><li><b>用 PDF 或 Notion 頁面</b>（不要用影片，門檻太高）</li></ol><h4 class="h4">免費磁鐵格式參考</h4><div class="tblwrap"><table class="tbl gen"><thead><tr><th>格式</th><th>適合誰</th><th>製作時間</th></tr></thead><tbody><tr><td data-label="格式">檢查清單</td><td data-label="適合誰">流程型、避坑型內容</td><td data-label="製作時間">1 小時</td></tr><tr><td data-label="格式">提示詞包</td><td data-label="適合誰">AI 工具類</td><td data-label="製作時間">2 小時</td></tr><tr><td data-label="格式">對照表</td><td data-label="適合誰">比較型、選擇困難型</td><td data-label="製作時間">1.5 小時</td></tr><tr><td data-label="格式">一頁式流程圖</td><td data-label="適合誰">步驟明確的方法</td><td data-label="製作時間">2 小時</td></tr><tr><td data-label="格式">填空工作頁</td><td data-label="適合誰">需要對方動手的主題</td><td data-label="製作時間">3 小時</td></tr></tbody></table></div><p><b>你正在看的這一份，就是「填空工作頁」格式。</b></p><h4 class="h4">範例</h4><div class="cp"><button class="copy-btn" type="button">複製</button><pre>免費送「十分鐘晨間伸展表」PDF（一頁，六個動作，附圖），
+付費賣每月 399 的課表訂閱。
+PDF 最後一頁寫：「這六個動作做完一週後，下一步是調整坐姿與核心。完整課表在這裡 → [連結]」</pre></div><h4 class="h4">AI 輔助 Prompt</h4><div class="cp"><button class="copy-btn" type="button">複製</button><pre>你是一位 Lead Magnet 設計顧問。
+
+我的定位宣言：[貼上 Day 1 的句子]
+我的付費方案：[貼上 Day 2 的內容]
+
+請幫我設計免費磁鐵：
+
+1. 列出我的目標受眾「最小、最急、最容易解決」的三個問題。
+   標準是：他今天就想解決，而且解法五分鐘講得完。
+
+2. 針對每個問題，設計一份免費磁鐵，說明：
+   - 格式（清單／模板／對照表／工作頁）
+   - 完整大綱（標題 + 每個區塊要放什麼）
+   - 預估製作時間
+
+3. 從三個裡面挑一個你認為最能導向我付費方案的，說明理由。
+
+4. 幫我寫免費磁鐵最後一段的「下一步」文案，
+   從免費內容自然接到付費方案，不要有推銷感。
+
+規則：
+- 免費磁鐵必須五分鐘看得完
+- 不要設計成「完整指南」，範圍越小越好</pre></div><h4 class="h4">今天的完成標準</h4><div class="cklist"><label class="ck"><input type="checkbox"><span>免費磁鐵的主題定了</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>大綱寫出來了</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>想好用什麼格式做</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>最後一段「下一步」文案寫好了</span></label></div><div class="tipline">今天做完大綱就好。實際製作可以排在 Day 4 到 Day 6 的空檔。</div></div></details><details class="ch"><summary><span class="ch-n">DAY 4</span><span class="ch-t">把家蓋起來</span><span class="ch-mk"></span></summary><div class="ch-body"><h4 class="h4">今天的產出</h4><p><b>一個免費社群，六件事做完就關電腦。</b></p><h4 class="h4">為什麼要有一個「家」</h4><p>你的內容發在 IG、發在 Threads、發在 YouTube，那些流量都是平台的。演算法一改，你什麼都不剩。</p><p>社群是你自己的地。人進來了就在那裡，你可以直接找到他們。</p><p><b>免費區只負責一件事：讓人知道下一層有什麼。</b></p><p>不用把免費區做得很豐富。做太豐富，沒人想付費。</p><h4 class="h4">今天的六件事</h4><p>每件約 15 分鐘。</p><h4 class="h4">1. 社群取一個名字</h4><p>用你的方法名字，或用結果命名。</p><p>❌ Jason 的學習社群<br>✅ 十分鐘晨間伸展｜不再腰痠的地方</p><h4 class="h4">2. 做一張封面圖</h4><p>用 Canva 的社群封面模板，放三個元素就好：社群名稱、一句說明、你的照片。</p><h4 class="h4">3. 寫一篇歡迎貼文</h4><p>四段結構：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>1. 你是誰，一句話（用 Day 1 的定位宣言）
+2. 這個社群是幹嘛的，兩句話
+3. 你第一件要做的事是什麼（給他一個具體動作）
+4. 自我介紹的格式（貼一個範本讓他照抄）</pre></div><p>第 3 點很重要。新人進來沒事做就會走。給他一個五分鐘做得完的動作。</p><h4 class="h4">4. 設三題入會問題</h4><div class="cp"><button class="copy-btn" type="button">複製</button><pre>1. 你現在最困擾的是什麼？
+2. 你希望三個月後變成什麼樣子？
+3. 你是從哪裡看到我的？</pre></div><p>第 1、2 題是你的選題資料庫。以後不用想要發什麼，去看這裡就好。</p><h4 class="h4">5. 開好內容分類</h4><p>一開始只開四個：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>公告
+自我介紹
+提問區
+每週內容</pre></div><p>分類太多會顯得空。四個就夠。</p><h4 class="h4">6. 錄一支兩分鐘導覽</h4><p>手機直接錄，不用修。內容是：這個社群怎麼用、從哪裡開始看、有問題去哪裡問。</p><p>置頂在公告區。</p><h4 class="h4">平台選擇</h4><div class="tblwrap"><table class="tbl gen"><thead><tr><th>平台</th><th>優點</th><th>缺點</th><th>連結</th></tr></thead><tbody><tr><td data-label="平台"><b>Skool</b></td><td data-label="優點">社群 + 課程 + 金流整合，訂閱制原生支援</td><td data-label="缺點">介面全英文，月費約 $99 USD</td><td data-label="連結"><a href="https://www.skool.com/" target="_blank" rel="noopener">https://www.skool.com</a></td></tr><tr><td data-label="平台"><b>LINE 社群 / 官方帳號</b></td><td data-label="優點">台灣受眾熟悉，通知打開率高</td><td data-label="缺點">內容留不住，難分層</td><td data-label="連結"><a href="https://www.linebiz.com/tw/" target="_blank" rel="noopener">https://www.linebiz.com/tw/</a></td></tr><tr><td data-label="平台"><b>Discord</b></td><td data-label="優點">免費、分類彈性</td><td data-label="缺點">收費要外接、非科技受眾門檻高</td><td data-label="連結"><a href="https://discord.com/" target="_blank" rel="noopener">https://discord.com</a></td></tr><tr><td data-label="平台"><b>Circle</b></td><td data-label="優點">介面精緻、可分層</td><td data-label="缺點">月費偏高</td><td data-label="連結"><a href="https://circle.so/" target="_blank" rel="noopener">https://circle.so</a></td></tr><tr><td data-label="平台"><b>Facebook 社團</b></td><td data-label="優點">零成本、台灣滲透率高</td><td data-label="缺點">無法直接收費、觸及被壓</td><td data-label="連結"><a href="https://www.facebook.com/groups/" target="_blank" rel="noopener">https://www.facebook.com/groups/</a></td></tr></tbody></table></div><p><b>選擇建議：</b> 第一次做，先用你受眾已經在用的平台。台灣一般大眾受眾用 LINE，商務或學習型受眾用 Skool。不要為了工具漂亮，把受眾拉到他不熟的地方。</p><h4 class="h4">AI 輔助 Prompt</h4><div class="cp"><button class="copy-btn" type="button">複製</button><pre>你是一位線上社群營運顧問。
+
+我的定位宣言：[貼上 Day 1 的句子]
+我的社群平台：[Skool / LINE / Discord / Facebook]
+
+請幫我：
+
+1. 提供 5 個社群名稱選項，各說明命名邏輯。
+   規則：不要用我的名字命名，用「結果」或「方法」命名。
+
+2. 寫一篇歡迎貼文，四段結構：
+   我是誰 / 這裡是幹嘛的 / 你第一件要做的事 / 自我介紹範本
+   語氣口語，不要有官方感。
+
+3. 設計三題入會問題，目的是幫我累積選題素材。
+
+4. 寫兩分鐘導覽影片的口播稿，逐字稿形式，約 300 字。</pre></div><h4 class="h4">今天的完成標準</h4><div class="cklist"><label class="ck"><input type="checkbox"><span>六件事都打勾了</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>社群連結拿到手了</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>導覽影片已置頂</span></label></div></div></details><details class="ch"><summary><span class="ch-n">DAY 5</span><span class="ch-t">一個關鍵字</span><span class="ch-mk"></span></summary><div class="ch-body"><h4 class="h4">今天的產出</h4><p><b>一條從「陌生人看到貼文」到「他進到你社群」的自動路徑。</b></p><h4 class="h4">為什麼只能有一個</h4><p>很多人的簡介長這樣：官網、IG、YouTube、LINE、Podcast、合作邀約表單。</p><p>六個連結，流量分成六份。每一份都不夠讓任何一個管道長起來。</p><p><b>簡介連結超過一個，流量就散掉。</b></p><p>同樣的邏輯套在關鍵字上。一篇貼文喊一個關鍵字，別讓讀者選。</p><h4 class="h4">填空</h4><div class="cp"><button class="copy-btn" type="button">複製</button><pre>我的關鍵字是 ＿＿＿＿，
+留言的人會收到 ＿＿＿＿＿＿＿＿。</pre></div><h4 class="h4">關鍵字怎麼取</h4><ul class="bul"><li><b>兩個字最好記</b>（品牌、鉤子、伸展、報稅）</li><li><b>跟內容直接相關</b>（看完內容就知道要打什麼）</li><li><b>不要用英文</b>（中文輸入法切換是摩擦）</li><li><b>不要用符號或數字</b>（打錯就收不到）</li></ul><h4 class="h4">整條路徑長什麼樣</h4><div class="cp"><button class="copy-btn" type="button">複製</button><pre>貼文 / 限動
+   ↓  喊「留言『XX』」
+留言區
+   ↓  自動回覆偵測關鍵字
+私訊
+   ↓  送出免費磁鐵 + 社群連結
+社群
+   ↓  歡迎貼文 → 第一個動作
+付費方案</pre></div><p>每一段都要接得上。斷一段，人就掉了。</p><h4 class="h4">自動私訊工具</h4><div class="tblwrap"><table class="tbl gen"><thead><tr><th>工具</th><th>適用</th><th>費用</th><th>連結</th></tr></thead><tbody><tr><td data-label="工具"><b>ManyChat</b></td><td data-label="適用">IG 留言自動回覆、私訊流程</td><td data-label="費用">有免費方案</td><td data-label="連結"><a href="https://manychat.com/" target="_blank" rel="noopener">https://manychat.com</a></td></tr><tr><td data-label="工具"><b>Chatfuel</b></td><td data-label="適用">IG / FB 自動化</td><td data-label="費用">付費為主</td><td data-label="連結"><a href="https://chatfuel.com/" target="_blank" rel="noopener">https://chatfuel.com</a></td></tr><tr><td data-label="工具"><b>Portaly</b></td><td data-label="適用">台灣在地連結頁，可掛表單</td><td data-label="費用">有免費方案</td><td data-label="連結"><a href="https://portaly.cc/" target="_blank" rel="noopener">https://portaly.cc</a></td></tr><tr><td data-label="工具"><b>Linktree</b></td><td data-label="適用">連結頁</td><td data-label="費用">有免費方案</td><td data-label="連結"><a href="https://linktr.ee/" target="_blank" rel="noopener">https://linktr.ee</a></td></tr></tbody></table></div><p><b>沒有預算的做法：</b> 手動回。前 100 個人手動私訊，順便看他們怎麼說話。這些對話是你之後寫文案最好的素材。</p><h4 class="h4">私訊文案模板</h4><div class="cp"><button class="copy-btn" type="button">複製</button><pre>嗨，看到你的留言了
+
+這是你要的 [免費磁鐵名稱]：[連結]
+
+裡面的 [具體某一頁 / 某個部分] 是我覺得最好用的，可以先從那邊看
+
+另外我把大家聚在 [社群名稱] 這邊，
+有問題可以直接問，也會固定放新的東西進去：[社群連結]
+
+用完有什麼想法，直接回我這則訊息就好</pre></div><p>不要寫得太業務。最後一句留一個回話的理由，這是你跟他建立關係的起點。</p><h4 class="h4">範例</h4><div class="tipline">我的關鍵字是<b>「伸展」</b>，<br>留言的人會收到<b>十分鐘晨間伸展表 PDF ＋ 社群連結</b>。</div><h4 class="h4">今天的完成標準</h4><div class="cklist"><label class="ck"><input type="checkbox"><span>關鍵字定了</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>私訊文案寫好了</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>簡介只留一個連結</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>自己測試過一次完整流程（用另一個帳號留言，看收不收得到）</span></label></div><div class="tipline">第四點一定要做。九成的漏斗問題出在這裡。</div></div></details><details class="ch"><summary><span class="ch-n">DAY 6</span><span class="ch-t">一段語音，27 篇</span><span class="ch-mk"></span></summary><div class="ch-body"><h4 class="h4">今天的產出</h4><p><b>接下來 27 天的內容，今天一次做完。</b></p><h4 class="h4">為什麼是語音</h4><p>打字的時候你會修飾，會想「這樣寫會不會太簡單」。講話的時候不會，講話是你最自然的狀態。</p><p>而且講話比打字快三倍。30 分鐘的語音，逐字稿大約 6000 到 8000 字。那個字數夠拆出 27 篇內容。</p><h4 class="h4">填空</h4><div class="tipline">我要對著手機講 30 分鐘的題目是：<b>＿＿＿＿＿＿＿＿</b></div><h4 class="h4">題目怎麼選</h4><p>講 Day 1 那句定位宣言就好。</p><p>具體來說，講這六件事，每件五分鐘：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>1. 我要幫的那群人，現在卡在什麼地方
+2. 他們通常會怎麼解決，為什麼沒效
+3. 我的方法是什麼，為什麼有效
+4. 我自己怎麼發現這個方法的
+5. 有人用了之後發生什麼事
+6. 想開始的人，第一步該做什麼</pre></div><p>不用寫腳本。把這六題印出來放在桌上，看著講。</p><h4 class="h4">錄音工具</h4><div class="tblwrap"><table class="tbl gen"><thead><tr><th>工具</th><th>用途</th><th>費用</th><th>連結</th></tr></thead><tbody><tr><td data-label="工具">手機內建錄音</td><td data-label="用途">最沒有摩擦，直接開就錄</td><td data-label="費用">免費</td><td data-label="連結">—</td></tr><tr><td data-label="工具"><b>剪映 / CapCut</b></td><td data-label="用途">錄完直接生中文字幕</td><td data-label="費用">免費</td><td data-label="連結"><a href="https://www.capcut.com/" target="_blank" rel="noopener">https://www.capcut.com</a></td></tr><tr><td data-label="工具"><b>Notta</b></td><td data-label="用途">中文語音轉文字，準確度高</td><td data-label="費用">有免費額度</td><td data-label="連結"><a href="https://www.notta.ai/" target="_blank" rel="noopener">https://www.notta.ai</a></td></tr><tr><td data-label="工具"><b>Descript</b></td><td data-label="用途">逐字稿編輯，剪文字等於剪影片</td><td data-label="費用">付費為主</td><td data-label="連結"><a href="https://www.descript.com/" target="_blank" rel="noopener">https://www.descript.com</a></td></tr></tbody></table></div><h4 class="h4">逐字稿怎麼變 27 篇</h4><p>這是整份工作頁最省時間的一段。</p><h4 class="h4">步驟一：拿到逐字稿</h4><p>把錄音檔丟進剪映或 Notta，導出純文字。</p><h4 class="h4">步驟二：丟給 AI 做結構拆解</h4><div class="cp"><button class="copy-btn" type="button">複製</button><pre>你是一位社群內容策劃。
+
+以下是我錄的一段 30 分鐘口語內容逐字稿：
+
+[貼上逐字稿]
+
+請幫我做三件事：
+
+1. 從逐字稿裡抓出所有「可以獨立成篇」的觀點，
+   每個觀點用一句話總結，並標註出自逐字稿哪一段。
+   目標：抓出 25 到 30 個。
+
+2. 把這些觀點分成三類：
+   - 痛點型（讀者會說「這就是我」）
+   - 方法型（讀者會想收藏）
+   - 觀點型（讀者會想留言或分享）
+
+3. 幫我排一個 27 天的發文順序，
+   原則是：痛點型開頭抓人，方法型中段建立信任，
+   觀點型穿插做互動，每七天出現一次 CTA。
+
+規則：
+- 只能用逐字稿裡出現過的內容，不要自己補充
+- 保留我的口語用詞，不要改成書面語</pre></div><h4 class="h4">步驟三：逐篇展開</h4><div class="cp"><button class="copy-btn" type="button">複製</button><pre>以下是我的一個觀點：[貼上其中一個]
+原始逐字稿段落：[貼上對應段落]
+
+請寫成一篇 IG 貼文：
+
+- 第一行是鉤子，20 字以內，讓人停下來
+- 本體 3 到 5 段，每段 2 到 3 句
+- 段落之間空一行
+- 最後一行是 CTA
+
+規則：
+- 用我逐字稿裡的原句和用詞，不要重寫成漂亮的文案
+- 不要用「不是⋯⋯而是⋯⋯」這種句型
+- 不要用「真正的 X 是⋯⋯」這種收尾
+- 不加表情符號</pre></div><h4 class="h4">步驟四：排程</h4><p>用 Meta Business Suite 或 Buffer 排掉。</p><ul class="bul"><li>Meta Business Suite：<a href="https://business.facebook.com/" target="_blank" rel="noopener">https://business.facebook.com</a></li><li>Buffer：<a href="https://buffer.com/" target="_blank" rel="noopener">https://buffer.com</a></li></ul><h4 class="h4">講完這 30 分鐘，接下來一個月不用再想要發什麼</h4><h4 class="h4">今天的完成標準</h4><div class="cklist"><label class="ck"><input type="checkbox"><span>錄音完成（超過 25 分鐘）</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>逐字稿拿到了</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>AI 拆解出 25 篇以上</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>至少寫完前 7 篇並排程</span></label></div></div></details><details class="ch"><summary><span class="ch-n">DAY 7</span><span class="ch-t">開賣</span><span class="ch-mk"></span></summary><div class="ch-body"><h4 class="h4">今天的產出</h4><p><b>第一批付費會員。</b></p><h4 class="h4">為什麼今天就賣</h4><p>「等我內容再多一點」「等粉絲再多一點」「等我準備好一點」——這三句話會讓你永遠停在準備階段。</p><p><b>先開賣，再建設。</b></p><p>會員進來之後會直接告訴你他們要什麼，你照著做就好。比你自己在房間裡猜三個月準。</p><h4 class="h4">填空</h4><div class="tipline">第一批我要收 <b>＿＿</b> 個人。</div><h4 class="h4">先盤點 10 個人</h4><p>不要對著陌生流量開賣。第一批客戶來自你已經有的關係。</p><p>寫下 10 個名字，來源是這三種：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>1. 私訊問過你價格的
+2. 看過你直播、或跟你聊過這個主題的
+3. 在你貼文底下留言超過三次的</pre></div><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>名字</th><th>來源</th><th>私訊了嗎</th><th>回應</th></tr></thead><tbody><tr><td data-label="#">1</td><td data-label="名字"></td><td data-label="來源"></td><td data-label="私訊了嗎">☐</td><td data-label="回應"></td></tr><tr><td data-label="#">2</td><td data-label="名字"></td><td data-label="來源"></td><td data-label="私訊了嗎">☐</td><td data-label="回應"></td></tr><tr><td data-label="#">3</td><td data-label="名字"></td><td data-label="來源"></td><td data-label="私訊了嗎">☐</td><td data-label="回應"></td></tr><tr><td data-label="#">4</td><td data-label="名字"></td><td data-label="來源"></td><td data-label="私訊了嗎">☐</td><td data-label="回應"></td></tr><tr><td data-label="#">5</td><td data-label="名字"></td><td data-label="來源"></td><td data-label="私訊了嗎">☐</td><td data-label="回應"></td></tr><tr><td data-label="#">6</td><td data-label="名字"></td><td data-label="來源"></td><td data-label="私訊了嗎">☐</td><td data-label="回應"></td></tr><tr><td data-label="#">7</td><td data-label="名字"></td><td data-label="來源"></td><td data-label="私訊了嗎">☐</td><td data-label="回應"></td></tr><tr><td data-label="#">8</td><td data-label="名字"></td><td data-label="來源"></td><td data-label="私訊了嗎">☐</td><td data-label="回應"></td></tr><tr><td data-label="#">9</td><td data-label="名字"></td><td data-label="來源"></td><td data-label="私訊了嗎">☐</td><td data-label="回應"></td></tr><tr><td data-label="#">10</td><td data-label="名字"></td><td data-label="來源"></td><td data-label="私訊了嗎">☐</td><td data-label="回應"></td></tr></tbody></table></div><h4 class="h4">私訊怎麼寫</h4><p>不要群發同一段。每則改兩句，讓他知道你記得他。</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>嗨 [名字]
+
+你之前問過 [他問過的具體問題]，我後來把那件事整理成一套完整的東西了
+
+我開了一個 [社群名稱]，每個月 [價格]，裡面會 [一句話講交付]
+前 20 位是 [早鳥價]，這個價格會跟著你不變
+
+想說先問問你，這個對你現在的狀況有用嗎
+
+沒興趣也直接跟我說沒關係，我不會再提</pre></div><p>最後一句很重要。給對方一個容易拒絕的出口，回覆率會比較高，關係也不會壞掉。</p><h4 class="h4">開一場直播</h4><p>私訊發完之後，開一場 30 到 40 分鐘的直播。</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>0–5 分   講 Day 1 那句定位宣言，說清楚你在幫誰
+5–20 分  講你的方法，講到人家覺得「這個我可以試試看」
+20–30 分 講你自己怎麼走過來的，說一個具體的事
+30–35 分 講方案，價格、內容、早鳥條件，講完就停
+35–40 分 回答問題</pre></div><p><b>不要在最後才提方案。</b> 開場第三分鐘就先說一次「今天最後會講一個社群，有興趣可以留到最後」。這樣講方案的時候不會突兀。</p><h4 class="h4">把 90 天畫出來</h4><p>今天收到的人數，不是終點。</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>今天      →  第 7 天  →  30 天  →  90 天  →  一年
+ 0            3–5        10–15     30–50    你自己算</pre></div><p>第七天收到 3 個人，看起來很少。那 3 個人的意義是：<b>你的整條路徑跑通了。</b></p><p>跑通之後要做的只有一件事——把同一條路重複跑。</p><h4 class="h4">今天的完成標準</h4><div class="cklist"><label class="ck"><input type="checkbox"><span>10 個名字盤點完</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>10 則私訊都發出去了</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>直播開完了</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>至少一筆收款進來</span></label></div></div></details></div></section>
+
+<section class="sec fade" id="s4"><h2>七天總覽</h2><div class="tblwrap"><table class="tbl gen"><thead><tr><th>Day</th><th>產出</th><th>填空</th></tr></thead><tbody><tr><td data-label="Day">1</td><td data-label="產出">定位宣言</td><td data-label="填空">我幫 ＿＿，用 ＿＿，拿到 ＿＿</td></tr><tr><td data-label="Day">2</td><td data-label="產出">一個價格</td><td data-label="填空">每個月付我 ＿＿ 元，我給他 ＿＿</td></tr><tr><td data-label="Day">3</td><td data-label="產出">兩顆磁鐵</td><td data-label="填空">免費送 ＿＿，付費賣 ＿＿</td></tr><tr><td data-label="Day">4</td><td data-label="產出">一個社群</td><td data-label="填空">六件事做完</td></tr><tr><td data-label="Day">5</td><td data-label="產出">一條路徑</td><td data-label="填空">我的關鍵字是 ＿＿，留言的人會收到 ＿＿</td></tr><tr><td data-label="Day">6</td><td data-label="產出">27 篇內容</td><td data-label="填空">我要講 30 分鐘的題目是 ＿＿</td></tr><tr><td data-label="Day">7</td><td data-label="產出">第一批客戶</td><td data-label="填空">第一批我要收 ＿＿ 個人</td></tr></tbody></table></div><p><b>一天 60 分鐘，七天 420 分鐘。</b></p></section>
+
+<section class="sec fade" id="s5"><h2>AI 工具總表</h2><p>七天會用到的所有工具，按用途分類。</p><h3 class="sub-h">主力語言模型</h3><div class="tblwrap"><table class="tbl gen"><thead><tr><th>工具</th><th>最適合的任務</th><th>這七天用在哪</th><th>費用</th><th>連結</th></tr></thead><tbody><tr><td data-label="工具"><b>ChatGPT</b></td><td data-label="最適合的任務">發想、整理、生圖、資料分析</td><td data-label="這七天用在哪">Day 1 定位發想、Day 3 磁鐵設計、生圖</td><td data-label="費用">有免費方案</td><td data-label="連結"><a href="https://chatgpt.com/" target="_blank" rel="noopener">https://chatgpt.com</a></td></tr><tr><td data-label="工具"><b>Claude</b></td><td data-label="最適合的任務">長文處理、保留語氣、結構化拆解</td><td data-label="這七天用在哪">Day 6 逐字稿拆 27 篇（強項）</td><td data-label="費用">有免費方案</td><td data-label="連結"><a href="https://claude.ai/" target="_blank" rel="noopener">https://claude.ai</a></td></tr><tr><td data-label="工具"><b>Gemini</b></td><td data-label="最適合的任務">Google 生態整合、長文件讀取</td><td data-label="這七天用在哪">Day 6 逐字稿、Google Doc 協作</td><td data-label="費用">有免費方案</td><td data-label="連結"><a href="https://gemini.google.com/" target="_blank" rel="noopener">https://gemini.google.com</a></td></tr><tr><td data-label="工具"><b>Perplexity</b></td><td data-label="最適合的任務">查資料、要出處</td><td data-label="這七天用在哪">寫內容時查數據、查案例</td><td data-label="費用">有免費方案</td><td data-label="連結"><a href="https://www.perplexity.ai/" target="_blank" rel="noopener">https://www.perplexity.ai</a></td></tr></tbody></table></div><h4 class="h4">怎麼選</h4><p><b>要「想東西」用 ChatGPT。</b> 發想、腦力激盪、給你十個選項的任務，它給的方向最多。</p><p><b>要「處理長東西」用 Claude。</b> 逐字稿拆解、長文改寫、保留你的口語用詞，它最穩。Day 6 那一段用它效果差最多。</p><p><b>要「查東西」用 Perplexity。</b> 它會給出處，你可以點進去確認。</p><p><b>已經活在 Google 生態裡就用 Gemini。</b> 文件、簡報、Gmail 都在同一個地方。</p><h4 class="h4">用這些工具的三個原則</h4><p><b>1. 給背景，不要只給指令</b><br>❌ 幫我寫一篇 IG 貼文<br>✅ 我的受眾是 [X]，他們卡在 [Y]，我的方法是 [Z]，幫我寫一篇 IG 貼文</p><p><b>2. 要它給多個版本</b><br>一次要五個，你挑一個改。比要一個然後改五次快。</p><p><b>3. 把你自己的東西餵進去</b><br>AI 不知道你的語氣。把你寫過的三篇文章貼進去，跟它說「照這個語氣寫」。</p><h3 class="sub-h">內容製作</h3><div class="tblwrap"><table class="tbl gen"><thead><tr><th>工具</th><th>用途</th><th>費用</th><th>連結</th></tr></thead><tbody><tr><td data-label="工具"><b>Canva</b></td><td data-label="用途">封面圖、輪播貼文、社群視覺</td><td data-label="費用">有免費方案</td><td data-label="連結"><a href="https://www.canva.com/" target="_blank" rel="noopener">https://www.canva.com</a></td></tr><tr><td data-label="工具"><b>剪映 / CapCut</b></td><td data-label="用途">影片剪輯、自動中文字幕</td><td data-label="費用">免費</td><td data-label="連結"><a href="https://www.capcut.com/" target="_blank" rel="noopener">https://www.capcut.com</a></td></tr><tr><td data-label="工具"><b>Notta</b></td><td data-label="用途">中文語音轉文字</td><td data-label="費用">有免費額度</td><td data-label="連結"><a href="https://www.notta.ai/" target="_blank" rel="noopener">https://www.notta.ai</a></td></tr><tr><td data-label="工具"><b>NotebookLM</b></td><td data-label="用途">丟資料進去問問題、整理長素材</td><td data-label="費用">免費</td><td data-label="連結"><a href="https://notebooklm.google.com/" target="_blank" rel="noopener">https://notebooklm.google.com</a></td></tr><tr><td data-label="工具"><b>Higgsfield</b></td><td data-label="用途">AI 生圖 / 生影片</td><td data-label="費用">付費為主</td><td data-label="連結"><a href="https://higgsfield.ai/" target="_blank" rel="noopener">https://higgsfield.ai</a></td></tr></tbody></table></div><h3 class="sub-h">社群與收費</h3><div class="tblwrap"><table class="tbl gen"><thead><tr><th>工具</th><th>用途</th><th>費用</th><th>連結</th></tr></thead><tbody><tr><td data-label="工具"><b>Skool</b></td><td data-label="用途">社群 + 課程 + 訂閱金流</td><td data-label="費用">約 $99 USD / 月</td><td data-label="連結"><a href="https://www.skool.com/" target="_blank" rel="noopener">https://www.skool.com</a></td></tr><tr><td data-label="工具"><b>LINE 官方帳號</b></td><td data-label="用途">台灣受眾主戰場</td><td data-label="費用">有免費方案</td><td data-label="連結"><a href="https://www.linebiz.com/tw/" target="_blank" rel="noopener">https://www.linebiz.com/tw/</a></td></tr><tr><td data-label="工具"><b>Discord</b></td><td data-label="用途">免費社群</td><td data-label="費用">免費</td><td data-label="連結"><a href="https://discord.com/" target="_blank" rel="noopener">https://discord.com</a></td></tr><tr><td data-label="工具"><b>ManyChat</b></td><td data-label="用途">IG 留言自動私訊</td><td data-label="費用">有免費方案</td><td data-label="連結"><a href="https://manychat.com/" target="_blank" rel="noopener">https://manychat.com</a></td></tr><tr><td data-label="工具"><b>Portaly</b></td><td data-label="用途">台灣在地連結頁</td><td data-label="費用">有免費方案</td><td data-label="連結"><a href="https://portaly.cc/" target="_blank" rel="noopener">https://portaly.cc</a></td></tr></tbody></table></div><h3 class="sub-h">管理與排程</h3><div class="tblwrap"><table class="tbl gen"><thead><tr><th>工具</th><th>用途</th><th>費用</th><th>連結</th></tr></thead><tbody><tr><td data-label="工具"><b>Notion</b></td><td data-label="用途">存這份工作頁、內容庫、客戶名單</td><td data-label="費用">有免費方案</td><td data-label="連結"><a href="https://www.notion.so/" target="_blank" rel="noopener">https://www.notion.so</a></td></tr><tr><td data-label="工具"><b>Meta Business Suite</b></td><td data-label="用途">IG / FB 排程</td><td data-label="費用">免費</td><td data-label="連結"><a href="https://business.facebook.com/" target="_blank" rel="noopener">https://business.facebook.com</a></td></tr><tr><td data-label="工具"><b>Buffer</b></td><td data-label="用途">多平台排程</td><td data-label="費用">有免費方案</td><td data-label="連結"><a href="https://buffer.com/" target="_blank" rel="noopener">https://buffer.com</a></td></tr></tbody></table></div><div class="tipline">工具的費用和方案常變動，上面寫的是大方向，實際以官網為準。</div></section>
+
+<section class="sec fade" id="s6"><h2>常見問題</h2><p><b>Q：七天真的做得完嗎？</b><br>做得完，前提是每天只做那一天的事。最常見的失敗是第一天想把七天的事想完，然後第二天就放棄了。</p><p><b>Q：我沒有粉絲，Day 7 要找誰？</b><br>Day 7 找的是關係，不是粉絲。你的前同事、同學、社團裡聊過天的人都算。10 個人，你一定找得出來。</p><p><b>Q：定價定太低會不會後悔？</b><br>會，但第一批的目的是驗證流程，不是最大化收入。第二批再調價，並且讓第一批保持原價——他們會變成你最忠誠的會員。</p><p><b>Q：我做到 Day 4 就卡住了怎麼辦？</b><br>從卡住的那一天繼續，不要重來。前面做過的東西不會壞掉。</p><p><b>Q：一定要用 Skool 嗎？</b><br>不用。用你受眾已經在用的平台。台灣一般受眾用 LINE 的完成率比 Skool 高很多。</p><p><b>Q：AI 寫出來的東西不像我，怎麼辦？</b><br>把你自己寫過的三段文字貼給它，說「照這個語氣寫，保留我的用詞」。Day 6 的做法之所以有效，就是因為原料是你自己講的話。</p></section>
+
+<section class="sec fade" id="s7"><h2>最後</h2><p>這七天做完，你會有：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>一句說得清楚的定位
+一個定好的價格
+一份免費磁鐵
+一個屬於你的社群
+一條自動化路徑
+27 篇排好的內容
+第一批付錢的人</pre></div><p>七天前你什麼都沒有。</p><p>七天後，你手上有東西可以收錢。</p></section>
+
+  <!-- ═════ ③ 研究所介紹（全站固定，不跟著乾貨改） ═════ -->
+  <section class="inst" id="institute">
+    <div class="kk">ABOUT · 奇點研究所 × D11</div>
+    <h2>我們本來就是<br><span class="g">一間自媒體公司</span></h2>
+
+    <p class="lead">幫想做自媒體、但沒時間的人，用 AI 把一篇輪播從4小時壓到20分鐘。</p>
+    <div class="founder">
+      <p>公司開了快兩年，產能全排給客戶，我自己的帳號一直躺著。方法從來沒缺過，缺的是時間。</p>
+      <p>後來我把公司內部那套判斷，企劃怎麼想、鉤子怎麼下、內容怎麼拆、畫面怎麼選，一件一件搬到 AI 上。</p>
+      <p>搬好一個，就放進研究所。</p>
+    </div>
+
+    <div class="big">
+      <div class="b"><div class="bn">60天</div><div class="bl">粉絲從3,000<br>到5萬</div></div>
+      <div class="b"><div class="bn">20分鐘</div><div class="bl">一篇輪播<br>原本要4小時</div></div>
+      <div class="b"><div class="bn">164萬</div><div class="bl">一篇圖文<br>的觀看人數</div></div>
+    </div>
+
+    <!-- 【預留】實戰證明：有了學員成果、外部授課紀錄再打開。放在自己的數字後面、「裡面有什麼」前面
+    <h3>不只我做得到</h3>
+    <div class="proof">…學員案例／授課照片…</div>
+    -->
+
+    <h3>裡面有什麼</h3>
+    <div class="tools">
+      <div class="tool main"><div class="tn">輪播生成器<em>主打</em></div><div class="td">丟一個題目進去，出來是可以直接發的貼文。附教學影片，跟著做一次就會。</div></div>
+      <div class="tool"><div class="tn">人設定位</div><div class="td">40分鐘，AI 一題一題問你，產出一份它認得你的人設檔。</div></div>
+      <div class="tool"><div class="tn">AI 剪輯台</div><div class="td">原始影片丟進去，自動剪空白、上字幕。Mac、Windows 都能裝。</div></div>
+      <div class="tool main"><div class="tn">每週晚上教學直播</div><div class="td">我開直播帶你跑一次工具，有重播。</div></div>
+    </div>
+
+    <h3>你可能卡在這幾件事</h3>
+    <div class="qa">
+      <div class="q">我不會剪輯。</div>
+      <div class="a">輪播、圖文、Threads，一張圖一段字就能發。</div>
+      <div class="q">我怕鏡頭。</div>
+      <div class="a">把我帳號拉起來的那些貼文，沒有一篇需要我出鏡。</div>
+      <div class="q">我有本業，沒時間。</div>
+      <div class="a">一篇20分鐘，通勤、午休就塞得進去。</div>
+      <div class="q">我試過，沒做起來。</div>
+      <div class="a">上一輪拼誰敢站到鏡頭前，這一輪拼誰先把流程換掉。</div>
+    </div>
+
+    <h3>適合這樣的人</h3>
+    <div class="fit">
+      <div class="f">已經在做自媒體，想用 AI 省時間</div>
+      <div class="f">以前做過，因為太花時間停下來，想重新開始</div>
+      <div class="f">完全沒經驗，現在想開始</div>
+    </div>
+
+    <div class="btn-wrap">
+      <a class="skbtn" href="https://www.skool.com/d11-lab/about" target="_blank" rel="noopener">加入 奇點研究所 × D11 →</a>
+      <div class="btn-note">月費方案，詳細內容以 Skool 頁面為準</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="fa">傑森所長 @jasonxtsai</div>
+    <div class="fc">Instagram：@jasonxtsai　／　Threads：@jasonxtsai<br>※ 文中帳號數字為個人經驗，不代表每個人都能有相同結果</div>
+  </footer>
+
+</div>
+
+<script>
+// 複製：每個灰底框右上角的按鈕，複製同一框裡的文字
+document.querySelectorAll('.copy-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var txt = btn.parentElement.querySelector('pre').innerText;
+    function done(){ btn.textContent = '已複製'; setTimeout(function(){ btn.textContent = '複製'; }, 1800); }
+    function fallback(){ var t=document.createElement('textarea'); t.value=txt; document.body.appendChild(t); t.select(); try{document.execCommand('copy');}catch(e){} t.remove(); done(); }
+    if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(done, fallback); } else { fallback(); }
+  });
+});
+
+// 頁內跳轉：不靠網址的 #，直接捲過去（預覽視窗、IG 內建瀏覽器裡 # 有時不會動）
+document.querySelectorAll('a[href^="#"]').forEach(function(link){
+  link.addEventListener('click', function(e){
+    var target = document.getElementById(link.getAttribute('href').slice(1));
+    if(!target) return;
+    e.preventDefault();
+    target.classList.add('vis');
+    target.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+
+// 懸浮按鈕：研究所介紹出現在畫面上時收起，避免兩顆按鈕同時出現
+var fc = document.getElementById('float-cta');
+var inst = document.getElementById('institute');
+if('IntersectionObserver' in window){
+  new IntersectionObserver(function(es){
+    fc.classList.toggle('hide', es[0].isIntersecting);
+  }, {threshold:0.05}).observe(inst);
+}
+
+// 捲動淡入
+function reveal(){
+  var vh = window.innerHeight;
+  document.querySelectorAll('.fade:not(.vis)').forEach(function(el){
+    if(el.getBoundingClientRect().top < vh*0.94) el.classList.add('vis');
+  });
+}
+window.addEventListener('scroll', reveal, {passive:true});
+window.addEventListener('load', reveal);
+reveal();
+setTimeout(function(){ document.querySelectorAll('.fade').forEach(function(el){ el.classList.add('vis'); }); }, 2500);
+</script>
+
+<!--
+本頁由 產生落地頁.py 產生
+來源 Notion：https://app.notion.com/p/173b498eff018209827a01ec3512a53a
+要改內容：改 Notion 後重跑；要改標題與按鈕：改 產生落地頁.py 的〈頁面設定〉
+-->
+</body>
+</html>

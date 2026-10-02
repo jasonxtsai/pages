@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- 【換】頁面標題、分享時顯示的描述 -->
+<title>AI角色設定表｜完整實作指南｜傑森所長</title>
+<meta name="description" content="七個欄位講清楚、可以直接複製的提示詞、四個生圖工具的實際操作，到崩壞情境對照和三十分鐘上手流程。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── 版型：沿用 2026-08-06-chatgpt-setup／2026-10-01-7-habits 的米色＋金橘 ── */
+:root{
+  --gold:#D4902A; --gold-bright:#E8A94A; --gold-dim:rgba(212,144,42,0.30);
+  --bg:#F4F1EA; --bg2:#FBF8F2; --card:#FFFFFF; --card2:#FAF6EE;
+  --code:#12161f; --code-tx:#e6eaf2;
+  --text:#2c2a26; --dim:#6d6a62; --faint:#a8a39a; --ink:#2a2620;
+  --line:rgba(0,0,0,0.12);
+  --ok:#4a7c3f; --ok-bg:rgba(74,124,63,0.07); --ok-line:rgba(74,124,63,0.25);
+  --no:#b1431f; --no-bg:rgba(200,70,40,0.06); --no-line:rgba(200,70,40,0.22);
+  --dark:linear-gradient(160deg,#15110b 0%,#241a0e 100%);
+  --r-md:16px; --r-lg:22px; --pill:50px;
+  --bounce:400ms cubic-bezier(0.34,1.56,0.64,1);
+  --serif:"Noto Serif TC",serif; --sans:"Noto Sans TC","Inter",sans-serif; --mono:"JetBrains Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);color:var(--text);line-height:1.85;overflow-x:hidden;background:var(--bg);
+  background-image:radial-gradient(118% 54% at 50% 0%, rgba(212,144,42,0.16) 0%, rgba(212,144,42,0.05) 34%, rgba(244,241,234,0) 62%);
+  background-attachment:fixed;}
+.glow{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.g1{position:absolute;width:min(60vw,680px);height:min(60vw,680px);border-radius:50%;background:radial-gradient(circle, rgba(212,144,42,0.13), rgba(212,144,42,0));top:-18%;right:-14%;filter:blur(20px);}
+.g2{position:absolute;width:min(50vw,560px);height:min(50vw,560px);border-radius:50%;background:radial-gradient(circle, rgba(212,178,120,0.12), rgba(212,178,120,0));bottom:-14%;left:-12%;filter:blur(22px);}
+.wrap{max-width:720px;margin:0 auto;position:relative;}
+.js .fade{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
+.fade.vis{opacity:1;transform:translateY(0);}
+a{color:var(--gold);text-decoration:none;}
+.g{color:var(--gold);}
+
+/* ═════ ① 懸浮按鈕：電腦版掛右側、手機版浮在底部；滑到研究所介紹時自動收起 ═════ */
+.float-cta{position:fixed;z-index:40;transition:opacity .3s ease,transform .3s ease;}
+.float-cta.hide{opacity:0;pointer-events:none;}
+.fc-card{display:none;}
+.fc-pill{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:#1a1406;font-weight:900;font-size:15px;padding:14px 26px;border-radius:var(--pill);box-shadow:0 10px 28px rgba(120,80,20,0.32);white-space:nowrap;}
+.fc-pill .ar{transition:transform .2s;}
+.fc-pill:hover .ar{transform:translateX(3px);}
+/* 手機／平板：底部置中 */
+@media(max-width:1119px){
+  .float-cta{left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translateX(-50%);}
+  .float-cta.hide{transform:translate(-50%,20px);}
+  body{padding-bottom:84px;}
+}
+/* 電腦：右側卡片 */
+@media(min-width:1120px){
+  .float-cta{top:120px;right:max(24px,calc((100vw - 720px)/2 - 272px));width:240px;}
+  .float-cta.hide{transform:translateX(16px);}
+  .fc-pill{display:none;}
+  .fc-card{display:block;background:linear-gradient(165deg,var(--card) 0%,var(--card2) 100%);border:1px solid var(--gold-dim);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:20px 20px 22px;box-shadow:0 10px 34px rgba(120,90,30,0.13);}
+  .fc-card .k{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;color:var(--gold);margin-bottom:10px;font-weight:500;}
+  .fc-card h4{font-family:var(--serif);font-weight:900;font-size:17px;line-height:1.5;color:var(--ink);margin-bottom:9px;}
+  .fc-card p{font-size:12.5px;color:var(--dim);line-height:1.7;margin-bottom:16px;}
+  .fc-card a{display:block;text-align:center;background:var(--gold);color:#1a1406;font-weight:900;font-size:14px;padding:12px 14px;border-radius:var(--pill);box-shadow:0 6px 18px rgba(212,144,42,0.26);transition:transform var(--bounce);}
+  .fc-card a:hover{transform:translateY(-2px);}
+}
+
+/* ═════ 開頭：只交代「這頁是什麼」，自介移到最下面 ═════ */
+.hero{position:relative;z-index:1;padding:60px 30px 36px;}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:0.2em;color:var(--gold);margin-bottom:20px;font-weight:500;}
+.hero h1{font-family:var(--serif);font-weight:900;font-size:36px;line-height:1.36;margin-bottom:14px;color:var(--ink);}
+.hero .h-sub{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--gold);margin-bottom:14px;}
+.hero-sub{font-size:15px;color:var(--dim);line-height:1.85;margin-bottom:24px;}
+/* 這頁有什麼：數字跟單位寫在一起，點了直接跳到那一段 */
+.toc{margin-bottom:24px;}
+.toc .tt{font-size:12px;font-weight:700;color:var(--dim);letter-spacing:0.05em;margin-bottom:8px;}
+.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;}
+.toc a{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--gold-dim);border-radius:var(--pill);padding:7px 15px;font-size:14px;font-weight:700;color:var(--ink);transition:border-color .2s;}
+.toc a:hover{border-color:var(--gold);}
+.toc a b{font-family:"Inter";font-weight:800;color:var(--gold);}
+.toc a i{font-style:normal;color:var(--gold);font-size:12px;}
+/* 自介卡：全站固定。上面一句是對讀者的承諾，下面是證明 */
+.mid-intro{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:16px 20px;margin-bottom:24px;}
+.mid-intro .slogan{font-family:var(--serif);font-weight:900;font-size:min(18px,4vw);white-space:nowrap;line-height:1.45;color:var(--ink);margin-top:12px;}
+
+.mid-intro .who{display:flex;align-items:center;gap:14px;}
+.mid-intro .who img{width:76px;height:76px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);}
+.mid-intro .nm{font-weight:900;font-size:16px;line-height:1.3;color:var(--ink);}
+.mid-intro .tt2{font-size:12px;color:var(--dim);line-height:1.4;}
+.mid-intro .proof{display:flex;align-items:flex-end;gap:14px;border-top:1px dashed var(--line);margin-top:12px;padding-top:11px;}
+.mid-intro .num{flex-shrink:0;line-height:1.2;}
+.mid-intro .num .d{font-size:11px;color:var(--dim);}
+.mid-intro .num .v{font-family:"Inter";font-weight:800;font-size:18px;color:var(--gold);white-space:nowrap;}
+.mid-intro .txt{font-size:14.5px;line-height:1.6;color:var(--text);padding-left:14px;border-left:1px solid var(--line);}
+.mid-intro .txt b{color:var(--ink);}
+.m-br{display:none;}
+
+/* ═════ ② 乾貨區 ═════ */
+.sec{position:relative;z-index:1;padding:38px 30px;border-top:1px solid var(--line);}
+.sec-tag{display:inline-block;background:rgba(212,144,42,0.14);color:var(--gold);font-size:12px;font-weight:700;padding:5px 15px;border:1px solid var(--gold-dim);border-radius:var(--pill);margin-bottom:16px;letter-spacing:0.05em;}
+.sec h2{font-family:var(--serif);font-weight:900;font-size:24px;line-height:1.42;margin-bottom:14px;color:var(--ink);}
+.sec>p{font-size:15px;color:var(--text);line-height:1.9;margin-bottom:14px;}
+.tipline{font-size:13.5px;color:var(--dim);line-height:1.75;border-left:2px solid var(--gold-dim);padding-left:14px;margin:13px 0 2px;}
+.tipline b{color:var(--gold);}
+
+.tblwrap{overflow-x:auto;margin:12px 0 4px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--card);}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;}
+.tbl th{background:rgba(212,144,42,0.12);color:var(--gold);font-weight:700;text-align:left;padding:10px 13px;border-bottom:2px solid var(--gold-dim);white-space:nowrap;}
+.tbl td{padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6;}
+.tbl td:first-child{font-family:"Inter";font-weight:800;color:var(--gold);}
+.tbl td:nth-child(2){font-weight:700;color:var(--ink);white-space:nowrap;}
+.tbl tr:last-child td{border-bottom:none;}
+
+.acc{display:flex;flex-direction:column;gap:10px;}
+details.ch{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;}
+details.ch[open]{border-color:var(--gold-dim);box-shadow:0 4px 18px rgba(120,90,30,0.07);}
+details.ch summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:13px;padding:16px 18px;user-select:none;}
+details.ch summary::-webkit-details-marker{display:none;}
+.ch-n{flex-shrink:0;min-width:34px;height:30px;border-radius:8px;background:rgba(212,144,42,0.14);border:1px solid var(--gold-dim);color:var(--gold);font-family:var(--mono);font-size:12px;display:flex;align-items:center;justify-content:center;}
+.ch-t{flex:1;font-weight:700;font-size:14.5px;line-height:1.4;}
+.ch-t .en{font-weight:400;color:var(--dim);font-size:12.5px;}
+.ch-mk{flex-shrink:0;width:22px;height:22px;position:relative;}
+.ch-mk::before,.ch-mk::after{content:"";position:absolute;background:var(--gold);border-radius:2px;transition:transform .25s ease,opacity .25s;}
+.ch-mk::before{top:10px;left:4px;width:14px;height:2px;}
+.ch-mk::after{top:4px;left:10px;width:2px;height:14px;}
+details.ch[open] .ch-mk::after{transform:rotate(90deg);opacity:0;}
+.ch-body{padding:6px 18px 18px;border-top:1px solid var(--line);}
+.ch-body p{font-size:14px;line-height:1.82;margin:10px 0;}
+.pos{background:rgba(212,144,42,0.08);border:1px solid var(--gold-dim);border-radius:12px;padding:11px 14px;margin:10px 0 2px;font-size:13.6px;line-height:1.72;}
+.pos b{color:var(--gold);}
+.judge{border-radius:12px;padding:11px 14px;margin:7px 0;font-size:13.6px;line-height:1.72;}
+.judge.no{background:var(--no-bg);border:1px solid var(--no-line);color:#7a3320;}
+.judge.ok{background:var(--ok-bg);border:1px solid var(--ok-line);color:#2f5228;}
+.judge .jl{font-weight:700;font-size:11.5px;letter-spacing:0.05em;display:block;margin-bottom:2px;}
+.judge.no .jl{color:var(--no);}
+.judge.ok .jl{color:var(--ok);}
+
+.cp{background:var(--code);border:2px solid var(--gold);border-radius:var(--r-md);padding:16px;margin:12px 0 2px;position:relative;box-shadow:0 10px 34px rgba(120,90,30,0.16);}
+.cp .pl{font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;color:var(--gold-bright);margin-bottom:11px;max-width:calc(100% - 96px);}
+.cp pre{font-family:var(--mono);font-size:12px;line-height:1.85;color:var(--code-tx);white-space:pre-wrap;word-break:break-word;}
+.cp .ph{color:var(--gold-bright);}
+.copy-btn{position:absolute;top:11px;right:11px;background:var(--gold);border:1px solid var(--gold);color:#1a1406;font-family:var(--sans);font-size:12px;font-weight:700;padding:7px 16px;border-radius:50px;cursor:pointer;}
+
+.ck{display:flex;gap:11px;align-items:flex-start;padding:9px 0;cursor:pointer;border-bottom:1px dashed var(--line);}
+.ck:last-of-type{border-bottom:none;}
+.ck input{appearance:none;-webkit-appearance:none;flex-shrink:0;width:19px;height:19px;margin-top:4px;border:2px solid var(--gold-dim);border-radius:5px;background:var(--bg2);cursor:pointer;position:relative;transition:all .18s;}
+.ck input:checked{background:var(--gold);border-color:var(--gold);}
+.ck input:checked::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #1a1406;border-width:0 2.5px 2.5px 0;transform:rotate(45deg);}
+.ck span{font-size:14.5px;line-height:1.7;}
+.ck input:checked + span{color:var(--faint);text-decoration:line-through;}
+.cklist{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:8px 18px;}
+
+/* ═════ ③ 研究所介紹 ═════ */
+.inst{position:relative;z-index:1;margin-top:20px;background:var(--dark);color:#fff;padding:52px 30px 46px;border-radius:var(--r-lg) var(--r-lg) 0 0;}
+.inst .kk{font-family:var(--mono);font-size:11px;letter-spacing:0.2em;color:var(--gold-bright);margin-bottom:14px;}
+.inst h2{font-family:var(--serif);font-weight:900;font-size:27px;line-height:1.45;margin-bottom:22px;}
+.inst h2 .g{color:var(--gold-bright);}
+.inst .lead{font-family:var(--serif);font-weight:700;font-size:16.5px;line-height:1.7;color:#fff;margin-bottom:18px;}
+.founder{margin-bottom:28px;}
+.founder p{font-size:14.5px;line-height:1.9;color:rgba(255,255,255,0.86);margin-bottom:10px;}
+.founder p b{color:var(--gold-bright);}
+.big{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 30px;}
+.big .b{border:1px solid rgba(232,169,74,0.35);border-radius:var(--r-md);padding:16px 10px;text-align:center;background:rgba(255,255,255,0.03);}
+.big .bn{font-family:"Inter";font-weight:800;font-size:24px;color:var(--gold-bright);line-height:1.1;}
+.big .bl{font-size:12px;color:rgba(255,255,255,0.65);margin-top:6px;line-height:1.5;}
+.inst h3{font-family:var(--serif);font-weight:900;font-size:18px;margin:6px 0 14px;color:#fff;}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:30px;}
+.tool{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:var(--r-md);padding:16px;}
+.tool.main{grid-column:1 / -1;border-color:var(--gold-bright);background:rgba(232,169,74,0.10);}
+.tool .tn{font-weight:900;font-size:15px;color:#fff;margin-bottom:4px;}
+.tool .tn em{font-style:normal;font-size:11px;font-weight:700;color:#1a1406;background:var(--gold-bright);border-radius:50px;padding:1px 8px;margin-left:6px;vertical-align:2px;}
+.tool .tn em.soon{background:rgba(255,255,255,0.18);color:#fff;}
+.tool .td{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7;}
+.qa{margin-bottom:30px;}
+.qa .q{font-family:var(--serif);font-weight:700;font-size:15px;color:#fff;margin:14px 0 4px;}
+.qa .q::before{content:"Q";color:var(--gold-bright);font-family:"Inter";font-weight:800;margin-right:8px;}
+.qa .a{font-size:13.8px;color:rgba(255,255,255,0.72);line-height:1.8;}
+.fit .f{display:flex;gap:10px;font-size:14px;line-height:1.7;margin-bottom:9px;color:rgba(255,255,255,0.86);}
+.fit .f::before{content:"\2714";color:var(--gold-bright);font-weight:700;flex-shrink:0;}
+.btn-wrap{text-align:center;margin-top:30px;}
+.skbtn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#1a1406;border-radius:var(--pill);padding:17px 46px;font-weight:900;font-size:18px;box-shadow:0 8px 28px rgba(212,144,42,0.35);transition:transform var(--bounce);position:relative;overflow:hidden;}
+.skbtn:hover{transform:translateY(-3px);}
+.skbtn::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent);transform:skewX(-25deg);animation:shine 3.4s ease-in-out infinite;}
+@keyframes shine{0%{left:-100%;}22%{left:160%;}100%{left:160%;}}
+.btn-note{margin-top:14px;font-size:12.5px;color:rgba(255,255,255,0.55);}
+
+.footer{position:relative;z-index:1;background:#15110b;padding:22px 30px 40px;text-align:center;}
+.footer .fa{font-style:italic;font-size:14px;color:var(--gold-bright);font-weight:700;}
+.footer .fc{font-size:11px;color:rgba(255,255,255,0.4);margin-top:8px;line-height:1.7;}
+
+/* ── 手機版 ── */
+@media(max-width:600px){
+  .hero{padding:40px 20px 28px;}
+  .hero h1{font-size:28px;}
+  .sec{padding:32px 20px;}
+  .sec h2{font-size:21px;}
+  .mid-intro .proof{flex-direction:column;align-items:flex-start;gap:6px;}
+  .mid-intro .num{display:flex;align-items:baseline;gap:8px;}
+  .mid-intro .num .d{font-size:13px;}
+  .mid-intro .txt{padding-left:0;border-left:none;}
+  .m-br{display:inline;}
+  .tbl{font-size:13px;}
+  .tbl th,.tbl td{padding:10px 10px;}
+  details.ch summary{padding:15px 16px;align-items:flex-start;}
+  .ch-t .en{display:block;margin-top:3px;}
+  .ch-mk{margin-top:4px;}
+  .inst{padding:40px 20px 38px;}
+  .inst h2{font-size:23px;}
+  .big .bn{font-size:20px;}
+  .tools{grid-template-columns:1fr;}
+  .skbtn{font-size:16px;padding:15px 26px;white-space:nowrap;}
+  .footer{padding:20px 20px 36px;}
+}
+
+/* ── 產生器補充：Notion 內容常見的格式 ── */
+.sec p{font-size:15px;line-height:1.9;margin:0 0 12px;}
+.sec .sub-h{font-size:16.5px;}
+.sub-h{font-family:var(--serif);font-weight:700;color:var(--gold);margin:22px 0 8px;line-height:1.5;}
+.h4{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink);margin:18px 0 6px;}
+.sec ul.bul,.ch-body ul.bul{margin:6px 0 12px;}
+.bul li ul.bul,.steps li ul.bul{margin:6px 0 2px;}
+ol.steps{list-style:none;margin:8px 0 12px;counter-reset:s;}
+ol.steps>li{position:relative;padding-left:33px;margin-bottom:10px;font-size:14px;line-height:1.75;counter-increment:s;}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:22px;height:22px;border-radius:50%;background:var(--gold);color:#1a1406;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;}
+.bul li{list-style:none;position:relative;padding-left:20px;font-size:14px;line-height:1.75;margin-bottom:7px;}
+.bul li::before{content:"\2726";position:absolute;left:0;color:var(--gold);}
+.pos p{margin:0 0 6px;font-size:13.8px;}
+.pos p:last-child{margin-bottom:0;}
+.tipline p{margin:0;}
+code{font-family:var(--mono);font-size:.9em;background:rgba(212,144,42,0.12);border-radius:4px;padding:1px 5px;}
+.cp{padding-top:46px;}
+.cp{margin:10px 0 14px;box-shadow:none;border-width:1px;}
+.tbl.gen td:first-child{font-family:inherit;font-weight:700;color:var(--ink);}
+.tbl.gen td:nth-child(2){white-space:normal;font-weight:400;color:var(--text);}
+.tbl.gen th{white-space:normal;}
+details.mini{border:1px solid var(--line);border-radius:12px;background:var(--card);margin:8px 0;}
+details.mini summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:14px;}
+.mini-body{padding:0 14px 12px;}
+.cklist{margin:8px 0 12px;}
+@media(max-width:600px){
+  .sec p{font-size:14.5px;}
+  .tblwrap{overflow:visible;border:none;background:none;}
+  .tbl.gen thead{display:none;}
+  .tbl.gen,.tbl.gen tbody,.tbl.gen tr,.tbl.gen td{display:block;width:100%;}
+  .tbl.gen tr{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:8px;}
+  .tbl.gen td{border:none;padding:2px 0;font-size:13.5px;}
+  .tbl.gen td:first-child{font-size:14.5px;margin-bottom:2px;}
+  .tbl.gen td:not(:first-child)[data-label]:not([data-label=""])::before{content:attr(data-label) "：";color:var(--dim);font-size:12px;}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.className+=' js';</script>
+<div class="glow"><div class="g1"></div><div class="g2"></div></div>
+
+<!-- ═════ ① 懸浮按鈕（全站固定，只換卡片上的兩句話） ═════ -->
+<div class="float-cta" id="float-cta">
+  <a class="fc-pill" href="https://www.skool.com/d11-lab/about" target="_blank" rel="noopener">加入 奇點研究所 <span class="ar">→</span></a>
+  <div class="fc-card">
+    <div class="k">NEXT STEP</div>
+    <!-- 【換】這兩句跟著當篇乾貨改：「你拿到的是一小塊 → 完整的在研究所」 -->
+    <h4>角色定下來了<br><span class="g">接著讓它出現在貼文裡</span></h4>
+    <p>一個角色撐起一整個帳號，我們把內容流程做成工具放在研究所裡。</p>
+    <a href="https://www.skool.com/d11-lab/about" target="_blank" rel="noopener">加入 奇點研究所 × D11</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ═════ 開頭：這頁是什麼 ═════ -->
+  <header class="hero">
+    <!-- 【換】kicker／標題／副標／說明／這頁有什麼 -->
+    <div class="kicker">CHARACTER · 角色設定表</div>
+    <h1>AI角色設定表<br><span class="g">一百張圖都是同一張臉</span></h1>
+    <div class="h-sub">設定表做一次，用一整年</div>
+    <p class="hero-sub">七個欄位講清楚、可以直接複製的提示詞、四個生圖工具的實際操作，到崩壞情境對照和三十分鐘上手流程。</p>
+    <!-- 自介卡：全站固定，放在乾貨說明之後、「這頁有」之前 -->
+    <div class="mid-intro">
+      <div class="who">
+        <img src="data:image/jpeg;base64,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" alt="傑森所長">
+        <div><div class="nm">傑森所長</div><div class="tt2">奇點研究所所長｜D11 行銷創辦人</div></div>
+      </div>
+      <div class="slogan">用 AI 跟自媒體，<span class="g">找到你突破現狀的起點。</span></div>
+      <div class="proof">
+        <div class="num"><div class="d">60天，我的粉絲</div><div class="v">3,000→5萬</div></div>
+        <div class="txt"><b>把一間自媒體公司搬到 AI 上。</b><br class="m-br">同一套流程，換作是你也可以做到。</div>
+      </div>
+    </div>
+
+    <nav class="toc">
+      <div class="tt">這頁有</div>
+      <ul>
+        <li><a href="#s3"><b>7</b>個設定欄位<i>↓</i></a></li>
+        <li><a href="#s4">可複製的提示詞<i>↓</i></a></li>
+        <li><a href="#s9"><b>30</b>分鐘上手<i>↓</i></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ═════ ② 乾貨區（由 Notion 自動轉出） ═════ -->
+<section class="sec fade" id="s1"><h2>這份文件解決什麼問題</h2><p>你用 AI 生圖，第一張人物很滿意。想生第二張換個角度，臉變了。想生第三張換個表情，人又變成另一個人。</p><p>這件事在做單張圖的時候只是煩。一旦你要做的是系列內容（IG 輪播、短影音、電商模特、虛擬 IP、品牌吉祥物），它會直接讓整套東西無法使用。</p><p>解法是影視前期用了幾十年的東西：<b>Character Sheet，角色設定表</b>。</p><p>一張圖裡面塞滿同一個角色的所有規格：四個角度、八種表情、六種姿勢、服裝特寫、色票、材質。之後每次生圖或生影片，把這張表當參考圖丟進去，AI 就有了比對基準。</p><p>過去這張表要美術組畫好幾天。現在一段提示詞，三分鐘。</p><p><b>這份文件包含：</b></p><ul class="bul"><li>角色設定表的完整欄位規格與寫法</li><li>可直接複製的中英文提示詞（含中文版排版指令）</li><li>四個主流生圖工具的實際操作差異與 SOP</li><li>從靜態設定表接到 AI 影片的完整路徑</li><li>十二種常見崩壞情境與對應修法</li><li>一套可長期累積的角色資產命名系統</li></ul></section>
+
+<section class="sec fade" id="s2"><span class="sec-tag">第一章</span><h2>為什麼第二張就換臉</h2><p>理解原理之後，你才知道哪些修法有效、哪些是白花力氣。</p><h3 class="sub-h">1-1 AI 沒有「記得」這回事</h3><p>大部分生圖模型在單次生成之間沒有記憶。你第一次生的那張臉，對模型來說只是一次符合描述的隨機取樣結果。</p><p>你寫「東亞男性，三十五歲，短黑髮，戴眼鏡」，這個描述可以對應到幾百萬張不同的臉。模型每次都從這個範圍裡重新抽一張。抽中同一張的機率趨近於零。</p><p><b>所以：純文字描述永遠鎖不住臉。</b> 你寫得再細也一樣，文字的解析度不足以定義一張臉。</p><h3 class="sub-h">1-2 參考圖解決了一半</h3><p>給模型一張參考圖，等於把抽樣範圍從「幾百萬張臉」壓縮到「這一張臉附近」。這是目前所有角色一致性方案的共同基礎。</p><p>但單張參考圖有個先天限制：<b>它只有一個角度、一種光線、一種表情。</b></p><p>當你要生側面，模型必須自行推測這張臉的側面長什麼樣。推測就會出錯。當你要生「生氣」的表情，模型必須自行推測這個人生氣時哪塊肌肉會動。又是一次推測。</p><p>錯誤會累積。這就是為什麼很多人反映：前面二十張還好，第二十五張臉就開始寬了。</p><h3 class="sub-h">1-3 設定表為什麼有效</h3><p>角色設定表把「推測」變成「查表」。</p><p>當參考圖裡已經包含正面、側面、四分之三、背面，模型不需要推測側面。當表裡已經有八種表情的實際樣子，模型不需要推測生氣長什麼樣。</p><p><b>一張設定表 ≈ 二十張參考圖壓縮在同一個檔案裡。</b></p><p>這也是為什麼設定表的欄位不能隨便刪。每刪一欄，就多一個模型需要自行推測的維度。</p><h3 class="sub-h">1-4 一致性的三個層級</h3><p>做內容之前先確認你需要哪一層，不要過度投資。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>層級</th><th>定義</th><th>適用場景</th><th>需要的工具等級</th></tr></thead><tbody><tr><td data-label="層級"><b>第一層：像同一類人</b></td><td data-label="定義">髮色、體型、穿著一致，五官細看不同</td><td data-label="適用場景">背景人物、氛圍圖、素材庫</td><td data-label="需要的工具等級">大多數工具都做得到</td></tr><tr><td data-label="層級"><b>第二層：像同一個人</b></td><td data-label="定義">臉型、眼距、鼻樑在不同圖中一致</td><td data-label="適用場景">IG 輪播、電商模特、廣告素材</td><td data-label="需要的工具等級">需要參考圖 ＋ 設定表</td></tr><tr><td data-label="層級"><b>第三層：氣質一致</b></td><td data-label="定義">不同情緒、不同場景下仍可辨識為同一人</td><td data-label="適用場景">虛擬 IP、連續短劇、長期角色經營</td><td data-label="需要的工具等級">需要設定表 ＋ 每次校正 ＋ 人工篩選</td></tr></tbody></table></div><p>自媒體內容絕大多數只需要第二層。想做虛擬 IP 或連續劇情才需要第三層，而第三層目前沒有任何工具能全自動達成，人工挑片是必要成本。</p></section>
+
+<section class="sec fade" id="s3"><span class="sec-tag">第二章</span><h2>角色設定表的七個欄位</h2><p>這七欄是從影視前期的 character reference sheet 簡化來的，每一欄都對應一個 AI 容易出錯的維度。</p><h3 class="sub-h">欄位一｜角色檔案（Character Profile）</h3><p>純文字區，寫給人看，也寫給模型看。</p><p><b>必填：</b></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>姓名：
+定位：（主角／配角／品牌代言角色）
+年齡：
+身高：
+體型：（精瘦／健壯／纖細／豐腴）
+性格：三到五個形容詞</pre></div><p><b>外型特徵：四到六條，只寫「看得見」的東西</b></p><p>寫法上有個關鍵：<b>描述可辨識的物理特徵，不要描述氣質。</b></p><ul class="bul"><li>有效：<code>圓框細金屬眼鏡</code>、<code>左眼下方小痣</code>、<code>下顎線明顯</code>、<code>齊尾長直黑髮</code></li><li>無效：<code>眼神沉穩</code>、<code>氣質溫和</code>、<code>有領袖魅力</code></li></ul><p>模型畫不出「氣質溫和」。它畫得出「嘴角微微上揚、眉毛平直」。</p><p><b>代表色：五到六個色票</b></p><p>這欄常被忽略，但它是後續服裝、場景、調色的統一基準。至少包含：膚色、髮色、主要服裝色、配件色。</p><h3 class="sub-h">欄位二｜全身四視角（Full-Body Turnaround）</h3><p><b>正面／四分之三／側面／背面</b>，四張，白底棚拍，全身入鏡，站姿統一。</p><p>這是整張表最重要的一欄。四個角度是模型推測三維結構的最低資料量。</p><p><b>注意事項：</b></p><ul class="bul"><li>四張的服裝必須完全相同，包含鞋子</li><li>站姿要中性（雙手自然垂放），不要擺姿勢</li><li>白底、無陰影、平光，避免光影干擾模型判讀輪廓</li><li>全身入鏡，不要裁切腳</li></ul><h3 class="sub-h">欄位三｜五官與識別（Face &amp; Identity）</h3><p>三張頭部特寫：<b>正面／側面／四分之三</b>，加一行規格文字。</p><p>規格文字寫法：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>眼睛：深棕，杏眼｜眉型：柔和弧線｜鼻型：秀氣挺直
+唇型：自然厚度｜髮色：黑，長直齊尾｜膚色：白皙中性調</pre></div><p>這行文字在後續每次生圖時都要複製貼上。它是文字層的鎖，跟參考圖的視覺層互相校正。</p><h3 class="sub-h">欄位四｜表情組（Expression Sheet）</h3><p>八種：<b>平靜、開心、生氣、難過、驚訝、擔憂、自信、堅定</b></p><p>四乘二排列，頭肩構圖。</p><p>為什麼是這八種：它們涵蓋了臉部肌肉的主要運動方向。有了這八種，模型可以內插出中間狀態（例如「有點無奈」介於難過與平靜之間）。</p><p>如果你的內容偏向特定情緒（例如教學帳號幾乎只需要自信與平靜），可以把八種換成你常用的八種，但數量不要低於六種。</p><h3 class="sub-h">欄位五｜姿勢與肢體（Pose &amp; Body Language）</h3><p>六種：<b>站姿、行走、坐姿、放鬆、緊繃、備戰</b></p><p>全身構圖。這欄解決的是肢體比例漂移，特別是手部與肩膀寬度。</p><p>如果你的內容有固定場景（例如永遠是坐著口播），把「備戰」換成「坐姿側面」這類你實際會用到的姿勢。</p><h3 class="sub-h">欄位六｜服裝細節（Costume Details）</h3><p>四張微距特寫。選擇原則：<b>挑會影響辨識的細節。</b></p><p>常用組合：</p><ul class="bul"><li>上衣：領口、肩線、袖口、下擺</li><li>外套：領片、扣子、口袋、背面開衩</li><li>配件：眼鏡、手錶、耳環、鞋款</li></ul><p>這欄是很多人省略的，但它決定了你的角色「穿的是不是同一件衣服」。沒有這欄，模型每次都會自行重新設計一件「類似的」衣服。</p><h3 class="sub-h">欄位七｜色彩與材質（Color &amp; Material）</h3><p>兩組：</p><ul class="bul"><li><b>色票：</b> 五到六個實色方塊，附色碼</li><li><b>材質：</b> 膚質、髮質、布料、皮革、金屬的微距貼圖</li></ul><p>這欄的作用是讓模型在不同光線下仍能還原正確的顏色與質感。做電商或品牌內容時特別重要，因為商品顏色偏差是客訴來源。</p></section>
+
+<section class="sec fade" id="s4"><span class="sec-tag">第三章</span><h2>可直接複製的提示詞</h2><p>以下提示詞可直接貼上使用。<code>[方括號]</code> 的部分換成你自己的內容。</p><div class="acc"><details class="ch" open><summary><span class="ch-n">3-1 生成角色設定表</span><span class="ch-t">英文版（通用，建議優先使用）</span><span class="ch-mk"></span></summary><div class="ch-body"><p>英文版在所有工具上的表現都比中文版穩定。</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>Create a complete AI VIDEO PRODUCTION — CHARACTER REFERENCE SHEET,
+laid out as a clean editorial production document on a pure white background,
+thin 1px black dividing lines, small bold uppercase sans-serif labels.
+All photography is full color, studio lighting on white seamless.
+
+Header: &quot;AI VIDEO PRODUCTION — CHARACTER REFERENCE SHEET&quot;, right side &quot;NAME : [角色代號]&quot;
+
+Panel 1 &quot;1. CHARACTER PROFILE&quot;: a small data table —
+NAME: [姓名] / ROLE: [定位] / APPROX. AGE: [年齡] / HEIGHT: [身高] /
+BODY TYPE: [體型] / PERSONALITY: [三到五個形容詞].
+Bullet list &quot;DISTINCTIVE TRAITS&quot;: [四到六條外型特徵].
+Below: a row of six signature color swatches.
+
+Panel 2 &quot;2. FULL-BODY TURNAROUND&quot;: four full-body studio shots on white seamless,
+labeled FRONT / 3-4 VIEW / SIDE / BACK.
+Subject: [完整外型與服裝描述，含髮型、上衣、下身、鞋款].
+
+Panel 3 &quot;3. FACE &amp; IDENTITY DETAILS&quot;: three head shots labeled FRONT / PROFILE / 3-4 VIEW,
+with a spec strip: EYES [眼睛] / EYEBROWS [眉型] / NOSE [鼻型] /
+LIPS [唇型] / HAIR [髮色髮型] / SKIN TONE [膚色].
+
+Panel 4 &quot;4. EXPRESSION SHEET&quot;: eight head-and-shoulder portraits in a 4x2 grid labeled
+NEUTRAL, HAPPY, ANGRY, SAD, SURPRISED, WORRIED, CONFIDENT, DETERMINED.
+
+Panel 5 &quot;5. POSE &amp; BODY LANGUAGE&quot;: six full-body shots labeled
+NEUTRAL STANDING, WALKING, SITTING, RELAXED, TENSE, ACTION-READY.
+
+Panel 6 &quot;6. COSTUME DETAILS&quot;: four macro crops — [四個服裝細節].
+
+Panel 7 &quot;7. COLOR &amp; MATERIAL PALETTE&quot;: color swatches with hex codes,
+and material texture squares labeled SKIN, HAIR, [布料], [材質], [材質].
+
+Style: precise grid, technical typography, consistent lighting across all panels,
+photorealistic, sharp focus. No gradients, no decorative elements.
+Aspect ratio 4:5.</pre></div></div></details><details class="ch"><summary><span class="ch-n">3-2 生成角色設定表</span><span class="ch-t">中文介面版</span><span class="ch-mk"></span></summary><div class="ch-body"><p>如果你要做的是中文受眾的教學素材、需要畫面內全是中文，在上面那段前面加這一行硬指令：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>畫面內所有文字一律使用繁體中文，不得出現任何英文字母或拉丁字母。
+所有欄位標題、標籤、資料欄位皆為繁體中文。
+中文字體使用高對比明體（思源宋體風格）：橫細豎粗、三角襯線收尾，海報級排版。</pre></div><p>然後把七個欄位標題換成中文：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>一、角色檔案｜二、全身四視角｜三、五官與識別｜四、表情組
+五、姿勢與肢體｜六、服裝細節｜七、色彩與材質</pre></div><p>表情組中文：<code>平靜、開心、生氣、難過、驚訝、擔憂、自信、堅定</code><br>姿勢組中文：<code>站姿、行走、坐姿、放鬆、緊繃、備戰</code></p><div class="tipline"><b>實測提醒：</b> 中文字在生圖模型裡的準確率明顯低於英文。建議做法是「英文版生設定表，中文字另外用排版工具疊上去」。詳見第六章 6-11。</div></div></details><details class="ch"><summary><span class="ch-n">3-3 用設定表生單張圖</span><span class="ch-t">標準句型</span><span class="ch-mk"></span></summary><div class="ch-body"><p>有了設定表之後，每次生圖都用這個結構：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>[上傳角色設定表作為參考圖]
+
+Using the attached character reference sheet as the definitive reference for
+this character&#x27;s face, body proportions, and outfit.
+
+Maintain exactly: [複製欄位三的規格文字]
+
+Generate a new image:
+Scene: [場景描述]
+Action: [動作]
+Expression: [從表情組八種裡選一個]
+Camera: [鏡頭：medium shot / close-up / wide shot]
+Lighting: [光線]
+Aspect ratio: [比例]
+
+Do not alter facial structure, facial proportions, hairstyle, or outfit.
+Only pose, background, and lighting may change.</pre></div><p><b>這段裡最關鍵的是最後兩行。</b> 明確列出「不可改變」的項目，比只寫「保持一致」有效得多。</p></div></details><details class="ch"><summary><span class="ch-n">3-4 換裝但保臉</span><span class="ch-t">進階句型</span><span class="ch-mk"></span></summary><div class="ch-body"><p>做系列內容時常需要換衣服但保留同一張臉：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>[上傳角色設定表]
+
+Keep the face 100% identical to the reference sheet:
+same facial structure, eye shape and spacing, nose, lips, jawline, skin texture.
+
+Change only the outfit to: [新服裝描述]
+Scene: [場景]
+
+The face must be recognizably the same person. Do not restyle the face.</pre></div><p>換裝之後建議<b>另存一張新的設定表</b>（只做欄位二與欄位六），當作這套服裝的專屬參考。</p></div></details></div></section>
+
+<section class="sec fade" id="s5"><span class="sec-tag">第四章</span><h2>四個生圖工具的實際操作</h2><p>不同工具的角色鎖定機制不一樣，操作方式也不同。以下是實際差異。</p><h3 class="sub-h">4-1 Google Gemini（Nano Banana 系列）</h3><p><b>連結：</b> <a href="https://gemini.google.com/" target="_blank" rel="noopener">gemini.google.com</a><b>模型：</b> Nano Banana Pro / Nano Banana 2（底層為 Gemini 影像模型）<br><b>費用：</b> 免費版有每日額度；付費版額度較高</p><p><b>強項：</b></p><ul class="bul"><li>多圖融合能力強，可以同時丟入多張參考圖做交叉比對</li><li>連續生成的一致性衰減慢，適合一次做整套系列</li><li>有完整繁體中文介面，直接用中文對話就能改圖</li><li>支援局部修改（「把她的表情換成微笑，其他不動」），不用整張重生</li></ul><p><b>操作 SOP：</b></p><ol class="steps"><li>先用 3-1 的提示詞生出設定表</li><li>設定表滿意之後，<b>把它下載存檔</b>，這是你的母版</li><li>每次生新圖：上傳設定表 → 貼 3-3 的句型</li><li>局部要調整就直接用中文說：「這張的手不對，只修手，其他保持」</li></ol><p><b>注意：</b> 涉及真實名人、換臉、去浮水印的請求會被安全機制直接攔截。虛構角色、風格化人物、插畫類人物都正常。</p><h3 class="sub-h">4-2 ChatGPT（GPT Image）</h3><p><b>連結：</b> <a href="https://chatgpt.com/" target="_blank" rel="noopener">chatgpt.com</a><b>費用：</b> 免費版有限額；Plus 方案 $20 美元／月</p><p><b>強項：</b></p><ul class="bul"><li><b>畫面內文字準確率是目前最高的一批</b>，做有大標題的排版圖首選</li><li>對複雜排版指令的理解好，適合生「像設計稿」的圖（設定表本身就屬於這類）</li><li>對話式修改流暢，記得前面講過的設定</li></ul><p><b>弱項：</b></p><ul class="bul"><li>連續生成的臉部漂移比 Gemini 明顯，超過十張建議重新上傳設定表校正</li><li>寫實人像的細節質感略遜</li></ul><p><b>操作 SOP：</b></p><ol class="steps"><li>用 3-1 生設定表（GPT 對「七個 Panel 的排版」理解特別好）</li><li><b>每五到十張就重新上傳一次設定表</b>，不要靠對話記憶</li><li>需要畫面內有中文大標題時，優先用這個工具</li></ol><h3 class="sub-h">4-3 Midjourney</h3><p><b>連結：</b> <a href="https://www.midjourney.com/" target="_blank" rel="noopener">midjourney.com</a><b>費用：</b> 約 $10 美元／月起</p><p><b>強項：</b></p><ul class="bul"><li>美術質感最強，光影與氛圍是其他工具追不上的</li><li>適合做風格化、藝術感強的角色</li></ul><p><b>弱項與關鍵限制：</b></p><ul class="bul"><li>角色參考（<code>-cref</code>）在<b>連續生成約二十張之後會開始漂移</b>，臉會逐漸變寬、眼睛變小</li><li>跨風格能力弱（用寫實參考圖生動畫風，容易變成四不像）</li><li>不支援對話式局部修改</li></ul><p><b>操作 SOP：</b></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>[你的場景描述] --cref [設定表圖片網址] --cw 100 --ar 4:5</pre></div><ul class="bul"><li><code>-cref</code>：角色參考圖網址</li><li><code>-cw</code>：參考強度，<code>100</code> 表示連臉帶服裝全部參考，<code>0</code> 表示只參考臉</li><li><b>做角色一致性時 </b><code><b>-cw</b></code><b> 設 100，換裝時設 0</b></li></ul><p><b>防漂移做法：</b> 每生二十張，回頭比對第一張，發現不對就重新開一組。不要在同一個 session 裡連續跑五十張。</p><h3 class="sub-h">4-4 Adobe Firefly</h3><p><b>連結：</b> <a href="https://firefly.adobe.com/" target="_blank" rel="noopener">firefly.adobe.com</a><b>費用：</b> 有免費額度；含在 Creative Cloud 訂閱內</p><p><b>強項：</b></p><ul class="bul"><li><b>訓練資料來源明確，商用授權最乾淨</b>，接品牌客戶時這點是決定性的</li><li>與 Photoshop 整合，可以直接在設計流程裡接續處理</li></ul><p><b>弱項：</b></p><ul class="bul"><li>角色一致性能力相對弱，適合做素材而非主角</li><li>人像寫實度不如前三者</li></ul><p><b>什麼時候用它：</b> 客戶要求商用授權證明、或需要與現有 Adobe 流程接軌的時候。</p><h3 class="sub-h">4-5 四工具選擇對照</h3><div class="tblwrap"><table class="tbl gen"><thead><tr><th>需求</th><th>建議工具</th></tr></thead><tbody><tr><td data-label="需求">一次做整套系列，要求一致性最穩</td><td data-label="建議工具">Gemini（Nano Banana Pro）</td></tr><tr><td data-label="需求">畫面內要有準確的中文或英文大字</td><td data-label="建議工具">ChatGPT（GPT Image）</td></tr><tr><td data-label="需求">要美術質感、風格化角色</td><td data-label="建議工具">Midjourney</td></tr><tr><td data-label="需求">商用授權需要交代來源</td><td data-label="建議工具">Adobe Firefly</td></tr><tr><td data-label="需求">完全免費、每天練手</td><td data-label="建議工具">Gemini 免費額度</td></tr></tbody></table></div><p><b>實務建議：</b> 不要只用一個。設定表用 Gemini 生、排版圖用 GPT 生、封面美術圖用 MJ 生，是目前效率最高的組合。</p></section>
+
+<section class="sec fade" id="s6"><span class="sec-tag">第五章</span><h2>從設定表到影片</h2><p>設定表的價值在影片上更大，因為影片會放大所有不一致。</p><h3 class="sub-h">5-1 基本路徑</h3><div class="cp"><button class="copy-btn" type="button">複製</button><pre>角色設定表（靜態）
+    ↓ 用設定表生出「第一幀關鍵圖」
+關鍵幀圖片（靜態，已鎖定角色）
+    ↓ 丟進圖生影片工具
+影片片段（5–10 秒）
+    ↓ 用「尾幀」當下一段的「首幀」
+連續影片</pre></div><p><b>關鍵觀念：不要用文字直接生影片。</b> 文字生影片等於放棄角色控制。永遠先生一張鎖好角色的靜態圖，再讓它動起來。</p><h3 class="sub-h">5-2 影片工具實況</h3><div class="tipline"><b>重要更新：</b> OpenAI 的 Sora 已於 2026 年 4 月關閉獨立 App 與網頁版，API 也已停止服務。相關功能部分整合進 ChatGPT。如果你看到還在推薦 Sora 的教學，那份教學已經過期。</div><p><b>Google Veo 3.1</b><br>連結：<a href="https://labs.google/flow" target="_blank" rel="noopener">labs.google/flow</a> 或直接在 Gemini 內使用<br>特點：原生音訊生成，畫面與聲音一次到位；全能型首選。適合需要口播或環境音的內容。</p><p><b>Kling AI（可靈）3.0</b><br>連結：<a href="https://klingai.com/" target="_blank" rel="noopener">klingai.com</a>（國際版 <a href="https://kling.ai/" target="_blank" rel="noopener">kling.ai</a>）<br>特點：每日有免費額度可以天天練手，付費約 $10 美元／月起。性價比最高，支援首尾幀控制。預算有限的第一站。</p><p><b>Runway Gen-4.5</b><br>連結：<a href="https://runwayml.com/" target="_blank" rel="noopener">runwayml.com</a><br>特點：專業控制面板最完整，鏡頭運動、遮罩、局部重繪都有。商用授權條款明確。</p><p><b>Seedance 2.0（透過 Dreamina）</b><br>連結：<a href="https://dreamina.capcut.com/" target="_blank" rel="noopener">dreamina.capcut.com</a><br>特點：盲測榜單表現強勢，對鏡頭語言（推、拉、搖、移、跟拍）的執行精準。各地區開放進度不一，註冊前先確認可用性。</p><p><b>MiniMax Hailuo（海螺）</b><br>連結：<a href="https://hailuoai.video/" target="_blank" rel="noopener">hailuoai.video</a><br>特點：物理動作自然，批量生成成本低。適合需要大量素材的情況。</p><h3 class="sub-h">5-3 圖生影片的提示詞寫法</h3><div class="cp"><button class="copy-btn" type="button">複製</button><pre>[上傳已鎖定角色的關鍵幀圖片]
+
+Camera: [鏡頭運動：slow push in / pan left / static / handheld follow]
+Subject motion: [人物動作，一句話，只描述一個動作]
+Duration: [秒數]
+Keep the character&#x27;s face and outfit unchanged throughout.</pre></div><p><b>三個實測結論：</b></p><ol class="steps"><li><b>一段影片只寫一個動作。</b> 寫兩個以上動作，AI 會在中間崩壞。</li><li><b>鏡頭運動寫得越具體越好。</b> 「slow push in」比「cinematic camera movement」有效十倍。</li><li><b>五到八秒是甜蜜點。</b> 超過十秒，角色一致性開始明顯衰減。要長片就切段接。</li></ol><h3 class="sub-h">5-4 連續多段的接法</h3><div class="cp"><button class="copy-btn" type="button">複製</button><pre>第一段：首幀 = 關鍵圖 A → 生成 → 擷取尾幀作為圖 B
+第二段：首幀 = 圖 B → 生成 → 擷取尾幀作為圖 C
+第三段：首幀 = 圖 C → ...</pre></div><p>每接一段，角色會微幅漂移。<b>每三段回頭用設定表重新生一張關鍵圖做校正</b>，不要無限接下去。</p></section>
+
+<section class="sec fade" id="s7"><span class="sec-tag">第六章</span><h2>崩壞情境對照表</h2><p>實際會遇到的十二種狀況與修法。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>症狀</th><th>原因</th><th>修法</th></tr></thead><tbody><tr><td data-label="#">1</td><td data-label="症狀">第二張就完全換人</td><td data-label="原因">沒上傳參考圖，只靠文字</td><td data-label="修法">一定要上傳設定表</td></tr><tr><td data-label="#">2</td><td data-label="症狀">臉有點像但不是同一個人</td><td data-label="原因">參考強度不足</td><td data-label="修法">MJ 設 <code>--cw 100</code>；其他工具在提示詞加「Do not alter facial structure」</td></tr><tr><td data-label="#">3</td><td data-label="症狀">連續生成二十張後臉變寬</td><td data-label="原因">累積漂移</td><td data-label="修法">重新上傳設定表，開新的 session</td></tr><tr><td data-label="#">4</td><td data-label="症狀">衣服每張都不一樣</td><td data-label="原因">缺欄位六服裝細節</td><td data-label="修法">補上服裝微距特寫，並在提示詞複製服裝描述</td></tr><tr><td data-label="#">5</td><td data-label="症狀">側面完全不像</td><td data-label="原因">設定表缺側面角度</td><td data-label="修法">欄位二四個角度不能省</td></tr><tr><td data-label="#">6</td><td data-label="症狀">手指崩壞</td><td data-label="原因">通病</td><td data-label="修法">避免手部大特寫；必要時用局部重繪修單一區域</td></tr><tr><td data-label="#">7</td><td data-label="症狀">換場景後膚色變了</td><td data-label="原因">光線描述缺失</td><td data-label="修法">提示詞明確寫光線（warm indoor / neutral daylight），並附欄位七色票</td></tr><tr><td data-label="#">8</td><td data-label="症狀">表情做不出來</td><td data-label="原因">該表情不在設定表裡</td><td data-label="修法">表情組換成你實際會用的八種</td></tr><tr><td data-label="#">9</td><td data-label="症狀">生成被拒絕</td><td data-label="原因">觸發安全機制</td><td data-label="修法">檢查是否涉及真實名人、換臉、知名版權角色、未成年人相關</td></tr><tr><td data-label="#">10</td><td data-label="症狀">風格轉換後變四不像</td><td data-label="原因">跨風格參考的先天限制</td><td data-label="修法">用目標風格重新生一張設定表，不要跨風格套用</td></tr><tr><td data-label="#">11</td><td data-label="症狀">畫面中文字全是亂碼</td><td data-label="原因">中文在生圖模型的準確率限制</td><td data-label="修法">生圖時留白，中文用 Canva 或 Figma 疊上去</td></tr><tr><td data-label="#">12</td><td data-label="症狀">影片中途角色變形</td><td data-label="原因">單段時間過長或動作過多</td><td data-label="修法">縮短到 5–8 秒，一段只寫一個動作</td></tr></tbody></table></div><h3 class="sub-h">6-11 補充：中文字的處理方式</h3><p>這是台灣創作者最常卡住的地方，單獨講清楚。</p><p><b>現況：</b> 生圖模型對中文字的準確率遠低於英文。字數越多、字體要求越特殊，出錯率越高。</p><p><b>三種可行做法：</b></p><ol class="steps"><li><b>短字優先。</b> 畫面內中文控制在八個字以內，準確率明顯提升。</li><li><b>留白後製。</b> 生圖時在提示詞寫「leave the upper third as a clean area for text overlay」，留出乾淨區域，中文用 <a href="https://www.canva.com/" target="_blank" rel="noopener">Canva</a> 或 Figma 疊上去。這是目前最穩的做法。</li><li><b>指定字體風格。</b> 如果一定要模型直接生中文，加上這段會提升質感：</li></ol><div class="cp"><button class="copy-btn" type="button">複製</button><pre>Chinese text set in a high-contrast Ming/Song display serif:
+thin horizontal strokes, thick vertical strokes, sharp triangular serif terminals,
+heavy weight, tight letter spacing, poster-grade lettering.</pre></div><p>生完一定要逐字檢查。錯字率大約三到五成，多生幾張挑一張對的。</p></section>
+
+<section class="sec fade" id="s8"><span class="sec-tag">第七章</span><h2>資產管理與命名系統</h2><p>做久了會累積幾十個角色、幾百張參考圖。沒有系統的話，三個月後你會找不到當初那張母版。</p><h3 class="sub-h">7-1 資料夾結構</h3><div class="cp"><button class="copy-btn" type="button">複製</button><pre>角色資產庫/
+├── 01_角色設定表母版/
+│   ├── CHAR-001_林承澔_設定表_v1.png
+│   ├── CHAR-001_林承澔_設定表_v2.png
+│   └── CHAR-002_陳思語_設定表_v1.png
+├── 02_服裝變體/
+│   ├── CHAR-001_正裝.png
+│   ├── CHAR-001_休閒.png
+│   └── CHAR-002_運動.png
+├── 03_關鍵幀圖/
+│   └── CHAR-001_辦公室_坐姿_自信.png
+├── 04_成品/
+└── 05_提示詞備份.md</pre></div><h3 class="sub-h">7-2 命名規則</h3><div class="cp"><button class="copy-btn" type="button">複製</button><pre>[角色編號]_[角色名]_[用途]_[版本].png</pre></div><p>範例：<code>CHAR-001_林承澔_設定表_v2.png</code></p><p><b>版本號很重要。</b> 你會改角色設定，舊版本要留著，因為已經發出去的內容用的是舊版。</p><h3 class="sub-h">7-3 每個角色要存的提示詞</h3><p>在 Notion 裡替每個角色開一頁，固定存這四段：</p><ol class="steps"><li><b>完整設定表提示詞</b>（第三章 3-1 填好的版本）</li><li><b>欄位三規格文字</b>（每次生圖都要複製的那行）</li><li><b>服裝描述</b>（每次生圖都要複製）</li><li><b>禁止事項</b>（Do not alter… 那段）</li></ol><p>有了這四段，三個月後你還能無痛接回這個角色。</p></section>
+
+<section class="sec fade" id="s9"><span class="sec-tag">第八章</span><h2>三十分鐘上手流程</h2><p>第一次做，照這個順序走。</p><p><b>0–5 分鐘｜決定角色</b></p><p>寫下欄位一的六個基本欄位，加四到六條外型特徵。只寫看得見的東西。</p><p><b>5–10 分鐘｜生第一版設定表</b></p><p>打開 <a href="https://gemini.google.com/" target="_blank" rel="noopener">Gemini</a>，貼上第三章 3-1 的提示詞，填好方括號，送出。</p><p><b>10–15 分鐘｜檢查與重生</b></p><p>用附錄 B 的清單逐項檢查。不對就說哪裡不對，讓它重生。通常第二到第三版可用。</p><p><b>15–20 分鐘｜存檔建檔</b></p><p>下載設定表，照第七章命名。在 Notion 開一頁，存下四段提示詞。</p><p><b>20–25 分鐘｜測試生圖</b></p><p>上傳設定表，用 3-3 的句型生三張不同場景的圖。比對三張臉是不是同一個人。</p><p><b>25–30 分鐘｜測試換裝</b></p><p>用 3-4 的句型換一套衣服。確認臉沒變。</p><p>跑完這三十分鐘，你就有一個可以長期使用的角色了。</p></section>
+
+<section class="sec fade" id="s10"><span class="sec-tag">附錄 A</span><h2>工具連結總表</h2><h3 class="sub-h">生圖</h3><div class="tblwrap"><table class="tbl gen"><thead><tr><th>工具</th><th>連結</th><th>定位</th></tr></thead><tbody><tr><td data-label="工具">Google Gemini（Nano Banana）</td><td data-label="連結"><a href="https://gemini.google.com/" target="_blank" rel="noopener">gemini.google.com</a></td><td data-label="定位">一致性最穩，中文介面，有免費額度</td></tr><tr><td data-label="工具">ChatGPT（GPT Image）</td><td data-label="連結"><a href="https://chatgpt.com/" target="_blank" rel="noopener">chatgpt.com</a></td><td data-label="定位">畫面內文字最準，排版理解最好</td></tr><tr><td data-label="工具">Midjourney</td><td data-label="連結"><a href="https://www.midjourney.com/" target="_blank" rel="noopener">midjourney.com</a></td><td data-label="定位">美術質感最強</td></tr><tr><td data-label="工具">Adobe Firefly</td><td data-label="連結"><a href="https://firefly.adobe.com/" target="_blank" rel="noopener">firefly.adobe.com</a></td><td data-label="定位">商用授權最乾淨</td></tr></tbody></table></div><h3 class="sub-h">生影片</h3><div class="tblwrap"><table class="tbl gen"><thead><tr><th>工具</th><th>連結</th><th>定位</th></tr></thead><tbody><tr><td data-label="工具">Google Veo（Flow）</td><td data-label="連結"><a href="https://labs.google/flow" target="_blank" rel="noopener">labs.google/flow</a></td><td data-label="定位">原生音訊，全能型</td></tr><tr><td data-label="工具">Kling AI 可靈</td><td data-label="連結"><a href="https://klingai.com/" target="_blank" rel="noopener">klingai.com</a></td><td data-label="定位">性價比最高，每日免費額度</td></tr><tr><td data-label="工具">Runway</td><td data-label="連結"><a href="https://runwayml.com/" target="_blank" rel="noopener">runwayml.com</a></td><td data-label="定位">專業控制最完整</td></tr><tr><td data-label="工具">Dreamina（Seedance）</td><td data-label="連結"><a href="https://dreamina.capcut.com/" target="_blank" rel="noopener">dreamina.capcut.com</a></td><td data-label="定位">鏡頭語言執行精準</td></tr><tr><td data-label="工具">MiniMax 海螺</td><td data-label="連結"><a href="https://hailuoai.video/" target="_blank" rel="noopener">hailuoai.video</a></td><td data-label="定位">物理動作自然，批量便宜</td></tr></tbody></table></div><h3 class="sub-h">後製與管理</h3><div class="tblwrap"><table class="tbl gen"><thead><tr><th>工具</th><th>連結</th><th>用途</th></tr></thead><tbody><tr><td data-label="工具">Canva</td><td data-label="連結"><a href="https://www.canva.com/" target="_blank" rel="noopener">canva.com</a></td><td data-label="用途">中文字疊圖、輪播排版</td></tr><tr><td data-label="工具">Figma</td><td data-label="連結"><a href="https://www.figma.com/" target="_blank" rel="noopener">figma.com</a></td><td data-label="用途">精細排版、團隊協作</td></tr><tr><td data-label="工具">Notion</td><td data-label="連結"><a href="https://www.notion.so/" target="_blank" rel="noopener">notion.so</a></td><td data-label="用途">角色資產庫、提示詞管理</td></tr><tr><td data-label="工具">CapCut 剪映</td><td data-label="連結"><a href="https://www.capcut.com/" target="_blank" rel="noopener">capcut.com</a></td><td data-label="用途">影片剪輯、字幕</td></tr></tbody></table></div><div class="tipline">各工具的方案與額度變動頻繁，實際費用以官方頁面為準。</div></section>
+
+<section class="sec fade" id="s11"><span class="sec-tag">附錄 B</span><h2>出圖前檢查清單</h2><p>設定表生出來之後，逐項打勾：</p><p><b>欄位完整性</b></p><div class="cklist"><label class="ck"><input type="checkbox"><span>七個欄位都在，沒有缺漏</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>全身四視角是四張，角度正確（正／四分之三／側／背）</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>表情組至少六種，最好八種</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>姿勢組至少六種</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>服裝細節至少四張特寫</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>色票與材質都有</span></label></div><p><b>一致性檢查</b></p><div class="cklist"><label class="ck"><input type="checkbox"><span>四個視角的服裝完全相同（含鞋子）</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>四個視角的髮型相同</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>所有面板的膚色一致</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>表情組八張看起來是同一個人</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>沒有明顯的手部或肢體變形</span></label></div><p><b>可用性檢查</b></p><div class="cklist"><label class="ck"><input type="checkbox"><span>解析度足夠（至少 1024px 寬）</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>白底乾淨，沒有雜訊或陰影</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>文字標籤可辨識（或已確認要重新排版）</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>已下載存檔並照規則命名</span></label></div><div class="cklist"><label class="ck"><input type="checkbox"><span>四段提示詞已存進 Notion</span></label></div><p>全部打勾，這張設定表就可以進入長期使用了。</p></section>
+
+<section class="sec fade" id="s12"><h2>最後</h2><p>這套流程的價值在於：<b>設定表做一次，用一整年。</b></p><p>你真正在累積的是角色資產，不是單張圖。第一個角色可能要花你一小時，第十個角色只要十分鐘，因為流程已經固定了。</p><p>AI 工具會換，模型會迭代，介面會改版。但「先定義規格，再批量生成」這個邏輯不會變。這也是我做內容時一直在講的事情：<b>把每次的操作變成可重複的流程，你的產出速度才會複利成長。</b></p></section>
+
+  <!-- ═════ ③ 研究所介紹（全站固定，不跟著乾貨改） ═════ -->
+  <section class="inst" id="institute">
+    <div class="kk">ABOUT · 奇點研究所 × D11</div>
+    <h2>我們本來就是<br><span class="g">一間自媒體公司</span></h2>
+
+    <p class="lead">幫想做自媒體、但沒時間的人，用 AI 把一篇輪播從4小時壓到20分鐘。</p>
+    <div class="founder">
+      <p>公司開了快兩年，產能全排給客戶，我自己的帳號一直躺著。方法從來沒缺過，缺的是時間。</p>
+      <p>後來我把公司內部那套判斷，企劃怎麼想、鉤子怎麼下、內容怎麼拆、畫面怎麼選，一件一件搬到 AI 上。</p>
+      <p>搬好一個，就放進研究所。</p>
+    </div>
+
+    <div class="big">
+      <div class="b"><div class="bn">60天</div><div class="bl">粉絲從3,000<br>到5萬</div></div>
+      <div class="b"><div class="bn">20分鐘</div><div class="bl">一篇輪播<br>原本要4小時</div></div>
+      <div class="b"><div class="bn">164萬</div><div class="bl">一篇圖文<br>的觀看人數</div></div>
+    </div>
+
+    <!-- 【預留】實戰證明：有了學員成果、外部授課紀錄再打開。放在自己的數字後面、「裡面有什麼」前面
+    <h3>不只我做得到</h3>
+    <div class="proof">…學員案例／授課照片…</div>
+    -->
+
+    <h3>裡面有什麼</h3>
+    <div class="tools">
+      <div class="tool main"><div class="tn">輪播生成器<em>主打</em></div><div class="td">丟一個題目進去，出來是可以直接發的貼文。附教學影片，跟著做一次就會。</div></div>
+      <div class="tool"><div class="tn">人設定位</div><div class="td">40分鐘，AI 一題一題問你，產出一份它認得你的人設檔。</div></div>
+      <div class="tool"><div class="tn">AI 剪輯台</div><div class="td">原始影片丟進去，自動剪空白、上字幕。Mac、Windows 都能裝。</div></div>
+      <div class="tool main"><div class="tn">每週晚上教學直播</div><div class="td">我開直播帶你跑一次工具，有重播。</div></div>
+    </div>
+
+    <h3>你可能卡在這幾件事</h3>
+    <div class="qa">
+      <div class="q">我不會剪輯。</div>
+      <div class="a">輪播、圖文、Threads，一張圖一段字就能發。</div>
+      <div class="q">我怕鏡頭。</div>
+      <div class="a">把我帳號拉起來的那些貼文，沒有一篇需要我出鏡。</div>
+      <div class="q">我有本業，沒時間。</div>
+      <div class="a">一篇20分鐘，通勤、午休就塞得進去。</div>
+      <div class="q">我試過，沒做起來。</div>
+      <div class="a">上一輪拼誰敢站到鏡頭前，這一輪拼誰先把流程換掉。</div>
+    </div>
+
+    <h3>適合這樣的人</h3>
+    <div class="fit">
+      <div class="f">已經在做自媒體，想用 AI 省時間</div>
+      <div class="f">以前做過，因為太花時間停下來，想重新開始</div>
+      <div class="f">完全沒經驗，現在想開始</div>
+    </div>
+
+    <div class="btn-wrap">
+      <a class="skbtn" href="https://www.skool.com/d11-lab/about" target="_blank" rel="noopener">加入 奇點研究所 × D11 →</a>
+      <div class="btn-note">月費方案，詳細內容以 Skool 頁面為準</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="fa">傑森所長 @jasonxtsai</div>
+    <div class="fc">Instagram：@jasonxtsai　／　Threads：@jasonxtsai<br>※ 文中帳號數字為個人經驗，不代表每個人都能有相同結果</div>
+  </footer>
+
+</div>
+
+<script>
+// 複製：每個灰底框右上角的按鈕，複製同一框裡的文字
+document.querySelectorAll('.copy-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var txt = btn.parentElement.querySelector('pre').innerText;
+    function done(){ btn.textContent = '已複製'; setTimeout(function(){ btn.textContent = '複製'; }, 1800); }
+    function fallback(){ var t=document.createElement('textarea'); t.value=txt; document.body.appendChild(t); t.select(); try{document.execCommand('copy');}catch(e){} t.remove(); done(); }
+    if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(done, fallback); } else { fallback(); }
+  });
+});
+
+// 頁內跳轉：不靠網址的 #，直接捲過去（預覽視窗、IG 內建瀏覽器裡 # 有時不會動）
+document.querySelectorAll('a[href^="#"]').forEach(function(link){
+  link.addEventListener('click', function(e){
+    var target = document.getElementById(link.getAttribute('href').slice(1));
+    if(!target) return;
+    e.preventDefault();
+    target.classList.add('vis');
+    target.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+
+// 懸浮按鈕：研究所介紹出現在畫面上時收起，避免兩顆按鈕同時出現
+var fc = document.getElementById('float-cta');
+var inst = document.getElementById('institute');
+if('IntersectionObserver' in window){
+  new IntersectionObserver(function(es){
+    fc.classList.toggle('hide', es[0].isIntersecting);
+  }, {threshold:0.05}).observe(inst);
+}
+
+// 捲動淡入
+function reveal(){
+  var vh = window.innerHeight;
+  document.querySelectorAll('.fade:not(.vis)').forEach(function(el){
+    if(el.getBoundingClientRect().top < vh*0.94) el.classList.add('vis');
+  });
+}
+window.addEventListener('scroll', reveal, {passive:true});
+window.addEventListener('load', reveal);
+reveal();
+setTimeout(function(){ document.querySelectorAll('.fade').forEach(function(el){ el.classList.add('vis'); }); }, 2500);
+</script>
+
+<!--
+本頁由 產生落地頁.py 產生
+來源 Notion：https://app.notion.com/p/531b498eff01838ebf00817010e8e1fd
+要改內容：改 Notion 後重跑；要改標題與按鈕：改 產生落地頁.py 的〈頁面設定〉
+-->
+</body>
+</html>
