@@ -35,4 +35,4 @@
 | `ai-handoff-template.html` | AI 工作交接模板 | jason |
 | `ai-workflow-sheet.html` | AI 自動工作流程表 | jason |
 | `codex-starter-kit.html` | Codex 新手上手包 | jason |
-| `company-ai-asset-audit.html` | 公司 AI 資產盤點表 | jason |
+| `company-ai-asset-audit.html` | 判斷標準與實戰資料盤點表（原：公司 AI 資產盤點表） | jason |
