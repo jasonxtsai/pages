@@ -31,3 +31,4 @@
 | `chatgpt-10-daily-prompts.html` | ChatGPT實戰Prompt包｜10組直接複製 | jason |
 | `ai-character-sheet.html` | AI角色設定表｜完整實作指南 | jason |
 | `chatgpt-dots-guide.html` | Dots 上工指南 | jason |
+| `chatgpt-shared-quota.html` | ChatGPT 共用額度指南 | jason |
