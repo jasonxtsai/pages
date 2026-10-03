@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- 【換】頁面標題、分享時顯示的描述 -->
-<title>所有資源總覽｜傑森所長</title>
-<meta name="description" content="貼文和影片送出去的每一份完整版，都整理在這一頁。用上面的搜尋框，輸入關鍵字就能找到。">
+<title>Dots 上工指南｜傑森所長</title>
+<meta name="description" content="AI 工具用了很多，人還是可能忙得要命。選一件重複工作，把目標、標準與權限講清楚，再用一次小任務驗收。">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ── 版型：沿用 2026-08-06-chatgpt-setup／2026-10-01-7-habits 的米色＋金橘 ── */
@@ -245,16 +245,6 @@ details.mini summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:
   .tbl.gen td:first-child{font-size:14.5px;margin-bottom:2px;}
   .tbl.gen td:not(:first-child)[data-label]:not([data-label=""])::before{content:attr(data-label) "：";color:var(--dim);font-size:12px;}
 }
-
-.find{width:100%;font:inherit;font-size:15px;padding:13px 18px;border:1px solid var(--gold-dim);border-radius:var(--pill);background:var(--card);color:var(--text);outline:none;margin-bottom:6px;}
-.find:focus{border-color:var(--gold);}
-.cards{display:flex;flex-direction:column;gap:10px;}
-a.card{display:block;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:15px 18px;color:var(--text);transition:transform .2s,border-color .2s;}
-a.card:hover{transform:translateX(3px);border-color:var(--gold);}
-a.card .t{font-weight:900;font-size:15.5px;color:var(--ink);line-height:1.5;}
-a.card .d{font-size:13px;color:var(--dim);line-height:1.65;margin-top:4px;}
-a.card .new{display:inline-block;font-size:11px;font-weight:700;color:#1a1406;background:var(--gold);border-radius:50px;padding:1px 8px;margin-right:6px;vertical-align:2px;}
-.empty{display:none;font-size:14px;color:var(--dim);padding:10px 2px;}
 </style>
 </head>
 <body>
@@ -267,8 +257,8 @@ a.card .new{display:inline-block;font-size:11px;font-weight:700;color:#1a1406;ba
   <div class="fc-card">
     <div class="k">NEXT STEP</div>
     <!-- 【換】這兩句跟著當篇乾貨改：「你拿到的是一小塊 → 完整的在研究所」 -->
-    <h4>東西拿了<br><span class="g">接著一起做出來</span></h4>
-    <p>重複的內容工作交給 AI，我們把整套流程做成工具放在研究所裡。</p>
+    <h4>工作交出去了<br><span class="g">接著把內容也交給 AI</span></h4>
+    <p>選題、寫稿到發文，我們把整套流程做成工具放在研究所裡。</p>
     <a href="https://www.skool.com/d11-lab/about" target="_blank" rel="noopener">加入 奇點研究所 × D11</a>
   </div>
 </div>
@@ -278,10 +268,10 @@ a.card .new{display:inline-block;font-size:11px;font-weight:700;color:#1a1406;ba
   <!-- ═════ 開頭：這頁是什麼 ═════ -->
   <header class="hero">
     <!-- 【換】kicker／標題／副標／說明／這頁有什麼 -->
-    <div class="kicker">ALL PAGES · 資源總覽</div>
-    <h1>傑森所長<br><span class="g">所有資源一次看</span></h1>
-    <div class="h-sub">提示詞、工作流、完整手冊，全部在這裡</div>
-    <p class="hero-sub">貼文和影片送出去的每一份完整版，都整理在這一頁。用上面的搜尋框，輸入關鍵字就能找到。</p>
+    <div class="kicker">CHATGPT DOTS · 上工指南</div>
+    <h1>Dots 上工指南<br><span class="g">先把一件工作交出去</span></h1>
+    <div class="h-sub">開通方式 × 5個工作範例 × 可複製提示詞</div>
+    <p class="hero-sub">AI 工具用了很多，人還是可能忙得要命。選一件重複工作，把目標、標準與權限講清楚，再用一次小任務驗收。</p>
     <!-- 自介卡：全站固定，放在乾貨說明之後、「這頁有」之前 -->
     <div class="mid-intro">
       <div class="who">
@@ -294,10 +284,83 @@ a.card .new{display:inline-block;font-size:11px;font-weight:700;color:#1a1406;ba
         <div class="txt"><b>把一間自媒體公司搬到 AI 上。</b><br class="m-br">同一套流程，換作是你也可以做到。</div>
       </div>
     </div>
+
+    <nav class="toc">
+      <div class="tt">這頁有</div>
+      <ul>
+        <li><a href="#s4"><b>5</b>個先交辦的工作<i>↓</i></a></li>
+        <li><a href="#s5">可複製的交辦提示詞<i>↓</i></a></li>
+        <li><a href="#s6">第一次成果<b>4</b>項檢查<i>↓</i></a></li>
+      </ul>
+    </nav>
   </header>
 
   <!-- ═════ ② 乾貨區（由 Notion 自動轉出） ═════ -->
-<section class="sec"><input class="find" id="find" type="search" placeholder="找找看：輸入 Claude、Reels、提示詞…"><div class="empty" id="empty">沒有找到，換個關鍵字試試</div></section><section class="sec" id="s1"><span class="sec-tag">最新</span><h2>最新的 12 份</h2><div class="cards"><a class="card" href="https://jasonxtsai.github.io/pages/jason/chatgpt-7-prompts.html" target="_blank" rel="noopener"><div class="t"><span class="new">新</span>高手都會用的7個ChatGPT提示詞</div><div class="d">IG 貼文的完整版。7組提示詞各附使用時機、填空範例、進階追問，還有每一組適合搭哪個 AI 工具。</div></a><a class="card" href="https://jasonxtsai.github.io/pages/jason/chatgpt-photo-6-prompts.html" target="_blank" rel="noopener"><div class="t"><span class="new">新</span>ChatGPT修圖6大提示詞</div><div class="d">完整提示詞、工具連結、操作步驟、攝影參數速查表，加上出圖不滿意時的修正指令庫。</div></a><a class="card" href="https://jasonxtsai.github.io/pages/jason/ai-learning-5-prompts.html" target="_blank" rel="noopener"><div class="t"><span class="new">新</span>5組AI學習加速指令</div><div class="d">從學習地圖、20小時速成計畫、費曼學習法，到測驗找漏洞、做成一頁筆記。每組都有完整指令、填寫範例和進階追問。</div></a><a class="card" href="https://jasonxtsai.github.io/pages/jason/chatgpt-99-slash-commands.html" target="_blank" rel="noopener"><div class="t"><span class="new">新</span>99個ChatGPT斜線指令完整手冊</div><div class="d">9大類99個指令，每一類附實戰用法；後面有指令組合公式、AI 工具對照表，和一份可以直接複製的快速索引。</div></a><a class="card" href="https://jasonxtsai.github.io/pages/jason/ai-99-slash-commands.html" target="_blank" rel="noopener"><div class="t"><span class="new">新</span>99個AI斜線指令完整手冊</div><div class="d">三種安裝方式、各家 AI 的設定步驟、9類99個指令完整表，再加上指令怎麼疊、五個完整實戰工作流。</div></a><a class="card" href="https://jasonxtsai.github.io/pages/jason/starting-equation-7-days.html" target="_blank" rel="noopener"><div class="t"><span class="new">新</span>起點方程式｜七天工作頁</div><div class="d">從定位宣言、定價、免費磁鐵、蓋一個家，到一段語音變27篇內容、第七天開賣。每天都有填空、範例和 AI 輔助 Prompt。</div></a><a class="card" href="https://jasonxtsai.github.io/pages/jason/reels-7-prompts.html" target="_blank" rel="noopener"><div class="t"><span class="new">新</span>用ChatGPT經營IG Reels｜7組指令</div><div class="d">從找題目、下開場鉤子、寫腳本，到讓人收藏和分享、救回發過的 Reels。最後把7組串成一週的節奏。</div></a><a class="card" href="https://jasonxtsai.github.io/pages/jason/ai-prompt-swaps-18.html" target="_blank" rel="noopener"><div class="t"><span class="new">新</span>AI指令對照表｜18組不要說vs應該怎麼說</div><div class="d">為什麼你的 AI 回答很平庸、好指令的五個結構、18組完整對照，再加5個可以直接複製的 Prompt 和七天練習。</div></a><a class="card" href="https://jasonxtsai.github.io/pages/jason/ai-stock-research-5-prompts.html" target="_blank" rel="noopener"><div class="t"><span class="new">新</span>用AI把選股研究自動化｜5組Prompt</div><div class="d">先把 AI 調成研究員，再用5組 Prompt 找機會、看技術面、讀新聞、查風險、檢討交易紀錄。這是研究工具，不構成投資建議。</div></a><a class="card" href="https://jasonxtsai.github.io/pages/jason/chatgpt-10-daily-prompts.html" target="_blank" rel="noopener"><div class="t"><span class="new">新</span>ChatGPT實戰Prompt包｜10組直接複製</div><div class="d">先講為什麼你的 AI 回答總是很空，再給10組完整指令，最後附上什麼任務該開哪個工具的地圖。</div></a><a class="card" href="https://jasonxtsai.github.io/pages/jason/ai-character-sheet.html" target="_blank" rel="noopener"><div class="t"><span class="new">新</span>AI角色設定表｜完整實作指南</div><div class="d">七個欄位講清楚、可以直接複製的提示詞、四個生圖工具的實際操作，到崩壞情境對照和三十分鐘上手流程。</div></a><a class="card" href="https://jasonxtsai.github.io/pages/jason/chatgpt-dots-guide.html" target="_blank" rel="noopener"><div class="t"><span class="new">新</span>Dots 上工指南</div><div class="d">AI 工具用了很多，人還是可能忙得要命。選一件重複工作，把目標、標準與權限講清楚，再用一次小任務驗收。</div></a></div></section><section class="sec" id="s2"><span class="sec-tag">之前的</span><h2>更早的 55 份</h2><div class="cards"><a class="card" href="https://leo39770643-star.github.io/jason-pages/2026-10-01-7-habits" target="_blank" rel="noopener"><div class="t">7個會累積的習慣</div><div class="d">不用一直等別人改，先把自己的事一件一件做起來。7個習慣＋7天打勾清單</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-ai-tools-2026.html" target="_blank" rel="noopener"><div class="t">2026 AI 工具汰換清單</div><div class="d">十個場景配對十個現在最準的工具——Claude／Nano Banana 2／Perplexity／Manus／Lovable／Kling 等，附可複製 Prompt 與三套組合工作流</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-hook-formulas.html" target="_blank" rel="noopener"><div class="t">鉤子 9 公式 × 30 個 Prompt × 自動化 Skill</div><div class="d">用 Claude 把 IG 內容自動化的完整手冊——9 個心理機制、30 個可複製 Prompt、完整 Skill.md，附每日 30 分鐘 routine</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-website-design-workflow.html" target="_blank" rel="noopener"><div class="t">讓 Claude Code 做出有品味的網站</div><div class="d">完整三步驟工作流——建立品味庫、武裝 Claude、一次生五版比較，含五風格 bake-off 主控 Prompt 與反 slop 自檢清單</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-skill-installation.html" target="_blank" rel="noopener"><div class="t">Claude Skill 改裝包</div><div class="d">5 個 Skill／Plugin 的完整安裝指南——Stop Slop／Claude Mem／UI-UX Pro Max／Task Observer／Find Skills，含自寫 Skill 最小範本</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-ai-company-os.html" target="_blank" rel="noopener"><div class="t">我把 Claude Code 變成一間新創公司｜七部門完整設定包</div><div class="d">CLAUDE.md 公司章程 ＋ CEO／行銷／業務／客服／財務／工程／營運七份 SKILL.md 全文可複製，含資料夾建置指令、一天流程、五個卡關與七天上手表</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-dashboard-30-prompts.html" target="_blank" rel="noopener"><div class="t">Dashboard 30 Prompts｜從診斷到上台的完整流程</div><div class="d">診斷→清理→數字→視覺→敘事→防彈→上台七階段 30 個 prompt 全部可複製，附 30 列狀況對照表與 DAX 驗算警語</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-open-source-swaps.html" target="_blank" rel="noopener"><div class="t">退訂清單｜6 個 AI 工具的開源替代方案</div><div class="d">Handy／anarlog／Perplexica／Cline／LanguageTool／Activepieces——安裝指令、官方連結、取捨全寫完，附難度標示與三種情境組合</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-claude-50-commands.html" target="_blank" rel="noopener"><div class="t">50 組 Claude 隱藏指令｜完整整合包</div><div class="d">一份可直接複製的設定檔，打一個斜線就切換輸出格式與思考方式——四種安裝方式、五類對照表、移植 ChatGPT 與 Gemini 的做法</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-voice-workstation.html" target="_blank" rel="noopener"><div class="t">用講的就好｜四個零件，組一台聽得懂話的電腦</div><div class="d">Claude Code ＋ Obsidian ＋ whisper ＋ Kokoro 完整安裝指南，含 5 份可複製 SKILL.md、HUD 儀表板 prompt 與本機／雲端分層說明</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-marriage-checklist.html" target="_blank" rel="noopener"><div class="t">夫妻長跑檢核表｜給有小孩以後還想一起走很久的兩個人</div><div class="d">四區 30 題可直接勾選、自動算分並判定狀態，附對答案規則與「星期二晚上機制」，可列印兩份分開填</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-capcut-automation.html" target="_blank" rel="noopener"><div class="t">讓 Claude 幫你剪 CapCut｜完整實戰手冊</div><div class="d">三條路線的差別、CapCutAPI 與 SmartCut 完整安裝、8 個可複製 Prompt 與疑難排解表，先講清楚它做不到什麼</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-chatgpt-setup.html" target="_blank" rel="noopener"><div class="t">ChatGPT 從零設定完整指南</div><div class="d">Chat／Work／Codex 三模式分工、自訂指令與專案範本、連接器、5 個 Work 指令、Skill 建立法，附可勾選的 7 天上手清單</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-ai-freelance-toolkit.html" target="_blank" rel="noopener"><div class="t">AI 接案工具箱｜7 個開源專案，從安裝到報價</div><div class="d">pipecat／cline／postiz／anything-llm／crewAI／browser-use／firecrawl——每個都寫清楚怎麼裝、包成什麼服務、交付什麼、報多少</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-chatgpt-56-codes.html" target="_blank" rel="noopener"><div class="t">56 組 ChatGPT 指令代碼</div><div class="d">貼在句首直接切換回答模式——精簡版與完整版設定檔全文可複製，五類對照表附實際用法，含三家 AI 設定路徑</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-slide-prompts-20.html" target="_blank" rel="noopener"><div class="t">20 個簡報 Prompt｜把一份文件變成一整套能上台的簡報</div><div class="d">Gemini Notebook 完整流程——每個 Prompt 標明貼在 Chat 還是 Studio，含逐頁健檢、講稿生成與三個進階技巧</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-claude-setup-guide.html" target="_blank" rel="noopener"><div class="t">從零開始設定 Claude｜六步設定 ＋ 第一個 Skill</div><div class="d">記憶匯入、Projects、模型選擇、Connectors 全部走一遍，含新舊介面雙路徑對照與 30 項可勾選檢查清單</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-claude-code-5-tools.html" target="_blank" rel="noopener"><div class="t">五個 Claude Code 開源工具．實裝手冊</div><div class="d">scroll-world／OmniRoute／voicebox／cognee／agency-agents——每個都標成本徽章，寫清楚哪些會花錢、什麼情況不要用</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-claude-skills-must-have.html" target="_blank" rel="noopener"><div class="t">Claude Skills 必裝清單｜五個場景、15 個工具</div><div class="d">先分清 Skill／Plugin／MCP 三種安裝方式，五場景不重複，含 30 分鐘設定順序與第三方安全檢查五步</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-claude-design-skills.html" target="_blank" rel="noopener"><div class="t">7 個 Skill，把 Claude 的設計品味裝回去</div><div class="d">frontend-design／taste／impeccable／brandkit／canvas-design 等，含三種情境組合流程與五個常見踩雷</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-08-06-free-alternatives.html" target="_blank" rel="noopener"><div class="t">6 組 AI 工具免費替代方案｜完整版</div><div class="d">Midjourney／CapCut／Loom／ChatPDF／Zapier／ElevenLabs 各自的免費解——重點在限制不在價格，附四個查證後拿掉的工具與理由</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-07-29-claude-projects-10.html" target="_blank" rel="noopener"><div class="t">Claude 10 個 Project 設定表</div><div class="d">把一個帳號拆成十個職務——每個附完整指示文、要餵的資料、開場提問與驗收標準，指示文全部一鍵複製</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-07-29-writing-skills.html" target="_blank" rel="noopener"><div class="t">Claude 內容寫作 5 個 Skills</div><div class="d">dumbify／storytelling／viral-hooks／anti-ai-writing／voice-dna 五份完整 SKILL.md，含 20 型鉤子庫與中文 AI 味清單</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-07-29-42-skills.html" target="_blank" rel="noopener"><div class="t">42 個真的裝得起來的 Claude Skills</div><div class="d">逐一 clone 驗證過的完整清單——4 行指令裝完 28 個，三種來源色標分明，14 個 plugin 各附可複製指令</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-07-29-ai-copywriter.html" target="_blank" rel="noopener"><div class="t">讓 AI 寫出不像 AI 的文案</div><div class="d">三題訪談清單 × 四道故事測試 × 三條交付規則，附一份可直接貼進任何 AI 對話框的中文訪談模板</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-07-29-5-repos.html" target="_blank" rel="noopener"><div class="t">Claude Code 5 個 repo 完整懶人包</div><div class="d">claude-video／graphify／notebooklm-py／impeccable／ponytail——安裝、使用、限制全寫完，含 30 分鐘上手順序與三處數字訂正</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-07-27-model-selection.html" target="_blank" rel="noopener"><div class="t">Claude 模型選型表｜哪個任務該用哪個模型</div><div class="d">Haiku／Sonnet／Opus 5／Fable 5 四模型定位、Effort 五級調法、三組可複製工作流設定，含完整踩雷清單</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-07-21-claude-plugin-pack.html" target="_blank" rel="noopener"><div class="t">Claude Code 5 大 Plugin｜完整安裝與實戰教學包</div><div class="d">claude-mem／caveman／humanizer／taste-skill／marketingskills——環境準備到移除全寫完，含 3 套實戰工作流、疑難排解、速查表</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-07-21-60-prompts.html" target="_blank" rel="noopener"><div class="t">60 個 Claude 指令完整版</div><div class="d">學習吸收／研究分析／Prompt 工程／自動化工作流四大類，60 個指令全部可一鍵複製，把【】換成你的內容就能用</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-07-20-claude-code-plugins.html" target="_blank" rel="noopener"><div class="t">Claude Code 五個外掛｜完整安裝與實戰指南</div><div class="d">graphify／impeccable／ponytail／Higgsfield／Obsidian——每個含可複製安裝指令、使用時機、限制與陷阱，附建議安裝順序</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-07-17-visit-rhythm.html" target="_blank" rel="noopener"><div class="t">節奏小卡｜一場拜訪的 7 句話</div><div class="d">台詞會忘，節奏不會——開場到結束 7 個場面各一句能接的話，5 句是問句，出門前滑一遍</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-07-16-claude-code-modules.html" target="_blank" rel="noopener"><div class="t">Claude Code 四模組完整手冊</div><div class="d">檔案・指令・記憶・工具——從聊天機器人到代理人的完整操作指南，含 8 個職能範本、CLAUDE.md 範本、30 天上手路徑</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-07-14-fable-cost.html" target="_blank" rel="noopener"><div class="t">Fable 5 省錢術｜把最貴的模型用在刀口上</div><div class="d">五招把最強模型的帳單砍 80%——effort／plan mode／少寫／deep-research／advisor，含官方定價表與完整工作流</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-07-13-claude-skills.html" target="_blank" rel="noopener"><div class="t">這 5 個 Claude Skills，自動化了我的生活</div><div class="d">voice／filter／signal／debrief／blueprint 五份 SKILL.md 完整原始碼，一鍵複製直接用，含安裝教學</div></a><a class="card" href="https://evoke728.github.io/jason-pages/2026-07-08-agency-skills.html" target="_blank" rel="noopener"><div class="t">我整間公司，都跑在 Claude Code 上｜220 個 Skill 完整清單</div><div class="d">把一個人拆成一整間 AI 公司——6 支團隊、220 個 skill 完整編制表，點團隊直接展開名單</div></a><a class="card" href="https://evoke728.github.io/jason-pages/diagnosis.html" target="_blank" rel="noopener"><div class="t">商業診斷 Prompt｜把公司丟給 Claude 找漏洞</div><div class="d">AI 應用 — 2 分鐘找出你在漏的錢 · 含完整三步 Prompt</div></a><a class="card" href="https://evoke728.github.io/jason-pages/fortune.html" target="_blank" rel="noopener"><div class="t">AI 算命 Prompt｜把八字丟給 AI 做人生策略報告</div><div class="d">AI 應用 — 大運 / 事業 / 感情一次拆 · 不是迷信，是換個角度看自己</div></a><a class="card" href="https://evoke728.github.io/jason-pages/prompts.html" target="_blank" rel="noopener"><div class="t">Claude Prompt 實戰指令包｜創作者直接抄的 13 套指令</div><div class="d">AI 應用 — 3 場景 + 1 萬用框架 + 10 指令 · 全部一鍵複製</div></a><a class="card" href="https://evoke728.github.io/jason-pages/ig-recovery.html" target="_blank" rel="noopener"><div class="t">IG 帳號申訴完整手冊</div><div class="d">IG 被停、被盜、被鎖都能救——30 個申訴渠道完整手冊</div></a><a class="card" href="https://evoke728.github.io/jason-pages/claude-projects.html" target="_blank" rel="noopener"><div class="t">Claude Projects Instructions 資源包</div><div class="d">6 套複製貼上就能用的 Claude Project Instructions——1 套通用填空＋5 種身份專屬</div></a><a class="card" href="https://evoke728.github.io/jason-pages/gpt-commands.html" target="_blank" rel="noopener"><div class="t">ChatGPT 隱藏指令 完整版 20 組</div><div class="d">別再讓 ChatGPT 附和你——20 組讓它變專業的關鍵字指令，含 6 個天天在用的完整 prompt</div></a><a class="card" href="https://evoke728.github.io/jason-pages/cartoon-poster.html" target="_blank" rel="noopener"><div class="t">3D 卡通小行星海報 Prompt</div><div class="d">上傳照片就把你變成 2000 年代卡通主角——男女各一版完整 prompt，附範例圖</div></a><a class="card" href="https://evoke728.github.io/jason-pages/claude-roadmap.html" target="_blank" rel="noopener"><div class="t">Claude 新手路線圖｜5 天學會用 Claude</div><div class="d">把 Claude 變成每天幫你省時間的 AI 工作系統——5 天路線圖＋10 個萬用 Prompt，不需技術背景</div></a><a class="card" href="https://evoke728.github.io/jason-pages/ig-timing.html" target="_blank" rel="noopener"><div class="t">IG 最佳發文時間完整指南</div><div class="d">一週七天什麼時候發、發什麼——19 個黃金時段＋內容類型對照，發對時間觸及差很多</div></a><a class="card" href="https://evoke728.github.io/jason-pages/claude-10layers.html" target="_blank" rel="noopener"><div class="t">Claude 10 層解鎖｜完整 Prompt 實戰包</div><div class="d">從基本對話到手機遠端指揮，把 Claude 的 10 個層級一次打通——25＋ 個可直接複製的完整 Prompt</div></a><a class="card" href="https://evoke728.github.io/jason-pages/claude-commands.html" target="_blank" rel="noopener"><div class="t">Claude 隱藏指令懶人包</div><div class="d">5 個讓 Claude 輸出跳一個等級的關鍵字——/ghost /redteam /premortem /tripwire /ultrathink，附可複製範本</div></a><a class="card" href="https://evoke728.github.io/jason-pages/research-workflow.html" target="_blank" rel="noopener"><div class="t">NotebookLM × Claude 研究工作流</div><div class="d">把兩個 AI 串成可信賴的研究系統——NotebookLM 讀懂來源不幻覺、Claude 深度推理寫成品，4 步驟閉環</div></a><a class="card" href="https://evoke728.github.io/jason-pages/de-ai.html" target="_blank" rel="noopener"><div class="t">去 AI 感 Prompt 包</div><div class="d">讓你的文字再也沒有 AI 感——7 個專打 AI 痕跡的 Prompt，複製貼上把【】換成你的內容就能用</div></a><a class="card" href="https://evoke728.github.io/jason-pages/ideal-type.html" target="_blank" rel="noopener"><div class="t">理想型人物形象板生成器</div><div class="d">把這段指令貼進能生圖的 AI，說「生成我的理想型」、指定男/女，就生出深色高級雜誌風的人物設定板</div></a><a class="card" href="https://evoke728.github.io/jason-pages/reels-200.html" target="_blank" rel="noopener"><div class="t">200 個 Reels 選題｜新手起號</div><div class="d">每天不再煩惱拍什麼——10 大類 200 條選題，3 條完整範例先試用，完整版一鍵套用開拍</div></a><a class="card" href="https://evoke728.github.io/jason-pages/ai-team.html" target="_blank" rel="noopener"><div class="t">我的 AI 行銷團隊｜5 位專家 Prompt 包</div><div class="d">用 Claude 打造你的行銷部門——SEO／廣告／社群／AI 策略／開發 5 位專家，一個指令切換一個角色</div></a><a class="card" href="https://evoke728.github.io/jason-pages/carousel-workflow.html" target="_blank" rel="noopener"><div class="t">我用 AI 做輪播貼文的完整節奏</div><div class="d">從 4 小時擠到 20 分鐘的實際操作流程——研究→策略→執行 3 步驟，含 4 個即用 Prompt 範本</div></a><a class="card" href="https://evoke728.github.io/jason-pages/skill-factory.html" target="_blank" rel="noopener"><div class="t">用 NotebookLM 打造你的 Claude 技能工廠</div><div class="d">一次設定，永久生效——5 步驟用 NotebookLM 生成 skill.md，建立你的 Claude 技能庫，含完整實戰範例</div></a><a class="card" href="https://evoke728.github.io/jason-pages/ai-skills-map.html" target="_blank" rel="noopener"><div class="t">2026 AI 技能地圖</div><div class="d">你不可或缺的 12 個 AI 工具與工作流——每個領域都給你「是什麼＋什麼時候用＋代表工具＋第一步」</div></a><a class="card" href="https://evoke728.github.io/jason-pages/watch-video.html" target="_blank" rel="noopener"><div class="t">讓 Claude 看完任何影片</div><div class="d">完整安裝教學 ＋ 6 組即用 Prompt——把任何影片拆成畫面＋逐字稿交給 Claude，讓它「看」影片而非只「讀」</div></a></div></section><script>document.getElementById("find").addEventListener("input",function(){var q=this.value.trim().toLowerCase(),n=0;document.querySelectorAll("a.card").forEach(function(c){var ok=!q||c.textContent.toLowerCase().indexOf(q)>=0;c.style.display=ok?"":"none";if(ok)n++;});document.querySelectorAll("#s1,#s2").forEach(function(s){s.style.display=[].some.call(s.querySelectorAll("a.card"),function(c){return c.style.display!=="none"})?"":"none";});document.getElementById("empty").style.display=n?"none":"block";});</script>
+<section class="sec fade" id="s1"><h2>先把一件工作交出去</h2><p>AI 工具用了很多，人還是可能忙得要命</p><p>因為下一步做什麼、進度追到哪，全部還放在自己腦袋裡</p><p>這份指南帶你選一件重複工作，把目標、標準與權限講清楚，再用一次小任務驗收</p><p><b>使用順序</b></p><ol class="steps"><li>確認帳號能否使用 Dots</li><li>完成設定，提供工作背景</li><li>從下面挑一個工作範例</li><li>複製提示詞，先交辦一次</li><li>驗收成果後，再設定固定回報</li></ol></section>
+
+<section class="sec fade" id="s2"><h2>① 開始前，先確認能不能用</h2><p>Dots 目前採逐步開放，符合方案也可能尚未出現入口</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>方案</th><th>開放情況</th></tr></thead><tbody><tr><td data-label="方案">Pro</td><td data-label="開放情況">依地區開放，目前排除歐洲經濟區、瑞士與英國</td></tr><tr><td data-label="方案">Business Premium</td><td data-label="開放情況">在支援的 ChatGPT 地區開放</td></tr><tr><td data-label="方案">Enterprise／Edu／Healthcare</td><td data-label="開放情況">需由工作區管理員開啟測試</td></tr><tr><td data-label="方案">Plus</td><td data-label="開放情況">未列入目前官方公布的開放方案</td></tr></tbody></table></div><p><b>首次建立 Dot，要使用電腦版 ChatGPT 網頁或桌面 App</b></p><p>手機 App 可在建立後、功能開放時使用，手機網頁目前不支援</p></section>
+
+<section class="sec fade" id="s3"><h2>② 第一次設定</h2><h3 class="sub-h">1｜建立你的 Dot</h3><p>在電腦版 ChatGPT 找到 Dots 入口，依畫面引導建立並命名</p><p>若沒有看到入口，先確認方案與開放狀態</p><h3 class="sub-h">2｜給它工作背景</h3><p>先準備這三樣：</p><ul class="bul"><li><b>你做什麼</b>：業務、服務對象、目前目標</li><li><b>這次要處理的資料</b>：文件、逐字稿或任務表</li><li><b>一份合格範例</b>：讓它知道你期待的格式與品質</li></ul><h3 class="sub-h">3｜連接需要的工具</h3><p>選擇支援的外掛或應用程式，確認權限後再連接</p><p>先接這次任務需要的資料來源即可</p><p>本機電腦存取屬於選配，初次試作可先用上傳文件開始</p><h3 class="sub-h">4｜先做一次，再設定重複工作</h3><p>先要求一份草稿或報告，確認它讀對資料、抓對重點</p><p>驗收後，再指定頻率、時間、時區與回報位置，並在 Dot 的 <b>Scheduled</b> 檢查排程</p><div class="pos"><p><b>使用邊界</b></p><p>24 小時可用仍有工作額度限制</p><p>背景主動研究採唯讀工具，不能因此自行發送訊息或修改資料</p><p>重要成果仍需由你審核</p></div></section>
+
+<section class="sec fade" id="s4"><h2>③ 5 個適合先交辦的工作</h2><p>以下是交辦範例，實際執行取決於帳號功能、已連接工具與授權</p><h3 class="sub-h">01｜訪談素材整理</h3><p><b>給它的資料</b></p><p>訪談逐字稿＋你的貼文範例</p><p><b>要求交付</b></p><ul class="bul"><li>3 個適合剪成短片的候選段落</li><li>一份訪談摘要</li><li>2 則社群貼文草稿</li></ul><p><b>驗收重點</b></p><p>保留原文依據，沒有時間碼就不要編造，發布前由你確認</p><h3 class="sub-h">02｜每週 AI 選題清單</h3><p><b>給它的資料</b></p><p>受眾描述＋指定的官方資訊來源</p><p><b>要求交付</b></p><p>5 個選題，每題附上發布日期、來源連結，以及受眾為什麼會在意</p><p><b>驗收重點</b></p><p>分清楚官方事實、推測與自己的觀點</p><h3 class="sub-h">03｜專案進度摘要</h3><p><b>給它的資料</b></p><p>任務表＋截止日期＋負責人</p><p><b>要求交付</b></p><ul class="bul"><li>已完成的工作</li><li>卡住的工作</li><li>需要你決定的事情</li></ul><p><b>驗收重點</b></p><p>缺資料就標示，不自行修改期限或對外催人</p><h3 class="sub-h">04｜客戶會議前準備</h3><p><b>給它的資料</b></p><p>會議議程＋你授權的往來紀錄</p><p><b>要求交付</b></p><p>需求摘要、待確認問題與會議提問清單</p><p><b>驗收重點</b></p><p>每項重點能回到原始紀錄，不擅自承諾報價</p><h3 class="sub-h">05｜常見問題回覆草稿</h3><p><b>給它的資料</b></p><p>已整理的客戶問題＋最新版產品說明</p><p><b>要求交付</b></p><p>問題分類、回覆草稿，以及需要人工處理的項目</p><p><b>驗收重點</b></p><p>價格與條件有依據，沒有答案就列為待確認</p></section>
+
+<section class="sec fade" id="s5"><h2>④ 可直接複製的交辦提示詞</h2><p>把 <code>[方括號]</code> 換成自己的內容，再貼給 Dot</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>請協助我負責以下工作，先完成一次試作
+
+【工作背景】
+我的工作／業務：[填寫]
+服務對象：[填寫]
+這次目標：[填寫希望完成的具體成果]
+
+【資料與範圍】
+請使用：[附件、資料夾、文件或已授權工具]
+只處理：[指定資料範圍與時間區間]
+參考範例：[貼上你認為合格的成品]
+
+【交付標準】
+輸出格式：[表格、摘要、草稿等]
+必須包含：[列出 3 項必要內容]
+完成標準：[我會如何判斷成果可用]
+
+引用資訊請附來源
+缺資料請標示，不要編造
+
+【權限與回報】
+可自行處理：讀取授權資料、分析、整理及起草
+
+發送訊息、公開發布、刪除或覆寫資料、
+付款及對外承諾前，先取得我確認
+
+遇到資料不足、內容矛盾或權限不足，
+列出問題與建議
+
+先回覆你理解的目標、可用資料與執行方式，
+再完成一次試作
+
+這次先不要建立重複排程，
+成果由我驗收後再設定</pre></div></section>
+
+<section class="sec fade" id="s6"><h2>⑤ 第一次成果，檢查這 4 件事</h2><div class="cklist"><label class="ck"><input type="checkbox"><span>資料範圍正確，沒有混進不相關或過期內容</span></label><label class="ck"><input type="checkbox"><span>重要資訊找得到來源，沒有編造數字或時間碼</span></label><label class="ck"><input type="checkbox"><span>格式、語氣與完成標準符合需求</span></label><label class="ck"><input type="checkbox"><span>需要核准的動作有停下來，遇到問題有清楚回報</span></label></div><h3 class="sub-h">修正時，直接指出差異</h3><div class="tipline">第 2 題太泛，請改成中小企業主能實際使用的情境</div><div class="tipline">摘要保留 3 點，每點附原文依據</div><div class="tipline">這一版符合要求，之後請沿用這個格式</div></section>
+
+<section class="sec fade" id="s7"><h2>⑥ 驗收後，設定固定回報</h2><p>確認第一次成果可用，再貼這段：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>這次格式已確認，
+請將同一項工作設定為 [頻率]
+
+執行時間：[時間]
+時區：Asia/Taipei
+每次資料範圍：[例如前 7 天的新資料]
+回報位置：[指定對話或支援的目的地]
+
+沿用原本的權限與審核規則
+
+請回覆：
+1. 排程是否建立成功
+2. 下次執行時間
+3. 回報位置
+
+若目前無法建立，
+請說明缺少的功能或授權，
+不要只口頭答應</pre></div></section>
+
+<section class="sec fade" id="s8"><h2>官方資料</h2><ul class="bul"><li><a href="https://openai.com/index/introducing-dots/" target="_blank" rel="noopener">Dots 官方介紹</a></li><li><a href="https://help.openai.com/en/articles/20001530-getting-started-with-your-dot" target="_blank" rel="noopener">Dots 開始使用說明</a></li></ul><p>本指南由 Jason 整理，功能與方案以官方最新說明及帳號畫面為準</p></section>
 
   <!-- ═════ ③ 研究所介紹（全站固定，不跟著乾貨改） ═════ -->
   <section class="inst" id="institute">
@@ -406,8 +469,9 @@ setTimeout(function(){ document.querySelectorAll('.fade').forEach(function(el){ 
 </script>
 
 <!--
-本頁由 產生落地頁.py 產生（總覽頁）
-新頁面：加進〈頁面設定〉；之前的頁面：改〈之前的落地頁清單.json〉
+本頁由 產生落地頁.py 產生
+來源：落地頁模板/原稿/Dots上工指南.md
+要改內容：改來源後重跑；要改標題與按鈕：改 產生落地頁.py 的〈頁面設定〉
 -->
 </body>
 </html>

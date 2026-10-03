@@ -30,3 +30,4 @@
 | `ai-stock-research-5-prompts.html` | 用AI把選股研究自動化｜5組Prompt | jason |
 | `chatgpt-10-daily-prompts.html` | ChatGPT實戰Prompt包｜10組直接複製 | jason |
 | `ai-character-sheet.html` | AI角色設定表｜完整實作指南 | jason |
+| `chatgpt-dots-guide.html` | Dots 上工指南 | jason |
