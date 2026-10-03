@@ -298,7 +298,19 @@ details.mini summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:
   <!-- ═════ ② 乾貨區（由 Notion 自動轉出） ═════ -->
 <section class="sec fade" id="s1"><h2>使用方式</h2><ol class="steps"><li>選一件你經常要提醒、搬資料或重複交代的工作</li><li>複製下方空白表，填清楚條件、資料、動作與交付結果</li><li>卡住時，把表格貼給 AI，搭配最後的提示詞補齊</li><li>完成後，再依使用工具設定觸發、資料存取與執行權限</li></ol><p>這份表用來設計流程，填完後仍需完成工具串接與測試，才會自動執行</p></section>
 
-<section class="sec fade" id="s2"><span class="sec-tag">第一部分</span><h2>空白流程表</h2><p><b>流程名稱：</b>［填寫］</p><p><b>負責人：</b>［填寫］</p><p><b>想省下的重複工作：</b>［填寫］</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>項目</th><th>填寫內容</th></tr></thead><tbody><tr><td data-label="項目：">觸發事件</td><td data-label="填寫內容：">哪個工具裡，發生什麼事就啟動？［填寫］</td></tr><tr><td data-label="項目：">啟動條件</td><td data-label="填寫內容：">事件還要符合哪些條件？哪些情況不啟動？［填寫］</td></tr><tr><td data-label="項目：">參考資料</td><td data-label="填寫內容：">要讀哪些文件、欄位或紀錄？請填名稱、連結與範圍［填寫］</td></tr><tr><td data-label="項目：">執行動作</td><td data-label="填寫內容：">依序寫出 AI 要做的步驟［填寫］</td></tr><tr><td data-label="項目：">交付結果</td><td data-label="填寫內容：">要產出什麼？格式、內容與完成標準是什麼？［填寫］</td></tr><tr><td data-label="項目：">存放位置</td><td data-label="填寫內容：">結果放在哪裡？用什麼名稱？［填寫］</td></tr><tr><td data-label="項目：">確認關卡</td><td data-label="填寫內容：">哪些步驟可自行完成？哪些動作須等誰確認？［填寫］</td></tr><tr><td data-label="項目：">異常處理</td><td data-label="填寫內容：">缺資料、沒權限或執行失敗時，停在哪裡並通知誰？［填寫］</td></tr><tr><td data-label="項目：">重複事件</td><td data-label="填寫內容：">同一件事重複觸發時，如何辨識並避免重做？［填寫］</td></tr></tbody></table></div><h3 class="sub-h">用一句話說清楚</h3><p>當［觸發事件］發生，且符合［啟動條件］時，讀取［參考資料］，依序執行［動作］，將［交付結果］存到［位置］，在［確認關卡］等待［負責人］確認</p></section>
+<section class="sec fade" id="s2"><span class="sec-tag">第一部分</span><h2>空白流程表</h2><p>複製這一份，貼進 ChatGPT、Notion 或備忘錄裡填。括號裡是每一欄要回答的問題。</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>流程名稱：
+負責人：
+想省下的重複工作：
+
+觸發事件（哪個工具裡，發生什麼事就啟動？）：
+啟動條件（事件還要符合哪些條件？哪些情況不啟動？）：
+參考資料（要讀哪些文件、欄位或紀錄？請填名稱、連結與範圍）：
+執行動作（依序寫出 AI 要做的步驟）：
+交付結果（要產出什麼？格式、內容與完成標準是什麼？）：
+存放位置（結果放在哪裡？用什麼名稱？）：
+確認關卡（哪些步驟可自行完成？哪些動作須等誰確認？）：
+異常處理（缺資料、沒權限或執行失敗時，停在哪裡並通知誰？）：
+重複事件（同一件事重複觸發時，如何辨識並避免重做？）：</pre></div><h3 class="sub-h">用一句話說清楚</h3><p>填完上面，再用一句話把整個流程講一次：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>當［觸發事件］發生，且符合［啟動條件］時，讀取［參考資料］，依序執行［動作］，將［交付結果］存到［位置］，在［確認關卡］等待［負責人］確認</pre></div></section>
 
 <section class="sec fade" id="s3"><span class="sec-tag">第二部分</span><h2>填寫案例</h2><h3 class="sub-h">新增輪播任務，自動準備企劃草稿</h3><p>以下是流程設計示範，實際執行須使用支援相應事件與操作的工具</p><p><b>流程名稱：</b>輪播任務企劃準備</p><p><b>負責人：</b>內容負責人</p><p><b>想省下的重複工作：</b>每次新增任務，都要人工找定位檔、整理素材，再交代 AI 起草企劃</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>項目</th><th>填寫內容</th></tr></thead><tbody><tr><td data-label="項目：">觸發事件</td><td data-label="填寫內容：">專案看板新增一筆輪播任務</td></tr><tr><td data-label="項目：">啟動條件</td><td data-label="填寫內容：">狀態為「待企劃」，題目、目標受眾與素材連結皆已填寫；測試任務不啟動</td></tr><tr><td data-label="項目：">參考資料</td><td data-label="填寫內容：">任務欄位、該帳號的定位檔、指定素材、既有輪播規格</td></tr><tr><td data-label="項目：">執行動作</td><td data-label="填寫內容：">① 檢查必要欄位 ② 讀取指定資料 ③ 整理受眾問題與主張 ④ 起草封面與逐頁文字 ⑤ 列出待查證資訊 ⑥ 存成企劃草稿</td></tr><tr><td data-label="項目：">交付結果</td><td data-label="填寫內容：">一份包含核心觀點、封面鉤子、逐頁文字、CTA 與待確認事項的草稿；遵守帳號口吻；事實與推測分開標示</td></tr><tr><td data-label="項目：">存放位置</td><td data-label="填寫內容：">任務內的企劃草稿區，名稱為「任務編號_輪播企劃草稿」</td></tr><tr><td data-label="項目：">確認關卡</td><td data-label="填寫內容：">AI 可讀取資料與起草；內容負責人確認後才進入生圖與發布流程</td></tr><tr><td data-label="項目：">異常處理</td><td data-label="填寫內容：">缺必要欄位或定位檔時，停止起草，將缺項記錄在任務中並通知內容負責人；無法查證的資訊列為待確認</td></tr><tr><td data-label="項目：">重複事件</td><td data-label="填寫內容：">以任務編號辨識，已有草稿時不重建；需要更新時由負責人明確要求</td></tr></tbody></table></div><h3 class="sub-h">用一句話說清楚</h3><p>當專案看板新增輪播任務，且必要欄位完整、狀態為「待企劃」時，讀取該帳號定位檔與指定素材，起草輪播企劃並存回任務，等待內容負責人確認</p></section>
 
