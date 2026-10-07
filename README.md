@@ -37,3 +37,14 @@
 | `codex-starter-kit.html` | Codex 新手上手包 | jason |
 | `company-ai-asset-audit.html` | 判斷標準與實戰資料盤點表（原：公司 AI 資產盤點表） | jason |
 | `phone-ai-tools.html` | 一支手機做自媒體的AI工具清單 | jason |
+| `gpt6-astra-5-prompts.html` | GPT-6 Astra｜5個Prompt實戰手冊 | jason |
+| `gemini-50-prompts.html` | 50個Gemini萬用指令｜小老闆的AI工作包 | jason |
+| `chatgpt-image-commands.html` | ChatGPT生圖指令大全｜432個指令 | jason |
+| `7-habits-ai.html` | 7個會累積的習慣 | jason |
+| `claude-ig-5-prompts.html` | 我把IG交給了Claude｜成長用的5個Prompt | jason |
+| `claude-video-gigs.html` | 用Claude接影片案｜5個免費開源工具 | jason |
+| `apps-2026.html` | 2026你需要知道的App｜36個工具 | jason |
+| `toddler-meltdown.html` | 2–4歲情緒崩潰應對清單 | jason |
+| `18-summers-carousel.html` | 18個夏天｜AI親子插畫輪播完整教學 | jason |
+| `claude-code-7-money.html` | Claude Code 7組賺錢指令 | jason |
+| `files/chatgpt-image-commands.md` | ChatGPT 生圖指令大全（下載用 .md） | jason |
