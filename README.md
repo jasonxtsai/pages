@@ -36,3 +36,4 @@
 | `ai-workflow-sheet.html` | AI 自動工作流程表 | jason |
 | `codex-starter-kit.html` | Codex 新手上手包 | jason |
 | `company-ai-asset-audit.html` | 判斷標準與實戰資料盤點表（原：公司 AI 資產盤點表） | jason |
+| `phone-ai-tools.html` | 一支手機做自媒體的AI工具清單 | jason |
