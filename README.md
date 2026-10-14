@@ -48,3 +48,4 @@
 | `18-summers-carousel.html` | 18個夏天｜AI親子插畫輪播完整教學 | jason |
 | `claude-code-7-money.html` | Claude Code 7組賺錢指令 | jason |
 | `files/chatgpt-image-commands.md` | ChatGPT 生圖指令大全（下載用 .md） | jason |
+| `landing-kit.html` | 學員落地頁工具教學頁（密碼 1014，內容與下載檔都加密） | course |
