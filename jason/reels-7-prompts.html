@@ -5,12 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- 【換】頁面標題、分享時顯示的描述 -->
 <title>用ChatGPT經營IG Reels｜7組指令｜傑森所長</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="用ChatGPT經營IG Reels｜7組指令｜傑森所長">
+<meta property="og:description" content="從找題目、下開場鉤子、寫腳本，到讓人收藏和分享、救回發過的 Reels。最後把7組串成一週的節奏。">
+<meta property="og:url" content="https://jasonxtsai.github.io/pages/jason/reels-7-prompts.html">
+<meta property="og:image" content="https://jasonxtsai.github.io/pages/jason/og/reels-7-prompts-ee69858b.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="description" content="從找題目、下開場鉤子、寫腳本，到讓人收藏和分享、救回發過的 Reels。最後把7組串成一週的節奏。">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ── 版型：沿用 2026-08-06-chatgpt-setup／2026-10-01-7-habits 的米色＋金橘 ── */
 :root{
   --gold:#D4902A; --gold-bright:#E8A94A; --gold-dim:rgba(212,144,42,0.30);
+  /* 金色當「字」用時太淡（米色底上對比只有2.4）：小字用 gold-tx、大標用 gold-hd（2026-10-15） */
+  --gold-tx:#9A5F14; --gold-hd:#A8691A;
   --bg:#F4F1EA; --bg2:#FBF8F2; --card:#FFFFFF; --card2:#FAF6EE;
   --code:#12161f; --code-tx:#e6eaf2;
   --text:#2c2a26; --dim:#6d6a62; --faint:#a8a39a; --ink:#2a2620;
@@ -31,10 +41,10 @@ body{font-family:var(--sans);color:var(--text);line-height:1.85;overflow-x:hidde
 .g1{position:absolute;width:min(60vw,680px);height:min(60vw,680px);border-radius:50%;background:radial-gradient(circle, rgba(212,144,42,0.13), rgba(212,144,42,0));top:-18%;right:-14%;filter:blur(20px);}
 .g2{position:absolute;width:min(50vw,560px);height:min(50vw,560px);border-radius:50%;background:radial-gradient(circle, rgba(212,178,120,0.12), rgba(212,178,120,0));bottom:-14%;left:-12%;filter:blur(22px);}
 .wrap{max-width:720px;margin:0 auto;position:relative;}
-.js .fade{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
+.js .fade{opacity:0;transform:translateY(14px);transition:opacity .35s ease,transform .35s ease;}
 .fade.vis{opacity:1;transform:translateY(0);}
-a{color:var(--gold);text-decoration:none;}
-.g{color:var(--gold);}
+a{color:var(--gold-tx);text-decoration:none;}
+.g{color:var(--gold-tx);}
 
 /* ═════ ① 懸浮按鈕：電腦版掛右側、手機版浮在底部；滑到研究所介紹時自動收起 ═════ */
 .float-cta{position:fixed;z-index:40;transition:opacity .3s ease,transform .3s ease;}
@@ -55,27 +65,31 @@ a{color:var(--gold);text-decoration:none;}
   .float-cta.hide{transform:translateX(16px);}
   .fc-pill{display:none;}
   .fc-card{display:block;background:linear-gradient(165deg,var(--card) 0%,var(--card2) 100%);border:1px solid var(--gold-dim);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:20px 20px 22px;box-shadow:0 10px 34px rgba(120,90,30,0.13);}
-  .fc-card .k{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;color:var(--gold);margin-bottom:10px;font-weight:500;}
+  .fc-card .k{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;color:var(--gold-tx);margin-bottom:10px;font-weight:500;}
   .fc-card h4{font-family:var(--serif);font-weight:900;font-size:17px;line-height:1.5;color:var(--ink);margin-bottom:9px;}
-  .fc-card p{font-size:12.5px;color:var(--dim);line-height:1.7;margin-bottom:16px;}
+  .fc-card p{font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:16px;}
   .fc-card a{display:block;text-align:center;background:var(--gold);color:#1a1406;font-weight:900;font-size:14px;padding:12px 14px;border-radius:var(--pill);box-shadow:0 6px 18px rgba(212,144,42,0.26);transition:transform var(--bounce);}
   .fc-card a:hover{transform:translateY(-2px);}
 }
 
 /* ═════ 開頭：只交代「這頁是什麼」，自介移到最下面 ═════ */
 .hero{position:relative;z-index:1;padding:60px 30px 36px;}
-.kicker{font-family:var(--mono);font-size:11px;letter-spacing:0.2em;color:var(--gold);margin-bottom:20px;font-weight:500;}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:0.2em;color:var(--gold-tx);margin-bottom:20px;font-weight:500;}
 .hero h1{font-family:var(--serif);font-weight:900;font-size:36px;line-height:1.36;margin-bottom:14px;color:var(--ink);}
-.hero .h-sub{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--gold);margin-bottom:14px;}
+.hero h1 .g,.fc-card h4 .g{color:var(--gold-hd);}
+/* 標題只在逗號、頓號後面換行，不會剩一個字掉到下一行（2026-10-15；瀏覽器內建的 balance 會把中文詞拆成兩半，不用） */
+.nw{display:inline-block;}
+.hero-sub,.sec>p,.ch-body p,.tipline{text-wrap:pretty;}
+.hero .h-sub{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--gold-tx);margin-bottom:14px;}
 .hero-sub{font-size:15px;color:var(--dim);line-height:1.85;margin-bottom:24px;}
 /* 這頁有什麼：數字跟單位寫在一起，點了直接跳到那一段 */
 .toc{margin-bottom:24px;}
-.toc .tt{font-size:12px;font-weight:700;color:var(--dim);letter-spacing:0.05em;margin-bottom:8px;}
+.toc .tt{font-size:13px;font-weight:700;color:var(--dim);letter-spacing:0.05em;margin-bottom:8px;}
 .toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;}
-.toc a{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--gold-dim);border-radius:var(--pill);padding:7px 15px;font-size:14px;font-weight:700;color:var(--ink);transition:border-color .2s;}
+.toc a{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--gold-dim);border-radius:var(--pill);padding:9px 16px;font-size:14px;font-weight:700;color:var(--ink);transition:border-color .2s;}
 .toc a:hover{border-color:var(--gold);}
-.toc a b{font-family:"Inter";font-weight:800;color:var(--gold);}
-.toc a i{font-style:normal;color:var(--gold);font-size:12px;}
+.toc a b{font-family:"Inter";font-weight:800;color:var(--gold-tx);}
+.toc a i{font-style:normal;color:var(--gold-tx);font-size:12px;}
 /* 自介卡：全站固定。上面一句是對讀者的承諾，下面是證明 */
 .mid-intro{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:16px 20px;margin-bottom:24px;}
 .mid-intro .slogan{font-family:var(--serif);font-weight:900;font-size:min(18px,4vw);white-space:nowrap;line-height:1.45;color:var(--ink);margin-top:12px;}
@@ -87,24 +101,24 @@ a{color:var(--gold);text-decoration:none;}
 .mid-intro .proof{display:flex;align-items:flex-end;gap:14px;border-top:1px dashed var(--line);margin-top:12px;padding-top:11px;}
 .mid-intro .num{flex-shrink:0;line-height:1.2;}
 .mid-intro .num .d{font-size:11px;color:var(--dim);}
-.mid-intro .num .v{font-family:"Inter";font-weight:800;font-size:18px;color:var(--gold);white-space:nowrap;}
+.mid-intro .num .v{font-family:"Inter";font-weight:800;font-size:18px;color:var(--gold-hd);white-space:nowrap;}
 .mid-intro .txt{font-size:14.5px;line-height:1.6;color:var(--text);padding-left:14px;border-left:1px solid var(--line);}
 .mid-intro .txt b{color:var(--ink);}
 .m-br{display:none;}
 
 /* ═════ ② 乾貨區 ═════ */
 .sec{position:relative;z-index:1;padding:38px 30px;border-top:1px solid var(--line);}
-.sec-tag{display:inline-block;background:rgba(212,144,42,0.14);color:var(--gold);font-size:12px;font-weight:700;padding:5px 15px;border:1px solid var(--gold-dim);border-radius:var(--pill);margin-bottom:16px;letter-spacing:0.05em;}
+.sec-tag{display:inline-block;background:rgba(212,144,42,0.14);color:var(--gold-tx);font-size:13px;font-weight:700;padding:5px 15px;border:1px solid var(--gold-dim);border-radius:var(--pill);margin-bottom:16px;letter-spacing:0.05em;}
 .sec h2{font-family:var(--serif);font-weight:900;font-size:24px;line-height:1.42;margin-bottom:14px;color:var(--ink);}
 .sec>p{font-size:15px;color:var(--text);line-height:1.9;margin-bottom:14px;}
 .tipline{font-size:13.5px;color:var(--dim);line-height:1.75;border-left:2px solid var(--gold-dim);padding-left:14px;margin:13px 0 2px;}
-.tipline b{color:var(--gold);}
+.tipline b{color:var(--gold-tx);}
 
 .tblwrap{overflow-x:auto;margin:12px 0 4px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--card);}
 .tbl{width:100%;border-collapse:collapse;font-size:13.5px;}
-.tbl th{background:rgba(212,144,42,0.12);color:var(--gold);font-weight:700;text-align:left;padding:10px 13px;border-bottom:2px solid var(--gold-dim);white-space:nowrap;}
+.tbl th{background:rgba(212,144,42,0.12);color:var(--gold-tx);font-weight:700;text-align:left;padding:10px 13px;border-bottom:2px solid var(--gold-dim);white-space:nowrap;}
 .tbl td{padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6;}
-.tbl td:first-child{font-family:"Inter";font-weight:800;color:var(--gold);}
+.tbl td:first-child{font-family:"Inter";font-weight:800;color:var(--gold-tx);}
 .tbl td:nth-child(2){font-weight:700;color:var(--ink);white-space:nowrap;}
 .tbl tr:last-child td{border-bottom:none;}
 
@@ -113,9 +127,9 @@ details.ch{background:var(--card);border:1px solid var(--line);border-radius:var
 details.ch[open]{border-color:var(--gold-dim);box-shadow:0 4px 18px rgba(120,90,30,0.07);}
 details.ch summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:13px;padding:16px 18px;user-select:none;}
 details.ch summary::-webkit-details-marker{display:none;}
-.ch-n{flex-shrink:0;min-width:34px;height:30px;border-radius:8px;background:rgba(212,144,42,0.14);border:1px solid var(--gold-dim);color:var(--gold);font-family:var(--mono);font-size:12px;display:flex;align-items:center;justify-content:center;}
+.ch-n{flex-shrink:0;min-width:34px;height:30px;border-radius:8px;background:rgba(212,144,42,0.14);border:1px solid var(--gold-dim);color:var(--gold-tx);font-family:var(--mono);font-size:12px;display:flex;align-items:center;justify-content:center;}
 .ch-t{flex:1;font-weight:700;font-size:14.5px;line-height:1.4;}
-.ch-t .en{font-weight:400;color:var(--dim);font-size:12.5px;}
+.ch-t .en{font-weight:400;color:var(--dim);font-size:13px;}
 .ch-mk{flex-shrink:0;width:22px;height:22px;position:relative;}
 .ch-mk::before,.ch-mk::after{content:"";position:absolute;background:var(--gold);border-radius:2px;transition:transform .25s ease,opacity .25s;}
 .ch-mk::before{top:10px;left:4px;width:14px;height:2px;}
@@ -124,19 +138,19 @@ details.ch[open] .ch-mk::after{transform:rotate(90deg);opacity:0;}
 .ch-body{padding:6px 18px 18px;border-top:1px solid var(--line);}
 .ch-body p{font-size:14px;line-height:1.82;margin:10px 0;}
 .pos{background:rgba(212,144,42,0.08);border:1px solid var(--gold-dim);border-radius:12px;padding:11px 14px;margin:10px 0 2px;font-size:13.6px;line-height:1.72;}
-.pos b{color:var(--gold);}
+.pos b{color:var(--gold-tx);}
 .judge{border-radius:12px;padding:11px 14px;margin:7px 0;font-size:13.6px;line-height:1.72;}
 .judge.no{background:var(--no-bg);border:1px solid var(--no-line);color:#7a3320;}
 .judge.ok{background:var(--ok-bg);border:1px solid var(--ok-line);color:#2f5228;}
-.judge .jl{font-weight:700;font-size:11.5px;letter-spacing:0.05em;display:block;margin-bottom:2px;}
+.judge .jl{font-weight:700;font-size:12.5px;letter-spacing:0.05em;display:block;margin-bottom:2px;}
 .judge.no .jl{color:var(--no);}
 .judge.ok .jl{color:var(--ok);}
 
 .cp{background:var(--code);border:2px solid var(--gold);border-radius:var(--r-md);padding:16px;margin:12px 0 2px;position:relative;box-shadow:0 10px 34px rgba(120,90,30,0.16);}
-.cp .pl{font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;color:var(--gold-bright);margin-bottom:11px;max-width:calc(100% - 96px);}
-.cp pre{font-family:var(--mono);font-size:12px;line-height:1.85;color:var(--code-tx);white-space:pre-wrap;word-break:break-word;}
+.cp .pl{min-height:36px;font-family:var(--mono);font-size:11.5px;letter-spacing:0.08em;color:var(--gold-bright);margin-bottom:11px;max-width:calc(100% - 96px);}
+.cp pre{font-family:var(--mono);font-size:13px;line-height:1.85;color:var(--code-tx);white-space:pre-wrap;word-break:break-word;}
 .cp .ph{color:var(--gold-bright);}
-.copy-btn{position:absolute;top:11px;right:11px;background:var(--gold);border:1px solid var(--gold);color:#1a1406;font-family:var(--sans);font-size:12px;font-weight:700;padding:7px 16px;border-radius:50px;cursor:pointer;}
+.copy-btn{position:absolute;top:8px;right:8px;min-height:44px;background:var(--gold);border:1px solid var(--gold);color:#1a1406;font-family:var(--sans);font-size:13.5px;font-weight:700;padding:0 18px;border-radius:50px;cursor:pointer;}
 
 .ck{display:flex;gap:11px;align-items:flex-start;padding:9px 0;cursor:pointer;border-bottom:1px dashed var(--line);}
 .ck:last-of-type{border-bottom:none;}
@@ -149,17 +163,17 @@ details.ch[open] .ch-mk::after{transform:rotate(90deg);opacity:0;}
 
 /* ═════ ③ 研究所介紹：跟上面同一套米色＋白卡，不另外換成深色 ═════ */
 .inst{position:relative;z-index:1;padding:44px 30px 40px;border-top:1px solid var(--line);}
-.inst .kk{display:inline-block;background:rgba(212,144,42,0.14);color:var(--gold);font-size:12px;font-weight:700;padding:5px 15px;border:1px solid var(--gold-dim);border-radius:var(--pill);margin-bottom:16px;letter-spacing:0.05em;}
+.inst .kk{display:inline-block;background:rgba(212,144,42,0.14);color:var(--gold-tx);font-size:13px;font-weight:700;padding:5px 15px;border:1px solid var(--gold-dim);border-radius:var(--pill);margin-bottom:16px;letter-spacing:0.05em;}
 .inst h2{font-family:var(--serif);font-weight:900;font-size:24px;line-height:1.42;margin-bottom:16px;color:var(--ink);}
-.inst h2 .g{color:var(--gold);}
+.inst h2 .g{color:var(--gold-hd);}
 .inst .lead{font-family:var(--serif);font-weight:700;font-size:16.5px;line-height:1.7;color:var(--ink);margin-bottom:16px;padding-left:14px;border-left:3px solid var(--gold);}
 .founder{margin-bottom:24px;}
 .founder p{font-size:14.5px;line-height:1.9;color:var(--text);margin-bottom:10px;}
-.founder p b{color:var(--gold);}
+.founder p b{color:var(--gold-tx);}
 .big{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 30px;}
 .big .b{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:var(--r-md);padding:16px 10px;text-align:center;}
-.big .bn{font-family:"Inter";font-weight:800;font-size:24px;color:var(--gold);line-height:1.1;}
-.big .bl{font-size:12px;color:var(--dim);margin-top:6px;line-height:1.5;}
+.big .bn{font-family:"Inter";font-weight:800;font-size:24px;color:var(--gold-hd);line-height:1.1;}
+.big .bl{font-size:13px;color:var(--dim);margin-top:6px;line-height:1.5;}
 .inst h3{font-family:var(--serif);font-weight:900;font-size:18px;margin:6px 0 14px;color:var(--ink);}
 .tools{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:30px;}
 .tool{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:16px;}
@@ -170,20 +184,20 @@ details.ch[open] .ch-mk::after{transform:rotate(90deg);opacity:0;}
 .tool .td{font-size:13px;color:var(--dim);line-height:1.7;}
 .qa{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:4px 18px 16px;margin-bottom:30px;}
 .qa .q{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink);margin:14px 0 4px;}
-.qa .q::before{content:"Q";color:var(--gold);font-family:"Inter";font-weight:800;margin-right:8px;}
+.qa .q::before{content:"Q";color:var(--gold-tx);font-family:"Inter";font-weight:800;margin-right:8px;}
 .qa .a{font-size:13.8px;color:var(--dim);line-height:1.8;}
 .fit .f{display:flex;gap:10px;font-size:14px;line-height:1.7;margin-bottom:9px;color:var(--text);}
-.fit .f::before{content:"\2714";color:var(--gold);font-weight:700;flex-shrink:0;}
+.fit .f::before{content:"\2714";color:var(--gold-tx);font-weight:700;flex-shrink:0;}
 .btn-wrap{text-align:center;margin-top:30px;background:linear-gradient(165deg,var(--card) 0%,var(--card2) 100%);border:1px solid var(--gold-dim);border-radius:var(--r-lg);padding:26px 18px;}
 .skbtn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#1a1406;border-radius:var(--pill);padding:17px 46px;font-weight:900;font-size:18px;box-shadow:0 8px 28px rgba(212,144,42,0.30);transition:transform var(--bounce);position:relative;overflow:hidden;}
 .skbtn:hover{transform:translateY(-3px);}
 .skbtn::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent);transform:skewX(-25deg);animation:shine 3.4s ease-in-out infinite;}
 @keyframes shine{0%{left:-100%;}22%{left:160%;}100%{left:160%;}}
-.btn-note{margin-top:14px;font-size:12.5px;color:var(--dim);}
+.btn-note{margin-top:14px;font-size:13px;color:var(--dim);}
 
 .footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:22px 30px 40px;text-align:center;}
-.footer .fa{font-style:italic;font-size:14px;color:var(--gold);font-weight:700;}
-.footer .fc{font-size:11px;color:var(--faint);margin-top:8px;line-height:1.7;}
+.footer .fa{font-style:italic;font-size:14px;color:var(--gold-tx);font-weight:700;}
+.footer .fc{font-size:12.5px;color:var(--faint);margin-top:8px;line-height:1.7;}
 
 /* ── 手機版 ── */
 @media(max-width:600px){
@@ -210,10 +224,17 @@ details.ch[open] .ch-mk::after{transform:rotate(90deg);opacity:0;}
   .footer{padding:20px 20px 36px;}
 }
 
+/* 手機開了「減少動態效果」：不淡入、不閃光、不平滑捲動（2026-10-15） */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .js .fade{opacity:1;transform:none;transition:none;}
+  .skbtn::after{animation:none;}
+}
+
 /* ── 產生器補充：Notion 內容常見的格式 ── */
 .sec p{font-size:15px;line-height:1.9;margin:0 0 12px;}
 .sec .sub-h{font-size:16.5px;}
-.sub-h{font-family:var(--serif);font-weight:700;color:var(--gold);margin:22px 0 8px;line-height:1.5;}
+.sub-h{font-family:var(--serif);font-weight:700;color:var(--gold-tx);margin:22px 0 8px;line-height:1.5;}
 .h4{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink);margin:18px 0 6px;}
 .sec ul.bul,.ch-body ul.bul{margin:6px 0 12px;}
 .bul li ul.bul,.steps li ul.bul{margin:6px 0 2px;}
@@ -221,12 +242,12 @@ ol.steps{list-style:none;margin:8px 0 12px;counter-reset:s;}
 ol.steps>li{position:relative;padding-left:33px;margin-bottom:10px;font-size:14px;line-height:1.75;counter-increment:s;}
 ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:22px;height:22px;border-radius:50%;background:var(--gold);color:#1a1406;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;}
 .bul li{list-style:none;position:relative;padding-left:20px;font-size:14px;line-height:1.75;margin-bottom:7px;}
-.bul li::before{content:"\2726";position:absolute;left:0;color:var(--gold);}
+.bul li::before{content:"\2726";position:absolute;left:0;color:var(--gold-tx);}
 .pos p{margin:0 0 6px;font-size:13.8px;}
 .pos p:last-child{margin-bottom:0;}
 .tipline p{margin:0;}
 code{font-family:var(--mono);font-size:.9em;background:rgba(212,144,42,0.12);border-radius:4px;padding:1px 5px;}
-.cp{padding-top:46px;}
+.cp{padding-top:58px;}
 .cp{margin:10px 0 14px;box-shadow:none;border-width:1px;}
 .tbl.gen td:first-child{font-family:inherit;font-weight:700;color:var(--ink);}
 .tbl.gen td:nth-child(2){white-space:normal;font-weight:400;color:var(--text);}
@@ -271,7 +292,7 @@ a.dl{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color
     <!-- 【換】kicker／標題／副標／說明／這頁有什麼 -->
     <div class="kicker">REELS · 7組指令完整版</div>
     <h1>用ChatGPT經營IG Reels<br><span class="g">7組指令完整版</span></h1>
-    <div class="h-sub">指令、填法、判讀方式全部寫在裡面</div>
+    <div class="h-sub"><span class="nw">指令、</span><span class="nw">填法、</span><span class="nw">判讀方式全部寫在裡面</span></div>
     <p class="hero-sub">從找題目、下開場鉤子、寫腳本，到讓人收藏和分享、救回發過的 Reels。最後把7組串成一週的節奏。</p>
     <!-- 自介卡：全站固定，放在乾貨說明之後、「這頁有」之前 -->
     <div class="mid-intro">
@@ -299,7 +320,7 @@ a.dl{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color
   <!-- ═════ ② 乾貨區（由 Notion 自動轉出） ═════ -->
 <section class="sec fade" id="s1"><h2>這份文件怎麼用</h2><p>三件事先講清楚，會影響你的使用體驗：</p><p><b>第一，這 7 組指令是一條線，不是七個獨立的工具。</b><br>指令 1 產出題目 → 指令 2 把題目變鉤子 → 指令 3 把鉤子變腳本 → 指令 4 檢查值不值得被分享 → 拍完發完 → 指令 5 回頭診斷 → 指令 6 決定要不要跟趨勢 → 指令 7 把下一週排出來。整條跑完是一個循環。</p><p><b>第二，所有【】都是你要換掉的。</b><br>換得越具體，輸出越能用。「我的領域是行銷」跟「我的領域是幫中小企業老闆做 Google 商家優化，客單價 3 到 8 萬」這兩句話，會得到完全不同等級的答案。</p><p><b>第三，第一次的輸出不是成品。</b><br>每一組指令下面我都附了「追問話術」。AI 的第一輪答案通常是安全牌，追問兩次之後才會出現能用的東西。</p></section>
 
-<section class="sec fade" id="s2"><h2>第一部分：工具怎麼選</h2><h3 class="sub-h">主力模型比較</h3><p>不同模型有不同的個性。我不會全部都用同一個，因為它們擅長的事情不一樣。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>工具</th><th>連結</th><th>我用它做什麼</th><th>它的特點</th></tr></thead><tbody><tr><td data-label="工具："><b>ChatGPT</b></td><td data-label="連結："><a href="https://chatgpt.com/" target="_blank" rel="noopener">chatgpt.com</a></td><td data-label="我用它做什麼：">選題、鉤子、腳本主力</td><td data-label="它的特點：">語感活、口語化程度高、願意給發散的點子。要它「寫得像人講話」的成功率最高。</td></tr><tr><td data-label="工具："><b>Claude</b></td><td data-label="連結："><a href="https://claude.ai/" target="_blank" rel="noopener">claude.ai</a></td><td data-label="我用它做什麼：">長文拆解、邏輯梳理、數據診斷</td><td data-label="它的特點：">處理長篇資料時結構最清楚，會主動指出你的邏輯漏洞。做內容診斷的時候我用它。</td></tr><tr><td data-label="工具："><b>Gemini</b></td><td data-label="連結："><a href="https://gemini.google.com/" target="_blank" rel="noopener">gemini.google.com</a></td><td data-label="我用它做什麼：">找資料、看趨勢、連 YouTube 影片</td><td data-label="它的特點：">跟 Google 生態綁在一起，查即時資訊和影片內容比較順。</td></tr><tr><td data-label="工具："><b>Perplexity</b></td><td data-label="連結："><a href="https://www.perplexity.ai/" target="_blank" rel="noopener">perplexity.ai</a></td><td data-label="我用它做什麼：">查證數據、找引用來源</td><td data-label="它的特點：">每個回答都附來源連結。你要在影片裡引用數字的時候用這個。</td></tr></tbody></table></div><p><b>我的實際分工：</b></p><ul class="bul"><li>要「想出東西」→ ChatGPT</li><li>要「想清楚東西」→ Claude</li><li>要「查到東西」→ Perplexity 或 Gemini</li></ul><h3 class="sub-h">配套工具</h3><p>內容做完之後的環節，這幾個省最多時間：</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>工具</th><th>連結</th><th>用途</th></tr></thead><tbody><tr><td data-label="工具："><b>CapCut / 剪映</b></td><td data-label="連結："><a href="https://www.capcut.com/" target="_blank" rel="noopener">capcut.com</a></td><td data-label="用途：">剪輯、自動上字幕、套模板</td></tr><tr><td data-label="工具："><b>Opus Clip</b></td><td data-label="連結："><a href="https://www.opus.pro/" target="_blank" rel="noopener">opus.pro</a></td><td data-label="用途：">長影片自動切成短影音，附帶爆紅分數預測</td></tr><tr><td data-label="工具："><b>Descript</b></td><td data-label="連結："><a href="https://www.descript.com/" target="_blank" rel="noopener">descript.com</a></td><td data-label="用途：">用編輯文字的方式剪影片，刪贅詞超快</td></tr><tr><td data-label="工具："><b>ElevenLabs</b></td><td data-label="連結："><a href="https://elevenlabs.io/" target="_blank" rel="noopener">elevenlabs.io</a></td><td data-label="用途：">AI 配音、複製自己的聲音</td></tr><tr><td data-label="工具："><b>Canva</b></td><td data-label="連結："><a href="https://www.canva.com/" target="_blank" rel="noopener">canva.com</a></td><td data-label="用途：">封面圖、輪播貼文排版</td></tr><tr><td data-label="工具："><b>Notion</b></td><td data-label="連結："><a href="https://www.notion.so/" target="_blank" rel="noopener">notion.so</a></td><td data-label="用途：">存指令、排內容行事曆、記錄數據</td></tr></tbody></table></div><div class="tipline">各家的功能和方案會變動，實際以官網當下的說明為準。</div><h3 class="sub-h">開始之前：先建一個「帳號檔案」</h3><p>這件事只做一次，之後每一組指令都會變準。</p><p>在 ChatGPT 開一個新對話，或直接寫進「自訂指令 / Custom Instructions」裡，貼上這段：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>以下是我的帳號資料，之後我問你 Instagram 相關問題時，請都以這份資料為前提回答。
+<section class="sec fade" id="s2"><h2><span class="nw">第一部分：</span><span class="nw">工具怎麼選</span></h2><h3 class="sub-h">主力模型比較</h3><p>不同模型有不同的個性。我不會全部都用同一個，因為它們擅長的事情不一樣。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>工具</th><th>連結</th><th>我用它做什麼</th><th>它的特點</th></tr></thead><tbody><tr><td data-label="工具："><b>ChatGPT</b></td><td data-label="連結："><a href="https://chatgpt.com/" target="_blank" rel="noopener">chatgpt.com</a></td><td data-label="我用它做什麼：">選題、鉤子、腳本主力</td><td data-label="它的特點：">語感活、口語化程度高、願意給發散的點子。要它「寫得像人講話」的成功率最高。</td></tr><tr><td data-label="工具："><b>Claude</b></td><td data-label="連結："><a href="https://claude.ai/" target="_blank" rel="noopener">claude.ai</a></td><td data-label="我用它做什麼：">長文拆解、邏輯梳理、數據診斷</td><td data-label="它的特點：">處理長篇資料時結構最清楚，會主動指出你的邏輯漏洞。做內容診斷的時候我用它。</td></tr><tr><td data-label="工具："><b>Gemini</b></td><td data-label="連結："><a href="https://gemini.google.com/" target="_blank" rel="noopener">gemini.google.com</a></td><td data-label="我用它做什麼：">找資料、看趨勢、連 YouTube 影片</td><td data-label="它的特點：">跟 Google 生態綁在一起，查即時資訊和影片內容比較順。</td></tr><tr><td data-label="工具："><b>Perplexity</b></td><td data-label="連結："><a href="https://www.perplexity.ai/" target="_blank" rel="noopener">perplexity.ai</a></td><td data-label="我用它做什麼：">查證數據、找引用來源</td><td data-label="它的特點：">每個回答都附來源連結。你要在影片裡引用數字的時候用這個。</td></tr></tbody></table></div><p><b>我的實際分工：</b></p><ul class="bul"><li>要「想出東西」→ ChatGPT</li><li>要「想清楚東西」→ Claude</li><li>要「查到東西」→ Perplexity 或 Gemini</li></ul><h3 class="sub-h">配套工具</h3><p>內容做完之後的環節，這幾個省最多時間：</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>工具</th><th>連結</th><th>用途</th></tr></thead><tbody><tr><td data-label="工具："><b>CapCut / 剪映</b></td><td data-label="連結："><a href="https://www.capcut.com/" target="_blank" rel="noopener">capcut.com</a></td><td data-label="用途：">剪輯、自動上字幕、套模板</td></tr><tr><td data-label="工具："><b>Opus Clip</b></td><td data-label="連結："><a href="https://www.opus.pro/" target="_blank" rel="noopener">opus.pro</a></td><td data-label="用途：">長影片自動切成短影音，附帶爆紅分數預測</td></tr><tr><td data-label="工具："><b>Descript</b></td><td data-label="連結："><a href="https://www.descript.com/" target="_blank" rel="noopener">descript.com</a></td><td data-label="用途：">用編輯文字的方式剪影片，刪贅詞超快</td></tr><tr><td data-label="工具："><b>ElevenLabs</b></td><td data-label="連結："><a href="https://elevenlabs.io/" target="_blank" rel="noopener">elevenlabs.io</a></td><td data-label="用途：">AI 配音、複製自己的聲音</td></tr><tr><td data-label="工具："><b>Canva</b></td><td data-label="連結："><a href="https://www.canva.com/" target="_blank" rel="noopener">canva.com</a></td><td data-label="用途：">封面圖、輪播貼文排版</td></tr><tr><td data-label="工具："><b>Notion</b></td><td data-label="連結："><a href="https://www.notion.so/" target="_blank" rel="noopener">notion.so</a></td><td data-label="用途：">存指令、排內容行事曆、記錄數據</td></tr></tbody></table></div><div class="tipline">各家的功能和方案會變動，實際以官網當下的說明為準。</div><h3 class="sub-h">開始之前：先建一個「帳號檔案」</h3><p>這件事只做一次，之後每一組指令都會變準。</p><p>在 ChatGPT 開一個新對話，或直接寫進「自訂指令 / Custom Instructions」裡，貼上這段：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>以下是我的帳號資料，之後我問你 Instagram 相關問題時，請都以這份資料為前提回答。
 
 帳號名稱：【帳號名】
 領域：【一句話說清楚你在做什麼，包含對象與範圍】
@@ -311,7 +332,7 @@ a.dl{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color
 商業目標：【你希望粉絲最後做什麼：預約、購課、加 LINE、私訊諮詢】
 我不想做的內容：【你拒絕的題材或表達方式】</pre></div><p>ChatGPT 的自訂指令設定位置：右上角頭像 → Settings → Personalization → Custom instructions。</p><p>填完之後，後面 7 組指令的輸出品質會直接跳一階。</p></section>
 
-<section class="sec fade" id="s3"><h2>第二部分：7 組指令</h2><div class="acc"><details class="ch" open><summary><span class="ch-n">指令 01</span><span class="ch-t">找出未來 7 天最該拍的題目</span><span class="ch-mk"></span></summary><div class="ch-body"><p><b>什麼時候用：</b> 每週開始前，或你打開相機不知道要拍什麼的時候。</p><p><b>完整指令：</b></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>你現在是我的 Instagram Reels 策略顧問。
+<section class="sec fade" id="s3"><h2><span class="nw">第二部分：</span><span class="nw">7 組指令</span></h2><div class="acc"><details class="ch" open><summary><span class="ch-n">指令 01</span><span class="ch-t">找出未來 7 天最該拍的題目</span><span class="ch-mk"></span></summary><div class="ch-body"><p><b>什麼時候用：</b> 每週開始前，或你打開相機不知道要拍什麼的時候。</p><p><b>完整指令：</b></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>你現在是我的 Instagram Reels 策略顧問。
 
 我的領域是【領域】，目標受眾是【受眾】，目前粉絲數【粉絲數】，
 這階段目標是【觸及／漲粉／成交】。
@@ -417,9 +438,9 @@ a.dl{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color
 
 不要給我鼓勵，直接講哪裡沒做好。</pre></div></div></details></div></section>
 
-<section class="sec fade" id="s4"><h2>第三部分：把 7 組串成一週</h2><p>這是我實際的節奏，你可以照著跑：</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>時間</th><th>動作</th><th>用哪組指令</th></tr></thead><tbody><tr><td data-label="時間：">週日晚上</td><td data-label="動作：">排下週七支的測試表</td><td data-label="用哪組指令：">指令 07</td></tr><tr><td data-label="時間：">週日晚上</td><td data-label="動作：">每支的題目定案</td><td data-label="用哪組指令：">指令 01</td></tr><tr><td data-label="時間：">拍攝前一天</td><td data-label="動作：">選鉤子</td><td data-label="用哪組指令：">指令 02</td></tr><tr><td data-label="時間：">拍攝前一天</td><td data-label="動作：">寫腳本</td><td data-label="用哪組指令：">指令 03</td></tr><tr><td data-label="時間：">拍攝前</td><td data-label="動作：">檢查值不值得被分享</td><td data-label="用哪組指令：">指令 04</td></tr><tr><td data-label="時間：">發文後 72 小時</td><td data-label="動作：">診斷</td><td data-label="用哪組指令：">指令 05</td></tr><tr><td data-label="時間：">看到新趨勢時</td><td data-label="動作：">決定跟不跟</td><td data-label="用哪組指令：">指令 06</td></tr><tr><td data-label="時間：">週日晚上</td><td data-label="動作：">一週總結</td><td data-label="用哪組指令：">指令 07 的收尾追問</td></tr></tbody></table></div><p><b>第一週的建議：</b><br>不要七支全開。先跑三支，把指令 01、02、03 跑熟，讓輸出穩定下來。指令 05 從第一支發出去就開始用。</p></section>
+<section class="sec fade" id="s4"><h2><span class="nw">第三部分：</span><span class="nw">把 7 組串成一週</span></h2><p>這是我實際的節奏，你可以照著跑：</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>時間</th><th>動作</th><th>用哪組指令</th></tr></thead><tbody><tr><td data-label="時間：">週日晚上</td><td data-label="動作：">排下週七支的測試表</td><td data-label="用哪組指令：">指令 07</td></tr><tr><td data-label="時間：">週日晚上</td><td data-label="動作：">每支的題目定案</td><td data-label="用哪組指令：">指令 01</td></tr><tr><td data-label="時間：">拍攝前一天</td><td data-label="動作：">選鉤子</td><td data-label="用哪組指令：">指令 02</td></tr><tr><td data-label="時間：">拍攝前一天</td><td data-label="動作：">寫腳本</td><td data-label="用哪組指令：">指令 03</td></tr><tr><td data-label="時間：">拍攝前</td><td data-label="動作：">檢查值不值得被分享</td><td data-label="用哪組指令：">指令 04</td></tr><tr><td data-label="時間：">發文後 72 小時</td><td data-label="動作：">診斷</td><td data-label="用哪組指令：">指令 05</td></tr><tr><td data-label="時間：">看到新趨勢時</td><td data-label="動作：">決定跟不跟</td><td data-label="用哪組指令：">指令 06</td></tr><tr><td data-label="時間：">週日晚上</td><td data-label="動作：">一週總結</td><td data-label="用哪組指令：">指令 07 的收尾追問</td></tr></tbody></table></div><p><b>第一週的建議：</b><br>不要七支全開。先跑三支，把指令 01、02、03 跑熟，讓輸出穩定下來。指令 05 從第一支發出去就開始用。</p></section>
 
-<section class="sec fade" id="s5"><h2>第四部分：常見狀況排除</h2><p><b>Q：AI 給我的東西很通用，一看就是模板。</b></p><p>檢查兩件事。第一，你的【領域】和【受眾】是不是寫得太寬。第二，你有沒有做前面的「帳號檔案」。這兩件事做完，通用程度會降一半。剩下的用追問補：「這些答案任何同領域的人都能用，把我的經歷放進去重寫。」</p><p><b>Q：腳本唸起來很不自然。</b></p><p>在指令最後加一句：「用我平常講話的方式寫，我會這樣講：【貼一段你自己真實講過的話，三到五句】。」給它一段你的語料，比任何形容詞都有用。</p><p><b>Q：我沒有數據可以餵給指令 05。</b></p><p>前三支影片沒數據很正常。先只餵腳本和文案，請它從結構面診斷。等有數據了再回頭跑一次。</p><p><b>Q：要用免費版還是付費版？</b></p><p>免費版跑得動這 7 組指令。差別在於長對話的記憶穩定度、單日次數上限，以及能不能用到最新的模型。先用免費版跑一個月，覺得卡在次數上再升級。</p><p><b>Q：一個對話可以一直用下去嗎？</b></p><p>同一支影片的流程（指令 01 到 04）建議開在同一個對話，它會記得前面的脈絡。不同影片、不同週次開新對話，避免舊資訊干擾。</p></section>
+<section class="sec fade" id="s5"><h2><span class="nw">第四部分：</span><span class="nw">常見狀況排除</span></h2><p><b>Q：AI 給我的東西很通用，一看就是模板。</b></p><p>檢查兩件事。第一，你的【領域】和【受眾】是不是寫得太寬。第二，你有沒有做前面的「帳號檔案」。這兩件事做完，通用程度會降一半。剩下的用追問補：「這些答案任何同領域的人都能用，把我的經歷放進去重寫。」</p><p><b>Q：腳本唸起來很不自然。</b></p><p>在指令最後加一句：「用我平常講話的方式寫，我會這樣講：【貼一段你自己真實講過的話，三到五句】。」給它一段你的語料，比任何形容詞都有用。</p><p><b>Q：我沒有數據可以餵給指令 05。</b></p><p>前三支影片沒數據很正常。先只餵腳本和文案，請它從結構面診斷。等有數據了再回頭跑一次。</p><p><b>Q：要用免費版還是付費版？</b></p><p>免費版跑得動這 7 組指令。差別在於長對話的記憶穩定度、單日次數上限，以及能不能用到最新的模型。先用免費版跑一個月，覺得卡在次數上再升級。</p><p><b>Q：一個對話可以一直用下去嗎？</b></p><p>同一支影片的流程（指令 01 到 04）建議開在同一個對話，它會記得前面的脈絡。不同影片、不同週次開新對話，避免舊資訊干擾。</p></section>
 
 <section class="sec fade" id="s6"><h2>最後</h2><p>這七組指令解決的是「產出速度」跟「判斷依據」這兩件事。它不會替你決定要做什麼帳號，也不會幫你把話講得有溫度。那兩件事還是你自己的。</p><p>但它可以讓你把省下來的時間，花在拍片、看數據、跟粉絲講話上。這才是真的會累積的部分。</p><p><i>本文件內容為個人實務經驗整理，各工具的功能、方案與介面可能隨時調整，實際以官方頁面為準。</i></p></section>
 
@@ -510,7 +531,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function(link){
 // 懸浮按鈕：研究所介紹出現在畫面上時收起，避免兩顆按鈕同時出現
 var fc = document.getElementById('float-cta');
 var inst = document.getElementById('institute');
-if('IntersectionObserver' in window){
+if(fc && inst && 'IntersectionObserver' in window){
   new IntersectionObserver(function(es){
     fc.classList.toggle('hide', es[0].isIntersecting);
   }, {threshold:0.05}).observe(inst);
@@ -520,7 +541,7 @@ if('IntersectionObserver' in window){
 function reveal(){
   var vh = window.innerHeight;
   document.querySelectorAll('.fade:not(.vis)').forEach(function(el){
-    if(el.getBoundingClientRect().top < vh*0.94) el.classList.add('vis');
+    if(el.getBoundingClientRect().top < vh) el.classList.add('vis');
   });
 }
 window.addEventListener('scroll', reveal, {passive:true});

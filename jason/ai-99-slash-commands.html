@@ -5,12 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- 【換】頁面標題、分享時顯示的描述 -->
 <title>99個AI斜線指令完整手冊｜傑森所長</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="99個AI斜線指令完整手冊｜傑森所長">
+<meta property="og:description" content="三種安裝方式、各家 AI 的設定步驟、9類99個指令完整表，再加上指令怎麼疊、五個完整實戰工作流。">
+<meta property="og:url" content="https://jasonxtsai.github.io/pages/jason/ai-99-slash-commands.html">
+<meta property="og:image" content="https://jasonxtsai.github.io/pages/jason/og/ai-99-slash-commands-009a3491.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="description" content="三種安裝方式、各家 AI 的設定步驟、9類99個指令完整表，再加上指令怎麼疊、五個完整實戰工作流。">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ── 版型：沿用 2026-08-06-chatgpt-setup／2026-10-01-7-habits 的米色＋金橘 ── */
 :root{
   --gold:#D4902A; --gold-bright:#E8A94A; --gold-dim:rgba(212,144,42,0.30);
+  /* 金色當「字」用時太淡（米色底上對比只有2.4）：小字用 gold-tx、大標用 gold-hd（2026-10-15） */
+  --gold-tx:#9A5F14; --gold-hd:#A8691A;
   --bg:#F4F1EA; --bg2:#FBF8F2; --card:#FFFFFF; --card2:#FAF6EE;
   --code:#12161f; --code-tx:#e6eaf2;
   --text:#2c2a26; --dim:#6d6a62; --faint:#a8a39a; --ink:#2a2620;
@@ -31,10 +41,10 @@ body{font-family:var(--sans);color:var(--text);line-height:1.85;overflow-x:hidde
 .g1{position:absolute;width:min(60vw,680px);height:min(60vw,680px);border-radius:50%;background:radial-gradient(circle, rgba(212,144,42,0.13), rgba(212,144,42,0));top:-18%;right:-14%;filter:blur(20px);}
 .g2{position:absolute;width:min(50vw,560px);height:min(50vw,560px);border-radius:50%;background:radial-gradient(circle, rgba(212,178,120,0.12), rgba(212,178,120,0));bottom:-14%;left:-12%;filter:blur(22px);}
 .wrap{max-width:720px;margin:0 auto;position:relative;}
-.js .fade{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
+.js .fade{opacity:0;transform:translateY(14px);transition:opacity .35s ease,transform .35s ease;}
 .fade.vis{opacity:1;transform:translateY(0);}
-a{color:var(--gold);text-decoration:none;}
-.g{color:var(--gold);}
+a{color:var(--gold-tx);text-decoration:none;}
+.g{color:var(--gold-tx);}
 
 /* ═════ ① 懸浮按鈕：電腦版掛右側、手機版浮在底部；滑到研究所介紹時自動收起 ═════ */
 .float-cta{position:fixed;z-index:40;transition:opacity .3s ease,transform .3s ease;}
@@ -55,27 +65,31 @@ a{color:var(--gold);text-decoration:none;}
   .float-cta.hide{transform:translateX(16px);}
   .fc-pill{display:none;}
   .fc-card{display:block;background:linear-gradient(165deg,var(--card) 0%,var(--card2) 100%);border:1px solid var(--gold-dim);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:20px 20px 22px;box-shadow:0 10px 34px rgba(120,90,30,0.13);}
-  .fc-card .k{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;color:var(--gold);margin-bottom:10px;font-weight:500;}
+  .fc-card .k{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;color:var(--gold-tx);margin-bottom:10px;font-weight:500;}
   .fc-card h4{font-family:var(--serif);font-weight:900;font-size:17px;line-height:1.5;color:var(--ink);margin-bottom:9px;}
-  .fc-card p{font-size:12.5px;color:var(--dim);line-height:1.7;margin-bottom:16px;}
+  .fc-card p{font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:16px;}
   .fc-card a{display:block;text-align:center;background:var(--gold);color:#1a1406;font-weight:900;font-size:14px;padding:12px 14px;border-radius:var(--pill);box-shadow:0 6px 18px rgba(212,144,42,0.26);transition:transform var(--bounce);}
   .fc-card a:hover{transform:translateY(-2px);}
 }
 
 /* ═════ 開頭：只交代「這頁是什麼」，自介移到最下面 ═════ */
 .hero{position:relative;z-index:1;padding:60px 30px 36px;}
-.kicker{font-family:var(--mono);font-size:11px;letter-spacing:0.2em;color:var(--gold);margin-bottom:20px;font-weight:500;}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:0.2em;color:var(--gold-tx);margin-bottom:20px;font-weight:500;}
 .hero h1{font-family:var(--serif);font-weight:900;font-size:36px;line-height:1.36;margin-bottom:14px;color:var(--ink);}
-.hero .h-sub{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--gold);margin-bottom:14px;}
+.hero h1 .g,.fc-card h4 .g{color:var(--gold-hd);}
+/* 標題只在逗號、頓號後面換行，不會剩一個字掉到下一行（2026-10-15；瀏覽器內建的 balance 會把中文詞拆成兩半，不用） */
+.nw{display:inline-block;}
+.hero-sub,.sec>p,.ch-body p,.tipline{text-wrap:pretty;}
+.hero .h-sub{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--gold-tx);margin-bottom:14px;}
 .hero-sub{font-size:15px;color:var(--dim);line-height:1.85;margin-bottom:24px;}
 /* 這頁有什麼：數字跟單位寫在一起，點了直接跳到那一段 */
 .toc{margin-bottom:24px;}
-.toc .tt{font-size:12px;font-weight:700;color:var(--dim);letter-spacing:0.05em;margin-bottom:8px;}
+.toc .tt{font-size:13px;font-weight:700;color:var(--dim);letter-spacing:0.05em;margin-bottom:8px;}
 .toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;}
-.toc a{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--gold-dim);border-radius:var(--pill);padding:7px 15px;font-size:14px;font-weight:700;color:var(--ink);transition:border-color .2s;}
+.toc a{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--gold-dim);border-radius:var(--pill);padding:9px 16px;font-size:14px;font-weight:700;color:var(--ink);transition:border-color .2s;}
 .toc a:hover{border-color:var(--gold);}
-.toc a b{font-family:"Inter";font-weight:800;color:var(--gold);}
-.toc a i{font-style:normal;color:var(--gold);font-size:12px;}
+.toc a b{font-family:"Inter";font-weight:800;color:var(--gold-tx);}
+.toc a i{font-style:normal;color:var(--gold-tx);font-size:12px;}
 /* 自介卡：全站固定。上面一句是對讀者的承諾，下面是證明 */
 .mid-intro{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:16px 20px;margin-bottom:24px;}
 .mid-intro .slogan{font-family:var(--serif);font-weight:900;font-size:min(18px,4vw);white-space:nowrap;line-height:1.45;color:var(--ink);margin-top:12px;}
@@ -87,24 +101,24 @@ a{color:var(--gold);text-decoration:none;}
 .mid-intro .proof{display:flex;align-items:flex-end;gap:14px;border-top:1px dashed var(--line);margin-top:12px;padding-top:11px;}
 .mid-intro .num{flex-shrink:0;line-height:1.2;}
 .mid-intro .num .d{font-size:11px;color:var(--dim);}
-.mid-intro .num .v{font-family:"Inter";font-weight:800;font-size:18px;color:var(--gold);white-space:nowrap;}
+.mid-intro .num .v{font-family:"Inter";font-weight:800;font-size:18px;color:var(--gold-hd);white-space:nowrap;}
 .mid-intro .txt{font-size:14.5px;line-height:1.6;color:var(--text);padding-left:14px;border-left:1px solid var(--line);}
 .mid-intro .txt b{color:var(--ink);}
 .m-br{display:none;}
 
 /* ═════ ② 乾貨區 ═════ */
 .sec{position:relative;z-index:1;padding:38px 30px;border-top:1px solid var(--line);}
-.sec-tag{display:inline-block;background:rgba(212,144,42,0.14);color:var(--gold);font-size:12px;font-weight:700;padding:5px 15px;border:1px solid var(--gold-dim);border-radius:var(--pill);margin-bottom:16px;letter-spacing:0.05em;}
+.sec-tag{display:inline-block;background:rgba(212,144,42,0.14);color:var(--gold-tx);font-size:13px;font-weight:700;padding:5px 15px;border:1px solid var(--gold-dim);border-radius:var(--pill);margin-bottom:16px;letter-spacing:0.05em;}
 .sec h2{font-family:var(--serif);font-weight:900;font-size:24px;line-height:1.42;margin-bottom:14px;color:var(--ink);}
 .sec>p{font-size:15px;color:var(--text);line-height:1.9;margin-bottom:14px;}
 .tipline{font-size:13.5px;color:var(--dim);line-height:1.75;border-left:2px solid var(--gold-dim);padding-left:14px;margin:13px 0 2px;}
-.tipline b{color:var(--gold);}
+.tipline b{color:var(--gold-tx);}
 
 .tblwrap{overflow-x:auto;margin:12px 0 4px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--card);}
 .tbl{width:100%;border-collapse:collapse;font-size:13.5px;}
-.tbl th{background:rgba(212,144,42,0.12);color:var(--gold);font-weight:700;text-align:left;padding:10px 13px;border-bottom:2px solid var(--gold-dim);white-space:nowrap;}
+.tbl th{background:rgba(212,144,42,0.12);color:var(--gold-tx);font-weight:700;text-align:left;padding:10px 13px;border-bottom:2px solid var(--gold-dim);white-space:nowrap;}
 .tbl td{padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6;}
-.tbl td:first-child{font-family:"Inter";font-weight:800;color:var(--gold);}
+.tbl td:first-child{font-family:"Inter";font-weight:800;color:var(--gold-tx);}
 .tbl td:nth-child(2){font-weight:700;color:var(--ink);white-space:nowrap;}
 .tbl tr:last-child td{border-bottom:none;}
 
@@ -113,9 +127,9 @@ details.ch{background:var(--card);border:1px solid var(--line);border-radius:var
 details.ch[open]{border-color:var(--gold-dim);box-shadow:0 4px 18px rgba(120,90,30,0.07);}
 details.ch summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:13px;padding:16px 18px;user-select:none;}
 details.ch summary::-webkit-details-marker{display:none;}
-.ch-n{flex-shrink:0;min-width:34px;height:30px;border-radius:8px;background:rgba(212,144,42,0.14);border:1px solid var(--gold-dim);color:var(--gold);font-family:var(--mono);font-size:12px;display:flex;align-items:center;justify-content:center;}
+.ch-n{flex-shrink:0;min-width:34px;height:30px;border-radius:8px;background:rgba(212,144,42,0.14);border:1px solid var(--gold-dim);color:var(--gold-tx);font-family:var(--mono);font-size:12px;display:flex;align-items:center;justify-content:center;}
 .ch-t{flex:1;font-weight:700;font-size:14.5px;line-height:1.4;}
-.ch-t .en{font-weight:400;color:var(--dim);font-size:12.5px;}
+.ch-t .en{font-weight:400;color:var(--dim);font-size:13px;}
 .ch-mk{flex-shrink:0;width:22px;height:22px;position:relative;}
 .ch-mk::before,.ch-mk::after{content:"";position:absolute;background:var(--gold);border-radius:2px;transition:transform .25s ease,opacity .25s;}
 .ch-mk::before{top:10px;left:4px;width:14px;height:2px;}
@@ -124,19 +138,19 @@ details.ch[open] .ch-mk::after{transform:rotate(90deg);opacity:0;}
 .ch-body{padding:6px 18px 18px;border-top:1px solid var(--line);}
 .ch-body p{font-size:14px;line-height:1.82;margin:10px 0;}
 .pos{background:rgba(212,144,42,0.08);border:1px solid var(--gold-dim);border-radius:12px;padding:11px 14px;margin:10px 0 2px;font-size:13.6px;line-height:1.72;}
-.pos b{color:var(--gold);}
+.pos b{color:var(--gold-tx);}
 .judge{border-radius:12px;padding:11px 14px;margin:7px 0;font-size:13.6px;line-height:1.72;}
 .judge.no{background:var(--no-bg);border:1px solid var(--no-line);color:#7a3320;}
 .judge.ok{background:var(--ok-bg);border:1px solid var(--ok-line);color:#2f5228;}
-.judge .jl{font-weight:700;font-size:11.5px;letter-spacing:0.05em;display:block;margin-bottom:2px;}
+.judge .jl{font-weight:700;font-size:12.5px;letter-spacing:0.05em;display:block;margin-bottom:2px;}
 .judge.no .jl{color:var(--no);}
 .judge.ok .jl{color:var(--ok);}
 
 .cp{background:var(--code);border:2px solid var(--gold);border-radius:var(--r-md);padding:16px;margin:12px 0 2px;position:relative;box-shadow:0 10px 34px rgba(120,90,30,0.16);}
-.cp .pl{font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;color:var(--gold-bright);margin-bottom:11px;max-width:calc(100% - 96px);}
-.cp pre{font-family:var(--mono);font-size:12px;line-height:1.85;color:var(--code-tx);white-space:pre-wrap;word-break:break-word;}
+.cp .pl{min-height:36px;font-family:var(--mono);font-size:11.5px;letter-spacing:0.08em;color:var(--gold-bright);margin-bottom:11px;max-width:calc(100% - 96px);}
+.cp pre{font-family:var(--mono);font-size:13px;line-height:1.85;color:var(--code-tx);white-space:pre-wrap;word-break:break-word;}
 .cp .ph{color:var(--gold-bright);}
-.copy-btn{position:absolute;top:11px;right:11px;background:var(--gold);border:1px solid var(--gold);color:#1a1406;font-family:var(--sans);font-size:12px;font-weight:700;padding:7px 16px;border-radius:50px;cursor:pointer;}
+.copy-btn{position:absolute;top:8px;right:8px;min-height:44px;background:var(--gold);border:1px solid var(--gold);color:#1a1406;font-family:var(--sans);font-size:13.5px;font-weight:700;padding:0 18px;border-radius:50px;cursor:pointer;}
 
 .ck{display:flex;gap:11px;align-items:flex-start;padding:9px 0;cursor:pointer;border-bottom:1px dashed var(--line);}
 .ck:last-of-type{border-bottom:none;}
@@ -149,17 +163,17 @@ details.ch[open] .ch-mk::after{transform:rotate(90deg);opacity:0;}
 
 /* ═════ ③ 研究所介紹：跟上面同一套米色＋白卡，不另外換成深色 ═════ */
 .inst{position:relative;z-index:1;padding:44px 30px 40px;border-top:1px solid var(--line);}
-.inst .kk{display:inline-block;background:rgba(212,144,42,0.14);color:var(--gold);font-size:12px;font-weight:700;padding:5px 15px;border:1px solid var(--gold-dim);border-radius:var(--pill);margin-bottom:16px;letter-spacing:0.05em;}
+.inst .kk{display:inline-block;background:rgba(212,144,42,0.14);color:var(--gold-tx);font-size:13px;font-weight:700;padding:5px 15px;border:1px solid var(--gold-dim);border-radius:var(--pill);margin-bottom:16px;letter-spacing:0.05em;}
 .inst h2{font-family:var(--serif);font-weight:900;font-size:24px;line-height:1.42;margin-bottom:16px;color:var(--ink);}
-.inst h2 .g{color:var(--gold);}
+.inst h2 .g{color:var(--gold-hd);}
 .inst .lead{font-family:var(--serif);font-weight:700;font-size:16.5px;line-height:1.7;color:var(--ink);margin-bottom:16px;padding-left:14px;border-left:3px solid var(--gold);}
 .founder{margin-bottom:24px;}
 .founder p{font-size:14.5px;line-height:1.9;color:var(--text);margin-bottom:10px;}
-.founder p b{color:var(--gold);}
+.founder p b{color:var(--gold-tx);}
 .big{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 30px;}
 .big .b{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:var(--r-md);padding:16px 10px;text-align:center;}
-.big .bn{font-family:"Inter";font-weight:800;font-size:24px;color:var(--gold);line-height:1.1;}
-.big .bl{font-size:12px;color:var(--dim);margin-top:6px;line-height:1.5;}
+.big .bn{font-family:"Inter";font-weight:800;font-size:24px;color:var(--gold-hd);line-height:1.1;}
+.big .bl{font-size:13px;color:var(--dim);margin-top:6px;line-height:1.5;}
 .inst h3{font-family:var(--serif);font-weight:900;font-size:18px;margin:6px 0 14px;color:var(--ink);}
 .tools{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:30px;}
 .tool{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:16px;}
@@ -170,20 +184,20 @@ details.ch[open] .ch-mk::after{transform:rotate(90deg);opacity:0;}
 .tool .td{font-size:13px;color:var(--dim);line-height:1.7;}
 .qa{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:4px 18px 16px;margin-bottom:30px;}
 .qa .q{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink);margin:14px 0 4px;}
-.qa .q::before{content:"Q";color:var(--gold);font-family:"Inter";font-weight:800;margin-right:8px;}
+.qa .q::before{content:"Q";color:var(--gold-tx);font-family:"Inter";font-weight:800;margin-right:8px;}
 .qa .a{font-size:13.8px;color:var(--dim);line-height:1.8;}
 .fit .f{display:flex;gap:10px;font-size:14px;line-height:1.7;margin-bottom:9px;color:var(--text);}
-.fit .f::before{content:"\2714";color:var(--gold);font-weight:700;flex-shrink:0;}
+.fit .f::before{content:"\2714";color:var(--gold-tx);font-weight:700;flex-shrink:0;}
 .btn-wrap{text-align:center;margin-top:30px;background:linear-gradient(165deg,var(--card) 0%,var(--card2) 100%);border:1px solid var(--gold-dim);border-radius:var(--r-lg);padding:26px 18px;}
 .skbtn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#1a1406;border-radius:var(--pill);padding:17px 46px;font-weight:900;font-size:18px;box-shadow:0 8px 28px rgba(212,144,42,0.30);transition:transform var(--bounce);position:relative;overflow:hidden;}
 .skbtn:hover{transform:translateY(-3px);}
 .skbtn::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent);transform:skewX(-25deg);animation:shine 3.4s ease-in-out infinite;}
 @keyframes shine{0%{left:-100%;}22%{left:160%;}100%{left:160%;}}
-.btn-note{margin-top:14px;font-size:12.5px;color:var(--dim);}
+.btn-note{margin-top:14px;font-size:13px;color:var(--dim);}
 
 .footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:22px 30px 40px;text-align:center;}
-.footer .fa{font-style:italic;font-size:14px;color:var(--gold);font-weight:700;}
-.footer .fc{font-size:11px;color:var(--faint);margin-top:8px;line-height:1.7;}
+.footer .fa{font-style:italic;font-size:14px;color:var(--gold-tx);font-weight:700;}
+.footer .fc{font-size:12.5px;color:var(--faint);margin-top:8px;line-height:1.7;}
 
 /* ── 手機版 ── */
 @media(max-width:600px){
@@ -210,10 +224,17 @@ details.ch[open] .ch-mk::after{transform:rotate(90deg);opacity:0;}
   .footer{padding:20px 20px 36px;}
 }
 
+/* 手機開了「減少動態效果」：不淡入、不閃光、不平滑捲動（2026-10-15） */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .js .fade{opacity:1;transform:none;transition:none;}
+  .skbtn::after{animation:none;}
+}
+
 /* ── 產生器補充：Notion 內容常見的格式 ── */
 .sec p{font-size:15px;line-height:1.9;margin:0 0 12px;}
 .sec .sub-h{font-size:16.5px;}
-.sub-h{font-family:var(--serif);font-weight:700;color:var(--gold);margin:22px 0 8px;line-height:1.5;}
+.sub-h{font-family:var(--serif);font-weight:700;color:var(--gold-tx);margin:22px 0 8px;line-height:1.5;}
 .h4{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink);margin:18px 0 6px;}
 .sec ul.bul,.ch-body ul.bul{margin:6px 0 12px;}
 .bul li ul.bul,.steps li ul.bul{margin:6px 0 2px;}
@@ -221,12 +242,12 @@ ol.steps{list-style:none;margin:8px 0 12px;counter-reset:s;}
 ol.steps>li{position:relative;padding-left:33px;margin-bottom:10px;font-size:14px;line-height:1.75;counter-increment:s;}
 ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:22px;height:22px;border-radius:50%;background:var(--gold);color:#1a1406;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;}
 .bul li{list-style:none;position:relative;padding-left:20px;font-size:14px;line-height:1.75;margin-bottom:7px;}
-.bul li::before{content:"\2726";position:absolute;left:0;color:var(--gold);}
+.bul li::before{content:"\2726";position:absolute;left:0;color:var(--gold-tx);}
 .pos p{margin:0 0 6px;font-size:13.8px;}
 .pos p:last-child{margin-bottom:0;}
 .tipline p{margin:0;}
 code{font-family:var(--mono);font-size:.9em;background:rgba(212,144,42,0.12);border-radius:4px;padding:1px 5px;}
-.cp{padding-top:46px;}
+.cp{padding-top:58px;}
 .cp{margin:10px 0 14px;box-shadow:none;border-width:1px;}
 .tbl.gen td:first-child{font-family:inherit;font-weight:700;color:var(--ink);}
 .tbl.gen td:nth-child(2){white-space:normal;font-weight:400;color:var(--text);}
@@ -270,8 +291,8 @@ a.dl{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color
   <header class="hero">
     <!-- 【換】kicker／標題／副標／說明／這頁有什麼 -->
     <div class="kicker">AI · 斜線指令系統</div>
-    <h1>99個AI斜線指令<br><span class="g">存一次，天天用</span></h1>
-    <div class="h-sub">ChatGPT、Claude、Gemini 都能裝</div>
+    <h1>99個AI斜線指令<br><span class="g"><span class="nw">存一次，</span><span class="nw">天天用</span></span></h1>
+    <div class="h-sub"><span class="nw">ChatGPT、</span><span class="nw">Claude、</span><span class="nw">Gemini 都能裝</span></div>
     <p class="hero-sub">三種安裝方式、各家 AI 的設定步驟、9類99個指令完整表，再加上指令怎麼疊、五個完整實戰工作流。</p>
     <!-- 自介卡：全站固定，放在乾貨說明之後、「這頁有」之前 -->
     <div class="mid-intro">
@@ -316,7 +337,7 @@ a.dl{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color
 
 <section class="sec fade" id="s4"><h2>99 個指令完整表</h2><h3 class="sub-h">分類一｜把話寫好（1–11）</h3><p>寫東西、改東西、調語氣。這組是使用頻率最高的一組。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>用途</th></tr></thead><tbody><tr><td data-label="#：">1</td><td data-label="指令："><code>/CLEAR</code></td><td data-label="用途：">講到不用再問第二次</td></tr><tr><td data-label="#：">2</td><td data-label="指令："><code>/SHORT</code></td><td data-label="用途：">砍掉鋪陳，只留結論</td></tr><tr><td data-label="#：">3</td><td data-label="指令："><code>/EXPAND</code></td><td data-label="用途：">把重點展開成完整段落</td></tr><tr><td data-label="#：">4</td><td data-label="指令："><code>/REWRITE</code></td><td data-label="用途：">同一件事換個講法</td></tr><tr><td data-label="#：">5</td><td data-label="指令："><code>/TONE</code></td><td data-label="用途：">切換語氣，正式或口語都行</td></tr><tr><td data-label="#：">6</td><td data-label="指令："><code>/POLISH</code></td><td data-label="用途：">意思不動，句子修順</td></tr><tr><td data-label="#：">7</td><td data-label="指令："><code>/TRANSLATE</code></td><td data-label="用途：">翻成另一種語言，語感不跑掉</td></tr><tr><td data-label="#：">8</td><td data-label="指令："><code>/EMAIL</code></td><td data-label="用途：">整理成可以直接寄出的信</td></tr><tr><td data-label="#：">9</td><td data-label="指令："><code>/REPLY</code></td><td data-label="用途：">擬一份得體的回覆</td></tr><tr><td data-label="#：">10</td><td data-label="指令："><code>/TITLE</code></td><td data-label="用途：">一次生出多組標題選項</td></tr><tr><td data-label="#：">11</td><td data-label="指令："><code>/PROOF</code></td><td data-label="用途：">抓錯字，抓前後矛盾</td></tr></tbody></table></div><p><b>實戰用法：</b><code>/TONE</code> 後面可以直接接參數，例如 <code>/TONE 像在跟朋友抱怨</code>、<code>/TONE 給客戶看的正式版本</code>。<br><code>/REWRITE</code> 連用三次，會拿到三個明顯不同的版本，用來選最順的那個。</p><h3 class="sub-h">分類二｜想清楚再下決定（12–22）</h3><p>要做判斷、要評估風險、要看得更遠的時候用這組。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>用途</th></tr></thead><tbody><tr><td data-label="#：">12</td><td data-label="指令："><code>/DIG</code></td><td data-label="用途：">往下挖，細節不要放過</td></tr><tr><td data-label="#：">13</td><td data-label="指令："><code>/GUT</code></td><td data-label="用途：">邏輯之外，給我直覺上的答案</td></tr><tr><td data-label="#：">14</td><td data-label="指令："><code>/DEVIL</code></td><td data-label="用途：">站到對面，挑我的毛病</td></tr><tr><td data-label="#：">15</td><td data-label="指令："><code>/FIRSTPRINCIPLES</code></td><td data-label="用途：">回到最底層重新問一次</td></tr><tr><td data-label="#：">16</td><td data-label="指令："><code>/LONGGAME</code></td><td data-label="用途：">用五年後的眼光看現在</td></tr><tr><td data-label="#：">17</td><td data-label="指令："><code>/WORSTCASE</code></td><td data-label="用途：">把最壞的情況攤開來</td></tr><tr><td data-label="#：">18</td><td data-label="指令："><code>/BESTCASE</code></td><td data-label="用途：">最順利的話會長什麼樣</td></tr><tr><td data-label="#：">19</td><td data-label="指令："><code>/TRADEOFFS</code></td><td data-label="用途：">選了這個，會失去什麼</td></tr><tr><td data-label="#：">20</td><td data-label="指令："><code>/REFRAME</code></td><td data-label="用途：">換個角度重講一次</td></tr><tr><td data-label="#：">21</td><td data-label="指令："><code>/ZOOMOUT</code></td><td data-label="用途：">鏡頭拉遠，看整盤</td></tr><tr><td data-label="#：">22</td><td data-label="指令："><code>/ZOOMIN</code></td><td data-label="用途：">鏡頭推近，看最小的地方</td></tr></tbody></table></div><p><b>實戰用法：</b><br>下決定前的標準組合是 <code>/TRADEOFFS /WORSTCASE /DEVIL</code>。三個一起下，AI 會先列出代價、再攤開最壞情況、最後幫你挑毛病。<br><code>/ZOOMOUT</code> 跟 <code>/ZOOMIN</code> 連續用，可以在同一個問題上拿到兩種尺度的答案，很適合用來檢查自己是不是鑽牛角尖了。</p><h3 class="sub-h">分類三｜創意發想與產出（23–33）</h3><p>做內容的人最常用的一組。卡住的時候整組輪流下一遍。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>用途</th></tr></thead><tbody><tr><td data-label="#：">23</td><td data-label="指令："><code>/REMIX</code></td><td data-label="用途：">全部打掉，從零重想</td></tr><tr><td data-label="#：">24</td><td data-label="指令："><code>/TWIST</code></td><td data-label="用途：">加一個沒人想到的角度</td></tr><tr><td data-label="#：">25</td><td data-label="指令："><code>/MASHUP</code></td><td data-label="用途：">把兩個不相干的東西接起來</td></tr><tr><td data-label="#：">26</td><td data-label="指令："><code>/WILD</code></td><td data-label="用途：">最大膽的版本先給我</td></tr><tr><td data-label="#：">27</td><td data-label="指令："><code>/SAFE</code></td><td data-label="用途：">最保守的版本也給我一份</td></tr><tr><td data-label="#：">28</td><td data-label="指令："><code>/NAME</code></td><td data-label="用途：">想名字、想標題，一次多給幾個</td></tr><tr><td data-label="#：">29</td><td data-label="指令："><code>/OPENERS</code></td><td data-label="用途：">寫十種不同的開場</td></tr><tr><td data-label="#：">30</td><td data-label="指令："><code>/STORY</code></td><td data-label="用途：">把這段改寫成故事</td></tr><tr><td data-label="#：">31</td><td data-label="指令："><code>/METAPHOR</code></td><td data-label="用途：">用一個比喻讓人秒懂</td></tr><tr><td data-label="#：">32</td><td data-label="指令："><code>/SERIES</code></td><td data-label="用途：">把單篇拆成一整個系列</td></tr><tr><td data-label="#：">33</td><td data-label="指令："><code>/HOOK</code></td><td data-label="用途：">寫一句讓人手指停下來的話</td></tr></tbody></table></div><p><b>實戰用法：</b><code>/WILD</code> 跟 <code>/SAFE</code> 一起下，會拿到光譜的兩端，真正能用的版本通常在中間，自己抓。<br><code>/SERIES</code> 是被低估的一個。一篇表現好的貼文丟進去，可以直接拆成一個月的內容排程。</p><h3 class="sub-h">分類四｜做生意的角度（34–44）</h3><p>把想法轉成可以執行、可以衡量的東西。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>用途</th></tr></thead><tbody><tr><td data-label="#：">34</td><td data-label="指令："><code>/PITCH</code></td><td data-label="用途：">濃縮成三十秒講得完的版本</td></tr><tr><td data-label="#：">35</td><td data-label="指令："><code>/GOALS</code></td><td data-label="用途：">把想法變成量得出來的目標</td></tr><tr><td data-label="#：">36</td><td data-label="指令："><code>/BUDGET</code></td><td data-label="用途：">用成本跟回收算一遍</td></tr><tr><td data-label="#：">37</td><td data-label="指令："><code>/RISK</code></td><td data-label="用途：">可能會出事的地方先列出來</td></tr><tr><td data-label="#：">38</td><td data-label="指令："><code>/MARKET</code></td><td data-label="用途：">市場長怎樣，對手在哪</td></tr><tr><td data-label="#：">39</td><td data-label="指令："><code>/PERSONA</code></td><td data-label="用途：">把目標客戶描述成一個人</td></tr><tr><td data-label="#：">40</td><td data-label="指令："><code>/ROADMAP</code></td><td data-label="用途：">排出一段時間內的執行順序</td></tr><tr><td data-label="#：">41</td><td data-label="指令："><code>/KPI</code></td><td data-label="用途：">定義怎樣才算成功</td></tr><tr><td data-label="#：">42</td><td data-label="指令："><code>/NEGOTIATE</code></td><td data-label="用途：">談判前該準備的話術</td></tr><tr><td data-label="#：">43</td><td data-label="指令："><code>/SCALE</code></td><td data-label="用途：">規模放大前要先處理什麼</td></tr><tr><td data-label="#：">44</td><td data-label="指令："><code>/EXIT</code></td><td data-label="用途：">從結束那天倒推回來想</td></tr></tbody></table></div><p><b>實戰用法：</b><code>/PERSONA</code> 先跑一次，把輸出結果留著，之後所有文案類的指令都把它貼回去當前提，寫出來的東西準度差很多。<br><code>/PITCH</code> 適合用在提案前一晚。把你講了二十分鐘的東西丟進去，逼自己壓到三十秒。</p><h3 class="sub-h">分類五｜把一件事搞懂（45–55）</h3><p>學新東西、消化資料、快速上手一個陌生領域。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>用途</th></tr></thead><tbody><tr><td data-label="#：">45</td><td data-label="指令："><code>/TEACHME</code></td><td data-label="用途：">當我完全不會，一步一步帶</td></tr><tr><td data-label="#：">46</td><td data-label="指令："><code>/QUIZ</code></td><td data-label="用途：">出題考我，看我到底懂多少</td></tr><tr><td data-label="#：">47</td><td data-label="指令："><code>/RECAP</code></td><td data-label="用途：">剛才講的重新整理一次</td></tr><tr><td data-label="#：">48</td><td data-label="指令："><code>/GAPS</code></td><td data-label="用途：">我漏掉什麼，直接指出來</td></tr><tr><td data-label="#：">49</td><td data-label="指令："><code>/SOURCES</code></td><td data-label="用途：">要再深入可以去看哪些東西</td></tr><tr><td data-label="#：">50</td><td data-label="指令："><code>/DEBATE</code></td><td data-label="用途：">正反兩邊各講一輪</td></tr><tr><td data-label="#：">51</td><td data-label="指令："><code>/HISTORY</code></td><td data-label="用途：">這件事怎麼變成今天這樣</td></tr><tr><td data-label="#：">52</td><td data-label="指令："><code>/FORECAST</code></td><td data-label="用途：">接下來可能往哪裡走</td></tr><tr><td data-label="#：">53</td><td data-label="指令："><code>/JARGON</code></td><td data-label="用途：">專業術語講成人話</td></tr><tr><td data-label="#：">54</td><td data-label="指令："><code>/KIDSAFE</code></td><td data-label="用途：">講到小孩也聽得懂</td></tr><tr><td data-label="#：">55</td><td data-label="指令："><code>/ONELINE</code></td><td data-label="用途：">一句話講完</td></tr></tbody></table></div><p><b>實戰用法：</b><br>學習的標準循環是 <code>/TEACHME</code> → <code>/QUIZ</code> → <code>/GAPS</code>。教一遍、考一遍、找出沒補到的洞，一輪下來吸收率比單純看資料高很多。<br><code>/ONELINE</code> 是檢驗自己有沒有真的懂的工具。壓不到一句話，通常代表還沒搞懂。</p><h3 class="sub-h">分類六｜把資料變成可以用的形狀（56–66）</h3><p>同一份內容，換一種結構就換一種用途。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>用途</th></tr></thead><tbody><tr><td data-label="#：">56</td><td data-label="指令："><code>/OUTLINE</code></td><td data-label="用途：">整理成一份清楚的大綱</td></tr><tr><td data-label="#：">57</td><td data-label="指令："><code>/CHECKLIST</code></td><td data-label="用途：">變成可以照著打勾的清單</td></tr><tr><td data-label="#：">58</td><td data-label="指令："><code>/TEMPLATE</code></td><td data-label="用途：">做成下次直接套用的模板</td></tr><tr><td data-label="#：">59</td><td data-label="指令："><code>/TABLE</code></td><td data-label="用途：">排成表格</td></tr><tr><td data-label="#：">60</td><td data-label="指令："><code>/MATRIX</code></td><td data-label="用途：">把選項擺成決策矩陣</td></tr><tr><td data-label="#：">61</td><td data-label="指令："><code>/TIMELINE</code></td><td data-label="用途：">按時間排成一條線</td></tr><tr><td data-label="#：">62</td><td data-label="指令："><code>/BULLETS</code></td><td data-label="用途：">壓縮成條列重點</td></tr><tr><td data-label="#：">63</td><td data-label="指令："><code>/JSON</code></td><td data-label="用途：">輸出成 JSON 格式</td></tr><tr><td data-label="#：">64</td><td data-label="指令："><code>/FORM</code></td><td data-label="用途：">做成可以填的表單</td></tr><tr><td data-label="#：">65</td><td data-label="指令："><code>/SCRIPT</code></td><td data-label="用途：">改寫成講得出口的口播稿</td></tr><tr><td data-label="#：">66</td><td data-label="指令："><code>/BRIEF</code></td><td data-label="用途：">寫成一頁看完的摘要</td></tr></tbody></table></div><p><b>實戰用法：</b><code>/TEMPLATE</code> 是這組裡最值錢的一個。任何一次你覺得「這個輸出很讚」的結果，馬上下 <code>/TEMPLATE</code>，把它變成下次可以直接套的框架。做久了你會累積出一整套自己的模板庫。<br><code>/SCRIPT</code> 產出的東西是「唸得出口」的，跟寫給人看的文字差很多。要拍短影音、要錄 Podcast 都用這個。</p><h3 class="sub-h">分類七｜寫程式（67–77）</h3><p>不會寫程式也能用。看不懂的程式碼丟進去下 <code>/EXPLAINIT</code> 就好。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>用途</th></tr></thead><tbody><tr><td data-label="#：">67</td><td data-label="指令："><code>/CODE</code></td><td data-label="用途：">寫出能跑、不亂的程式碼</td></tr><tr><td data-label="#：">68</td><td data-label="指令："><code>/DEBUG</code></td><td data-label="用途：">找出是哪一行出問題</td></tr><tr><td data-label="#：">69</td><td data-label="指令："><code>/REFACTOR</code></td><td data-label="用途：">功能不動，結構整乾淨</td></tr><tr><td data-label="#：">70</td><td data-label="指令："><code>/COMMENT</code></td><td data-label="用途：">補上註解，讓人看得懂</td></tr><tr><td data-label="#：">71</td><td data-label="指令："><code>/TESTIT</code></td><td data-label="用途：">連邊界情況一起測</td></tr><tr><td data-label="#：">72</td><td data-label="指令："><code>/EXPLAINIT</code></td><td data-label="用途：">逐行講這段在幹嘛</td></tr><tr><td data-label="#：">73</td><td data-label="指令："><code>/OPTIMIZE</code></td><td data-label="用途：">跑快一點，寫短一點</td></tr><tr><td data-label="#：">74</td><td data-label="指令："><code>/CONVERT</code></td><td data-label="用途：">換成另一種語言重寫</td></tr><tr><td data-label="#：">75</td><td data-label="指令："><code>/SCHEMA</code></td><td data-label="用途：">把資料結構設計出來</td></tr><tr><td data-label="#：">76</td><td data-label="指令："><code>/API</code></td><td data-label="用途：">規劃 API 的路徑架構</td></tr><tr><td data-label="#：">77</td><td data-label="指令："><code>/SECURE</code></td><td data-label="用途：">檢查有沒有資安破口</td></tr></tbody></table></div><p><b>實戰用法：</b><br>非工程背景的人最該記的是 <code>/EXPLAINIT</code> 跟 <code>/DEBUG</code>。網路上抄來的程式碼跑不動，丟進去下這兩個，九成問題當場解決。<br><code>/CODE</code> 後面加上「用 Google Apps Script」之類的指定環境，成功率會高很多。</p><h3 class="sub-h">分類八｜分析跟下判斷（78–88）</h3><p>資料進來之後，怎麼從裡面抓出有用的東西。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>用途</th></tr></thead><tbody><tr><td data-label="#：">78</td><td data-label="指令："><code>/COMPARE</code></td><td data-label="用途：">幾個選項擺在一起看</td></tr><tr><td data-label="#：">79</td><td data-label="指令："><code>/PROSCONS</code></td><td data-label="用途：">好處壞處分兩邊列</td></tr><tr><td data-label="#：">80</td><td data-label="指令："><code>/DECIDE</code></td><td data-label="用途：">直接選一個，順便講為什麼</td></tr><tr><td data-label="#：">81</td><td data-label="指令："><code>/PRIORITY</code></td><td data-label="用途：">照重要程度排先後</td></tr><tr><td data-label="#：">82</td><td data-label="指令："><code>/ROOT</code></td><td data-label="用途：">問題的根在哪裡</td></tr><tr><td data-label="#：">83</td><td data-label="指令："><code>/DATA</code></td><td data-label="用途：">從一堆數字裡抓出有用的</td></tr><tr><td data-label="#：">84</td><td data-label="指令："><code>/PATTERN</code></td><td data-label="用途：">看出藏在裡面的規律</td></tr><tr><td data-label="#：">85</td><td data-label="指令："><code>/ASSUMPTION</code></td><td data-label="用途：">哪些前提其實沒驗證過</td></tr><tr><td data-label="#：">86</td><td data-label="指令："><code>/VERIFY</code></td><td data-label="用途：">用之前先查證一次</td></tr><tr><td data-label="#：">87</td><td data-label="指令："><code>/COUNTER</code></td><td data-label="用途：">給我反方的說法</td></tr><tr><td data-label="#：">88</td><td data-label="指令："><code>/SIMPLIFY</code></td><td data-label="用途：">砍到只剩核心</td></tr></tbody></table></div><p><b>實戰用法：</b><code>/ASSUMPTION</code> 是整份手冊裡我覺得最被低估的指令。很多決策會出錯，是因為底下墊著一個沒人檢查過的假設。丟進去跑一次，常常會嚇到。<br><code>/VERIFY</code> 記得搭配有連網功能的工具用（Perplexity、開了搜尋的 ChatGPT、Gemini），不然它只是在複述自己的訓練資料。</p><h3 class="sub-h">分類九｜變成系統，做得出來（89–99）</h3><p>做一次是勞動，做成系統才是資產。這組是拉開差距的地方。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>用途</th></tr></thead><tbody><tr><td data-label="#：">89</td><td data-label="指令："><code>/IMPROVE</code></td><td data-label="用途：">現有的東西再往上推一階</td></tr><tr><td data-label="#：">90</td><td data-label="指令："><code>/AUTOMATE</code></td><td data-label="用途：">這件事怎麼自動化</td></tr><tr><td data-label="#：">91</td><td data-label="指令："><code>/REUSABLE</code></td><td data-label="用途：">做成可以一直重複用的</td></tr><tr><td data-label="#：">92</td><td data-label="指令："><code>/HABIT</code></td><td data-label="用途：">變成每天都會做的習慣</td></tr><tr><td data-label="#：">93</td><td data-label="指令："><code>/FRAME</code></td><td data-label="用途：">建一套有結構的框架</td></tr><tr><td data-label="#：">94</td><td data-label="指令："><code>/GRIDIT</code></td><td data-label="用途：">選項排成決策表</td></tr><tr><td data-label="#：">95</td><td data-label="指令："><code>/REVERSE</code></td><td data-label="用途：">從結果倒推步驟</td></tr><tr><td data-label="#：">96</td><td data-label="指令："><code>/ROLEPLAY</code></td><td data-label="用途：">模擬真實情境演一次</td></tr><tr><td data-label="#：">97</td><td data-label="指令："><code>/PUSHBACK</code></td><td data-label="用途：">決定之前先挑戰我</td></tr><tr><td data-label="#：">98</td><td data-label="指令："><code>/FINALCHECK</code></td><td data-label="用途：">發布前最後全面掃一次</td></tr><tr><td data-label="#：">99</td><td data-label="指令："><code>/ALLIN</code></td><td data-label="用途：">火力全開，給我最完整的</td></tr></tbody></table></div><p><b>實戰用法：</b><code>/REUSABLE</code> 跟 <code>/TEMPLATE</code> 的差別：<code>/TEMPLATE</code> 給你一個填空框架，<code>/REUSABLE</code> 會把整個流程（含判斷條件）寫成可重複執行的 SOP。<br><code>/PUSHBACK</code> 建議設成你的預設習慣。任何重要決定，按下送出前先讓 AI 挑一輪。<br><code>/ALLIN</code> 很吃 token，別亂用。留給真正重要的那幾次。</p></section>
 
-<section class="sec fade" id="s5"><h2>進階用法：指令怎麼疊</h2><h3 class="sub-h">一、串接（依序執行）</h3><p>指令會依照你寫的順序跑。順序不同，結果差很多。</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>/OUTLINE /EXPAND /POLISH</pre></div><p>先出大綱 → 再展開 → 最後修順。這是寫長文的標準順序。</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>/POLISH /OUTLINE</pre></div><p>順序反過來就變成：先修飾一堆散文，再硬拆成大綱。結果會爛掉。</p><p><b>原則：先決定結構，再處理內容，最後才修表面。</b></p><h3 class="sub-h">二、加參數</h3><p>指令後面直接接條件，精準度會大幅提升。</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>/TONE 給沒有技術背景的老闆看
+<section class="sec fade" id="s5"><h2><span class="nw">進階用法：</span><span class="nw">指令怎麼疊</span></h2><h3 class="sub-h">一、串接（依序執行）</h3><p>指令會依照你寫的順序跑。順序不同，結果差很多。</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>/OUTLINE /EXPAND /POLISH</pre></div><p>先出大綱 → 再展開 → 最後修順。這是寫長文的標準順序。</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>/POLISH /OUTLINE</pre></div><p>順序反過來就變成：先修飾一堆散文，再硬拆成大綱。結果會爛掉。</p><p><b>原則：先決定結構，再處理內容，最後才修表面。</b></p><h3 class="sub-h">二、加參數</h3><p>指令後面直接接條件，精準度會大幅提升。</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>/TONE 給沒有技術背景的老闆看
 /TITLE 10 個，要有數字
 /SHORT 壓到 100 字以內
 /PERSONA 30-40 歲，有小孩，剛開始做副業</pre></div><h3 class="sub-h">三、常用組合包</h3><p>直接複製，存成你的快捷語句。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>場景</th><th>指令組合</th></tr></thead><tbody><tr><td data-label="場景：">寫一篇貼文</td><td data-label="指令組合："><code>/HOOK /OUTLINE /EXPAND /POLISH /FINALCHECK</code></td></tr><tr><td data-label="場景：">消化一份長報告</td><td data-label="指令組合："><code>/BRIEF /GAPS /PRIORITY</code></td></tr><tr><td data-label="場景：">做一個決定</td><td data-label="指令組合："><code>/TRADEOFFS /WORSTCASE /ASSUMPTION /DECIDE</code></td></tr><tr><td data-label="場景：">開完會整理</td><td data-label="指令組合："><code>/RECAP /CHECKLIST /PRIORITY</code></td></tr><tr><td data-label="場景：">學一個新工具</td><td data-label="指令組合："><code>/TEACHME /QUIZ /GAPS /TEMPLATE</code></td></tr><tr><td data-label="場景：">檢查自己的想法</td><td data-label="指令組合："><code>/DEVIL /COUNTER /PUSHBACK</code></td></tr><tr><td data-label="場景：">把一次性工作變系統</td><td data-label="指令組合："><code>/REVERSE /REUSABLE /AUTOMATE</code></td></tr></tbody></table></div></section>
@@ -479,7 +500,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function(link){
 // 懸浮按鈕：研究所介紹出現在畫面上時收起，避免兩顆按鈕同時出現
 var fc = document.getElementById('float-cta');
 var inst = document.getElementById('institute');
-if('IntersectionObserver' in window){
+if(fc && inst && 'IntersectionObserver' in window){
   new IntersectionObserver(function(es){
     fc.classList.toggle('hide', es[0].isIntersecting);
   }, {threshold:0.05}).observe(inst);
@@ -489,7 +510,7 @@ if('IntersectionObserver' in window){
 function reveal(){
   var vh = window.innerHeight;
   document.querySelectorAll('.fade:not(.vis)').forEach(function(el){
-    if(el.getBoundingClientRect().top < vh*0.94) el.classList.add('vis');
+    if(el.getBoundingClientRect().top < vh) el.classList.add('vis');
   });
 }
 window.addEventListener('scroll', reveal, {passive:true});
