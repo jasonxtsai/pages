@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- 【換】頁面標題、分享時顯示的描述 -->
+<title>100個AI攝影指令｜傑森所長</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="100個AI攝影指令｜傑森所長">
+<meta property="og:description" content="同一張圖，多加一個關鍵字，質感差很多。100 個指令分成十類，附 10 組現成組合 prompt，和 ChatGPT、Gemini、Midjourney 三個工具的寫法。">
+<meta property="og:url" content="https://jasonxtsai.github.io/pages/jason/ai-photo-100-prompts.html">
+<meta property="og:image" content="https://jasonxtsai.github.io/pages/jason/og/ai-photo-100-prompts-49a45713.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="同一張圖，多加一個關鍵字，質感差很多。100 個指令分成十類，附 10 組現成組合 prompt，和 ChatGPT、Gemini、Midjourney 三個工具的寫法。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── 版型：沿用 2026-08-06-chatgpt-setup／2026-10-01-7-habits 的米色＋金橘 ── */
+:root{
+  --gold:#D4902A; --gold-bright:#E8A94A; --gold-dim:rgba(212,144,42,0.30);
+  /* 金色當「字」用時太淡（米色底上對比只有2.4）：小字用 gold-tx、大標用 gold-hd（2026-10-15） */
+  --gold-tx:#9A5F14; --gold-hd:#A8691A;
+  --bg:#F4F1EA; --bg2:#FBF8F2; --card:#FFFFFF; --card2:#FAF6EE;
+  --code:#12161f; --code-tx:#e6eaf2;
+  --text:#2c2a26; --dim:#6d6a62; --faint:#a8a39a; --ink:#2a2620;
+  --line:rgba(0,0,0,0.12);
+  --ok:#4a7c3f; --ok-bg:rgba(74,124,63,0.07); --ok-line:rgba(74,124,63,0.25);
+  --no:#b1431f; --no-bg:rgba(200,70,40,0.06); --no-line:rgba(200,70,40,0.22);
+  --dark:linear-gradient(160deg,#15110b 0%,#241a0e 100%);
+  --r-md:16px; --r-lg:22px; --pill:50px;
+  --bounce:400ms cubic-bezier(0.34,1.56,0.64,1);
+  --serif:"Noto Serif TC",serif; --sans:"Noto Sans TC","Inter",sans-serif; --mono:"JetBrains Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);color:var(--text);line-height:1.85;overflow-x:hidden;background:var(--bg);
+  background-image:radial-gradient(118% 54% at 50% 0%, rgba(212,144,42,0.16) 0%, rgba(212,144,42,0.05) 34%, rgba(244,241,234,0) 62%);
+  background-attachment:fixed;}
+.glow{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.g1{position:absolute;width:min(60vw,680px);height:min(60vw,680px);border-radius:50%;background:radial-gradient(circle, rgba(212,144,42,0.13), rgba(212,144,42,0));top:-18%;right:-14%;filter:blur(20px);}
+.g2{position:absolute;width:min(50vw,560px);height:min(50vw,560px);border-radius:50%;background:radial-gradient(circle, rgba(212,178,120,0.12), rgba(212,178,120,0));bottom:-14%;left:-12%;filter:blur(22px);}
+.wrap{max-width:720px;margin:0 auto;position:relative;}
+.js .fade{opacity:0;transform:translateY(14px);transition:opacity .35s ease,transform .35s ease;}
+.fade.vis{opacity:1;transform:translateY(0);}
+a{color:var(--gold-tx);text-decoration:none;}
+.g{color:var(--gold-tx);}
+
+/* ═════ ① 懸浮按鈕：電腦版掛右側、手機版浮在底部；滑到研究所介紹時自動收起 ═════ */
+.float-cta{position:fixed;z-index:40;transition:opacity .3s ease,transform .3s ease;}
+.float-cta.hide{opacity:0;pointer-events:none;}
+.fc-card{display:none;}
+.fc-pill{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:#1a1406;font-weight:900;font-size:15px;padding:14px 26px;border-radius:var(--pill);box-shadow:0 10px 28px rgba(120,80,20,0.32);white-space:nowrap;}
+.fc-pill .ar{transition:transform .2s;}
+.fc-pill:hover .ar{transform:translateX(3px);}
+/* 手機／平板：底部置中 */
+@media(max-width:1119px){
+  .float-cta{left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translateX(-50%);}
+  .float-cta.hide{transform:translate(-50%,20px);}
+  body{padding-bottom:84px;}
+}
+/* 電腦：右側卡片 */
+@media(min-width:1120px){
+  .float-cta{top:120px;right:max(24px,calc((100vw - 720px)/2 - 272px));width:240px;}
+  .float-cta.hide{transform:translateX(16px);}
+  .fc-pill{display:none;}
+  .fc-card{display:block;background:linear-gradient(165deg,var(--card) 0%,var(--card2) 100%);border:1px solid var(--gold-dim);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:20px 20px 22px;box-shadow:0 10px 34px rgba(120,90,30,0.13);}
+  .fc-card .k{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;color:var(--gold-tx);margin-bottom:10px;font-weight:500;}
+  .fc-card h4{font-family:var(--serif);font-weight:900;font-size:17px;line-height:1.5;color:var(--ink);margin-bottom:9px;}
+  .fc-card p{font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:16px;}
+  .fc-card a{display:block;text-align:center;background:var(--gold);color:#1a1406;font-weight:900;font-size:14px;padding:12px 14px;border-radius:var(--pill);box-shadow:0 6px 18px rgba(212,144,42,0.26);transition:transform var(--bounce);}
+  .fc-card a:hover{transform:translateY(-2px);}
+}
+
+/* ═════ 開頭：只交代「這頁是什麼」，自介移到最下面 ═════ */
+.hero{position:relative;z-index:1;padding:60px 30px 36px;}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:0.2em;color:var(--gold-tx);margin-bottom:20px;font-weight:500;}
+.hero h1{font-family:var(--serif);font-weight:900;font-size:36px;line-height:1.36;margin-bottom:14px;color:var(--ink);}
+.hero h1 .g,.fc-card h4 .g{color:var(--gold-hd);}
+/* 標題只在逗號、頓號後面換行，不會剩一個字掉到下一行（2026-10-15；瀏覽器內建的 balance 會把中文詞拆成兩半，不用） */
+.nw{display:inline-block;}
+.hero-sub,.sec>p,.ch-body p,.tipline{text-wrap:pretty;}
+.hero .h-sub{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--gold-tx);margin-bottom:14px;}
+.hero-sub{font-size:15px;color:var(--dim);line-height:1.85;margin-bottom:24px;}
+/* 這頁有什麼：數字跟單位寫在一起，點了直接跳到那一段 */
+.toc{margin-bottom:24px;}
+.toc .tt{font-size:13px;font-weight:700;color:var(--dim);letter-spacing:0.05em;margin-bottom:8px;}
+.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;}
+.toc a{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--gold-dim);border-radius:var(--pill);padding:9px 16px;font-size:14px;font-weight:700;color:var(--ink);transition:border-color .2s;}
+.toc a:hover{border-color:var(--gold);}
+.toc a b{font-family:"Inter";font-weight:800;color:var(--gold-tx);}
+.toc a i{font-style:normal;color:var(--gold-tx);font-size:12px;}
+/* 自介卡：全站固定。上面一句是對讀者的承諾，下面是證明 */
+.mid-intro{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:16px 20px;margin-bottom:24px;}
+.mid-intro .slogan{font-family:var(--serif);font-weight:900;font-size:min(18px,4vw);white-space:nowrap;line-height:1.45;color:var(--ink);margin-top:12px;}
+
+.mid-intro .who{display:flex;align-items:center;gap:14px;}
+.mid-intro .who img{width:76px;height:76px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);}
+.mid-intro .nm{font-weight:900;font-size:16px;line-height:1.3;color:var(--ink);}
+.mid-intro .tt2{font-size:12px;color:var(--dim);line-height:1.4;}
+.mid-intro .proof{display:flex;align-items:flex-end;gap:14px;border-top:1px dashed var(--line);margin-top:12px;padding-top:11px;}
+.mid-intro .num{flex-shrink:0;line-height:1.2;}
+.mid-intro .num .d{font-size:11px;color:var(--dim);}
+.mid-intro .num .v{font-family:"Inter";font-weight:800;font-size:18px;color:var(--gold-hd);white-space:nowrap;}
+.mid-intro .txt{font-size:14.5px;line-height:1.6;color:var(--text);padding-left:14px;border-left:1px solid var(--line);}
+.mid-intro .txt b{color:var(--ink);}
+.m-br{display:none;}
+
+/* ═════ ② 乾貨區 ═════ */
+.sec{position:relative;z-index:1;padding:38px 30px;border-top:1px solid var(--line);}
+.sec-tag{display:inline-block;background:rgba(212,144,42,0.14);color:var(--gold-tx);font-size:13px;font-weight:700;padding:5px 15px;border:1px solid var(--gold-dim);border-radius:var(--pill);margin-bottom:16px;letter-spacing:0.05em;}
+.sec h2{font-family:var(--serif);font-weight:900;font-size:24px;line-height:1.42;margin-bottom:14px;color:var(--ink);}
+.sec>p{font-size:15px;color:var(--text);line-height:1.9;margin-bottom:14px;}
+.tipline{font-size:13.5px;color:var(--dim);line-height:1.75;border-left:2px solid var(--gold-dim);padding-left:14px;margin:13px 0 2px;}
+.tipline b{color:var(--gold-tx);}
+
+.tblwrap{overflow-x:auto;margin:12px 0 4px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--card);}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;}
+.tbl th{background:rgba(212,144,42,0.12);color:var(--gold-tx);font-weight:700;text-align:left;padding:10px 13px;border-bottom:2px solid var(--gold-dim);white-space:nowrap;}
+.tbl td{padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6;}
+.tbl td:first-child{font-family:"Inter";font-weight:800;color:var(--gold-tx);}
+.tbl td:nth-child(2){font-weight:700;color:var(--ink);white-space:nowrap;}
+.tbl tr:last-child td{border-bottom:none;}
+
+.acc{display:flex;flex-direction:column;gap:10px;}
+details.ch{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;}
+details.ch[open]{border-color:var(--gold-dim);box-shadow:0 4px 18px rgba(120,90,30,0.07);}
+details.ch summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:13px;padding:16px 18px;user-select:none;}
+details.ch summary::-webkit-details-marker{display:none;}
+.ch-n{flex-shrink:0;min-width:34px;height:30px;border-radius:8px;background:rgba(212,144,42,0.14);border:1px solid var(--gold-dim);color:var(--gold-tx);font-family:var(--mono);font-size:12px;display:flex;align-items:center;justify-content:center;}
+.ch-t{flex:1;font-weight:700;font-size:14.5px;line-height:1.4;}
+.ch-t .en{font-weight:400;color:var(--dim);font-size:13px;}
+.ch-mk{flex-shrink:0;width:22px;height:22px;position:relative;}
+.ch-mk::before,.ch-mk::after{content:"";position:absolute;background:var(--gold);border-radius:2px;transition:transform .25s ease,opacity .25s;}
+.ch-mk::before{top:10px;left:4px;width:14px;height:2px;}
+.ch-mk::after{top:4px;left:10px;width:2px;height:14px;}
+details.ch[open] .ch-mk::after{transform:rotate(90deg);opacity:0;}
+.ch-body{padding:6px 18px 18px;border-top:1px solid var(--line);}
+.ch-body p{font-size:14px;line-height:1.82;margin:10px 0;}
+.pos{background:rgba(212,144,42,0.08);border:1px solid var(--gold-dim);border-radius:12px;padding:11px 14px;margin:10px 0 2px;font-size:13.6px;line-height:1.72;}
+.pos b{color:var(--gold-tx);}
+.judge{border-radius:12px;padding:11px 14px;margin:7px 0;font-size:13.6px;line-height:1.72;}
+.judge.no{background:var(--no-bg);border:1px solid var(--no-line);color:#7a3320;}
+.judge.ok{background:var(--ok-bg);border:1px solid var(--ok-line);color:#2f5228;}
+.judge .jl{font-weight:700;font-size:12.5px;letter-spacing:0.05em;display:block;margin-bottom:2px;}
+.judge.no .jl{color:var(--no);}
+.judge.ok .jl{color:var(--ok);}
+
+.cp{background:var(--code);border:2px solid var(--gold);border-radius:var(--r-md);padding:16px;margin:12px 0 2px;position:relative;box-shadow:0 10px 34px rgba(120,90,30,0.16);}
+.cp .pl{min-height:36px;font-family:var(--mono);font-size:11.5px;letter-spacing:0.08em;color:var(--gold-bright);margin-bottom:11px;max-width:calc(100% - 96px);}
+.cp pre{font-family:var(--mono);font-size:13px;line-height:1.85;color:var(--code-tx);white-space:pre-wrap;word-break:break-word;}
+.cp .ph{color:var(--gold-bright);}
+.copy-btn{position:absolute;top:8px;right:8px;min-height:44px;background:var(--gold);border:1px solid var(--gold);color:#1a1406;font-family:var(--sans);font-size:13.5px;font-weight:700;padding:0 18px;border-radius:50px;cursor:pointer;}
+
+.ck{display:flex;gap:11px;align-items:flex-start;padding:9px 0;cursor:pointer;border-bottom:1px dashed var(--line);}
+.ck:last-of-type{border-bottom:none;}
+.ck input{appearance:none;-webkit-appearance:none;flex-shrink:0;width:19px;height:19px;margin-top:4px;border:2px solid var(--gold-dim);border-radius:5px;background:var(--bg2);cursor:pointer;position:relative;transition:all .18s;}
+.ck input:checked{background:var(--gold);border-color:var(--gold);}
+.ck input:checked::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #1a1406;border-width:0 2.5px 2.5px 0;transform:rotate(45deg);}
+.ck span{font-size:14.5px;line-height:1.7;}
+.ck input:checked + span{color:var(--faint);text-decoration:line-through;}
+.cklist{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:8px 18px;}
+
+/* ═════ ③ 研究所介紹：跟上面同一套米色＋白卡，不另外換成深色 ═════ */
+.inst{position:relative;z-index:1;padding:44px 30px 40px;border-top:1px solid var(--line);}
+.inst .kk{display:inline-block;background:rgba(212,144,42,0.14);color:var(--gold-tx);font-size:13px;font-weight:700;padding:5px 15px;border:1px solid var(--gold-dim);border-radius:var(--pill);margin-bottom:16px;letter-spacing:0.05em;}
+.inst h2{font-family:var(--serif);font-weight:900;font-size:24px;line-height:1.42;margin-bottom:16px;color:var(--ink);}
+.inst h2 .g{color:var(--gold-hd);}
+.inst .lead{font-family:var(--serif);font-weight:700;font-size:16.5px;line-height:1.7;color:var(--ink);margin-bottom:16px;padding-left:14px;border-left:3px solid var(--gold);}
+.founder{margin-bottom:24px;}
+.founder p{font-size:14.5px;line-height:1.9;color:var(--text);margin-bottom:10px;}
+.founder p b{color:var(--gold-tx);}
+.big{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 30px;}
+.big .b{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:var(--r-md);padding:16px 10px;text-align:center;}
+.big .bn{font-family:"Inter";font-weight:800;font-size:24px;color:var(--gold-hd);line-height:1.1;}
+.big .bl{font-size:13px;color:var(--dim);margin-top:6px;line-height:1.5;}
+.inst h3{font-family:var(--serif);font-weight:900;font-size:18px;margin:6px 0 14px;color:var(--ink);}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:30px;}
+.tool{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:16px;}
+.tool.main{grid-column:1 / -1;border-color:var(--gold-dim);border-left:3px solid var(--gold);background:linear-gradient(165deg,var(--card) 0%,var(--card2) 100%);}
+.tool .tn{font-weight:900;font-size:15px;color:var(--ink);margin-bottom:4px;}
+.tool .tn em{font-style:normal;font-size:11px;font-weight:700;color:#1a1406;background:var(--gold);border-radius:50px;padding:1px 8px;margin-left:6px;vertical-align:2px;}
+.tool .tn em.soon{background:rgba(0,0,0,0.08);color:var(--dim);}
+.tool .td{font-size:13px;color:var(--dim);line-height:1.7;}
+.qa{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:4px 18px 16px;margin-bottom:30px;}
+.qa .q{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink);margin:14px 0 4px;}
+.qa .q::before{content:"Q";color:var(--gold-tx);font-family:"Inter";font-weight:800;margin-right:8px;}
+.qa .a{font-size:13.8px;color:var(--dim);line-height:1.8;}
+.fit .f{display:flex;gap:10px;font-size:14px;line-height:1.7;margin-bottom:9px;color:var(--text);}
+.fit .f::before{content:"\2714";color:var(--gold-tx);font-weight:700;flex-shrink:0;}
+.btn-wrap{text-align:center;margin-top:30px;background:linear-gradient(165deg,var(--card) 0%,var(--card2) 100%);border:1px solid var(--gold-dim);border-radius:var(--r-lg);padding:26px 18px;}
+.skbtn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#1a1406;border-radius:var(--pill);padding:17px 46px;font-weight:900;font-size:18px;box-shadow:0 8px 28px rgba(212,144,42,0.30);transition:transform var(--bounce);position:relative;overflow:hidden;}
+.skbtn:hover{transform:translateY(-3px);}
+.skbtn::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent);transform:skewX(-25deg);animation:shine 3.4s ease-in-out infinite;}
+@keyframes shine{0%{left:-100%;}22%{left:160%;}100%{left:160%;}}
+.btn-note{margin-top:14px;font-size:13px;color:var(--dim);}
+
+.footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:22px 30px 40px;text-align:center;}
+.footer .fa{font-style:italic;font-size:14px;color:var(--gold-tx);font-weight:700;}
+.footer .fc{font-size:12.5px;color:var(--faint);margin-top:8px;line-height:1.7;}
+
+/* ── 手機版 ── */
+@media(max-width:600px){
+  .hero{padding:40px 20px 28px;}
+  .hero h1{font-size:28px;}
+  .sec{padding:32px 20px;}
+  .sec h2{font-size:21px;}
+  .mid-intro .proof{flex-direction:column;align-items:flex-start;gap:6px;}
+  .mid-intro .num{display:flex;align-items:baseline;gap:8px;}
+  .mid-intro .num .d{font-size:13px;}
+  .mid-intro .txt{padding-left:0;border-left:none;}
+  .m-br{display:inline;}
+  .tbl{font-size:13px;}
+  .tbl th,.tbl td{padding:10px 10px;}
+  details.ch summary{padding:15px 16px;align-items:flex-start;}
+  .ch-t .en{display:block;margin-top:3px;}
+  .ch-mk{margin-top:4px;}
+  .inst{padding:34px 20px 32px;}
+  .inst h2{font-size:21px;}
+  .founder p{font-size:min(14.5px,calc((100vw - 40px) / 26.5));}
+  .big .bn{font-size:20px;}
+  .tools{grid-template-columns:1fr;}
+  .skbtn{font-size:16px;padding:15px 26px;white-space:nowrap;}
+  .footer{padding:20px 20px 36px;}
+}
+
+/* 手機開了「減少動態效果」：不淡入、不閃光、不平滑捲動（2026-10-15） */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .js .fade{opacity:1;transform:none;transition:none;}
+  .skbtn::after{animation:none;}
+}
+
+/* ── 產生器補充：Notion 內容常見的格式 ── */
+.sec p{font-size:15px;line-height:1.9;margin:0 0 12px;}
+.sec .sub-h{font-size:16.5px;}
+.sub-h{font-family:var(--serif);font-weight:700;color:var(--gold-tx);margin:22px 0 8px;line-height:1.5;}
+.h4{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink);margin:18px 0 6px;}
+.sec ul.bul,.ch-body ul.bul{margin:6px 0 12px;}
+.bul li ul.bul,.steps li ul.bul{margin:6px 0 2px;}
+ol.steps{list-style:none;margin:8px 0 12px;counter-reset:s;}
+ol.steps>li{position:relative;padding-left:33px;margin-bottom:10px;font-size:14px;line-height:1.75;counter-increment:s;}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:22px;height:22px;border-radius:50%;background:var(--gold);color:#1a1406;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;}
+.bul li{list-style:none;position:relative;padding-left:20px;font-size:14px;line-height:1.75;margin-bottom:7px;}
+.bul li::before{content:"\2726";position:absolute;left:0;color:var(--gold-tx);}
+.pos p{margin:0 0 6px;font-size:13.8px;}
+.pos p:last-child{margin-bottom:0;}
+.tipline p{margin:0;}
+code{font-family:var(--mono);font-size:.9em;background:rgba(212,144,42,0.12);border-radius:4px;padding:1px 5px;}
+.cp{padding-top:58px;}
+.cp{margin:10px 0 14px;box-shadow:none;border-width:1px;}
+.tbl.gen td:first-child{font-family:inherit;font-weight:700;color:var(--ink);}
+.tbl.gen td:nth-child(2){white-space:normal;font-weight:400;color:var(--text);}
+.tbl.gen th{white-space:normal;}
+details.mini{border:1px solid var(--line);border-radius:12px;background:var(--card);margin:8px 0;}
+details.mini summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:14px;}
+.mini-body{padding:0 14px 12px;}
+.cklist{margin:8px 0 12px;}
+a.dl{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#1a1406;font-weight:900;font-size:14px;padding:11px 20px;border-radius:var(--pill);margin:4px 0 14px;box-shadow:0 6px 18px rgba(212,144,42,0.26);}
+@media(max-width:600px){
+  .sec p{font-size:14.5px;}
+  .tblwrap{overflow:visible;border:none;background:none;}
+  .tbl.gen thead{display:none;}
+  .tbl.gen,.tbl.gen tbody,.tbl.gen tr,.tbl.gen td{display:block;width:100%;}
+  .tbl.gen tr{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:8px;}
+  .tbl.gen td{border:none;padding:2px 0;font-size:13.5px;}
+  .tbl.gen td:first-child{font-size:14.5px;margin-bottom:2px;}
+  .tbl.gen td:not(:first-child)[data-label]:not([data-label=""])::before{content:attr(data-label);color:var(--dim);font-size:12px;}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.className+=' js';</script>
+<div class="glow"><div class="g1"></div><div class="g2"></div></div>
+
+<!-- ═════ ① 懸浮按鈕（全站固定，只換卡片上的兩句話） ═════ -->
+<div class="float-cta" id="float-cta">
+  <a class="fc-pill" href="https://www.skool.com/d11-lab/about" target="_blank" rel="noopener">加入 奇點研究所 <span class="ar">→</span></a>
+  <div class="fc-card">
+    <div class="k">NEXT STEP</div>
+    <!-- 【換】這兩句跟著當篇乾貨改：「你拿到的是一小塊 → 完整的在研究所」 -->
+    <h4>圖會生了<br><span class="g">接著做成整篇輪播</span></h4>
+    <p>從選題到每張圖講什麼，我們把輪播貼文做成工具放在研究所裡。</p>
+    <a href="https://www.skool.com/d11-lab/about" target="_blank" rel="noopener">加入 奇點研究所 × D11</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ═════ 開頭：這頁是什麼 ═════ -->
+  <header class="hero">
+    <!-- 【換】kicker／標題／副標／說明／這頁有什麼 -->
+    <div class="kicker">AI PHOTO · 留言「AI」領取</div>
+    <h1>100個AI攝影指令<br><span class="g">生圖不用再想形容詞</span></h1>
+    <div class="h-sub"><span class="nw">鏡頭、</span><span class="nw">光線、</span><span class="nw">天氣、</span><span class="nw">底片、</span><span class="nw">風格、</span><span class="nw">特效，</span><span class="nw">全部分好類</span></div>
+    <p class="hero-sub">同一張圖，多加一個關鍵字，質感差很多。100 個指令分成十類，附 10 組現成組合 prompt，和 ChatGPT、Gemini、Midjourney 三個工具的寫法。</p>
+    <!-- 自介卡：全站固定，放在乾貨說明之後、「這頁有」之前 -->
+    <div class="mid-intro">
+      <div class="who">
+        <img src="data:image/jpeg;base64,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" alt="傑森所長">
+        <div><div class="nm">傑森所長</div><div class="tt2">奇點研究所所長｜D11 行銷創辦人</div></div>
+      </div>
+      <div class="slogan">用 AI 跟自媒體，<span class="g">找到你突破現狀的起點。</span></div>
+      <div class="proof">
+        <div class="num"><div class="d">60天，我的粉絲</div><div class="v">3,000→5萬</div></div>
+        <div class="txt"><b>把一間自媒體公司搬到 AI 上。</b><br class="m-br">同一套流程，換作是你也可以做到。</div>
+      </div>
+    </div>
+
+    <nav class="toc">
+      <div class="tt">這頁有</div>
+      <ul>
+        <li><a href="#s3"><b>100</b>個攝影指令<i>↓</i></a></li>
+        <li><a href="#s4"><b>10</b>組現成組合<i>↓</i></a></li>
+        <li><a href="#s5">三個工具怎麼寫<i>↓</i></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ═════ ② 乾貨區（由 Notion 自動轉出） ═════ -->
+<section class="sec fade" id="s1"><span class="sec-tag">1</span><h2><span class="nw">3 分鐘上手：</span><span class="nw">這份清單怎麼用</span></h2><h3 class="sub-h">先說清楚一件事</h3><p>清單裡的「/cinematic」「/goldenhour」只是方便記憶的代號。ChatGPT、Gemini、Midjourney 都沒有內建這些斜線指令。</p><p><b>真正要貼進 AI 的，是每一列後面的英文 prompt 片段。</b></p><h3 class="sub-h">萬用公式</h3><div class="cp"><button class="copy-btn" type="button">複製</button><pre>[主體] + [場景] + [鏡頭視角] + [光線] + [天氣/時間] + [質感/風格] + [比例]</pre></div><p>你不需要每一格都填。主體 + 2～4 個指令，畫面就會有明顯方向。</p><h3 class="sub-h">範例：從普通到有質感</h3><p><b>❌ 一般寫法</b></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>一杯咖啡放在桌上</pre></div><p><b>✅ 加上 4 個指令</b></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>A cup of latte on a wooden café table,
+extreme close-up, shallow depth of field, creamy bokeh background,   ← 構圖
+soft window light from the left,                                      ← 光線
+golden hour warmth,                                                   ← 時間
+shot on 35mm film, subtle film grain,                                 ← 質感
+vertical 4:5</pre></div><p>同一杯咖啡，第二個寫法會直接變成咖啡廳品牌照的等級。</p></section>
+
+<section class="sec fade" id="s2"><span class="sec-tag">2</span><h2><span class="nw">三大 AI 生圖工具：</span><span class="nw">連結、</span><span class="nw">費用、</span><span class="nw">使用步驟</span></h2><div class="cp"><button class="copy-btn" type="button">複製</button><pre>以下資訊整理於 2026 年 11 月。各平台方案與額度會調整，實際以官網為準。</pre></div><h3 class="sub-h">快速比較</h3><div class="tblwrap"><table class="tbl gen"><thead><tr><th>工具</th><th>目前的生圖模型</th><th>連結</th><th>費用概念</th><th>最強的地方</th></tr></thead><tbody><tr><td data-label="工具：">ChatGPT</td><td data-label="目前的生圖模型：">GPT Image 2（ChatGPT Images 2.0）</td><td data-label="連結："><a href="https://chatgpt.com/" target="_blank" rel="noopener">https://chatgpt.com</a></td><td data-label="費用概念：">免費版可用（有次數限制），付費版額度更高、可用思考模式</td><td data-label="最強的地方：">中文字幾乎不會錯、看得懂長描述、適合做貼文和封面</td></tr><tr><td data-label="工具：">Gemini</td><td data-label="目前的生圖模型：">Nano Banana 2（Gemini 3.1 Flash Image）</td><td data-label="連結："><a href="https://gemini.google.com/" target="_blank" rel="noopener">https://gemini.google.com</a></td><td data-label="費用概念：">免費可用，Google AI 付費方案額度更高、可切換 Nano Banana Pro</td><td data-label="最強的地方：">速度快、對話式修圖、人物一致性好</td></tr><tr><td data-label="工具：">Midjourney</td><td data-label="目前的生圖模型：">V8 系列</td><td data-label="連結："><a href="https://www.midjourney.com/" target="_blank" rel="noopener">https://www.midjourney.com</a></td><td data-label="費用概念：">無免費方案，月費 $10 美元起</td><td data-label="最強的地方：">美感與氛圍最強，適合藝術感、品牌視覺</td></tr></tbody></table></div><h3 class="sub-h">ChatGPT（GPT Image 2）</h3><p><b>連結：</b> <a href="https://chatgpt.xn--com(-8m5fk02k/" target="_blank" rel="noopener">https://chatgpt.com（也有</a> iOS / Android App）</p><p><b>適合：</b> IG 輪播封面、含中文字的圖、品牌形象照、需要精準照描述做的畫面</p><p><b>使用步驟</b></p><ol class="steps"><li>打開 ChatGPT，直接在對話框輸入「幫我生成一張圖：」再接你的 prompt</li><li>想用自己的臉或產品，先點「＋」上傳參考圖</li><li>在 prompt 最後寫清楚比例，例如「直式 4:5」「1080×1350」</li><li>生成後不滿意，直接用對話修改：「光線改成黃金時刻」「背景換成攝影棚」</li><li>一次只改一件事，比較容易控制結果</li></ol><p><b>寫法技巧</b></p><ul class="bul"><li>可以用中文寫，也可以中英混寫。攝影術語建議保留英文（例如 rim light、bokeh），效果更穩</li><li>圖片裡要出現的文字，用引號框起來：<code>標題寫「100 個 AI 攝影指令」</code></li><li>用自己照片時加一句：<code>保留參考圖人物的五官與臉型，只改姿勢、服裝、光線與背景</code></li></ul><h3 class="sub-h">Gemini（Nano Banana 2）</h3><p><b>連結：</b> <a href="https://gemini.google.xn--com(-8m5fk02k/" target="_blank" rel="noopener">https://gemini.google.com（也有</a> App）<br><b>延伸工具：</b> Google Flow <a href="https://labs.google/flow%EF%BC%88%E5%BD%B1%E5%83%8F%E5%89%B5%E4%BD%9C%E5%B7%A5%E4%BD%9C%E5%8F%B0%EF%BC%8C%E5%8F%AF%E7%94%A8" target="_blank" rel="noopener">https://labs.google/flow（影像創作工作台，可用</a> Nano Banana 2 生圖）</p><p><b>適合：</b> 快速出多版本、對現有照片做局部修改、同一個角色連續出圖</p><p><b>使用步驟</b></p><ol class="steps"><li>打開 Gemini，在對話框選「建立圖像」（或直接說「幫我生成一張圖」）</li><li>輸入 prompt，可以上傳 1 張以上參考圖</li><li>生成後直接對話修圖：「把背景換成雨夜的城市」「人物不變，換成側面角度」</li><li>付費方案可以切換到 Nano Banana Pro 重新生成，細節更多</li></ol><p><b>寫法技巧</b></p><ul class="bul"><li>Gemini 很擅長「保留這張圖，只改 XX」，修圖時直接講要保留什麼、改什麼</li><li>想做系列圖（例如同一個人 6 種風格），在同一個對話裡連續生成，角色會比較一致</li></ul><h3 class="sub-h">Midjourney（V8 系列）</h3><p><b>連結：</b> <a href="https://www.midjourney.xn--com(,-7b3hl7ie42bgi9ao9fpzdgy3auf2f/" target="_blank" rel="noopener">https://www.midjourney.com（網頁版，登入後使用</a>）</p><p><b>適合：</b> 氛圍感強的形象照、藝術海報、品牌視覺、情緒板</p><p><b>使用步驟</b></p><ol class="steps"><li>登入 midjourney.com，訂閱方案（Basic 起）</li><li>在上方的 Imagine 輸入框貼上英文 prompt</li><li>在 prompt 最後加參數，例如 <code>-ar 4:5</code></li><li>每次會生成 4 張，挑一張做變化（Vary）或放大（Upscale）</li></ol><p><b>常用參數</b></p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>參數</th><th>作用</th><th>範例</th></tr></thead><tbody><tr><td data-label="參數："><code>--ar</code></td><td data-label="作用：">畫面比例</td><td data-label="範例："><code>--ar 4:5</code>（IG 直式）、<code>--ar 9:16</code>（限動/Reels）</td></tr><tr><td data-label="參數："><code>--s</code></td><td data-label="作用：">風格化程度，數字越高越藝術</td><td data-label="範例："><code>--s 50</code>（貼近描述）、<code>--s 400</code>（更有美感）</td></tr><tr><td data-label="參數："><code>--no</code></td><td data-label="作用：">排除不想要的元素</td><td data-label="範例："><code>--no text, watermark</code></td></tr><tr><td data-label="參數："><code>--sref</code></td><td data-label="作用：">參考某張圖的風格</td><td data-label="範例："><code>--sref [圖片網址]</code></td></tr><tr><td data-label="參數："><code>--v</code></td><td data-label="作用：">指定模型版本</td><td data-label="範例：">可用版本以官網 Version 頁面為準</td></tr><tr><td data-label="參數："><code>--hd</code></td><td data-label="作用：">高解析輸出（V8 系列）</td><td data-label="範例："><code>--hd</code></td></tr></tbody></table></div><p><b>寫法技巧</b></p><ul class="bul"><li>用英文寫，短句、逗號分隔，重要的詞放前面</li><li>Midjourney 對「氛圍詞」反應最好，光線和色調指令在這裡效果最明顯</li></ul></section>
+
+<section class="sec fade" id="s3"><span class="sec-tag">3</span><h2>100 個攝影指令</h2><div class="tipline">用法：挑 2～4 個不同分類的指令，把「英文 prompt 片段」接在你的主體描述後面。</div><h3 class="sub-h">01｜畫質與寫實（01–10）</h3><p>決定照片看起來「像不像真的」。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>代號</th><th>英文 prompt 片段（直接複製）</th><th>什麼時候用</th></tr></thead><tbody><tr><td data-label="#：">01</td><td data-label="指令：">高清寫實</td><td data-label="代號：">/hdreal</td><td data-label="英文 prompt 片段（直接複製）："><code>photorealistic, high definition, natural skin texture, true-to-life colors</code></td><td data-label="什麼時候用：">任何想看起來像真實照片的圖</td></tr><tr><td data-label="#：">02</td><td data-label="指令：">4K</td><td data-label="代號：">/4k</td><td data-label="英文 prompt 片段（直接複製）："><code>4K resolution, crisp details, clean edges</code></td><td data-label="什麼時候用：">產品圖、需要清晰細節</td></tr><tr><td data-label="#：">03</td><td data-label="指令：">8K 超細節</td><td data-label="代號：">/8k</td><td data-label="英文 prompt 片段（直接複製）："><code>8K ultra-detailed, micro textures visible, extreme sharpness</code></td><td data-label="什麼時候用：">材質特寫、珠寶、食物</td></tr><tr><td data-label="#：">04</td><td data-label="指令：">超寫實</td><td data-label="代號：">/ultrarealistic</td><td data-label="英文 prompt 片段（直接複製）："><code>hyperrealistic photograph, realistic imperfections, indistinguishable from a real photo</code></td><td data-label="什麼時候用：">人像、生活照</td></tr><tr><td data-label="#：">05</td><td data-label="指令：">商業攝影</td><td data-label="代號：">/commercial</td><td data-label="英文 prompt 片段（直接複製）："><code>high-end commercial photography, polished retouching, studio quality</code></td><td data-label="什麼時候用：">廣告圖、品牌主視覺</td></tr><tr><td data-label="#：">06</td><td data-label="指令：">RAW 原檔感</td><td data-label="代號：">/raw</td><td data-label="英文 prompt 片段（直接複製）："><code>RAW photo, unprocessed look, natural dynamic range, no heavy filters</code></td><td data-label="什麼時候用：">想要自然、不過度修圖</td></tr><tr><td data-label="#：">07</td><td data-label="指令：">全片幅相機</td><td data-label="代號：">/fullframe</td><td data-label="英文 prompt 片段（直接複製）："><code>shot on full-frame mirrorless camera, 50mm lens, rich dynamic range</code></td><td data-label="什麼時候用：">一般人像、街拍</td></tr><tr><td data-label="#：">08</td><td data-label="指令：">中片幅相機</td><td data-label="代號：">/mediumformat</td><td data-label="英文 prompt 片段（直接複製）："><code>shot on Hasselblad medium format, smooth tonal transitions, exceptional detail</code></td><td data-label="什麼時候用：">高級形象照、時尚</td></tr><tr><td data-label="#：">09</td><td data-label="指令：">手機實拍</td><td data-label="代號：">/phoneshot</td><td data-label="英文 prompt 片段（直接複製）："><code>casual smartphone photo, natural HDR, slightly imperfect framing</code></td><td data-label="什麼時候用：">想要素人感、UGC 感</td></tr><tr><td data-label="#：">10</td><td data-label="指令：">紀實攝影</td><td data-label="代號：">/documentary</td><td data-label="英文 prompt 片段（直接複製）："><code>documentary photography, candid unposed moment, authentic atmosphere</code></td><td data-label="什麼時候用：">幕後花絮、工作日常</td></tr></tbody></table></div><h3 class="sub-h">02｜鏡頭視角（11–20）</h3><p>決定觀眾「從哪裡看」這個畫面。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>代號</th><th>英文 prompt 片段（直接複製）</th><th>什麼時候用</th></tr></thead><tbody><tr><td data-label="#：">11</td><td data-label="指令：">電影感</td><td data-label="代號：">/cinematic</td><td data-label="英文 prompt 片段（直接複製）："><code>cinematic film still, anamorphic lens, movie color grading, dramatic composition</code></td><td data-label="什麼時候用：">封面、故事型貼文</td></tr><tr><td data-label="#：">12</td><td data-label="指令：">空拍視角</td><td data-label="代號：">/droneview</td><td data-label="英文 prompt 片段（直接複製）："><code>aerial drone shot, high altitude, sweeping landscape view</code></td><td data-label="什麼時候用：">旅遊、地景、建案</td></tr><tr><td data-label="#：">13</td><td data-label="指令：">正俯視</td><td data-label="代號：">/topdown</td><td data-label="英文 prompt 片段（直接複製）："><code>top-down flat lay, shot directly from above, neatly arranged</code></td><td data-label="什麼時候用：">桌面、美食、文具、產品組合</td></tr><tr><td data-label="#：">14</td><td data-label="指令：">高角度</td><td data-label="代號：">/highangle</td><td data-label="英文 prompt 片段（直接複製）："><code>high-angle shot, camera looking down at the subject</code></td><td data-label="什麼時候用：">讓人物顯得親切、可愛</td></tr><tr><td data-label="#：">15</td><td data-label="指令：">低角度</td><td data-label="代號：">/lowangle</td><td data-label="英文 prompt 片段（直接複製）："><code>low-angle shot, camera looking up, subject appears powerful</code></td><td data-label="什麼時候用：">老闆形象照、建築、氣勢感</td></tr><tr><td data-label="#：">16</td><td data-label="指令：">側面</td><td data-label="代號：">/sideview</td><td data-label="英文 prompt 片段（直接複製）："><code>side profile view, clean silhouette of the face</code></td><td data-label="什麼時候用：">有質感的人像、沉思感</td></tr><tr><td data-label="#：">17</td><td data-label="指令：">第一人稱</td><td data-label="代號：">/pov</td><td data-label="英文 prompt 片段（直接複製）："><code>first-person point of view, seen through the viewer&#x27;s eyes</code></td><td data-label="什麼時候用：">生活感、讓觀眾代入</td></tr><tr><td data-label="#：">18</td><td data-label="指令：">過肩視角</td><td data-label="代號：">/overtheshoulder</td><td data-label="英文 prompt 片段（直接複製）："><code>over-the-shoulder shot, looking past the subject toward the scene</code></td><td data-label="什麼時候用：">工作場景、看螢幕的畫面</td></tr><tr><td data-label="#：">19</td><td data-label="指令：">鳥瞰</td><td data-label="代號：">/birdseyeview</td><td data-label="英文 prompt 片段（直接複製）："><code>bird&#x27;s-eye view, directly overhead, people and streets as patterns</code></td><td data-label="什麼時候用：">城市、人潮、圖案感畫面</td></tr><tr><td data-label="#：">20</td><td data-label="指令：">蟲視</td><td data-label="代號：">/wormseyeview</td><td data-label="英文 prompt 片段（直接複製）："><code>worm&#x27;s-eye view, from ground level looking straight up</code></td><td data-label="什麼時候用：">高樓、樹林、誇張透視</td></tr></tbody></table></div><h3 class="sub-h">03｜構圖與焦段（21–30）</h3><p>決定畫面「要觀眾看哪裡」。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>代號</th><th>英文 prompt 片段（直接複製）</th><th>什麼時候用</th></tr></thead><tbody><tr><td data-label="#：">21</td><td data-label="指令：">特寫</td><td data-label="代號：">/closeup</td><td data-label="英文 prompt 片段（直接複製）："><code>close-up shot, subject fills the frame</code></td><td data-label="什麼時候用：">人臉表情、產品主體</td></tr><tr><td data-label="#：">22</td><td data-label="指令：">極致特寫</td><td data-label="代號：">/extremecloseup</td><td data-label="英文 prompt 片段（直接複製）："><code>extreme close-up, fine textures visible</code></td><td data-label="什麼時候用：">眼睛、皮膚、材質細節</td></tr><tr><td data-label="#：">23</td><td data-label="指令：">微距</td><td data-label="代號：">/macro</td><td data-label="英文 prompt 片段（直接複製）："><code>macro photography, 100mm macro lens, tiny details magnified</code></td><td data-label="什麼時候用：">水滴、昆蟲、珠寶</td></tr><tr><td data-label="#：">24</td><td data-label="指令：">廣角</td><td data-label="代號：">/wideangle</td><td data-label="英文 prompt 片段（直接複製）："><code>wide-angle shot, 24mm lens, expansive environment</code></td><td data-label="什麼時候用：">空間、室內設計、風景</td></tr><tr><td data-label="#：">25</td><td data-label="指令：">魚眼</td><td data-label="代號：">/fisheye</td><td data-label="英文 prompt 片段（直接複製）："><code>fisheye lens, ultra-wide circular distortion</code></td><td data-label="什麼時候用：">街頭、滑板、趣味感</td></tr><tr><td data-label="#：">26</td><td data-label="指令：">淺景深</td><td data-label="代號：">/shallowdepth</td><td data-label="英文 prompt 片段（直接複製）："><code>shallow depth of field, f/1.8, sharp subject, blurred background</code></td><td data-label="什麼時候用：">人像、讓主體跳出來</td></tr><tr><td data-label="#：">27</td><td data-label="指令：">散景</td><td data-label="代號：">/bokeh</td><td data-label="英文 prompt 片段（直接複製）："><code>creamy bokeh, glowing out-of-focus light orbs</code></td><td data-label="什麼時候用：">夜景人像、節慶氛圍</td></tr><tr><td data-label="#：">28</td><td data-label="指令：">移軸</td><td data-label="代號：">/tiltshift</td><td data-label="英文 prompt 片段（直接複製）："><code>tilt-shift photography, miniature effect</code></td><td data-label="什麼時候用：">城市、讓場景像模型</td></tr><tr><td data-label="#：">29</td><td data-label="指令：">對稱構圖</td><td data-label="代號：">/symmetry</td><td data-label="英文 prompt 片段（直接複製）："><code>perfectly symmetrical composition, centered subject</code></td><td data-label="什麼時候用：">建築、走廊、儀式感</td></tr><tr><td data-label="#：">30</td><td data-label="指令：">留白構圖</td><td data-label="代號：">/negativespace</td><td data-label="英文 prompt 片段（直接複製）："><code>minimal composition with generous negative space on the top</code></td><td data-label="什麼時候用："><b>輪播封面必備</b>，留位置放標題</td></tr></tbody></table></div><h3 class="sub-h">04｜光線（31–40）</h3><p>光線決定 80% 的質感。最值得先學的一類。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>代號</th><th>英文 prompt 片段（直接複製）</th><th>什麼時候用</th></tr></thead><tbody><tr><td data-label="#：">31</td><td data-label="指令：">柔光</td><td data-label="代號：">/softlighting</td><td data-label="英文 prompt 片段（直接複製）："><code>soft diffused lighting, gentle shadows</code></td><td data-label="什麼時候用：">美妝、生活感、溫柔氛圍</td></tr><tr><td data-label="#：">32</td><td data-label="指令：">戲劇光</td><td data-label="代號：">/dramaticlighting</td><td data-label="英文 prompt 片段（直接複製）："><code>dramatic high-contrast lighting, deep shadows</code></td><td data-label="什麼時候用：">形象照、強烈情緒</td></tr><tr><td data-label="#：">33</td><td data-label="指令：">輪廓光</td><td data-label="代號：">/rimlight</td><td data-label="英文 prompt 片段（直接複製）："><code>strong rim light outlining the subject&#x27;s edges, dark background</code></td><td data-label="什麼時候用："><b>人像質感直接翻倍</b></td></tr><tr><td data-label="#：">34</td><td data-label="指令：">逆光</td><td data-label="代號：">/backlight</td><td data-label="英文 prompt 片段（直接複製）："><code>backlit subject, light source behind, glowing silhouette edges</code></td><td data-label="什麼時候用：">夕陽人像、髮絲發光</td></tr><tr><td data-label="#：">35</td><td data-label="指令：">丁達爾光</td><td data-label="代號：">/godrays</td><td data-label="英文 prompt 片段（直接複製）："><code>god rays, sunbeams streaming through trees or clouds</code></td><td data-label="什麼時候用：">森林、教堂、神聖感</td></tr><tr><td data-label="#：">36</td><td data-label="指令：">體積光</td><td data-label="代號：">/volumetriclight</td><td data-label="英文 prompt 片段（直接複製）："><code>volumetric light beams visible in hazy air</code></td><td data-label="什麼時候用：">室內窗光、舞台感</td></tr><tr><td data-label="#：">37</td><td data-label="指令：">攝影棚燈</td><td data-label="代號：">/studio</td><td data-label="英文 prompt 片段（直接複製）："><code>professional studio lighting, softbox key light, seamless backdrop</code></td><td data-label="什麼時候用：">形象照、產品照</td></tr><tr><td data-label="#：">38</td><td data-label="指令：">霓虹燈</td><td data-label="代號：">/neonlights</td><td data-label="英文 prompt 片段（直接複製）："><code>vibrant neon lights, pink and blue glow reflecting on surfaces</code></td><td data-label="什麼時候用：">夜生活、潮流、科技感</td></tr><tr><td data-label="#：">39</td><td data-label="指令：">林布蘭光</td><td data-label="代號：">/rembrandt</td><td data-label="英文 prompt 片段（直接複製）："><code>Rembrandt lighting, triangle of light on the cheek, moody portrait</code></td><td data-label="什麼時候用：">有深度的人像、專業感</td></tr><tr><td data-label="#：">40</td><td data-label="指令：">窗光</td><td data-label="代號：">/windowlight</td><td data-label="英文 prompt 片段（直接複製）："><code>natural window light from the side, soft directional shadows</code></td><td data-label="什麼時候用：">咖啡廳、居家、自然人像</td></tr></tbody></table></div><h3 class="sub-h">05｜天氣與時間（41–50）</h3><p>一個詞就能改變整張圖的情緒。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>代號</th><th>英文 prompt 片段（直接複製）</th><th>什麼時候用</th></tr></thead><tbody><tr><td data-label="#：">41</td><td data-label="指令：">黃金時刻</td><td data-label="代號：">/goldenhour</td><td data-label="英文 prompt 片段（直接複製）："><code>golden hour, warm low sunlight, long soft shadows</code></td><td data-label="什麼時候用：">最好看的萬用光線</td></tr><tr><td data-label="#：">42</td><td data-label="指令：">藍調時刻</td><td data-label="代號：">/bluehour</td><td data-label="英文 prompt 片段（直接複製）："><code>blue hour, deep blue twilight sky, city lights turning on</code></td><td data-label="什麼時候用：">城市夜景、冷靜高級感</td></tr><tr><td data-label="#：">43</td><td data-label="指令：">日出</td><td data-label="代號：">/sunrise</td><td data-label="英文 prompt 片段（直接複製）："><code>soft early-morning sunrise, pastel sky, light mist</code></td><td data-label="什麼時候用：">新開始、晨間習慣主題</td></tr><tr><td data-label="#：">44</td><td data-label="指令：">日落</td><td data-label="代號：">/sunset</td><td data-label="英文 prompt 片段（直接複製）："><code>vivid sunset, orange and magenta sky</code></td><td data-label="什麼時候用：">旅遊、浪漫、結尾感</td></tr><tr><td data-label="#：">45</td><td data-label="指令：">月光</td><td data-label="代號：">/moonlight</td><td data-label="英文 prompt 片段（直接複製）："><code>lit only by moonlight, silver-blue tones</code></td><td data-label="什麼時候用：">神秘、安靜、夜晚</td></tr><tr><td data-label="#：">46</td><td data-label="指令：">雨天</td><td data-label="代號：">/rain</td><td data-label="英文 prompt 片段（直接複製）："><code>falling rain, wet surfaces, raindrops visible</code></td><td data-label="什麼時候用：">情緒、憂鬱、思考</td></tr><tr><td data-label="#：">47</td><td data-label="指令：">雨夜</td><td data-label="代號：">/rainynight</td><td data-label="英文 prompt 片段（直接複製）："><code>rainy night street, wet asphalt reflecting city lights</code></td><td data-label="什麼時候用：">電影感夜景最穩的組合</td></tr><tr><td data-label="#：">48</td><td data-label="指令：">霧</td><td data-label="代號：">/fog</td><td data-label="英文 prompt 片段（直接複製）："><code>thick atmospheric fog, layered depth</code></td><td data-label="什麼時候用：">神秘感、森林、山景</td></tr><tr><td data-label="#：">49</td><td data-label="指令：">雪景</td><td data-label="代號：">/snow</td><td data-label="英文 prompt 片段（直接複製）："><code>gentle snowfall, snow-covered scene, quiet winter mood</code></td><td data-label="什麼時候用：">冬季、節慶</td></tr><tr><td data-label="#：">50</td><td data-label="指令：">暴風雨</td><td data-label="代號：">/storm</td><td data-label="英文 prompt 片段（直接複製）："><code>dramatic storm clouds, lightning strikes in the distance</code></td><td data-label="什麼時候用：">張力、轉折、危機感</td></tr></tbody></table></div><h3 class="sub-h">06｜底片與相機質感（51–60）</h3><p>讓 AI 圖不再「太乾淨、太假」。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>代號</th><th>英文 prompt 片段（直接複製）</th><th>什麼時候用</th></tr></thead><tbody><tr><td data-label="#：">51</td><td data-label="指令：">35mm 底片</td><td data-label="代號：">/35mmfilm</td><td data-label="英文 prompt 片段（直接複製）："><code>shot on 35mm film, natural film colors, subtle grain</code></td><td data-label="什麼時候用：">生活照、文青感</td></tr><tr><td data-label="#：">52</td><td data-label="指令：">底片顆粒</td><td data-label="代號：">/filmgrain</td><td data-label="英文 prompt 片段（直接複製）："><code>visible analog film grain, slightly soft focus</code></td><td data-label="什麼時候用：">讓 AI 圖更像真實照片</td></tr><tr><td data-label="#：">53</td><td data-label="指令：">拍立得</td><td data-label="代號：">/polaroid</td><td data-label="英文 prompt 片段（直接複製）："><code>Polaroid instant photo, white frame border, faded colors</code></td><td data-label="什麼時候用：">回憶、日記感</td></tr><tr><td data-label="#：">54</td><td data-label="指令：">Portra 色調</td><td data-label="代號：">/portra</td><td data-label="英文 prompt 片段（直接複製）："><code>Kodak Portra 400 film look, warm skin tones, soft pastel highlights</code></td><td data-label="什麼時候用：">人像最討喜的底片色</td></tr><tr><td data-label="#：">55</td><td data-label="指令：">富士色調</td><td data-label="代號：">/fujifilm</td><td data-label="英文 prompt 片段（直接複製）："><code>Fujifilm film simulation, slightly green-cyan shadows, clean highlights</code></td><td data-label="什麼時候用：">日系、清新</td></tr><tr><td data-label="#：">56</td><td data-label="指令：">黑白底片</td><td data-label="代號：">/bwfilm</td><td data-label="英文 prompt 片段（直接複製）："><code>black and white film photography, Ilford HP5, rich contrast</code></td><td data-label="什麼時候用：">經典、嚴肅、高級</td></tr><tr><td data-label="#：">57</td><td data-label="指令：">即可拍</td><td data-label="代號：">/disposablecamera</td><td data-label="英文 prompt 片段（直接複製）："><code>disposable camera photo, harsh direct flash, slight overexposure</code></td><td data-label="什麼時候用：">派對、青春、隨性</td></tr><tr><td data-label="#：">58</td><td data-label="指令：">閃光燈直打</td><td data-label="代號：">/directflash</td><td data-label="英文 prompt 片段（直接複製）："><code>direct on-camera flash, hard shadows behind subject, editorial snapshot</code></td><td data-label="什麼時候用：">潮流、時尚街拍</td></tr><tr><td data-label="#：">59</td><td data-label="指令：">長曝光</td><td data-label="代號：">/longexposure</td><td data-label="英文 prompt 片段（直接複製）："><code>long exposure, silky smooth water, light trails</code></td><td data-label="什麼時候用：">夜景車流、海浪</td></tr><tr><td data-label="#：">60</td><td data-label="指令：">動態模糊</td><td data-label="代號：">/motionblur</td><td data-label="英文 prompt 片段（直接複製）："><code>motion blur, sense of speed, sharp subject with blurred movement</code></td><td data-label="什麼時候用：">速度感、城市節奏</td></tr></tbody></table></div><h3 class="sub-h">07｜攝影風格（61–70）</h3><p>決定照片「屬於哪一種類型」。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>代號</th><th>英文 prompt 片段（直接複製）</th><th>什麼時候用</th></tr></thead><tbody><tr><td data-label="#：">61</td><td data-label="指令：">時尚大片</td><td data-label="代號：">/fashion</td><td data-label="英文 prompt 片段（直接複製）："><code>high-fashion editorial photography, confident pose, styled wardrobe</code></td><td data-label="什麼時候用：">個人形象、服飾品牌</td></tr><tr><td data-label="#：">62</td><td data-label="指令：">雜誌內頁</td><td data-label="代號：">/editorial</td><td data-label="英文 prompt 片段（直接複製）："><code>magazine editorial photography, refined composition, storytelling</code></td><td data-label="什麼時候用：">專訪感、專業形象</td></tr><tr><td data-label="#：">63</td><td data-label="指令：">雜誌封面</td><td data-label="代號：">/magazinecover</td><td data-label="英文 prompt 片段（直接複製）："><code>magazine cover composition, subject centered, space for masthead and headlines</code></td><td data-label="什麼時候用：">個人品牌封面、自介貼</td></tr><tr><td data-label="#：">64</td><td data-label="指令：">極簡</td><td data-label="代號：">/minimalist</td><td data-label="英文 prompt 片段（直接複製）："><code>minimalist composition, clean background, few elements</code></td><td data-label="什麼時候用：">高級感、產品、留白</td></tr><tr><td data-label="#：">65</td><td data-label="指令：">奢華</td><td data-label="代號：">/luxury</td><td data-label="英文 prompt 片段（直接複製）："><code>luxury aesthetic, rich materials, gold accents, premium mood</code></td><td data-label="什麼時候用：">精品、高單價服務</td></tr><tr><td data-label="#：">66</td><td data-label="指令：">老錢風</td><td data-label="代號：">/oldmoney</td><td data-label="英文 prompt 片段（直接複製）："><code>old money aesthetic, understated elegance, classic tailoring, muted tones</code></td><td data-label="什麼時候用：">低調有錢的形象</td></tr><tr><td data-label="#：">67</td><td data-label="指令：">街頭風</td><td data-label="代號：">/streetstyle</td><td data-label="英文 prompt 片段（直接複製）："><code>urban street style photography, city backdrop, candid stride</code></td><td data-label="什麼時候用：">潮流、年輕族群</td></tr><tr><td data-label="#：">68</td><td data-label="指令：">經典復古</td><td data-label="代號：">/vintage</td><td data-label="英文 prompt 片段（直接複製）："><code>vintage photograph, 1960s aesthetic, aged color tones</code></td><td data-label="什麼時候用：">懷舊、經典品牌</td></tr><tr><td data-label="#：">69</td><td data-label="指令：">70 年代懷舊</td><td data-label="代號：">/retro</td><td data-label="英文 prompt 片段（直接複製）："><code>retro 1970s look, warm faded palette, nostalgic mood</code></td><td data-label="什麼時候用：">懷舊、復古選物</td></tr><tr><td data-label="#：">70</td><td data-label="指令：">產品攝影</td><td data-label="代號：">/productshot</td><td data-label="英文 prompt 片段（直接複製）："><code>professional product photography, hero shot, clean reflective surface</code></td><td data-label="什麼時候用：">電商、商品主圖</td></tr></tbody></table></div><h3 class="sub-h">08｜場景與世界觀（71–80）</h3><p>把主體放進完全不同的世界。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>代號</th><th>英文 prompt 片段（直接複製）</th><th>什麼時候用</th></tr></thead><tbody><tr><td data-label="#：">71</td><td data-label="指令：">賽博龐克</td><td data-label="代號：">/cyberpunk</td><td data-label="英文 prompt 片段（直接複製）："><code>cyberpunk city, neon signs, rain-soaked streets, futuristic tech</code></td><td data-label="什麼時候用：">科技、AI 主題封面</td></tr><tr><td data-label="#：">72</td><td data-label="指令：">未來感</td><td data-label="代號：">/futuristic</td><td data-label="英文 prompt 片段（直接複製）："><code>futuristic setting, sleek architecture, advanced technology</code></td><td data-label="什麼時候用：">趨勢、未來預測主題</td></tr><tr><td data-label="#：">73</td><td data-label="指令：">奇幻</td><td data-label="代號：">/fantasy</td><td data-label="英文 prompt 片段（直接複製）："><code>epic fantasy world, magical atmosphere, floating castles</code></td><td data-label="什麼時候用：">故事、創意類內容</td></tr><tr><td data-label="#：">74</td><td data-label="指令：">科幻</td><td data-label="代號：">/scifi</td><td data-label="英文 prompt 片段（直接複製）："><code>science fiction scene, spacecraft, distant planets</code></td><td data-label="什麼時候用：">科技、宇宙主題</td></tr><tr><td data-label="#：">75</td><td data-label="指令：">黑色電影</td><td data-label="代號：">/noir</td><td data-label="英文 prompt 片段（直接複製）："><code>film noir, black and white, hard shadows, mysterious mood</code></td><td data-label="什麼時候用：">懸疑、揭密型內容</td></tr><tr><td data-label="#：">76</td><td data-label="指令：">城市夜景</td><td data-label="代號：">/nightcity</td><td data-label="英文 prompt 片段（直接複製）："><code>city at night, glowing windows, busy streets</code></td><td data-label="什麼時候用：">都市、上班族主題</td></tr><tr><td data-label="#：">77</td><td data-label="指令：">末日廢墟</td><td data-label="代號：">/postapocalyptic</td><td data-label="英文 prompt 片段（直接複製）："><code>post-apocalyptic ruins, overgrown buildings, dusty light</code></td><td data-label="什麼時候用：">危機、反差主題</td></tr><tr><td data-label="#：">78</td><td data-label="指令：">水下</td><td data-label="代號：">/underwater</td><td data-label="英文 prompt 片段（直接複製）："><code>underwater scene, light rays from the surface, floating particles</code></td><td data-label="什麼時候用：">夢幻、創意人像</td></tr><tr><td data-label="#：">79</td><td data-label="指令：">外太空</td><td data-label="代號：">/space</td><td data-label="英文 prompt 片段（直接複製）："><code>outer space, Earth from orbit, stars and nebula</code></td><td data-label="什麼時候用：">大格局、願景主題</td></tr><tr><td data-label="#：">80</td><td data-label="指令：">城市天際線</td><td data-label="代號：">/cityscape</td><td data-label="英文 prompt 片段（直接複製）："><code>modern city skyline, wide view, glass towers</code></td><td data-label="什麼時候用：">商業、成功感</td></tr></tbody></table></div><h3 class="sub-h">09｜特效與材質（81–90）</h3><p>讓畫面一眼就停下來的視覺效果。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>代號</th><th>英文 prompt 片段（直接複製）</th><th>什麼時候用</th></tr></thead><tbody><tr><td data-label="#：">81</td><td data-label="指令：">雙重曝光</td><td data-label="代號：">/doubleexposure</td><td data-label="英文 prompt 片段（直接複製）："><code>double exposure, portrait silhouette blended with a city skyline</code></td><td data-label="什麼時候用：">個人故事、內心世界</td></tr><tr><td data-label="#：">82</td><td data-label="指令：">剪影</td><td data-label="代號：">/silhouette</td><td data-label="英文 prompt 片段（直接複製）："><code>dark silhouette against a bright background</code></td><td data-label="什麼時候用：">神秘感、不露臉</td></tr><tr><td data-label="#：">83</td><td data-label="指令：">倒影</td><td data-label="代號：">/reflection</td><td data-label="英文 prompt 片段（直接複製）："><code>perfect mirror reflection on calm water</code></td><td data-label="什麼時候用：">風景、對稱美感</td></tr><tr><td data-label="#：">84</td><td data-label="指令：">鏡子構圖</td><td data-label="代號：">/mirror</td><td data-label="英文 prompt 片段（直接複製）："><code>creative mirror composition, subject reflected in an ornate mirror</code></td><td data-label="什麼時候用：">自我對話、反思主題</td></tr><tr><td data-label="#：">85</td><td data-label="指令：">玻璃藝術</td><td data-label="代號：">/glassart</td><td data-label="英文 prompt 片段（直接複製）："><code>made of transparent crystal glass, refractions, sparkling highlights</code></td><td data-label="什麼時候用：">精品、高級感物件</td></tr><tr><td data-label="#：">86</td><td data-label="指令：">鉻金屬</td><td data-label="代號：">/chrome</td><td data-label="英文 prompt 片段（直接複製）："><code>polished chrome material, mirror-like metallic reflections</code></td><td data-label="什麼時候用：">科技、未來感</td></tr><tr><td data-label="#：">87</td><td data-label="指令：">全息幻彩</td><td data-label="代號：">/holographic</td><td data-label="英文 prompt 片段（直接複製）："><code>holographic iridescent material, rainbow light shifts</code></td><td data-label="什麼時候用：">Y2K、潮流、科技</td></tr><tr><td data-label="#：">88</td><td data-label="指令：">故障風</td><td data-label="代號：">/glitch</td><td data-label="英文 prompt 片段（直接複製）："><code>digital glitch effect, RGB split, scan lines</code></td><td data-label="什麼時候用：">科技、駭客、錯誤主題</td></tr><tr><td data-label="#：">89</td><td data-label="指令：">火焰</td><td data-label="代號：">/fire</td><td data-label="英文 prompt 片段（直接複製）："><code>dramatic flames, glowing embers and sparks</code></td><td data-label="什麼時候用：">熱情、爆發、張力</td></tr><tr><td data-label="#：">90</td><td data-label="指令：">煙霧</td><td data-label="代號：">/smoke</td><td data-label="英文 prompt 片段（直接複製）："><code>swirling colored smoke, atmospheric haze</code></td><td data-label="什麼時候用：">氛圍、神秘、藝術感</td></tr></tbody></table></div><h3 class="sub-h">10｜情緒與色調（91–100）</h3><p>最後一步，決定整張圖的「情緒溫度」。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>#</th><th>指令</th><th>代號</th><th>英文 prompt 片段（直接複製）</th><th>什麼時候用</th></tr></thead><tbody><tr><td data-label="#：">91</td><td data-label="指令：">暗黑情緒</td><td data-label="代號：">/darkmoody</td><td data-label="英文 prompt 片段（直接複製）："><code>dark moody atmosphere, low-key lighting, muted shadows</code></td><td data-label="什麼時候用：">深度、故事、反思</td></tr><tr><td data-label="#：">92</td><td data-label="指令：">夢核</td><td data-label="代號：">/dreamcore</td><td data-label="英文 prompt 片段（直接複製）："><code>dreamcore aesthetic, surreal and slightly uncanny, soft hazy colors</code></td><td data-label="什麼時候用：">創意、超現實</td></tr><tr><td data-label="#：">93</td><td data-label="指令：">暖色調</td><td data-label="代號：">/warmtone</td><td data-label="英文 prompt 片段（直接複製）："><code>warm color palette, amber and honey tones</code></td><td data-label="什麼時候用：">溫暖、親切、居家</td></tr><tr><td data-label="#：">94</td><td data-label="指令：">冷色調</td><td data-label="代號：">/cooltone</td><td data-label="英文 prompt 片段（直接複製）："><code>cool color palette, blue and teal tones</code></td><td data-label="什麼時候用：">理性、科技、冷靜</td></tr><tr><td data-label="#：">95</td><td data-label="指令：">低飽和</td><td data-label="代號：">/muted</td><td data-label="英文 prompt 片段（直接複製）："><code>muted desaturated colors, soft and calm</code></td><td data-label="什麼時候用：">高級、文青、極簡</td></tr><tr><td data-label="#：">96</td><td data-label="指令：">高對比</td><td data-label="代號：">/highcontrast</td><td data-label="英文 prompt 片段（直接複製）："><code>high contrast, deep blacks, bright highlights</code></td><td data-label="什麼時候用：">衝擊感、運動、強烈</td></tr><tr><td data-label="#：">97</td><td data-label="指令：">粉彩</td><td data-label="代號：">/pastel</td><td data-label="英文 prompt 片段（直接複製）："><code>soft pastel color palette, light and airy</code></td><td data-label="什麼時候用：">女性向、甜美、清新</td></tr><tr><td data-label="#：">98</td><td data-label="指令：">青橙色調</td><td data-label="代號：">/tealorange</td><td data-label="英文 prompt 片段（直接複製）："><code>teal and orange color grading, Hollywood blockbuster look</code></td><td data-label="什麼時候用：">電影感最常見的調色</td></tr><tr><td data-label="#：">99</td><td data-label="指令：">單色</td><td data-label="代號：">/monochrome</td><td data-label="英文 prompt 片段（直接複製）："><code>monochrome color scheme, single hue variations</code></td><td data-label="什麼時候用：">品牌色統一、設計感</td></tr><tr><td data-label="#：">100</td><td data-label="指令：">褪色懷舊</td><td data-label="代號：">/faded</td><td data-label="英文 prompt 片段（直接複製）："><code>faded nostalgic tones, lifted blacks, soft vintage wash</code></td><td data-label="什麼時候用：">回憶、懷舊故事</td></tr></tbody></table></div></section>
+
+<section class="sec fade" id="s4"><span class="sec-tag">4</span><h2>10 組現成組合 prompt</h2><div class="tipline">直接複製，把【】裡的內容換成你的主體就能用。ChatGPT 和 Gemini 直接貼；Midjourney 在最後加上 <code>--ar 4:5</code>。</div><div class="acc"><details class="ch" open><summary><span class="ch-n">1</span><span class="ch-t">① 個人品牌形象照（老闆、講師、顧問）</span><span class="ch-mk"></span></summary><div class="ch-body"><p>用到：#08 中片幅 ＋ #15 低角度 ＋ #33 輪廓光 ＋ #37 攝影棚燈 ＋ #95 低飽和</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>Portrait of 【a confident Asian man in his 30s wearing a black turtleneck】, arms crossed,
+low-angle shot, professional studio lighting with a softbox key light,
+strong rim light outlining his shoulders, dark charcoal seamless backdrop,
+shot on Hasselblad medium format, muted desaturated colors, high-end editorial portrait,
+vertical 4:5</pre></div></div></details><details class="ch"><summary><span class="ch-n">2</span><span class="ch-t">② IG 輪播封面（留位置放標題）</span><span class="ch-mk"></span></summary><div class="ch-body"><p>用到：#11 電影感 ＋ #30 留白構圖 ＋ #41 黃金時刻 ＋ #26 淺景深</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>【A young creator working on a laptop in a café】,
+cinematic film still, minimal composition with generous negative space on the top third for a headline,
+golden hour sunlight through the window, shallow depth of field,
+warm color palette, vertical 4:5</pre></div></div></details><details class="ch"><summary><span class="ch-n">3</span><span class="ch-t">③ 電商產品主圖</span><span class="ch-mk"></span></summary><div class="ch-body"><p>用到：#70 產品攝影 ＋ #64 極簡 ＋ #31 柔光 ＋ #03 8K</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>Professional product photography of 【a matte white skincare bottle】,
+hero shot on a clean reflective surface, minimalist background in soft beige,
+soft diffused lighting, gentle shadows, 8K ultra-detailed, commercial quality,
+square 1:1</pre></div></div></details><details class="ch"><summary><span class="ch-n">4</span><span class="ch-t">④ 精品質感物件</span><span class="ch-mk"></span></summary><div class="ch-body"><p>用到：#65 奢華 ＋ #39 林布蘭光 ＋ #27 散景 ＋ #93 暖色調</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>【A gold wristwatch】 resting on a leather-bound book,
+luxury aesthetic, dramatic side lighting with deep shadows, creamy bokeh background,
+warm amber and honey tones, shot on full-frame camera, 100mm macro lens,
+vertical 4:5</pre></div></div></details><details class="ch"><summary><span class="ch-n">5</span><span class="ch-t">⑤ 咖啡廳生活感</span><span class="ch-mk"></span></summary><div class="ch-body"><p>用到：#40 窗光 ＋ #51 35mm 底片 ＋ #13 正俯視 ＋ #54 Portra 色調</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>Top-down flat lay of 【a latte, an open notebook and a pen】 on a wooden café table,
+natural window light from the side, shot on 35mm film, Kodak Portra 400 film look,
+subtle grain, cozy morning mood, vertical 4:5</pre></div></div></details><details class="ch"><summary><span class="ch-n">6</span><span class="ch-t">⑥ 電影感夜景人像</span><span class="ch-mk"></span></summary><div class="ch-body"><p>用到：#47 雨夜 ＋ #38 霓虹燈 ＋ #27 散景 ＋ #98 青橙色調</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>【A woman holding a clear umbrella】 standing on a rainy night street,
+wet asphalt reflecting neon lights, pink and blue glow, creamy bokeh,
+cinematic film still, teal and orange color grading, vertical 4:5</pre></div></div></details><details class="ch"><summary><span class="ch-n">7</span><span class="ch-t">⑦ 室內設計／空間照</span><span class="ch-mk"></span></summary><div class="ch-body"><p>用到：#24 廣角 ＋ #40 窗光 ＋ #36 體積光 ＋ #64 極簡</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>Interior photography of 【a minimalist living room with a linen sofa and oak floor】,
+wide-angle shot, 24mm lens, natural window light, soft volumetric light beams,
+minimalist composition, architectural digest style, true-to-life colors,
+horizontal 3:2</pre></div></div></details><details class="ch"><summary><span class="ch-n">8</span><span class="ch-t">⑧ 美食照</span><span class="ch-mk"></span></summary><div class="ch-body"><p>用到：#21 特寫 ＋ #26 淺景深 ＋ #34 逆光 ＋ #93 暖色調</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>Close-up of 【a bowl of steaming beef noodle soup】,
+backlit so the steam glows, shallow depth of field, rustic wooden table,
+warm color palette, appetizing food photography, vertical 4:5</pre></div></div></details><details class="ch"><summary><span class="ch-n">9</span><span class="ch-t">⑨ 復古底片風人像</span><span class="ch-mk"></span></summary><div class="ch-body"><p>用到：#57 即可拍 ＋ #58 閃光燈直打 ＋ #52 底片顆粒 ＋ #100 褪色懷舊</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>【Two friends laughing on a city street at night】,
+disposable camera photo, harsh direct on-camera flash, hard shadows,
+visible film grain, faded nostalgic tones, candid unposed moment,
+vertical 4:5</pre></div></div></details><details class="ch"><summary><span class="ch-n">10</span><span class="ch-t">⑩ AI／科技主題視覺</span><span class="ch-mk"></span></summary><div class="ch-body"><p>用到：#71 賽博龐克 ＋ #86 鉻金屬 ＋ #33 輪廓光 ＋ #94 冷色調</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>【A chrome humanoid robot hand touching a human hand】,
+cyberpunk city background, polished chrome material with mirror reflections,
+strong rim light, cool blue and teal tones, cinematic, high detail,
+vertical 4:5</pre></div></div></details></div></section>
+
+<section class="sec fade" id="s5"><span class="sec-tag">5</span><h2><span class="nw">同一個 prompt，</span><span class="nw">三個工具怎麼寫</span></h2><p>主題：<b>咖啡廳裡用筆電工作的創作者，黃金時刻，電影感</b></p><h3 class="sub-h">ChatGPT（GPT Image 2）</h3><p>可以用中文，描述越完整越好。要放文字直接寫進去。</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>幫我生成一張直式 4:5 的照片：
+一位 30 歲左右的亞洲男性創作者，在咖啡廳靠窗位置用筆電工作。
+cinematic film still，黃金時刻的陽光從窗戶斜照進來，淺景深，背景咖啡廳散景。
+畫面上方留白，放標題「用 AI 一天做完一週的內容」，白色粗黑體。</pre></div><h3 class="sub-h">Gemini（Nano Banana 2）</h3><p>一樣可以中文。擅長接著改，第一張出來後用對話調整。</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>生成一張直式 4:5 照片：亞洲男性創作者在咖啡廳靠窗用筆電工作，
+cinematic film still, golden hour sunlight, shallow depth of field, warm tones。</pre></div><p>接著修改：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>人物和構圖不變，把時間改成雨夜，窗外加上霓虹燈倒影。</pre></div><h3 class="sub-h">Midjourney</h3><p>英文、短句、逗號分隔，參數放最後。</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>Asian male creator working on a laptop by a café window, cinematic film still,
+golden hour sunlight, shallow depth of field, warm tones, subtle film grain --ar 4:5 --s 150 --no text</pre></div></section>
+
+<section class="sec fade" id="s6"><span class="sec-tag">6</span><h2>6 個讓成品更穩的技巧</h2><p><b>1. 一次 2～4 個指令就夠</b><br>疊太多風格詞，AI 會不知道要聽哪一個。先抓「光線＋質感」兩個，最有感。</p><p><b>2. 避免互相打架的指令</b><code>/minimalist</code> 配 <code>/cyberpunk</code>、<code>/softlighting</code> 配 <code>/dramaticlighting</code>，結果通常兩邊都不像。</p><p><b>3. 光線先決定</b><br>同一張圖，換光線的差異比換風格更大。不知道從哪開始，就先加 <code>#33 輪廓光</code> 或 <code>#41 黃金時刻</code>。</p><p><b>4. 比例一定要寫</b><br>IG 貼文 <code>4:5</code>、限動與 Reels <code>9:16</code>、YouTube 封面 <code>16:9</code>。沒寫的話，AI 常給你正方形。</p><p><b>5. 用自己的臉或產品，先上傳參考圖</b><br>ChatGPT 和 Gemini 都可以加上這句：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>保留參考圖人物的五官、臉型與膚質，只改變姿勢、服裝、光線和背景。</pre></div><p><b>6. 一次只改一件事</b><br>不滿意的時候，別整段重寫。「只把光線改成藍調時刻」這種修改，成功率最高。</p></section>
+
+<section class="sec fade" id="s7"><span class="sec-tag">7</span><h2>下一步</h2><p>這份清單建議這樣用：</p><ol class="steps"><li>先從 <b>第 4 章的 10 組組合</b> 挑一個最接近你需求的，換掉主體直接生成</li><li>再回到 <b>第 3 章</b>，每次換一個指令，觀察畫面怎麼變</li><li>把你最常用的 5～10 個指令存成自己的模板</li></ol><p>用過幾次，你就會有一套自己的攝影語言。</p></section>
+
+  <!-- ═════ ③ 研究所介紹（全站固定，不跟著乾貨改） ═════ -->
+  <section class="inst" id="institute">
+    <div class="kk">ABOUT · 奇點研究所 × D11</div>
+    <h2>我們是一間自媒體公司<br><span class="g">正在把工作流程搬到 AI 上</span></h2>
+
+    <p class="lead">搬好一個，就放進奇點研究所，<br class="m-br">給想做自媒體、但沒時間的人直接用。</p>
+    <div class="founder">
+      <p>企劃、寫稿、做圖、剪片，以前每一步都要有人。<br>公司的產能全排給客戶，我自己的帳號卻一直沒時間經營。</p>
+      <p>後來我們把這些判斷一件一件拆開，<br class="m-br">交給 AI。一篇輪播貼文，從4小時做到20分鐘。</p>
+    </div>
+
+    <div class="big">
+      <div class="b"><div class="bn">60天</div><div class="bl">粉絲從3,000<br>到5萬</div></div>
+      <div class="b"><div class="bn">20分鐘</div><div class="bl">一篇輪播<br>原本要4小時</div></div>
+      <div class="b"><div class="bn">164萬</div><div class="bl">一篇圖文<br>的觀看人數</div></div>
+    </div>
+
+    <!-- 【預留】實戰證明：有了學員成果、外部授課紀錄再打開。放在自己的數字後面、「研究所裡有什麼」前面
+    <h3>不只我做得到</h3>
+    <div class="proof">…學員案例／授課照片…</div>
+    -->
+
+    <h3>研究所裡有什麼</h3>
+    <div class="tools">
+      <div class="tool main"><div class="tn">輪播生成器<em>主打</em></div><div class="td">丟一個題目進去，出來是可以直接發的貼文。附教學影片，跟著做一次就會。</div></div>
+      <div class="tool"><div class="tn">人設定位</div><div class="td">40分鐘，AI 一題一題問你，產出一份它認得你的人設檔。</div></div>
+      <div class="tool"><div class="tn">AI 剪輯台</div><div class="td">原始影片丟進去，自動剪空白、上字幕。Mac、Windows 都能裝。</div></div>
+      <div class="tool main"><div class="tn">每週晚上教學直播</div><div class="td">我開直播帶你跑一次工具，有重播。</div></div>
+    </div>
+
+    <h3>你可能卡在這幾件事</h3>
+    <div class="qa">
+      <div class="q">我不會剪輯。</div>
+      <div class="a">輪播、圖文、Threads，一張圖一段字就能發。</div>
+      <div class="q">我怕鏡頭。</div>
+      <div class="a">把我帳號拉起來的那些貼文，沒有一篇需要我出鏡。</div>
+      <div class="q">我有本業，沒時間。</div>
+      <div class="a">一篇20分鐘，通勤、午休就塞得進去。</div>
+      <div class="q">我試過，沒做起來。</div>
+      <div class="a">上一輪拼誰敢站到鏡頭前，這一輪拼誰先把流程換掉。</div>
+    </div>
+
+    <h3>適合這樣的人</h3>
+    <div class="fit">
+      <div class="f">已經在做自媒體，想用 AI 省時間</div>
+      <div class="f">以前做過，因為太花時間停下來，想重新開始</div>
+      <div class="f">完全沒經驗，現在想開始</div>
+    </div>
+
+    <div class="btn-wrap">
+      <a class="skbtn" href="https://www.skool.com/d11-lab/about" target="_blank" rel="noopener">加入 奇點研究所 × D11 →</a>
+      <div class="btn-note">月費方案，詳細內容以 Skool 頁面為準</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="fa">傑森所長 @jasonxtsai</div>
+    <div class="fc">Instagram：@jasonxtsai　／　Threads：@jasonxtsai<br>※ 文中帳號數字為個人經驗，不代表每個人都能有相同結果</div>
+  </footer>
+
+</div>
+
+<script>
+// 複製：每個灰底框右上角的按鈕，複製同一框裡的文字
+document.querySelectorAll('.copy-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var txt = btn.parentElement.querySelector('pre').innerText;
+    function done(){ btn.textContent = '已複製'; setTimeout(function(){ btn.textContent = '複製'; }, 1800); }
+    function fallback(){ var t=document.createElement('textarea'); t.value=txt; document.body.appendChild(t); t.select(); try{document.execCommand('copy');}catch(e){} t.remove(); done(); }
+    if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(done, fallback); } else { fallback(); }
+  });
+});
+
+// 頁內跳轉：不靠網址的 #，直接捲過去（預覽視窗、IG 內建瀏覽器裡 # 有時不會動）
+document.querySelectorAll('a[href^="#"]').forEach(function(link){
+  link.addEventListener('click', function(e){
+    var target = document.getElementById(link.getAttribute('href').slice(1));
+    if(!target) return;
+    e.preventDefault();
+    target.classList.add('vis');
+    target.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+
+// 懸浮按鈕：研究所介紹出現在畫面上時收起，避免兩顆按鈕同時出現
+var fc = document.getElementById('float-cta');
+var inst = document.getElementById('institute');
+if(fc && inst && 'IntersectionObserver' in window){
+  new IntersectionObserver(function(es){
+    fc.classList.toggle('hide', es[0].isIntersecting);
+  }, {threshold:0.05}).observe(inst);
+}
+
+// 捲動淡入
+function reveal(){
+  var vh = window.innerHeight;
+  document.querySelectorAll('.fade:not(.vis)').forEach(function(el){
+    if(el.getBoundingClientRect().top < vh) el.classList.add('vis');
+  });
+}
+window.addEventListener('scroll', reveal, {passive:true});
+window.addEventListener('load', reveal);
+reveal();
+setTimeout(function(){ document.querySelectorAll('.fade').forEach(function(el){ el.classList.add('vis'); }); }, 2500);
+</script>
+
+<!--
+本頁由 產生落地頁.py 產生
+來源：落地頁模板/原稿/100個AI攝影指令.md
+要改內容：改來源後重跑；要改標題與按鈕：改 產生落地頁.py 的〈頁面設定〉
+-->
+</body>
+</html>

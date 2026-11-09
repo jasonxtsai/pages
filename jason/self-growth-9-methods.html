@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- 【換】頁面標題、分享時顯示的描述 -->
+<title>9個提升自己的方式｜傑森所長</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="9個提升自己的方式｜傑森所長">
+<meta property="og:description" content="Kobe 怎麼學 Jordan、巴菲特花 100 美元克服上台恐懼、金凱瑞開給自己的 1,000 萬支票。9 個方法附 AI 指令、9 週實踐計畫和每週復盤模板。">
+<meta property="og:url" content="https://jasonxtsai.github.io/pages/jason/self-growth-9-methods.html">
+<meta property="og:image" content="https://jasonxtsai.github.io/pages/jason/og/self-growth-9-methods-f9d6d531.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="Kobe 怎麼學 Jordan、巴菲特花 100 美元克服上台恐懼、金凱瑞開給自己的 1,000 萬支票。9 個方法附 AI 指令、9 週實踐計畫和每週復盤模板。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── 版型：沿用 2026-08-06-chatgpt-setup／2026-10-01-7-habits 的米色＋金橘 ── */
+:root{
+  --gold:#D4902A; --gold-bright:#E8A94A; --gold-dim:rgba(212,144,42,0.30);
+  /* 金色當「字」用時太淡（米色底上對比只有2.4）：小字用 gold-tx、大標用 gold-hd（2026-10-15） */
+  --gold-tx:#9A5F14; --gold-hd:#A8691A;
+  --bg:#F4F1EA; --bg2:#FBF8F2; --card:#FFFFFF; --card2:#FAF6EE;
+  --code:#12161f; --code-tx:#e6eaf2;
+  --text:#2c2a26; --dim:#6d6a62; --faint:#a8a39a; --ink:#2a2620;
+  --line:rgba(0,0,0,0.12);
+  --ok:#4a7c3f; --ok-bg:rgba(74,124,63,0.07); --ok-line:rgba(74,124,63,0.25);
+  --no:#b1431f; --no-bg:rgba(200,70,40,0.06); --no-line:rgba(200,70,40,0.22);
+  --dark:linear-gradient(160deg,#15110b 0%,#241a0e 100%);
+  --r-md:16px; --r-lg:22px; --pill:50px;
+  --bounce:400ms cubic-bezier(0.34,1.56,0.64,1);
+  --serif:"Noto Serif TC",serif; --sans:"Noto Sans TC","Inter",sans-serif; --mono:"JetBrains Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);color:var(--text);line-height:1.85;overflow-x:hidden;background:var(--bg);
+  background-image:radial-gradient(118% 54% at 50% 0%, rgba(212,144,42,0.16) 0%, rgba(212,144,42,0.05) 34%, rgba(244,241,234,0) 62%);
+  background-attachment:fixed;}
+.glow{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.g1{position:absolute;width:min(60vw,680px);height:min(60vw,680px);border-radius:50%;background:radial-gradient(circle, rgba(212,144,42,0.13), rgba(212,144,42,0));top:-18%;right:-14%;filter:blur(20px);}
+.g2{position:absolute;width:min(50vw,560px);height:min(50vw,560px);border-radius:50%;background:radial-gradient(circle, rgba(212,178,120,0.12), rgba(212,178,120,0));bottom:-14%;left:-12%;filter:blur(22px);}
+.wrap{max-width:720px;margin:0 auto;position:relative;}
+.js .fade{opacity:0;transform:translateY(14px);transition:opacity .35s ease,transform .35s ease;}
+.fade.vis{opacity:1;transform:translateY(0);}
+a{color:var(--gold-tx);text-decoration:none;}
+.g{color:var(--gold-tx);}
+
+/* ═════ ① 懸浮按鈕：電腦版掛右側、手機版浮在底部；滑到研究所介紹時自動收起 ═════ */
+.float-cta{position:fixed;z-index:40;transition:opacity .3s ease,transform .3s ease;}
+.float-cta.hide{opacity:0;pointer-events:none;}
+.fc-card{display:none;}
+.fc-pill{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:#1a1406;font-weight:900;font-size:15px;padding:14px 26px;border-radius:var(--pill);box-shadow:0 10px 28px rgba(120,80,20,0.32);white-space:nowrap;}
+.fc-pill .ar{transition:transform .2s;}
+.fc-pill:hover .ar{transform:translateX(3px);}
+/* 手機／平板：底部置中 */
+@media(max-width:1119px){
+  .float-cta{left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translateX(-50%);}
+  .float-cta.hide{transform:translate(-50%,20px);}
+  body{padding-bottom:84px;}
+}
+/* 電腦：右側卡片 */
+@media(min-width:1120px){
+  .float-cta{top:120px;right:max(24px,calc((100vw - 720px)/2 - 272px));width:240px;}
+  .float-cta.hide{transform:translateX(16px);}
+  .fc-pill{display:none;}
+  .fc-card{display:block;background:linear-gradient(165deg,var(--card) 0%,var(--card2) 100%);border:1px solid var(--gold-dim);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:20px 20px 22px;box-shadow:0 10px 34px rgba(120,90,30,0.13);}
+  .fc-card .k{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;color:var(--gold-tx);margin-bottom:10px;font-weight:500;}
+  .fc-card h4{font-family:var(--serif);font-weight:900;font-size:17px;line-height:1.5;color:var(--ink);margin-bottom:9px;}
+  .fc-card p{font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:16px;}
+  .fc-card a{display:block;text-align:center;background:var(--gold);color:#1a1406;font-weight:900;font-size:14px;padding:12px 14px;border-radius:var(--pill);box-shadow:0 6px 18px rgba(212,144,42,0.26);transition:transform var(--bounce);}
+  .fc-card a:hover{transform:translateY(-2px);}
+}
+
+/* ═════ 開頭：只交代「這頁是什麼」，自介移到最下面 ═════ */
+.hero{position:relative;z-index:1;padding:60px 30px 36px;}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:0.2em;color:var(--gold-tx);margin-bottom:20px;font-weight:500;}
+.hero h1{font-family:var(--serif);font-weight:900;font-size:36px;line-height:1.36;margin-bottom:14px;color:var(--ink);}
+.hero h1 .g,.fc-card h4 .g{color:var(--gold-hd);}
+/* 標題只在逗號、頓號後面換行，不會剩一個字掉到下一行（2026-10-15；瀏覽器內建的 balance 會把中文詞拆成兩半，不用） */
+.nw{display:inline-block;}
+.hero-sub,.sec>p,.ch-body p,.tipline{text-wrap:pretty;}
+.hero .h-sub{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--gold-tx);margin-bottom:14px;}
+.hero-sub{font-size:15px;color:var(--dim);line-height:1.85;margin-bottom:24px;}
+/* 這頁有什麼：數字跟單位寫在一起，點了直接跳到那一段 */
+.toc{margin-bottom:24px;}
+.toc .tt{font-size:13px;font-weight:700;color:var(--dim);letter-spacing:0.05em;margin-bottom:8px;}
+.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;}
+.toc a{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--gold-dim);border-radius:var(--pill);padding:9px 16px;font-size:14px;font-weight:700;color:var(--ink);transition:border-color .2s;}
+.toc a:hover{border-color:var(--gold);}
+.toc a b{font-family:"Inter";font-weight:800;color:var(--gold-tx);}
+.toc a i{font-style:normal;color:var(--gold-tx);font-size:12px;}
+/* 自介卡：全站固定。上面一句是對讀者的承諾，下面是證明 */
+.mid-intro{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:16px 20px;margin-bottom:24px;}
+.mid-intro .slogan{font-family:var(--serif);font-weight:900;font-size:min(18px,4vw);white-space:nowrap;line-height:1.45;color:var(--ink);margin-top:12px;}
+
+.mid-intro .who{display:flex;align-items:center;gap:14px;}
+.mid-intro .who img{width:76px;height:76px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);}
+.mid-intro .nm{font-weight:900;font-size:16px;line-height:1.3;color:var(--ink);}
+.mid-intro .tt2{font-size:12px;color:var(--dim);line-height:1.4;}
+.mid-intro .proof{display:flex;align-items:flex-end;gap:14px;border-top:1px dashed var(--line);margin-top:12px;padding-top:11px;}
+.mid-intro .num{flex-shrink:0;line-height:1.2;}
+.mid-intro .num .d{font-size:11px;color:var(--dim);}
+.mid-intro .num .v{font-family:"Inter";font-weight:800;font-size:18px;color:var(--gold-hd);white-space:nowrap;}
+.mid-intro .txt{font-size:14.5px;line-height:1.6;color:var(--text);padding-left:14px;border-left:1px solid var(--line);}
+.mid-intro .txt b{color:var(--ink);}
+.m-br{display:none;}
+
+/* ═════ ② 乾貨區 ═════ */
+.sec{position:relative;z-index:1;padding:38px 30px;border-top:1px solid var(--line);}
+.sec-tag{display:inline-block;background:rgba(212,144,42,0.14);color:var(--gold-tx);font-size:13px;font-weight:700;padding:5px 15px;border:1px solid var(--gold-dim);border-radius:var(--pill);margin-bottom:16px;letter-spacing:0.05em;}
+.sec h2{font-family:var(--serif);font-weight:900;font-size:24px;line-height:1.42;margin-bottom:14px;color:var(--ink);}
+.sec>p{font-size:15px;color:var(--text);line-height:1.9;margin-bottom:14px;}
+.tipline{font-size:13.5px;color:var(--dim);line-height:1.75;border-left:2px solid var(--gold-dim);padding-left:14px;margin:13px 0 2px;}
+.tipline b{color:var(--gold-tx);}
+
+.tblwrap{overflow-x:auto;margin:12px 0 4px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--card);}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;}
+.tbl th{background:rgba(212,144,42,0.12);color:var(--gold-tx);font-weight:700;text-align:left;padding:10px 13px;border-bottom:2px solid var(--gold-dim);white-space:nowrap;}
+.tbl td{padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6;}
+.tbl td:first-child{font-family:"Inter";font-weight:800;color:var(--gold-tx);}
+.tbl td:nth-child(2){font-weight:700;color:var(--ink);white-space:nowrap;}
+.tbl tr:last-child td{border-bottom:none;}
+
+.acc{display:flex;flex-direction:column;gap:10px;}
+details.ch{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;}
+details.ch[open]{border-color:var(--gold-dim);box-shadow:0 4px 18px rgba(120,90,30,0.07);}
+details.ch summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:13px;padding:16px 18px;user-select:none;}
+details.ch summary::-webkit-details-marker{display:none;}
+.ch-n{flex-shrink:0;min-width:34px;height:30px;border-radius:8px;background:rgba(212,144,42,0.14);border:1px solid var(--gold-dim);color:var(--gold-tx);font-family:var(--mono);font-size:12px;display:flex;align-items:center;justify-content:center;}
+.ch-t{flex:1;font-weight:700;font-size:14.5px;line-height:1.4;}
+.ch-t .en{font-weight:400;color:var(--dim);font-size:13px;}
+.ch-mk{flex-shrink:0;width:22px;height:22px;position:relative;}
+.ch-mk::before,.ch-mk::after{content:"";position:absolute;background:var(--gold);border-radius:2px;transition:transform .25s ease,opacity .25s;}
+.ch-mk::before{top:10px;left:4px;width:14px;height:2px;}
+.ch-mk::after{top:4px;left:10px;width:2px;height:14px;}
+details.ch[open] .ch-mk::after{transform:rotate(90deg);opacity:0;}
+.ch-body{padding:6px 18px 18px;border-top:1px solid var(--line);}
+.ch-body p{font-size:14px;line-height:1.82;margin:10px 0;}
+.pos{background:rgba(212,144,42,0.08);border:1px solid var(--gold-dim);border-radius:12px;padding:11px 14px;margin:10px 0 2px;font-size:13.6px;line-height:1.72;}
+.pos b{color:var(--gold-tx);}
+.judge{border-radius:12px;padding:11px 14px;margin:7px 0;font-size:13.6px;line-height:1.72;}
+.judge.no{background:var(--no-bg);border:1px solid var(--no-line);color:#7a3320;}
+.judge.ok{background:var(--ok-bg);border:1px solid var(--ok-line);color:#2f5228;}
+.judge .jl{font-weight:700;font-size:12.5px;letter-spacing:0.05em;display:block;margin-bottom:2px;}
+.judge.no .jl{color:var(--no);}
+.judge.ok .jl{color:var(--ok);}
+
+.cp{background:var(--code);border:2px solid var(--gold);border-radius:var(--r-md);padding:16px;margin:12px 0 2px;position:relative;box-shadow:0 10px 34px rgba(120,90,30,0.16);}
+.cp .pl{min-height:36px;font-family:var(--mono);font-size:11.5px;letter-spacing:0.08em;color:var(--gold-bright);margin-bottom:11px;max-width:calc(100% - 96px);}
+.cp pre{font-family:var(--mono);font-size:13px;line-height:1.85;color:var(--code-tx);white-space:pre-wrap;word-break:break-word;}
+.cp .ph{color:var(--gold-bright);}
+.copy-btn{position:absolute;top:8px;right:8px;min-height:44px;background:var(--gold);border:1px solid var(--gold);color:#1a1406;font-family:var(--sans);font-size:13.5px;font-weight:700;padding:0 18px;border-radius:50px;cursor:pointer;}
+
+.ck{display:flex;gap:11px;align-items:flex-start;padding:9px 0;cursor:pointer;border-bottom:1px dashed var(--line);}
+.ck:last-of-type{border-bottom:none;}
+.ck input{appearance:none;-webkit-appearance:none;flex-shrink:0;width:19px;height:19px;margin-top:4px;border:2px solid var(--gold-dim);border-radius:5px;background:var(--bg2);cursor:pointer;position:relative;transition:all .18s;}
+.ck input:checked{background:var(--gold);border-color:var(--gold);}
+.ck input:checked::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #1a1406;border-width:0 2.5px 2.5px 0;transform:rotate(45deg);}
+.ck span{font-size:14.5px;line-height:1.7;}
+.ck input:checked + span{color:var(--faint);text-decoration:line-through;}
+.cklist{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:8px 18px;}
+
+/* ═════ ③ 研究所介紹：跟上面同一套米色＋白卡，不另外換成深色 ═════ */
+.inst{position:relative;z-index:1;padding:44px 30px 40px;border-top:1px solid var(--line);}
+.inst .kk{display:inline-block;background:rgba(212,144,42,0.14);color:var(--gold-tx);font-size:13px;font-weight:700;padding:5px 15px;border:1px solid var(--gold-dim);border-radius:var(--pill);margin-bottom:16px;letter-spacing:0.05em;}
+.inst h2{font-family:var(--serif);font-weight:900;font-size:24px;line-height:1.42;margin-bottom:16px;color:var(--ink);}
+.inst h2 .g{color:var(--gold-hd);}
+.inst .lead{font-family:var(--serif);font-weight:700;font-size:16.5px;line-height:1.7;color:var(--ink);margin-bottom:16px;padding-left:14px;border-left:3px solid var(--gold);}
+.founder{margin-bottom:24px;}
+.founder p{font-size:14.5px;line-height:1.9;color:var(--text);margin-bottom:10px;}
+.founder p b{color:var(--gold-tx);}
+.big{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 30px;}
+.big .b{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:var(--r-md);padding:16px 10px;text-align:center;}
+.big .bn{font-family:"Inter";font-weight:800;font-size:24px;color:var(--gold-hd);line-height:1.1;}
+.big .bl{font-size:13px;color:var(--dim);margin-top:6px;line-height:1.5;}
+.inst h3{font-family:var(--serif);font-weight:900;font-size:18px;margin:6px 0 14px;color:var(--ink);}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:30px;}
+.tool{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:16px;}
+.tool.main{grid-column:1 / -1;border-color:var(--gold-dim);border-left:3px solid var(--gold);background:linear-gradient(165deg,var(--card) 0%,var(--card2) 100%);}
+.tool .tn{font-weight:900;font-size:15px;color:var(--ink);margin-bottom:4px;}
+.tool .tn em{font-style:normal;font-size:11px;font-weight:700;color:#1a1406;background:var(--gold);border-radius:50px;padding:1px 8px;margin-left:6px;vertical-align:2px;}
+.tool .tn em.soon{background:rgba(0,0,0,0.08);color:var(--dim);}
+.tool .td{font-size:13px;color:var(--dim);line-height:1.7;}
+.qa{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:4px 18px 16px;margin-bottom:30px;}
+.qa .q{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink);margin:14px 0 4px;}
+.qa .q::before{content:"Q";color:var(--gold-tx);font-family:"Inter";font-weight:800;margin-right:8px;}
+.qa .a{font-size:13.8px;color:var(--dim);line-height:1.8;}
+.fit .f{display:flex;gap:10px;font-size:14px;line-height:1.7;margin-bottom:9px;color:var(--text);}
+.fit .f::before{content:"\2714";color:var(--gold-tx);font-weight:700;flex-shrink:0;}
+.btn-wrap{text-align:center;margin-top:30px;background:linear-gradient(165deg,var(--card) 0%,var(--card2) 100%);border:1px solid var(--gold-dim);border-radius:var(--r-lg);padding:26px 18px;}
+.skbtn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#1a1406;border-radius:var(--pill);padding:17px 46px;font-weight:900;font-size:18px;box-shadow:0 8px 28px rgba(212,144,42,0.30);transition:transform var(--bounce);position:relative;overflow:hidden;}
+.skbtn:hover{transform:translateY(-3px);}
+.skbtn::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent);transform:skewX(-25deg);animation:shine 3.4s ease-in-out infinite;}
+@keyframes shine{0%{left:-100%;}22%{left:160%;}100%{left:160%;}}
+.btn-note{margin-top:14px;font-size:13px;color:var(--dim);}
+
+.footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:22px 30px 40px;text-align:center;}
+.footer .fa{font-style:italic;font-size:14px;color:var(--gold-tx);font-weight:700;}
+.footer .fc{font-size:12.5px;color:var(--faint);margin-top:8px;line-height:1.7;}
+
+/* ── 手機版 ── */
+@media(max-width:600px){
+  .hero{padding:40px 20px 28px;}
+  .hero h1{font-size:28px;}
+  .sec{padding:32px 20px;}
+  .sec h2{font-size:21px;}
+  .mid-intro .proof{flex-direction:column;align-items:flex-start;gap:6px;}
+  .mid-intro .num{display:flex;align-items:baseline;gap:8px;}
+  .mid-intro .num .d{font-size:13px;}
+  .mid-intro .txt{padding-left:0;border-left:none;}
+  .m-br{display:inline;}
+  .tbl{font-size:13px;}
+  .tbl th,.tbl td{padding:10px 10px;}
+  details.ch summary{padding:15px 16px;align-items:flex-start;}
+  .ch-t .en{display:block;margin-top:3px;}
+  .ch-mk{margin-top:4px;}
+  .inst{padding:34px 20px 32px;}
+  .inst h2{font-size:21px;}
+  .founder p{font-size:min(14.5px,calc((100vw - 40px) / 26.5));}
+  .big .bn{font-size:20px;}
+  .tools{grid-template-columns:1fr;}
+  .skbtn{font-size:16px;padding:15px 26px;white-space:nowrap;}
+  .footer{padding:20px 20px 36px;}
+}
+
+/* 手機開了「減少動態效果」：不淡入、不閃光、不平滑捲動（2026-10-15） */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .js .fade{opacity:1;transform:none;transition:none;}
+  .skbtn::after{animation:none;}
+}
+
+/* ── 產生器補充：Notion 內容常見的格式 ── */
+.sec p{font-size:15px;line-height:1.9;margin:0 0 12px;}
+.sec .sub-h{font-size:16.5px;}
+.sub-h{font-family:var(--serif);font-weight:700;color:var(--gold-tx);margin:22px 0 8px;line-height:1.5;}
+.h4{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink);margin:18px 0 6px;}
+.sec ul.bul,.ch-body ul.bul{margin:6px 0 12px;}
+.bul li ul.bul,.steps li ul.bul{margin:6px 0 2px;}
+ol.steps{list-style:none;margin:8px 0 12px;counter-reset:s;}
+ol.steps>li{position:relative;padding-left:33px;margin-bottom:10px;font-size:14px;line-height:1.75;counter-increment:s;}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:22px;height:22px;border-radius:50%;background:var(--gold);color:#1a1406;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;}
+.bul li{list-style:none;position:relative;padding-left:20px;font-size:14px;line-height:1.75;margin-bottom:7px;}
+.bul li::before{content:"\2726";position:absolute;left:0;color:var(--gold-tx);}
+.pos p{margin:0 0 6px;font-size:13.8px;}
+.pos p:last-child{margin-bottom:0;}
+.tipline p{margin:0;}
+code{font-family:var(--mono);font-size:.9em;background:rgba(212,144,42,0.12);border-radius:4px;padding:1px 5px;}
+.cp{padding-top:58px;}
+.cp{margin:10px 0 14px;box-shadow:none;border-width:1px;}
+.tbl.gen td:first-child{font-family:inherit;font-weight:700;color:var(--ink);}
+.tbl.gen td:nth-child(2){white-space:normal;font-weight:400;color:var(--text);}
+.tbl.gen th{white-space:normal;}
+details.mini{border:1px solid var(--line);border-radius:12px;background:var(--card);margin:8px 0;}
+details.mini summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:14px;}
+.mini-body{padding:0 14px 12px;}
+.cklist{margin:8px 0 12px;}
+a.dl{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#1a1406;font-weight:900;font-size:14px;padding:11px 20px;border-radius:var(--pill);margin:4px 0 14px;box-shadow:0 6px 18px rgba(212,144,42,0.26);}
+@media(max-width:600px){
+  .sec p{font-size:14.5px;}
+  .tblwrap{overflow:visible;border:none;background:none;}
+  .tbl.gen thead{display:none;}
+  .tbl.gen,.tbl.gen tbody,.tbl.gen tr,.tbl.gen td{display:block;width:100%;}
+  .tbl.gen tr{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:8px;}
+  .tbl.gen td{border:none;padding:2px 0;font-size:13.5px;}
+  .tbl.gen td:first-child{font-size:14.5px;margin-bottom:2px;}
+  .tbl.gen td:not(:first-child)[data-label]:not([data-label=""])::before{content:attr(data-label);color:var(--dim);font-size:12px;}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.className+=' js';</script>
+<div class="glow"><div class="g1"></div><div class="g2"></div></div>
+
+<!-- ═════ ① 懸浮按鈕（全站固定，只換卡片上的兩句話） ═════ -->
+<div class="float-cta" id="float-cta">
+  <a class="fc-pill" href="https://www.skool.com/d11-lab/about" target="_blank" rel="noopener">加入 奇點研究所 <span class="ar">→</span></a>
+  <div class="fc-card">
+    <div class="k">NEXT STEP</div>
+    <!-- 【換】這兩句跟著當篇乾貨改：「你拿到的是一小塊 → 完整的在研究所」 -->
+    <h4>方法學到了<br><span class="g">接著找人一起做下去</span></h4>
+    <p>重複的內容工作交給 AI，旁邊有一群也在動的人。這兩件事，我們在研究所一起做。</p>
+    <a href="https://www.skool.com/d11-lab/about" target="_blank" rel="noopener">加入 奇點研究所 × D11</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ═════ 開頭：這頁是什麼 ═════ -->
+  <header class="hero">
+    <!-- 【換】kicker／標題／副標／說明／這頁有什麼 -->
+    <div class="kicker">GROWTH · 留言「9」領取</div>
+    <h1>9個提升自己的方式<br><span class="g">名人真的做過的成長習慣</span></h1>
+    <div class="h-sub">每個方法都拆成今天就能照做的小動作</div>
+    <p class="hero-sub">Kobe 怎麼學 Jordan、巴菲特花 100 美元克服上台恐懼、金凱瑞開給自己的 1,000 萬支票。9 個方法附 AI 指令、9 週實踐計畫和每週復盤模板。</p>
+    <!-- 自介卡：全站固定，放在乾貨說明之後、「這頁有」之前 -->
+    <div class="mid-intro">
+      <div class="who">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAABQKADAAQAAAABAAABQAAAAAD/wAARCAFAAUADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwACAgICAgIDAgIDBQMDAwUGBQUFBQYIBgYGBgYICggICAgICAoKCgoKCgoKDAwMDAwMDg4ODg4PDw8PDw8PDw8P/9sAQwECAgIEBAQHBAQHEAsJCxAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ/90ABAAU/9oADAMBAAIRAxEAPwD9USPWmbTnFP5NJtxzQaCjHFOpmCRSnIFADXOeRUHap26VGV70FcwwYzQfainYzSY7jBjrilI79aCf0o3UmMaAF59aDSmo2571ICdOtNO3HP5UpNREUAKT1FRjjNKQcU3+lAxCSelKKcRTMHOaAvoLjr70jdCKceOtVz1oBCHrSdeKduHQUwDmkXYYUFRshBxUxyDmkzmoF1INpHWmbatlcA4NV2BzQMgI21GVA5qU4z9KYSCaAIXPPSqrrxmrbdagde9AFI5PXpURapnGOtQ9aAG9qaBtNTAAU7AzzQBA3SqjjnOOlXGxiq7txkVMikyo4ORUZJzip3HFQn1qbFEZOAf51GenPFOPP0o+lA7n/9D9UemO9LnPSm7qeuKDQOOgpRjODRxjFN3EHA60AOIxxUTjsKfu9eKaxBptAQEdcUzIXipyAKhakOwZz1pCR070dKQkYzUssdk9KaQacvI9aQt1qQIiDn2oIwfSpQwIpMZPSgCPbxUeMduamY84qJumaAGjnmgD8qOnFIOcUABHf1quwOat+o9aiK4yaBpFUnB5pDx+NS7TnmmlTSuWMBPT0pPpT8BRmmdBSYAx4z3qs7fnUzHGT61AyipAhY85A61EW5+lSkcVCRg4oAXvUTjP4VKSeaiIyKAKxTuarsmOlX3AxVRlOfrQBABSE54zTj6d6jzQA1jxiq7YNWWHeqzUmMgx2qB8gYHarLe1QMMnpUlkTDAx3puMU4LzRt9+aQH/0f1SAH1pdozxTlIpTgYoNBhOKjJ70rkGk6UAJnPFCgUE8UgPbpTYAwqButTE8Z7VE3B96Q0xMkCm0tB6nvUtFi47dqGXPNOVhRmpGmQleOe9OBxSsehpuRmgQj81Dg45qYiozgdaB9BNucUFdtLvA/AV8L/tX/ti6X8DHh8IeGjDd+KLqMSu03NvZROcI8vILM3VUAJwM4wRTSEfcZb5dw4xTd4xu6V/PnD+2R+05421x7Dwbf3E08ZL7RKsDurfd2RF4wR1+VVJxjp39m+FX7e/xM0HWp/C/wAdoLmFY2IW6htYkmgAOP31vIgaZR/EUkVvqcUWHzLa5+0xI6Z60mOK838BfEXSPG2kWer2V1bXdvepvt7m0cvBcL6qGAaNgeGjblTxzWL4++Ovgb4f37aXqU0l5fQoJZ7e0USvbxno8xJVUBHQFtxxwpqWh2PYWXPFQMOBXyx4V/bM+CPivUJbKPU5dO8oj95dR7ISCdobeCSAT3YAY5JFfUUU0N1BHcW8iyRSqGR1O5WUjIII4II6GoKEY9qiLcUpHOR2pCRmncCEio8VKwqPr1pAIeR0pMBRTm4AFR54x60ARM+OKrs3HHerLKMVCyZyKAKg55NRvwcirDLgYFQyLgUAQlsjmoGAxUxUgZqFqTGmQHGKRsYxUhBJyOlNxzUFkIA6gUMAvOM4qfIzxULEGgD/0v1SWgtxSkY5qM8Hmg0D8KTbjBqVfWnEADFAEOfam7T0xUpWgZ9KAIuRzTeSAKcTk4NMzyc0ARsp+lLj2zT8g4pPegpCDrinEUZxyKQ/NzUMoYRTMDJFSNULsIwWPYdqQDz0zVK6nigTdIwUnoO5+gFOaYR27TzMFC5ZiegHv7Cvzg/aG/bt+HHha3l0H4car/aWqiWWG6u7eEuLdY8giFpMI7lhtDDci/eIbGCAe7ftC/tGW3wi8NNNptrJPrOoKYbPzV2QJI/AaXfyVXliFGTg/Wvwu0zxj8PrzxH4g+Ifxk1HU/EvieeaSe2gtYYXt/P3YWSd7nI2jAKoqEBcDtgYPj34peJviBqM3iXxDfXV7I8jPF9ol8yUKBtA3AKOnHCgewr5+uZp/NeXO1mJJ/yatIlyPt3xJ+0l8PdT8NHRbDwDBrMbtzc67FA1yGYYaX7RaeQ+/PIDbgOnQV5Dq+p6bJ/Zb+HNWvjZxRm5httQmWVbS46S+Xt42vtAGVU44KnrXgNlq9xZq0WQQ3UMMg+xpLu74DW+Yc/NtB4BPXFWQ2fe/wAHf2kNS+F3hTXdIgJU6gWlgSJgqQXeCySIO2G6jOCuR3rf+ED+HviZ4ma/+MuuMNChMt1cGabyRLK+53cuMbnbBVSSSOAOgr87P7UmlWNGYjacg109h4suhE9hNKywHcMA4IBx0P4Dmk0mNTfU/UHxB4+/Yc+y3fg++8My6ho+HFvqNpC0Wo2zZ7TEoZhn7pfnHDZqr+zH+2r4Q+EFzrPw+8W6xqWt+CkJl0a7mt2a6tWz80LoGdvLIOQASFYHGA2B+aV1eacLJSjliQRz03d/rWXBJapExlRJWfBQgbCNvpjAxj61MqZftD+on4Z/G/4cfGGyfUPh/rtrqaRKDPGGZJ4STwJIXUMufUjB7V6szbgOMZ5r+VnwR458Z+CfE1p4v8G6m+matanAmjYhnQ8MkueJFboVYH88V+637MX7VOifGrTx4c1fy9O8XWce+S2Zj/pKJ96SDP3gP4l4K+mOaxcbFxlc+zCT0ozziq6TLJ84xUm/J9KRRJUbDNSA+9NyelAEDdKiJPUVMw/KoiMZoAiY8ZxUWAetSnOOlMwOlAELAYxVWRSPerbDHSq7ZPSpvqBW7YppypHfNSnjkcZqEkg0aFRGtjrVZs9qsnntUfT2oZR//9P9VDk/4VGU6084NBAA6UGg3J6ZxS7ueelN5FFADgc0ppoH60fhQAm3NNK1KOOTTGIX6UDSK+0g0bWNSk5NM70FjSpHFCjHNKT60h9qLAIxGa868feJtW0FtCtNEshe3OsagtrhnEaoqxSTMzMegxHjOCeeATxXoLsOQa+Cv20f2j9N+Fei6b4U8Pwfb/GmozJNp4yoitWibb58rNwV+Yrt6EE7iADUtAcv+2R8VtU8J/DvUfDGreJ7bRdU1eJVSy08lpnhdsPukY7wjLkAhFzzzjNfhfq+oJqmtStp8Zit2cgEqq4jHsgVQcdcCuj8f6vrviTxde694p1Jta1Sdne6uGkMgZx2Vh8pXsMZGBxxXlKapfX93GGcYHGOwUcn/wCvVRSM3I7C/v7PSrA2sYLTBcD8evPuetcFIPMYvIxZixAA7nvXYatp/wBqu45IDujlHXuDnGD74rqPh/8ACvxd8TNbh0fwpbHYflkuG4SM5OSx/oKmpUUVeRrSoynJRirs8lNrMWWNFwzfw5yea9f8J/AT4neMVjk0XRp5YZejlCo/MjFfrR8C/wBi3wB4Hii1HXoBrusHBMs43RK3X5E6cepr7v0/w9a2NqlvbxiNIwAqoNoAHYAV4OJz2MXamrn1WD4VlJXqu3kfgba/sMfGy5zts0BAyQWxx7ZrkfEv7I3xr8O5lfQ3uVAyRGckDp0r+j+KxVFDbMVSvNHhmUsy89s1xLiCpu0j0nwnQeibP5SNb0zW9FuvsOuWktnNDlTHKhQj14IrJFxKx64P5cV/SZ8Sfgn4M8eWMll4k0eC+SQH53XDrnurDkH6GvyH+P37H2u/Dye51vwN5uqaPGC727DNxAvcjH+sUe3zeoNergs6p1Xyy0Z4GZcM1aK54e8j5O0qTJBdxnOAVPf8a9b8GeIUm1jT45r6TRNV0u4jks9StywlhG75vu9QM7uf93ocV4fabzE8K5EqcqfboRXd6QoCtfSgOYZCHXOCVI9ffFe00rHzsbpn9G3wS+JOs+JrW68D+PBHB418OeSt4IuIry1mXfb38HAzHOvUfwvuX0r6HGQcV+TX7MnxOt/EGo+Dda+0vNeeGWl0e8dwTI2i3KqsBl28N5VwYxnqNpPTNfrIoJ6/hXNI6B+aQ5x/nilx2p23B5pAR1C+ScjpUp46c0wDtQBBg0w8damYEGq7FjwaAGMMrzzVdhgelTEkN7UjDOahgUipxnNRuB0q0V46VXcfhQmUkiLG3nNNYg896U9/alfbjmkUf//U/VQ47d6ZknjpTeaUHsRQaCkHjnimnPrUhOaaMU7AIMbaXNJwBTQ1IBzEYqMnPFSYzURyOKCooQ885xTSKM5pw5NAcwh2nFHbFN24JzTXY+/NAzivHPizR/Bnhu/8S69OtrYafE0srk87VGflH8TEDhRya/nH+MvxN8ReO/HmseOL8XFjca0hUrNhZY4VfdDAi8mNFjCHsWOT0NfsD+2zqel6L4Egm1bWLgS37vaw2CTJBHOsi/vGlwN3loAPMYHhTjuQfwq8W6nba54n1K+RyUnbeMk4+UYIBJJx6ZJOOpJppEykcTbTRSTRi7+UyF03ckHIGM56YPes+PQZrO2mZ1IeSTyyfRR1P41p6ktvdXD2+OABhh/P86T+0J5oI9PVt+WG4jue/wDWqsluQmdt4K0p/EWrpoEPyGSQKrAZ+blSR+ea/Zr4AfDbSPC3hWPTtOt0WeE/M4XmTJzz+PU1+UnwwZ9M11dZii3Q2k8CDapbLKc9sdTweetfuP8ADJ7aXR7O9tSpjkTcCD97cPm/Wvl89rNtR6H3nDGHjGLk1qes6VYKIklxwQOMV00cceBkYAqpbSRQokczrGNv8RAA/Ora6t4ejfyJtQgSQ9jIv+NeJTw0mtEfRzxMVo2aPl28sfyjkCsWeHqtdAsNpJEGtZ45Qem11JP5Gs24iaAjfzRWotboujVi9UzlLqJc4YZxXlfivS7O9tpkdA2c+nFe+f2as5OR1/rXEa54egkjfDFSe1cNShJao76VWL0Z+GX7SfwPh8I6xP4z8N2eYLnIuokGFBc8yKOx9cdetfLV9JDZCa2h4hmRFVs9GK/N+vSv23+MngaW+0W9iuAWjaJhjsSB8p/Ovw98X6Ze6Jr1zp12pVbeR1QEcADJ4r7HJsdKpT5J7o/O+JMtjSqe0p7M98/Ze+Jsvw++JVnaTQfabfXtmmSqDjaZpF2uM8ZVwD+eK/ov069F/bo6AJnnGefbgiv5PdLkkk1K3SHh5W2K2CSrNwGG3B3KeQfWv6Pv2Z/iu3j7wFBpXiN428UeHpP7P1ADH75o1DR3Kg/wyxsGz65r15HzaPpkDB/pTWOeKkAHUcUzjPFSMjPTGaMd6ccZ54AqJm5oAic46DFVzg9qsHk4BphHY0AVsDrTsZHApWBbimYKg1LQDH6cVTOc5q0Tgc1XI5OKkqJDx1I5qInPNWsLVaT5TTTKP//V/VAdMim5I5pemKUgig1SDIpuaadxpwBxkUA0PxTNo+lSA8c1Ezc5zigQ4tgVEeTnsaM9RmkJNBSYhGOlNDHrjGaVv1pnGc0BYmxkcVHKdq+v44p4yOarXcQlhdcnkUmUfhV+0reah8RfEmteOvFsrW1hbPPbadEWC7VCZtogX42ug8+QrksXRc5xj87QBLcSmYZWNs9/vDp+uMV9b/H++gv72bS7y+Lr4XY2MUR3bpLofvLiU/LjAYrCOeNg7Cvj+WZofO2HBbDNjuR0P9a0RjJkkkMkizyDgv29MdhWr4V0K6vXlS2TfMEbaD3bHH1PpWNZljGxJyUBbj3Ga+v/ANlv4YXnjLUYrsqVRWDOwHRM4yPeufFVlCDbOzA4Z1JqKPaf2Z/g42r6BatqkatErtcMrf8ALSQno/qFGOPxr621zxbpPwntv7I8NtLe65cqStnHmRIs8+Y45wT+Z717fpPhPT/Cul/ZtFgWIKuBwOT2z681z3gb4b2Hh7VbzXNU/wBM1G/ZpHmkAJLE/TAA7CvllJVJuc9j9BVOVKmqdPc+c79fjR4rsPt7vOhX5z5j8MccfKOgH0I9q8w1z4dfF6/mS9kieGO2wXckksTySexGa/R2XV9L02Y2uA7Jzjj5fr2Fc/rfjfQ7a2e1a4h3v0UOCT6cYrSea8qtBaDp5Fz2c5anw/4F0P4raLq6arPqcsltbtvVGJB3D0Ar9D/A/ia/1uzL6n/rSeR9RmvGDrmk36KAqqy+nGRXuvgewtbi3WaDALDvxiuN4z22h3rL/q6euhoa14tTQ7VmZuV6etfCPx7+OPjy3mt9P8HuyMw3yOnBHr0FfSXxbd7KRllOxQevHOK8v8O+EtI1Jxq+q48scEnknPQVzwxHLLVXOmrhXOC5XY+DpP2hvi4JmttQV7yFGw4kj4K9+cc18ufGzV7bxhcR6xaWn2S6UnzVX7pIGePqBX7ja1oHg2xsGhFimybPJjGB69ea+J/i78C9C1zTr6/0NEhlVXkXZ3Yc4/pXqYTMqTnblsz53Mcmr+yb5+ZH5PaMLhr2P7JkT7vkOeQw9K/or/ZN8AxaN8PbLxVew+dda9bW8rSyj97KF3MkjZ44Vgi4AwqjtX4A+G7f7B4ysYrmB38nUIYnjA+ZgZQCo9yK/qK8D6UdF8K6XpATyks4Eijj/uRqPkX/AICuAa+jbPhLWOuA+QDPIphX86l4HFM3A0hkTKetQkZPNTuTUPUZoAYRzUbAcZ7UpIqN2yPWgQhKjjpmq7HrT2fJxUbcjipkMryHNRjgc96kccdKiGenapGhOnTmq0p9asng561XkA607Fn/1v1SIo6cHmlxnmkbPSg0IjkD60AEdaeR0o75oAaeaYehqQ8CmD1oAjFIxPWpCBTSAaAI+2TTM/pTz6GmkcEGgaY4MD+FQzEspXuRT1Uc0OAASelBR/PV+19pdx4d+KXjXQYIvLF3qa3ruVAQQyr5gAY8qxfPyj7/AOFfCl+vlM0mcsnyY9D/AJOa/Sv/AIKC2MN78cdQ8hRBDa6Nb3t277v3koDxxquO7KABnjI6ivzWnQ3PlS43biMnsfQ1a2MransPw88CnV4t14mY5kzhjg4I6j3/APrV+v37IPw9j8NeBGmbEn2iVljbGG2JwM18GfDPR0FjbOeE8sc5HUY69/8AGv1d+CAjg8FWkcOG2MwJ988/h6V4OaVG4NH1eRUUp3PX303eqqTwBXmnxA8TL4b00uis0xyFRBlifYetez2UgkOwjJxWfq/h2w1VB58KyMpJ3EA4r57m6H2EItSufld4jg+O3xL1C90nT7efQNMkicwsj/vJZGB2mRuwPcDmvMvBv7MPxOs/FVtrHjy+K6bEx8yNLtxKwKHaOgHUg5J4xX636h8M5L0LLYXzWLr1Zef0/wDr1x6/A20nuZJda1W81DcfulhGp/755/Wu2liJRjywirGc8DTnJTqTZ8feCvCfi7RfFJsZNWg1LSZDtCSSk3UK54wQu1+3HBNfoX4agbSktYUY7QAMEYJ4pvhv4ZeG9AjV7CzjgZR2BJz7seTXRpbRwkt3ByM+tcE4NSuj1PaRceXojxr456BPqVjDfQ5jQyLvYdga+SfianxgNtcaJ8LBBDBZwA/apJU86ecj7saNgIo6FjyT6Cv0l1awg1nR5LWdQQyn3r5wufC+maxb3OmXcO2VPkDodjqe3IqW1CpdlKHPT5Uflrovhz9pu78Vxx+Pb/U9I09w4a4aUSx4VCQQFLLknHAx34FeqfD34l6tfeJJPA3iRt95BkLLtKpcxgcMM9xX1Rd/DbxrpkYj0PVPtMJYny7pRuGO24cfpXNv8L7+51W21rV7OOO8tH3B4wOOMHkevpXTVxsJ7xsecsqnTXuTb9T5CtfgTc3X7Xuh6fYWivp+oXVrqjekcEAMkzbfTcgXJ7tjqa/cW2V0iRJOqqAfyrw/4V6RpP8AwkV7q7WqHUY7SO3Scj5xBvLFM+hbBr3rFfS4Krz0lI/PMzoezryiRk4oJyPSg56CkLY611HARsSRntTW7inYXpmo2BoAgOB1qM1KwzURBAyKAI9vcmm4wfSnPn0pRkDJ5pNAQyR5GaqkY4q+G7VVcCkgICARz3qrIORVgk/Wq7kmgpM//9f9UjxzTDnFSHBHFRdTjNBoLwefSmk96cSaYc//AFqAsGc0L0pO1PWgaQ1sdMYpue1PYZ5qPGOtAxD0z3NNIGeenpTzj60xuP8AGgGgABNOOBxTOeppQcnNNCvofnZ+2n8F5dWTVfitY6UNYjTw/c2FzAF3SQyRt5tvdKMjd5eXVu6q24Zwa/FLwZ8NfiF49TUH8HeHb7Wo7bBaS2hZo43/ALpYcAkc7c574r+o34i+IfD3hTwRrXiDxXKItJtLWQ3DMpYbGG3bjuWzjHvXyV8L/Cj6Q1p4Q8Nu2k6Fo8OIYIvl3s43vLL/AHmZmySc+g4xXm5jmLopKKu2fQ5BkKxjm5StGKuz4p8M/Cb4i6R4AtdWvtLktpFhDPDIpWZAnUMnr3r7u/Z/kV/A0EinIaRiBXqj3btp8FpqgUzISucYDrnAbHv0PvXmnw5tU8O3Or+H4QVhiuXeL02sxIA+gIrwamKdSLTPpIZeqFROL0Pe9PlwdwrsbFY5U2nGWrzW0nIynvXW6dqIjw2elYUbX1O9t2ujrjbIoK4BIqtLb7fmJ4zU51GAxqwI555rltY1vyo2KtgLXTVUIq5dFTm+U0L2/tbOMKX5OBjuTWHA8t2WlC4UfdBrgbm/up4J9TZGMNvkkjoB3P4CvBfi/wDtWt8OBa6X4S8P3Xie+uAVWOzAwg7F3wcewAP4VyKTm7I754f2cWz7TtHtktpHuZAm0YI+vtXhWoXNvaeIHkjGYpPvN79jXzz4P+OPi7xFod1deKdGn0G4WRSUllWXerc/KQFIx0OVHtXAaH+0baa/48u/D8FhdvGo2CaWErAxU8hGJyfY4we1Z4um5K1tjTCNJ3vufeltFFKm0r75qC/ggWLHl4JHWuY0DWzJaI8nDkdD1Fb1xfRujEEH61wwSaPQqwa3IPA4jtfE80C8ebAwPpwQa9jIBHSvC/Bs/wBp8bBY+VjglJx0HIH9a9yL4OBX1+Uq1FH5VxHb6y7ETrjpUBPOKssM/jUO3HTvXpngkLcHNNYjqKkbOMiojzgd6AI2HoaiA4qVutRMSKAGtzkUzIFOJx0qM9KAGtkZquxz7VMxJyarMfTnNS+47ELA5xUHGasE1ERk0cwJH//Q/VEkCkHSm9T6U6g0AdKaw5yadSH0zxQNsZjHTrRn8KQnA96jLDqaAbJHbGDTM55pjcjGaFyBQFxT3NNIPFOJ7im49elA2JmpMelNHWn8ChBYydf0LSvE+iXvh/XLZLuwv4mimhkG5XRhggivLNI0uLStV1i8UZZYS4GMBRnCgD6Y/Gvas8YrkdZs1s7j7fHEZYpkaGZF6lW54HqDyPxrxM5w7lFTXQ+z4QzCFOc6E/t2/A+PPBlnreufGzVfFWr3Up0yGBrcK5PlgYzHweBhueK9N1W1ax8WQXUS4SdcORzynH8sV3tv4a0u3huPs7PmYlg20DIPZgcg4rCvbRlgSOY/PF8yE9So+U5+mK+fo6H1+btTfPHoalpnzhno1b4IQYHFYWn4ZAxPNdEihgOhNWlY8yLuVZbmRVyzdOlZcsFxfyrHkgN19q3jEpQg9eR61zmt6mNGsJpmOwRruJHX1qZauzO6jV5Vc6rydPgsGsnUeUyFWHYhuDXjY+HPhCK+N3ptksEzOSZNuMn2NeY6Z8e/CDpcanq+qxRiKRkWESAvlDjGM5rn/EP7VWgW6rB4Ys0JcEBpMyFsdgq8ZH4120+WKCnTq1bpaI1fFnwqvtU11rOEZgkXIZScZJ7/AE968ssPhvqfhrxHDc3ID/ZnG1snjnoRTZ/2oNWmDXlxJaxvGp2h4yrD3IGPwBrip/2prSW4W71V4LhSSXA+QhfUGuWs5PSx6dPL3Bc3NsfXsN9bxxb42Bx1ANY2o+IWiTaHOSCffmsDwV4R8S+NYYvFtvKmk6LOokRLg5ncPyPlH3Rg8ZP4V7dIfh3pNiFmSG5khA3vNg529Tz2ry/YOLvfQ6nOUotOOpg/Bu9M/iK5ml+9LAV/EEH+lfSgj53HmvLtF8UeCrOFruws7aLcBhoQoJzzwRg10tt4p07V5NulkRSg9z364Ir38HmcKcFCR8PmvD1WvUdSOh1L4B4FRHB7dakhlWdC44YcMPQ0pBBr6KElJXR8NUpuEnGW5UbKnFRNzzVxwTzVdlIOewqiCu2RyKiYA/WrJ6+1QOD2oEiu2e3Wo+RxUzJg5qIjHNJgkRv6iqvXpVhs8iocYqWykQHIODURJqyQDkDioygA9aRR/9H9TM4pwPFR89qQZoNB5YgfSmb880vU0hB7UAB+Yc1HSnnrxTcnOKBpCD+dJuA+WncVGcnoKB2HZ5POaX2pAKb096TZQ9W6inZqEnHI70oOO/WlfQViemMsbxlXGVPamAnNNd8DHWh2aswjJp3R8/8AxO8c6X4Z1O38J6jc3Frd6xBPcWM8TKm6S1AZo97fxYOduDuXIHIrwbWfjXa634o8NxaEjHRwDbSyno3mfJkZ6gOBk968x/4KB+OvBtvrngDwZqdwTqcepWt9tRciCEyqpeRsgANg4GCeOwr1q28G6Xrd6mqBVMA+ZduMHuMY7V8tnNFU3HlVrn6Dw3jqleM1U1toe9adORGu449RXQx3AX58815Ta6sLeURzHA6Z/SupTUFlXZG2f6Vwqd1c63FxlY6v7cFff2/SuX1uIa432EDcj9f61G0ski7Acfzq3Y27bl5GRyc9T7D8axqSudlCy3PJtT/Zl+C91fDWW8OW1vqXLvcIuDI7csW9zWX/AMKe8J6bMscem2Zgiz5eAImXtwcV9FXDs0Wxhk4xivMfFOi31xZSPablfBwBzW8aulmd+Dxc6TfIkzxbWvh/4ClvNr6fB90hj5g3Hg9cHsa8G8XfC/wXrFtPo6aHaJG6bRMQNy/7pHzfSusvfh141l1Oa9mWXG7ggN3pR4N1Wy3X2oO52k8DofSorT5ftHtU83dSLi6SPBrfx18XPAtq3hu81AXdragRQzZKs8ajCk9QSBxXvvwF+EnxE+LGopr/AIxSWPw07Hc87vGLhSCCIgCGIz/FkD0zXp3w++CmmeObiHxN4nTzdO0+T5ITwkpQ87/VQf4e568V9cS+Kf7TaHwx4WVBMi7QicJFGnBZsfdA7D8BU0mpatHkYmvWtyRlouvY1LXw14J8K6Tb+EtK09LmJFAKbQ5IHGWZskk+pOafbeE/BNgxj0qzbTJXYykJkLvbqccjn2rci/svwppzSXzia9cbmZsZLY7+gHpXI+EPF194rmlvrSFWtI2ISTs204IGPStppKSTX/APPpSm4uUW7Lrfc3ks7+3bz4GFxs4IHBZfcevpV8vwCeM84PXmtb7YbhlaS0DAcHBx09OKfKLeRceXIpPY4bFd+GxLpKy1R8/mGXqvLmlozFLZ7dagY8VpT28pt2EUZMg6ZwM/lWSGJA3DB7j0PcV62Fxaq3XU+cx+Wyoa3umN5PHSonzn2qYkdKruR0rqPNIycjrVdzg1McgVXcZPrQBGT61HjNPIyBTTwPelYCBuvrQT60rUz8OtTYs//9L9SwOKacAUbhjimFiKbNCTOQMGgHAzTC3r2ppJPvmkAhYE8UwZzmmkkHrQrEDHWgpDz6UmQBTNx9aQnNFwRKGz701iCfWmAnOBTicc1N7lCZAODS9eBTcnNA3HnvQwHZwKbHFLNuMalgoyT6fWun0rw1dXxEtzmGE+3zH6Cu5i0m1trf7PFHhMfn9acYkyZ/Mf+27450D4i/GTVPskPkXWgAaXMSc7zCzEN7dSPwrd/Zu/a1k8KPbfD/4lzk6WMR2moPyYewSY909H7dDxyPN/20fBp8I/tRfEeyGRHe3EN7H2+S4jR8/mTXyFNKFbbIM0sXhIVock0b4HMKmHqc8Gf0TXbQanZi8s5A6TKGRlOQQRkEEcEEciuTtfE+p6POUuUMsQ4z3xX5P/AAK/aZ8SfCt4tB115NV8LkgCMndLaZ7xE9U9U/75x3/SzSfHPhnxnpNtrmg3kd5ZXIyroc89wR1DDuDgj0r43F5fUoOz2P0HCZpTxKunZ9j3PSvGlhehTFKMnGVPUfWvQtO1i3ZcFgM/ia+RL2yikf7XZymGQc7l9qoR+PNb0iUJc/v1Q8FT6eorjgtTrqyaR9+2slvOgctgtU8+raNARFIQrLj8fYGvji1+N1iY0gllKz+jHGK5nVPitDNO9y82SpBUZ9B3Ocda7I0zljiEup9Y+IfEunPObaBl3Y/z0ryrVdRsdREemxqr3Vy3lxqOpcnA/wDr18xSfEbU3kubyRiWk4AUjgDke/epPA/jrxJffETTptI059WlQsqwR8vvdCocD/Z5znoO9RLCOT1O6hmkIbux9lav4gs/hf4EawuWzLHlFAGCzH0HuTXWeBLSy+HGgTazqjA6nqgE1zI33txXhc/3U6Afj1NeOa78L/H/AIs1WHxB42khsbPT7iOaK2RhK08iMH2ttO1VAGSck8Yx3rH/AGh/Hk2n+Hjpent5lw4EaqvLFjwBj1yaKlKUHdq3Y9am6VdclN3j1Z6zDb638UtYGoNdtZ+G9204H7y7Cn5wp42pkbS3fkDpmvUNe8T+GvBemwabpUUcMa4jihhUAD0VVHrXgHg6+k+Gvwi07SbwGLUIoC8yscsJpPnfn6tXrvw78IwWel2niDXYWn165j81nmYv5PmZYKinhcKQCRz15rowmHdSTit+rPGzjFxoRU57bJd/U4a4+O66Nql1ouvI2nXlsxzDIfmCkblOB6g5rv8Awd8WB4mBuoYDFYodpuJhsDn0jU4LfXp7mvi79rbxHo9v420mPQUW4162hP2wK2AkYwYg2P8Alpyf+A4q98JPis8SwwaxYS3lxkCIRAOefReBn3H6Vz4iDpzcU7m+BlGtSU5Rs2fopcam0qedENgcZGfSuVsrxJ725tifnBEgHseDirOjXtxe6SJ7iyazab7qu6tJj/aC5x+Jrm73dpV9FqGPkDbZD6K3B/LrXTharhUUnseVmuGUqcodTr2A71Xk9BU5O7moGI7V9MfAWImHaq7nBwDU7NuyTxUDDdzQIh7+wppyakxjB9KRuBigCsfvUhNP+tRtnNKxXMf/0/1EzQeetMOetA3elNo0HlhQeRWvbaBql2geOLah5yx2itJfCV+cGaREX2yx/pSGciwGc+1QZboa79fCcIB82V2+gA/xqZPDNgg5Vn+rf4YoEeeE9cU+OOWVtsaFj6AE/wAq9Mg0TToOVhXPuM/zrSjjSHiMBfYDH8qTQ0zzSLR9Uk5W3ZfrgfzrRTw1fyL85VfTJz/Ku7b1NSqQV60WRaOETwrOx2m4Ck/7JNdZpXhqzsY1eZRLOOrHoD7DpWmkYLgg8VZ39hTSRLLIUUrgFTxUSsTjmp8g0En8+/8AwVT8Btovxk8O+OoVxD4k0uS1lPbzrGTI/wDHJR+VfkzdwEAl+lf0Zf8ABU7wHL4h+ANv4zs4/MuPCGow3TEDkW0+YJfwG9SfpX86Vw/mDd6810Rd0ZzOdeZ4DszxXdeAviN4o+Hmo/2l4cuSIZCPPtXJMUwHqOx9GHIrjrmIEYrFZ5IWwOlRUgpK0kOlWlB80dz9X/hZ8cNB+IkaWtvL9lvkH722lYCRexK9nX3H44r2u60OS7tzNF827054r8P7O/ntp4ru0ma3uITuSRGKurDuCMEV9kfC79rzX/DUceleOIDqtoMKLqLAnUf7a9H+owfrXzuNyf7VI+ty/Pk1y1j6o1fR5YZts6DPUcZ4rn4tFRiZHcqoPQE9q7/SfiB4J+IFj/aXhzUIbtSAXUMBImf7yH5l/EVhzhN+YyApPr2rxXzwdme/yU5LmTuLpuh255csV68selfY37LHhSy0261jxJFCkb4W1jI+8AfnfJ68/KPzr8/fEfxP0bw3LIJZl8u2U7jnuOtewf8ABO/4m+JviB8RPiRNebv7LngsrmOPkpC0btCij0LJyfUivUy6lOU+Z7I8PNqsI0+Rbs/TPxtZeIrq1X/hHoY7htrho5HCYJxggng+h/SvmPV/hB4w0tbTx7qZj1S/065+1S2KjeFiQ5DK38TL1Ix06E4r7QBLLxS9CCOo716VbAQm3KRy4TiGvQpqlTtb0PzC+JPi7V/EX2hgzJFIGxt/2v8AOKk8BfHz4m+HPB1z4XvI455LdPJsb6RiZLdD0VlIIfaPuknjgHIFes/GXwXD4e8RSz2UIjsNUVp4sD5Y5M/vEHpyQwHofavF4vCv2uNmUcLwF9T6mvAlCVKTsz7+nVo42lGVRJnjkti9xqVxq91O91dXTl5JJCWZ2Y5JJPUk17n8HtNks/EFhKw4ikI5H8LD+mas6D8Mbi7mVnX5c9K9x0PwpFoN4sqrjaUJ4+ua5J92dMrbLY+obIh7dCv3cCotUghntnjYbgQc1QsbqJLIc44GPpVGfUVIbL118yaPDxMHuW9DvGns/Jlz5tuTGSe+Oh/LFaxHOa5XRLxP7Re34AlXP/Al/wDrV1zAGvfwdXnppnw2YUPZ1GiDacH1qJvlqZs5461A+Tya6ThIifaoGbAqyR+FQMo59qSAh6+1NY0p45NRHP1ouU1of//U/T8Nk13/AIf0ONY1u71cyNyqEcAepHrWB4a01b69Ekw/cwnJB7t2H9a9WVVLH3q0W2OGRjFWFXPUVCUIO5enpUm4j6UNEEU0KoMgZU9faqkkRU4xxWwpVxg1mNw7Qt26fSoZotShJhelQMRmrMinvVV8DkVJcRCSaN2BgcU3dz70D3pXGXLbLHJqXuM9aitmVAS5Cjpk9KnYEScjFNsaQ+M5ODVoc81UTkmrkZyvNNGTR5X8afA9p8R/hh4n8D3yhotb0+5tOezSxlVb6q2D+Ffx1app+qaDf3WgazC1veWEjQyo3BDIcH/63tX9r18FkhZPUc+lfzg/to/Bywf4q+JNL0aIW+sxS/bbdmwqXFtcjzCpx02MSqsR2x06bU30FKN0fmQ7Z4NUJog+TWvqOnalpN3JYatbPaXER+ZJF2sM+1ZErFeRVswMuSFlNM3yJWgJIn4Y81FIinpzUM0EtNSu7CdLuxnktp06PExRh+I5r0K3+L/xEggFt/a7zof+egDH8+v5mvMSnzcVbj8uNdx6ispUoy+JG1PEThpFnQSTeI/Fd8kEsr3E1y6oiZwCznAAHqSa/o//AGQf2e7b9nv4Zf2PeOtz4i1h1utTnT7u8LhIUJ52RAkZ7sSfSvxK/Y48Hjx18ffC4vY9+naNcDUbgEZXFsQyA/WTbX9MaKhIeFg6nnIOaiVl7qNFzNc0hwVQMCmkHrUx9aZgfnUjscn4w8JaZ4z0V9I1HKZIaOVQN8Tjowz19CO4r5Mi0C78O6tcaNqqYntmwTj5XXs656hh0r7bbiuL8Y+ErXxPbLIuI763H7qT/wBkb1U/oea4sThlNXW57OU5m6MuV7M858PWtoyxgIFJwTitvVbGIMjj/loxB/AVwkF7e+HbtrTVYTDJHjhvTjBB7g+orZPiGO6iiw4bGH+mev8AOvn8UujPucJXUveTOqiMlvaBGOVXjB61y17cTI+AeCffNSy+IIA2GYcism41uxWUHKg+rf0rkc7Hb7PmgzrvDdtJJcGUnDDBB9CK9JSRZFyPofYivLtE1KKUZgPHr0Fdxp7SDdJJ9yU9f9oDj869fL6/LLl6M+PzjB80ebqjVPXJqI4Jo37s5+lRnivePkRJO5qq554qdumKhOKVhohNQkc1OfpVd89qViz/1f2E0KH7NbRoowW+Zvqa6uIEYOeaybKExoN1bC8jNatAWUZv4ualUo2BTYwMcU90Dj0NIBRleg4qldrjbOOqnn6VLvaP5X6U5gJEIPQ1MolxZSmTK7h3rNcc+1bUPzwbSMlDj8qz5029uagrqZvIPSpABkE1Gfvc/wCRUgJP0qCy1sSRDGyhlcYIPQis8yT6SwMmZrAfxdXi+vqv6itSIZBI7ChpNoZWAOeo9RQFx8cquhliYOj4KleQQe9SpLxz+VVbZIYoTDbRiONScADA55NLgg8U0xNEsp3j29K/If8Abw8K/Yvij4X8VJHiPVLWS0lc8qGtn8xc+vEmce1frx1Ar4p/bi8Mxaj8Ixr5AEmiXtvNu9ElPlMPoSy5rWD1Ej8aviR8PPD/AI/sBlBZX1uo8i7GNxLAHEvA3DA3Nn7oPHpXwz4u8CeJfB0/2fXbUqjHCTR/NE/GeD2+h5r9GPsUjzZ2u8YbLgYJkkJyIz/vHBcjOAAKo3Folw7xaha/bLWdTvSdd0bFjjOOxc9D2UV1WMbH5azQhTkVW3uvevrvxp8D9HvZpZPDk39lyjJCS7mgk5x8jYJUFuFHPFeBa58LfHGhv/pGmvPCScS2/wC+jbb1IK5PbuKxcQOCD5PNWUKNhcdaSWxvIH8uWF0b0ZSD+RrZ0TQdT1O8igihZUY/M5GAB3xmoV1uNK5+jP8AwT8sI7bWtWvoUzK+1C3cKvOPzNfsCl7qWmy+dBIwRsEehB9RX5i/sK6IVtb3U7YAwtPIoI6Ha2K/Up4hLBsxjjj2rya9+ZtHsUbcqR0+meJ7e8CxXA8uQjqOhrp1dXX5TkHoa8Qy9vICw2sDXYaTrEi4UNn1Haqp4joxVcP1R3JOTj0pCcVHFMkw3LwaGY9K6UzkaaMjV9F0zXIfs+p26zoOmeGH0Ycj86841D4dWlkhm0KR94H+plO5T9GxkfjXrDMVHFQsoK7jWVbDwnujpw+NqUneLPkzU9M1BzIHm8iRCQUCbiCOxFZfh7w2dWvWjujI8g+68pwB9F/+tV34hfE7Sv8AhPItB0mzuXDQv514Ij9m8yM4Cb/72O/Q4x1rIj8ZaJpM6X898ihGzsU8t6gDmvFq5ZJvlsfWYbOkkpt2PXNK0yfSYfLaQuQep/pXo2na7bW+nyQXmApBPNfIniH9qjwhDG40WzkuNgiYu/CqJDtDbRyRnrz/AFr5Z8afGjx74nu5I1u/skRM0JjhynlzRfOpU9cMvPPNdVDKZta6HDic8pptrU+7PCfxQWPxy/hWbUf7QhvrqVYcncY42GUG48n5gRx296+kCccV+QPww15f+Eki1dSVaKZJ1ycn+GTgnnkua/XWzukvLWK7Q4WdA6/RhkV6zhy2R81OpzNuxMSO9QE1OQcVXbuKRKZEzYFQNUzLyajdRjNBZ//W/aWNNqgVcQnAqvaypIPKfhx2q3t2cGtWgJEYc1YBwAT0qoU/iHBFTxuCuCaTQD3w3DVW+ZPk/hqtLLJbtuHzL39qet1HKvB5qdimhLeQJdPF2fn8aluoyVJrCvbj7O6T5zsOTj0rZtbyO5UjNSW+5gyja30pY3z+FT3y7HNUImy/NQ0WasTEElRkjke+O349KWfhgy9G6fjUUbfNmrzIrRkdxyPx/wAmhoCCHhTnvU4wOnFQKfSkzgkCkBZXpg15N8c/Dkfiv4T+KdBkQSfa7CcKCM/Oi7k/8eAr1MMcVT1O3S8s5bWb/VyqVb6EYNXFiR/PDoaX9npkkcUcsuwtsjY5YqfmYh8jnsc9qsSXtvfWn2eWRYrgt8ysSmHbhR77Rn8q6a7hms77VdJ3sjaPfT2zKFI+WKQrjPPHH41xeo6eZ53EtuYw+4o5OCDjJ2n3PX69K7IvQzkjF1DRpZyNR2xkZZiMkACP5UHTqTkiuIk0meKS4lhLLHwkYxj5shCwHPOSx616W0OqaNp7xQyrPDMuSsi5YZOcbu/oOBWbDe3NpaJb6vY7ZS/mq6jcODuYDb06jtj0piSPHb+9uUnNtMPvdGkAdskFsd+MEYx6c1z2u6gINDn1CKIbo0+Ung8rjmvZdTt9G1CMZzE+77sgxt7DjA64B7dPevMPGo0Sw0a9Z2UFom+XjnA6fUGsZpsu5+iH/BOLQLbUvgONUI3Tm+u1c9/lk4/nX3RNCYm2jtxXyF/wShRL74GeJLWb71trMpAPZJYY2H65r7o1TTdt1IB0BNcOJp7WOrDVO5w11Es8RDdV71j2m+O4wPWututMeb90cjBB49R60QaJKpDOuT7V5/s3c7/aGrpcrjaO1dgttHPHkdawrDTnQgHpXWW9u8YwK3gmjCbTOeurOaHJIyvqKzmyVKHvXoHlhxhhVKfTbeUbWTaOzDtW6kYSgflR8bNG1jwn4outJLP9iuJPtNs2Tgq+eCR/dPHsK+XNRvr20uWtXcsR91iOSeCv5OFP/Aq/YT4w/DKTxjobWdrAkuq2wL2jFgm7PVdx4wR2zX5g+Mvh9rXh2+e08SadPps+Sym5RlViCclH5VvbB5Jz2r0KUrxuck00eK3Wmrcu9rEwEV2jxc9Nlx+8jJ+j5GarxXU6Jun+e48tJHyc5mtTsk/76TH4Cu0lsOZEjO1m+WNyD1kJaM+wWVSv0I9aaulpNK95GvmYaOcryNyt8ky88ZA/TntWjITLngizS2vwE/dxRFlBzgFQdycjp8rj8BX6W/s8eLr3xZ4S1fTNQ/eTaBdFLd8532mFyM+sbtj6H2r85YbCO2SDa+QqmNR/e8onBHu0ZxivvD9hlbrVdA1q4uY2eK01q6tWlP8AElxbxsQR/snBrCdPS5tGXQ+mSccZzmkPSpJk8uRoz/CcflVc8965DZLUQ881EVz1p2R07UxjjkUij//X/aJ4GlXzITtkXkGp7O/WXNvcjZKOx7+4qusptJNsn3SetWp7OC9QSR8MOhHWtmgLxBj7bl9aY23O5azoL2azxb3gyOgf1rQcwkCQHAPcdKkCBnDZDVh3cTQsZYeAeorYkXPzIwYVRkJPysMfSs2zQxJJlnj2nqeDUmkytGyq56cVHcwmJyy9DUFsxSdVPc0Lcb2Op1FcgNWGnynHrW/c/PGMdaxthOame5UGXIeeavByBn06/Q8f/XrPg4GPSrijAORx/jRuge40gqxU0Y5oLExhj95TtP4f/WwaaDnpUjHjrj0pZgHjYeoo74pxG4ED0qk9CXufhn8akTQPj34w0CCSKKKa9+0MGXqJ0WQ5/wC+q4yfS2kuTDgTC3IJxk5GOT0PTPI65r1v9smxGi/tEm+C7F1KytJi4X5hs3Rkgjr9wV5S/wC/tftmZGSUZYr1zngkEcHua64PQUjOa4DSpbxx7jC/AOSHHb16c4+lQXS/L59vB5lyoB8tSF3dmHzcdsj8MVowWINx59tPJHFJjcTgsCepxx6Y6VoaolssMcs8ZMAJRmOCGbrzjkAHgY9O9WTY84v5jdW7y3UAtpHyqqhPPPB/ED/Oa+cvH+gG6eLRCQ8kv7yRlOfkJ6c9K+pJ2tseVdRBXI3/AHgBkdVGcY9c/wCT4rqFs2r6s+ryRCFWcgA9ov4RgVD3BKyP0y/4Jm2Vro2ieMPDdv8AdSSznHTJDo6E/mtffOsWhF7IR6k18F/8E9WitfF/ijT4+Vl063cE9f3cxH4/e4x9K/SPWbRDKz461hiY6l0ZWPNTbHOduTUwYIQHTFdNLbxhcgciseSEnIz0rm5Df2g2KaKKVM9GOPzrYMsQ4FchflhFJt+V0XcP+A1aS4Mio5PUA/pQoicmdQpViMVaEYYEEVz1rIQ3Pauli+dRtqWilIo3FotxErD78ByP93vUFxptrdWpt7iFJ4pB80cih0bPqrAg1qviKVd/R/l/OhB8mPStqTM676nzb4u/Zl+EPiyY3TaQ2jXZBHnabJ5I5wc+UwaLggHAUcivnfWf2Kdes7ppvCXii3urd2kPl30bW7qr84DRiVeDjoB34r9EnANV5cbcVv7RmSPzx8G/sb6omrQ/8J9r0UumqSXgsTI8r5/hEkiKqA9CQpOOlffml6D4U+HXg9dE8G2EOl2fzCK3hGPmb78jk5ZnbuzEk05lA59K5+9maaFXJyQ7L/X+tc9So2bwsYd7AxjS4XnA2t/Ssfviu3toEuENq/HmKR+NcXMhgdo24KnB/CskzR7kJIpmTmn5445pG6etMD//0P2ljniuF8m4GHHHPeqzW97Zv5tmdyf3TzVrbZ6gu+Bhu9qVDdWo2t8wHrWzYCpcW+oRmKZdr91PUVnM13prFB+8g9KdPcQs4Z0KOP4hU8N9azr5UpGfWpGkUmEV4u+zk8qUds8E+9Yk9/e2j+Xepjnr2rVvNPeOTz7VsfTpVYXcN0htr9M57mspGsWRJewXieUx57exrOyY7+GLIJJHTp6VnXlpJpdwJEO6Fvun+ho0u4Fz4hggByETeR+dZp6ltHpMuelZ5UAZ7Vffn8aqSDgCtpIxiyvE2W+taC9BzWcgw2RVxX6VETRolB2vhhxKMfiOf1GfyqJWwSPSicnyHZBl4/nX3K84/Gk3RuEljOUkUMD7EVIyZTkZ61Mo4+tVgePpVhT2oCx+Wv7eGhTnxz4T1m3wsb2lxHIcckxOGAz9HNfKMNw11sjyu9V/vcHHzY9Bjv7V98/t36U934Z8PX8Y+eO9khzgE4ljyByfVK/OizlltbFECfvyWB+YEcE4yF6c+vTrXZS2ImjQMU1vax/a3CyPh87snHPH4cdeajgu2yYJbstAqeYAPlJGcYLe+eKkvJJJYibMCKZEAAc8F/8AgXI/xIrCv5DbWvnBAXi2rtPTGcsMA9Pr+FO4jl/FWowXQdYnKYLR5fJJG7t6jP8AjVG3sLa5ljjhjxG64x0KtjoMHOc9aztUhk1K+RIAcsQSFOTjueuM8V0WlQymUqsbOqsAOQM4bAz1waIK7G3ofcf7FF0ul/FldKOFm1HRLhzg5DCG4hIxn03Gv1M1OEMa/GH9lLW3t/2v/D+jlgBNomqBl3Bvm/dNge3yEiv2vv481jWCCOHuLZ2HFZptWAIxXaC3Vgc1Xkslb7orAtnn17ZkxyED+Bv5Vy2mzmS2iJ6gDNer6lp/l2kr46I38jXkelR4jVehWpe5cPhOshHAat6znXIU9qx7ePMYyatDKfhWnKZRkWdauEjSI5wd6/zqxaXCTReYG6k1574h1N98aZPyHNdF4VSaWz8q8+UyMWX1waxpy9+x0VIe5c6JypPBqq/IwTyelNuIbi1bJ+ZBQjLMvXmug5SlIrAECubCjyJjIMeXLn81/wDrV0cjspwRx61wHjLWIvDnhfXNZm5jsLd7lvpEjsf5VjUj1NqTN/TWJkjkB6sPyNVPFWmmB47+MfJLlG9mXp+Yr4y/ZM/ab1f4ueJ9d8FeIrO3iubS3W9sZ7fcFeDcqSI4YnLKWUhhjIJyBivvy9h/tLRb2IjLJ+8X6gVmkbyR5Dml6j0qI5+7Sk471SEf/9H9izpNzbnfbtjFWo768jGyYbh7iuiUxkZUgg0pgif7y5rRsDHW5tJ12zJjPpVKfSbaY7oJMH8q3ZLaPG2OMfWqgtlU4zk0rXGjHEOqWPT99H6darTXFleKQyGOYdjxzXSCNf4WINUryEsMSKrj/aH9azaNUzjZ5opoZdOlYjfwCeqnsa4r4X3k2o+JPERuAd2mSJZ88fOo3NXomo6et5aS28bmCRlIVwN2wnoRn09K4P4O2mv2k/iVfFUAg1B9ScjacrLAsaJHKp7hwufUdDyKyXxI205Wz2lxgcVVb3qyTuPtULDjNdEmcyKZO1jino3PtULHnFSp045NZWNEXIyCMHp3FZljJiKWzP3rV+B/sMcirydayZmFnrEM5OI518tvx7/gcGkO5r7h261Mh9arMu1yuMU5fvcdKAPkb9texaf4Ny3cRKy2d9aygr1HzFDjr/fr8sNHjR3EzkyBsck5wevPYZ//AF1+wn7VVkbz4GeKsHD29ss4I6gxSK+ePpX436RKP7IjjnmJll4xGNzcZ+8OvQmuiiwnsWJ4WhvoIlUznezBZVUspySuRk5xnI5rN8W3MSS+UGy8w3OO3AwAB93g9ecc1tSW8s2lvqBYJsHykHDEYySR/vcccGvP/FUi3Fp5ZBkOVXcGGCR97A//AFDmtZERMjREZna4nA+QkcjnjpgAY5x/nNdnYpJDLEiSYOOc9XyOOO/rWHoNgtpKCSpiVDlc5J3HjBHcV2aQR2yPcH5MBiQeMemB9MnvVU1pcUtRn7N+rvY/t1eCYmkyJIrq1/7+WsxwccZyOvev6Hr4EoG9a/mK+CutCD9sbwFrCsAE1qKI7QAMSKYe3+9X9PTr5sSEdMVz1NRx3MyJemasCOrixLs6cioWXDYrMfUz9TjX+z5h/sN/KvE4LUw3BA7mvcNQG6wlGex/WvNltM3JyKznujaOzJoIR5Q7Vkapc/ZTjpXUeWI0xjpXn+vM092IFO0bSSx4Ax61c9jKMdTlpSb3VcnlU5P1r0bT/MaSKZGAVOMZ5rxPRr69udQlUYjjZyM/eZgDjjsK9l0rQ4I5re7+d2Qhsu7Yz9Bx+lcdJ3lc76nw2O7REvINzD61zl1bPZyb1+6a6BpBZTbukb9R6VJexLImcZDD0r0nqeXscnneN3UVxXjHSLXX9B1rw/dL+61Oymt2x6SKUP6NXTzB4JSh6VWkh8yaNpW4YMo/EcVjOOhpB6n4i/sueMNI+AHxyvNB8VwPdW97KdBh1BHAW3Zpggd1xyGdFU8jGCeRX7vaSRulj/voDzX8/fx58EWHwn/aHefxVLL/AGFqOqjVneBPNkFs0wmdVQkZbeCF57+1fu38PPGOh+O9D03xh4cuVu9O1eATQSKMbkfkZB5BB4IPIPBrFnWtjmvE+lmxuY7yJcQXY3DHRXHDL+fSuVyDz3r2jWbJdS8NX0Sj95aSNIn4cn9Ca8Q6H1oEf//S/aiWyZTvhYg+lJ5t1CMsu8VYtb1Zl2n7wq51HNaWArx3SSjB4PpRNGGzjg1HLbA/Onyn2qJZXXKP19aVuxVyu0UqHd1+lMmYshVuGFLNcXMPK/OKyZ9ReRsMm2pZRS82WOb5x8orndFvTN471W2XKpDBbjnvuUtn9cV1EhFwnynkfrXNwNFbeK45Ex5k1vtb/gLHb/M1i+hvDZnoh4zmmOpC5NMWQEgHnNSz/drU50ZRbLEjgd6tx8DgVVjjy/PStBV2LjFKxpfQacDmsfW4g9qJB/Cf51qtyQKhu1E1rJGR1FTIERW1z9qsobk/fA2P9R3/AB4NWVZQPpXO6NIVklsz92UZH+8v/wBbNau/aSuen9KlFJHn3xssl1P4UeK7Ijd5mmXfGcZxEx/pX4VaNdyJIIoy0QOSxfJzuyQBjse1fvp4vjF54b1K0YZWe2nQj/ejYf1r+ffS5D58jsrIyt/HnOV+UHLdq3pCaN+8lNmZEJUJHuXAXoud2Ocdc5/SvNobiSW/JK/uiSSuCcLx82PXt/KtzxRfRKEkVEQsTvYEtnvwCMDnpisXS0k+0GchgszbSQPujuceg61o9ydDs9PU21vDHIyoWb5EySGA474xXQavLDbaFLcyqUlUPznGdgB5HOM9fqRTLOFZw8kq7I4ty545+Xhu5Hfisbxfeu+kXCRkOHUKMdSCT27AH/JrZ/CRfU+fPAmoSaP8WPC/iHbhoNVtpgOMgCdDz+Ff1eWcnmWcT9Qyg1/JpqcbaZqNpJbkxvbuD06EEHgn6V/Vf4Qvk1TwrpepRnK3VrDKP+Bxhv61zyWgzo1IphxnjrUJJDYJqRfWs0Noz9VxHasfXj9a5RY4yTIx/Cuj1tzsROmWH+NYaKASR1NZS3N4/Cc/qOoSxqUhjxjoTXlHia9uILO6vpX3tDGzAe/b9a9Y1cKFZiQuK8G8eTuNO+zROQLiZEJXrjO44/KoqvQILUzPA1tPe3CYdVdeTmvoWA3FvGqdcVwfgDw/ZWFiLtYGaWTnc5JOK9IZCBkJj6VpQpWjqRXq+9ZGqUF1aq3ciobG6YA2c55XO0n0pNLlzmFuAxOM+opNUtZIWW5i6qa6DC5V1CzWdTxzXK3AdYmU/eiOR+FdpHcrKgLday9QssgzR9D1qZIcZH5H/t8fCnxx4h8Y6F4s0Cwn1LSprP7LJHAjSFJo5C6FlUE4YMRmvvr9lHwFqnw3+BvhTwzrkZhvreGWWVG+9G1xM8oQ+6hgD7165BBBdWyw3ShjGcc+q8fyreDLFDtTACjGPpXMzsuaOlw+Za3YIyJN3B/GvAdVtRZ6hNAgIjzuX/dbkD8OlfRWlgiw3/3gTXi+vWby28d+v/LMbX+hJwf6UgP/2Q==" alt="傑森所長">
+        <div><div class="nm">傑森所長</div><div class="tt2">奇點研究所所長｜D11 行銷創辦人</div></div>
+      </div>
+      <div class="slogan">用 AI 跟自媒體，<span class="g">找到你突破現狀的起點。</span></div>
+      <div class="proof">
+        <div class="num"><div class="d">60天，我的粉絲</div><div class="v">3,000→5萬</div></div>
+        <div class="txt"><b>把一間自媒體公司搬到 AI 上。</b><br class="m-br">同一套流程，換作是你也可以做到。</div>
+      </div>
+    </div>
+
+    <nav class="toc">
+      <div class="tt">這頁有</div>
+      <ul>
+        <li><a href="#s3"><b>9</b>個方法<i>↓</i></a></li>
+        <li><a href="#s4"><b>9</b>週實踐計畫<i>↓</i></a></li>
+        <li><a href="#s5">每週復盤模板<i>↓</i></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ═════ ② 乾貨區（由 Notion 自動轉出） ═════ -->
+<section class="sec fade" id="s1"><h2>使用說明</h2><p>這份資料包分成四個部分：</p><ol class="steps"><li><b>AI 工具總覽</b>：這份資料包會用到的 AI 工具、連結、適合做什麼</li><li><b>9 個方法完整拆解</b>：每一個方法都有「名人故事 → 為什麼有用 → 執行步驟 → AI 怎麼幫你 → 本週任務」</li><li><b>9 週實踐計畫</b>：一週練一個習慣，9 週後全部變成你的日常</li><li><b>每週復盤模板</b>：直接複製到 Notion 使用</li></ol><div class="tipline">💡 建議用法：先把 9 個方法看完一遍，挑一個你最有感的開始。一次只練一個，比一次全部開始更容易做到。</div></section>
+
+<section class="sec fade" id="s2"><span class="sec-tag">Part 1</span><h2>AI 工具總覽</h2><div class="tblwrap"><table class="tbl gen"><thead><tr><th>工具</th><th>連結</th><th>強項</th><th>這份資料包拿來做什麼</th></tr></thead><tbody><tr><td data-label="工具："><b>ChatGPT</b></td><td data-label="連結："><a href="https://chatgpt.com/" target="_blank" rel="noopener">https://chatgpt.com</a></td><td data-label="強項：">什麼都能做，語音對話最順</td><td data-label="這份資料包拿來做什麼：">口才練習（語音模式）、計算、規劃行程</td></tr><tr><td data-label="工具："><b>Claude</b></td><td data-label="連結："><a href="https://claude.ai/" target="_blank" rel="noopener">https://claude.ai</a></td><td data-label="強項：">長文理解、邏輯拆解、寫作品質</td><td data-label="這份資料包拿來做什麼：">任務拆解、優先排序、復盤分析、改寫文案</td></tr><tr><td data-label="工具："><b>Gemini</b></td><td data-label="連結："><a href="https://gemini.google.com/" target="_blank" rel="noopener">https://gemini.google.com</a></td><td data-label="強項：">跟 Google 日曆、Gmail、文件串接</td><td data-label="這份資料包拿來做什麼：">排進行事曆、整理信件、查資料</td></tr><tr><td data-label="工具："><b>NotebookLM</b></td><td data-label="連結："><a href="https://notebooklm.google.com/" target="_blank" rel="noopener">https://notebooklm.google.com</a></td><td data-label="強項：">只根據你上傳的資料回答，不亂編</td><td data-label="這份資料包拿來做什麼：">讀書、整理訪談、生成學習筆記與語音摘要</td></tr><tr><td data-label="工具："><b>Perplexity</b></td><td data-label="連結："><a href="https://www.perplexity.ai/" target="_blank" rel="noopener">https://www.perplexity.ai</a></td><td data-label="強項：">搜尋＋附上資料來源</td><td data-label="這份資料包拿來做什麼：">研究你要模仿的人、查證數據</td></tr><tr><td data-label="工具："><b>Notion</b></td><td data-label="連結："><a href="https://www.notion.so/" target="_blank" rel="noopener">https://www.notion.so</a></td><td data-label="強項：">筆記、資料庫、模板</td><td data-label="這份資料包拿來做什麼：">放這份資料包、建習慣追蹤表、復盤紀錄</td></tr></tbody></table></div><h3 class="sub-h">新手怎麼選？</h3><ul class="bul"><li><b>只想裝一個</b>：ChatGPT。功能最全，手機 App 有語音模式。</li><li><b>常寫長文、做企劃</b>：加一個 Claude，邏輯拆解和中文寫作品質很穩。</li><li><b>常讀書、看報告</b>：加一個 NotebookLM，把 PDF 丟進去就能對話，回答都會標出處。</li><li><b>常要查資料</b>：加一個 Perplexity，每個答案都附來源，方便查證。</li></ul><h3 class="sub-h">下指令的三個基本原則</h3><ol class="steps"><li><b>給角色</b>：告訴 AI 它是誰（教練、編輯、顧問），回答會更專業</li><li><b>給背景</b>：你是誰、你的目標、你的限制，講越清楚答案越貼身</li><li><b>給格式</b>：要表格、條列、還是步驟，直接講</li></ol><p>下面每一個方法附的 Prompt，都已經照這三個原則寫好，把 <code>【】</code> 裡的內容換成你自己的就能用。</p></section>
+
+<section class="sec fade" id="s3"><span class="sec-tag">Part 2</span><h2>9 個方法完整拆解</h2><div class="acc"><details class="ch" open><summary><span class="ch-n">方法 1</span><span class="ch-t">模仿比你優秀的人</span><span class="ch-mk"></span></summary><div class="ch-body"><p>名人故事：Kobe 從小就在模仿 Jordan</p><p>Kobe Bryant 小時候把 Michael Jordan 的比賽錄影帶反覆看到快壞掉。投籃動作、後仰跳投、連落地姿勢都一格一格照著練。進入 NBA 之後，他直接打電話問 Jordan 怎麼練球、怎麼看比賽。</p><p>Kobe 後來公開說過，他身上的東西很多都來自 Jordan，沒有 Jordan，他拿不到五座冠軍。</p><p>為什麼有用</p><p>自己摸索，要花 5–10 年踩完所有的坑。跟一個已經走過的人學，等於直接拿到他的地圖。</p><p>模仿的重點在<b>拆解</b>，照抄外表沒有用。你要學的是：</p><ul class="bul"><li>他怎麼分配時間</li><li>他遇到選擇時怎麼判斷</li><li>他面對壓力時的反應</li><li>他每天固定在做的事</li></ul><p>執行步驟</p><ol class="steps"><li><b>選一個人</b>：挑一個比你早走 5–10 年、做到你想要的結果的人。越具體越好，「我想成為像 XX 一樣的 YouTuber」比「我想成功」好用一百倍。</li><li><b>收集資料</b>：他的訪談、Podcast、書、社群貼文，至少收集 5 份。</li><li><b>拆解成清單</b>：用下面的 AI 指令，把他的習慣、決策邏輯、時間安排整理出來。</li><li><b>挑 1 個先學</b>：從清單裡挑一個你本週就能做的動作，照做 7 天。</li><li><b>每月加一個</b>：一個月加一個新習慣，一年後你身上會有 12 個他的做法。</li></ol><p>AI 怎麼幫你</p><p><b>Step 1：用 Perplexity 研究對象（附來源，方便查證）</b><br>👉 <a href="https://www.perplexity.ai/" target="_blank" rel="noopener">https://www.perplexity.ai</a></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>我想研究【人名】的成長路徑。請幫我整理：
+1. 他在成名前 5 年做了哪些關鍵決定
+2. 他公開分享過的每日作息與工作習慣
+3. 他推薦過的書或影響他最深的人
+4. 他遇過最大的失敗，以及他怎麼處理
+
+每一點請附上資料來源連結。如果資料查不到或來源不可靠，請直接說明，不要推測。</pre></div><p><b>Step 2：把他的訪談丟進 NotebookLM 深度拆解</b><br>👉 <a href="https://notebooklm.google.com/" target="_blank" rel="noopener">https://notebooklm.google.com</a></p><p>把 YouTube 訪談連結、文章網址、書的 PDF 加進同一個筆記本，然後問：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>根據這些資料，請整理出這個人的：
+1. 時間管理方式（他怎麼安排一天）
+2. 做決策的思考框架
+3. 面對壓力或失敗時的反應模式
+4. 3 個我明天就能開始模仿的具體行動
+
+每一點請標出是來自哪一份資料。</pre></div><p><b>Step 3：用 Claude 把他的做法轉成你的版本</b><br>👉 <a href="https://claude.ai/" target="_blank" rel="noopener">https://claude.ai</a></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>我是【你的身分，例如：上班族，想經營 IG 知識型帳號】。
+我想學習【人名】的做法，以下是我整理的他的習慣：
+【貼上 Step 2 的結果】
+
+請幫我：
+1. 挑出 3 個最適合我現階段的習慣
+2. 把每一個改成我能執行的版本（考慮我每天只有【X】小時可用）
+3. 給我一個 4 週的導入計畫，每週只加一個新動作</pre></div><p>本週任務</p><div class="cklist"><label class="ck"><input type="checkbox"><span>選定 1 個模仿對象</span></label><label class="ck"><input type="checkbox"><span>收集他的 5 份資料</span></label><label class="ck"><input type="checkbox"><span>用 AI 拆解出習慣清單</span></label><label class="ck"><input type="checkbox"><span>挑 1 個動作照做 7 天</span></label></div></div></details><details class="ch"><summary><span class="ch-n">方法 2</span><span class="ch-t">持續鍛鍊口才</span><span class="ch-mk"></span></summary><div class="ch-body"><p>名人故事：巴菲特花 100 美元，換來人生轉折</p><p>年輕時的巴菲特非常害怕上台，怕到會刻意選不用上台報告的課。20 歲出頭，他花了 100 美元報名卡內基的演講課程。</p><p>巴菲特後來在很多場合說過，這是他人生最重要的一張證書。他的辦公室牆上沒有掛大學文憑，只掛這張卡內基課程的結業證書。他也常建議年輕人：提升溝通能力，是讓自己身價變高最簡單的方法之一。</p><p>為什麼有用</p><p>會做事的人很多，能把事情講清楚的人很少。</p><ul class="bul"><li><b>職場</b>：同樣的提案，講得清楚的人拿到資源</li><li><b>自媒體</b>：短影音、直播、Podcast，表達力直接決定完播率</li><li><b>銷售</b>：客戶買單的原因，常常是因為聽懂了</li></ul><p>口才可以練，而且進步很快。多數人只是沒有刻意練過。</p><p>執行步驟</p><ol class="steps"><li><b>學一個結構</b>：先學 PREP 架構，所有場合都能用<ul class="bul"><li><b>P</b>oint：先講結論</li><li><b>R</b>eason：給理由</li><li><b>E</b>xample：舉例子</li><li><b>P</b>oint：再講一次結論</li></ul></li><li><b>每週錄一次音</b>：選一個主題講 3 分鐘，用手機錄下來</li><li><b>回聽找問題</b>：記下「嗯、那個、然後」出現幾次、哪裡卡住、哪裡講太長</li><li><b>用 AI 練習對話</b>：模擬面試、提案、客戶提問</li><li><b>真實場合上場</b>：開會時搶第一個發言，每週至少一次</li></ol><p>AI 怎麼幫你</p><p><b>Step 1：用 Claude 幫你把想講的內容整理成講稿結構</b><br>👉 <a href="https://claude.ai/" target="_blank" rel="noopener">https://claude.ai</a></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>我要在【場合，例如：部門會議／IG 短影音／客戶提案】講【主題】，時間大約【X】分鐘。
+我想傳達的重點是：【隨意寫下你的想法，亂也沒關係】
+
+請用 PREP 架構（結論→理由→例子→結論）幫我整理成講稿大綱，並且：
+1. 開頭第一句要能讓聽眾馬上進入狀況
+2. 例子要具體，最好有數字或畫面
+3. 每一段標註建議秒數</pre></div><p><b>Step 2：用 ChatGPT 語音模式模擬實戰</b><br>👉 <a href="https://chatgpt.com/" target="_blank" rel="noopener">https://chatgpt.com</a> （手機 App 點右下角語音圖示）</p><p>開啟語音模式後，直接對它說：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>請你扮演【角色，例如：很挑剔的客戶／面試官／對主題完全不懂的聽眾】。
+我會對你做一段【X】分鐘的【提案／自我介紹／說明】。
+聽完後請你：
+1. 問我 3 個最尖銳的問題
+2. 告訴我哪一段最難懂
+3. 給我一個分數（1–10 分）和最需要改進的一點</pre></div><p><b>Step 3：把錄音轉成文字，請 AI 給你回饋</b></p><p>把你的錄音轉成逐字稿（手機錄音 App 或任何語音轉文字工具都可以），貼給 Claude 或 ChatGPT：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>以下是我一段 3 分鐘口說的逐字稿：
+【貼上逐字稿】
+
+請幫我分析：
+1. 贅字（嗯、那個、然後、就是）出現幾次
+2. 結構是否清楚，結論有沒有放在最前面
+3. 哪一句最有力、哪一句可以刪掉
+4. 給我一個改寫後的版本，字數控制在原本的 80%</pre></div><p>本週任務</p><div class="cklist"><label class="ck"><input type="checkbox"><span>學會 PREP 架構</span></label><label class="ck"><input type="checkbox"><span>錄一段 3 分鐘口說</span></label><label class="ck"><input type="checkbox"><span>用 AI 分析逐字稿</span></label><label class="ck"><input type="checkbox"><span>用 ChatGPT 語音模式模擬一次實戰</span></label></div></div></details><details class="ch"><summary><span class="ch-n">方法 3</span><span class="ch-t">靈感 48 小時內動手</span><span class="ch-mk"></span></summary><div class="ch-body"><p>名人故事：布蘭森的筆記本，長出好幾家公司</p><p>維珍集團創辦人理查・布蘭森（Richard Branson）身上永遠帶著一本筆記本。開會、搭飛機、跟人聊天，想到什麼立刻寫下來。</p><p>布蘭森分享過，維珍旗下好幾個事業，最早都只是筆記本裡隨手寫下的一行字。他也常說，沒有寫下來的點子，很快就會消失。</p><p>為什麼有用</p><p>德國心理學家艾賓浩斯（Hermann Ebbinghaus）的遺忘曲線研究發現：新學到的資訊如果沒有複習或處理，一天之內就會忘掉大半。</p><p>靈感也一樣。想到新計畫的那一刻熱情最高，拖得越久，大腦越會幫你找「再等等」的理由：時間不夠、還沒準備好、等下個月再說。</p><p>48 小時內做出第一步，就能把熱情變成行動。</p><p>執行步驟</p><ol class="steps"><li><b>隨時記錄</b>：手機建一個固定的靈感筆記，想到就丟進去，不用整理</li><li><b>24 小時內篩選</b>：隔天花 5 分鐘看一遍，挑出值得做的</li><li><b>48 小時內做最小的一步</b>：最小的一步要小到 15 分鐘內能完成<ul class="bul"><li>想開 IG 帳號 → 先註冊帳號、想好名字</li><li>想寫一本電子書 → 先列出 10 個章節標題</li><li>想開課 → 先問 3 個朋友願不願意付錢聽</li></ul></li><li><b>排進行事曆</b>：下一步寫上日期和時間，丟進日曆</li><li><b>一週後檢查</b>：還有熱情就繼續推進，沒有就刪掉，清單保持乾淨</li></ol><p>AI 怎麼幫你</p><p><b>Step 1：用 Claude 把模糊的點子拆成可執行的第一步</b><br>👉 <a href="https://claude.ai/" target="_blank" rel="noopener">https://claude.ai</a></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>我有一個想法：【描述你的點子，越隨意越好】
+
+請幫我：
+1. 用一句話把這個想法講清楚
+2. 列出這個想法要成功，最關鍵的 3 個假設
+3. 給我一個 15 分鐘內就能完成的「最小第一步」，用來驗證最關鍵的那個假設
+4. 給我接下來 7 天的行動清單，每天不超過 30 分鐘</pre></div><p><b>Step 2：用 Gemini 直接排進 Google 日曆</b><br>👉 <a href="https://gemini.google.com/" target="_blank" rel="noopener">https://gemini.google.com</a> （需先在設定中連結 Google Workspace）</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>幫我在 Google 日曆建立以下行程：
+【貼上 Step 1 的 7 天行動清單】
+每一項都排在每天【時間，例如：早上 7:00–7:30】，標題前面加上「🚀」。</pre></div><p><b>Step 3：每週清理靈感清單</b></p><p>把一週的靈感筆記全部貼給 ChatGPT 或 Claude：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>以下是我這週記下的所有靈感：
+【貼上清單】
+
+我目前的主要目標是【例如：3 個月內 IG 追蹤破 5,000】。
+請幫我把這些靈感分成三類：
+A. 跟目標直接相關，本週就該做
+B. 有潛力，放進待辦
+C. 跟目標無關，可以刪掉
+每一個請用一句話說明理由。</pre></div><p>本週任務</p><div class="cklist"><label class="ck"><input type="checkbox"><span>建立手機靈感筆記</span></label><label class="ck"><input type="checkbox"><span>挑一個點子，48 小時內做出最小第一步</span></label><label class="ck"><input type="checkbox"><span>把接下來 7 天的行動排進日曆</span></label></div></div></details><details class="ch"><summary><span class="ch-n">方法 4</span><span class="ch-t">瘋狂輸出知識</span><span class="ch-mk"></span></summary><div class="ch-body"><p>名人故事：費曼：講不出來，就是還沒懂</p><p>諾貝爾物理學獎得主理查・費曼（Richard Feynman）學東西有一個習慣：假裝要把它教給一個完全外行的人。用最簡單的話講一遍，卡住的地方，就是自己還沒真正搞懂的地方，回頭重讀，再講一次。</p><p>這個方法後來被稱為「費曼學習法」。</p><p>為什麼有用</p><p>2014 年，美國聖路易華盛頓大學（Washington University in St. Louis）的研究團隊做過一個實驗：兩組人讀同一份資料，一組被告知「等一下要考試」，另一組被告知「等一下要教別人」。結果，抱著要教人心態的那一組，回憶出來的內容更多、更有條理。</p><p>原因很簡單：要教別人，你會主動整理重點、找例子、想別人會問什麼。這個過程就是深度學習。</p><p>對經營自媒體的人來說，這是一石二鳥：你學到的每一樣東西，整理後都能變成一篇內容。</p><p>執行步驟</p><ol class="steps"><li><b>選一個主題</b>：剛讀完的書、剛上完的課、工作上剛學會的技能</li><li><b>白紙測試</b>：不看資料，用自己的話在白紙上寫下來，假裝要講給國中生聽</li><li><b>找出卡關點</b>：寫不下去、講不清楚的地方圈起來</li><li><b>回頭補強</b>：只針對卡關點重讀資料</li><li><b>輸出成內容</b>：整理成一篇貼文、一支短影音、或講給一個朋友聽</li></ol><p>AI 怎麼幫你</p><p><b>Step 1：用 NotebookLM 先把資料讀懂</b><br>👉 <a href="https://notebooklm.google.com/" target="_blank" rel="noopener">https://notebooklm.google.com</a></p><p>把書的 PDF、文章、影片連結丟進去，可以使用：</p><ul class="bul"><li><b>學習指南</b>：自動生成重點整理和問答題</li><li><b>語音摘要（Audio Overview）</b>：把資料變成兩個人對談的 Podcast，通勤時聽</li><li><b>直接提問</b>：每個回答都會標出出處</li></ul><p><b>Step 2：讓 Claude 扮演「什麼都不懂的學生」考你</b><br>👉 <a href="https://claude.ai/" target="_blank" rel="noopener">https://claude.ai</a></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>我剛學了【主題】，接下來我會用自己的話解釋給你聽。
+請你扮演一個 12 歲、對這個主題完全不懂的學生。
+
+規則：
+1. 我講完之後，你要問我 3 個「為什麼」或「什麼意思」的問題
+2. 如果我用了專業術語沒解釋，請直接打斷我問
+3. 最後告訴我，哪一個部分我講得最不清楚
+
+我的解釋如下：
+【用你自己的話寫下來】</pre></div><p><b>Step 3：把學到的東西變成一篇 IG 輪播貼文</b></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>以下是我學習【主題】後整理的筆記：
+【貼上筆記】
+
+請幫我改寫成一篇 IG 輪播貼文，共 7 張：
+- 第 1 張：一句讓人停下滑動的標題
+- 第 2–6 張：每張一個重點，標題＋40 字內的說明
+- 第 7 張：總結＋引導留言的問句
+
+語氣直接、口語，不要用「不是……而是……」這類句型。</pre></div><p>本週任務</p><div class="cklist"><label class="ck"><input type="checkbox"><span>選一個本週學到的主題</span></label><label class="ck"><input type="checkbox"><span>完成一次白紙測試</span></label><label class="ck"><input type="checkbox"><span>讓 AI 扮演學生考你一次</span></label><label class="ck"><input type="checkbox"><span>輸出成一篇貼文或一段 1 分鐘口說</span></label></div></div></details><details class="ch"><summary><span class="ch-n">方法 5</span><span class="ch-t">培養複利思維</span><span class="ch-mk"></span></summary><div class="ch-body"><p>名人故事：巴菲特 9 成以上的身家，65 歲後才賺到</p><p>《致富心態》（The Psychology of Money）作者摩根・豪瑟（Morgan Housel）在書中算過：巴菲特當時 845 億美元的身家裡，有 815 億美元是在他 65 歲之後才累積的。</p><p>巴菲特 10 歲就開始投資。他的投資能力當然頂尖，但讓財富爆發的關鍵，是他持續投資了超過 70 年。時間把小優勢放大成巨大的差距。</p><p>為什麼有用</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>每天的變化</th><th>一年後（365 天）</th></tr></thead><tbody><tr><td data-label="每天的變化：">每天進步 1%</td><td data-label="一年後（365 天）：">1.01³⁶⁵ ≈ <b>37.8 倍</b></td></tr><tr><td data-label="每天的變化：">每天不變</td><td data-label="一年後（365 天）：">1 倍</td></tr><tr><td data-label="每天的變化：">每天退步 1%</td><td data-label="一年後（365 天）：">0.99³⁶⁵ ≈ <b>0.03 倍</b></td></tr></tbody></table></div><p>複利有兩個特性：</p><ol class="steps"><li><b>前期很慢</b>：前幾個月幾乎看不到成果，這是多數人放棄的時候</li><li><b>後期很快</b>：一旦過了轉折點，成長速度會超出你的想像</li></ol><p>能力、人脈、內容、存款，全部適用。一篇貼文看不出差別，第 300 篇的時候，你的帳號會跟第 1 篇的時候完全不同。</p><p>執行步驟</p><ol class="steps"><li><b>選一個複利資產</b>：閱讀、寫作、運動、存錢、發內容，挑一個</li><li><b>設定小到不會失敗的量</b>：每天讀 10 頁、寫 200 字、存 100 元</li><li><b>固定時間做</b>：綁定一個你每天一定會做的事（刷完牙、吃完午餐）</li><li><b>記錄下來</b>：每天打勾，看得到累積才會想繼續</li><li><b>每季檢視</b>：90 天後回頭看，你會看到變化</li></ol><p>AI 怎麼幫你</p><p><b>Step 1：用 ChatGPT 算出你的複利成果</b><br>👉 <a href="https://chatgpt.com/" target="_blank" rel="noopener">https://chatgpt.com</a></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>請幫我計算以下情境，並用表格呈現 1 年、3 年、5 年、10 年後的結果：
+1. 每天讀 10 頁書，一本書平均 250 頁，總共能讀幾本？
+2. 每月存【金額】元，年化報酬率 6%，複利計算後總金額是多少？
+3. 每週發 3 篇貼文，總共會累積幾篇內容？
+
+最後用一段話告訴我，如果現在不開始，10 年後的差距是多少。</pre></div><p><b>Step 2：用 Claude 設計你的 1% 進步計畫</b><br>👉 <a href="https://claude.ai/" target="_blank" rel="noopener">https://claude.ai</a></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>我想在【領域，例如：寫作／英文／經營 IG】上持續進步。
+我目前的程度是：【描述現況】
+我每天能投入的時間是：【X】分鐘
+
+請幫我設計一個「每天進步 1%」的 12 週計畫：
+1. 每週的具體練習內容
+2. 每天的最小行動（小到不可能失敗）
+3. 每 4 週一次的檢核點，怎麼判斷自己有沒有進步</pre></div><p><b>Step 3：用 NotebookLM 加速每天 10 頁的閱讀</b><br>👉 <a href="https://notebooklm.google.com/" target="_blank" rel="noopener">https://notebooklm.google.com</a></p><p>讀完每天的 10 頁後，把重點貼進 NotebookLM 同一個筆記本。一本書讀完，你就有一個可以隨時提問的個人知識庫。</p><p>本週任務</p><div class="cklist"><label class="ck"><input type="checkbox"><span>選定一個複利資產</span></label><label class="ck"><input type="checkbox"><span>設定每日最小量</span></label><label class="ck"><input type="checkbox"><span>在 Notion 建一個打卡表，連續做 7 天</span></label></div></div></details><details class="ch"><summary><span class="ch-n">方法 6</span><span class="ch-t">早起做高密度工作</span><span class="ch-mk"></span></summary><div class="ch-body"><p>名人故事：蘋果執行長庫克，每天 3:45 起床</p><p>蘋果執行長提姆・庫克（Tim Cook）長年維持凌晨 3 點 45 分起床的習慣。起床後他會先讀使用者寄來的信，接著去健身，然後才進辦公室。</p><p>等其他人陸續上班時，庫克已經處理完一天當中最需要專注的事情。</p><p>為什麼有用</p><p>早上有三個其他時段沒有的優勢：</p><ol class="steps"><li><b>沒有干擾</b>：訊息、電話、會議都還沒開始</li><li><b>意志力最滿</b>：還沒被一整天的決策消耗</li><li><b>掌控感</b>：一天的第一件事是你決定的，接下來一整天會更有節奏</li></ol><p>你不需要跟庫克一樣早。重點是在別人打擾你之前，先完成一件最重要的事。</p><p>執行步驟</p><ol class="steps"><li><b>從提早 1 小時開始</b>：平常 7:30 起床，先改成 6:30</li><li><b>前一晚決定早上要做什麼</b>：起床才想，時間就浪費掉了</li><li><b>手機放在另一個房間</b>：用鬧鐘取代手機叫醒你</li><li><b>第一個小時只做一件事</b>：寫企劃、做內容、想策略，不回訊息</li><li><b>早點睡</b>：早起的前提是早睡，睡眠不足的早起撐不久</li></ol><div class="tipline">⚠️ 每個人的生理時鐘不同。如果你是夜型人，可以把「早上」換成「一天中最不會被打擾的 1 小時」，原則一樣。</div><p>AI 怎麼幫你</p><p><b>Step 1：用 ChatGPT 設計你的早晨流程</b><br>👉 <a href="https://chatgpt.com/" target="_blank" rel="noopener">https://chatgpt.com</a></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>我目前的作息是：【幾點睡、幾點起、幾點出門上班】
+我想每天早上多出 1 小時做【目標，例如：寫內容／學英文／規劃副業】。
+
+請幫我：
+1. 設計一個 4 週的漸進調整計畫（每週提早 15 分鐘）
+2. 規劃早上這 1 小時的具體流程，精確到每 10 分鐘
+3. 列出前一晚要做的 3 件準備工作
+4. 預測我最可能失敗的原因，以及對應的解法</pre></div><p><b>Step 2：前一晚用 Claude 決定明早要做的事</b><br>👉 <a href="https://claude.ai/" target="_blank" rel="noopener">https://claude.ai</a></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>以下是我明天所有要做的事：
+【貼上待辦清單】
+
+請幫我挑出「最需要專注、最有長期價值」的 1 件事，讓我明天早上第一個小時處理。
+並幫我把這件事拆成 3 個 20 分鐘的小步驟。</pre></div><p><b>Step 3：用 Gemini 把黃金時段鎖進行事曆</b><br>👉 <a href="https://gemini.google.com/" target="_blank" rel="noopener">https://gemini.google.com</a></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>幫我在 Google 日曆建立一個每天重複的行程：
+時間：【例如：週一到週五 6:30–7:30】
+標題：「🔒 黃金時段｜不回訊息」</pre></div><p>本週任務</p><div class="cklist"><label class="ck"><input type="checkbox"><span>本週每天提早 15 分鐘起床</span></label><label class="ck"><input type="checkbox"><span>每晚睡前決定隔天早上要做的 1 件事</span></label><label class="ck"><input type="checkbox"><span>手機放到臥室外面</span></label></div></div></details><details class="ch"><summary><span class="ch-n">方法 7</span><span class="ch-t">善用二八法則</span><span class="ch-mk"></span></summary><div class="ch-body"><p>名人故事：蓋茲和巴菲特第一次見面，給了同一個答案</p><p>1991 年 7 月，比爾・蓋茲和巴菲特第一次見面，地點在蓋茲父母家的晚餐桌上。席間，蓋茲的父親問在場每一個人：人生成功最重要的因素是什麼？</p><p>蓋茲和巴菲特給了同一個答案：<b>Focus（專注）</b>。</p><p>兩人之後成為多年好友，這個故事蓋茲本人也在部落格和訪談中分享過很多次。</p><p>為什麼有用</p><p>二八法則（帕雷托法則）：<b>80% 的成果，來自 20% 的關鍵行動。</b></p><ul class="bul"><li>80% 的營收，常常來自 20% 的客戶</li><li>80% 的流量，常常來自 20% 的貼文</li><li>80% 的成果，常常來自你一天中 20% 的時間</li></ul><p>雜事做得再多，只會讓你很忙，成果不會變多。學會刪掉不重要的事，才有時間做重要的事。</p><p>執行步驟</p><ol class="steps"><li><b>睡前列清單</b>：把明天要做的事全部寫下來</li><li><b>圈出最重要的 2 件</b>：問自己「如果明天只能完成 2 件事，哪 2 件影響最大？」</li><li><b>早上先做完這 2 件</b>：做完之前不碰其他事</li><li><b>每週找出你的 20%</b>：回顧哪些行動帶來最多成果，下週多做</li><li><b>刪掉、交辦、延後</b>：剩下的事，能刪就刪，能請別人做就交出去</li></ol><p>AI 怎麼幫你</p><p><b>Step 1：用 Claude 幫你排優先順序</b><br>👉 <a href="https://claude.ai/" target="_blank" rel="noopener">https://claude.ai</a></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>我的主要目標是：【例如：這季讓 IG 帳號開始有收入】
+以下是我明天（或這週）所有要做的事：
+【貼上完整清單】
+
+請用二八法則幫我分析：
+1. 哪 20% 的任務對目標影響最大？請排序並說明理由
+2. 哪些任務可以直接刪掉？
+3. 哪些任務可以交給別人或用 AI 自動化？
+4. 給我一個調整後的待辦清單，最多 5 項</pre></div><p><b>Step 2：用 ChatGPT 找出你成果的 20% 來源</b><br>👉 <a href="https://chatgpt.com/" target="_blank" rel="noopener">https://chatgpt.com</a></p><p>如果你有經營社群，把過去 30 篇貼文的數據（觸及、互動、追蹤增加）整理成表格上傳：</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>這是我過去 30 篇貼文的數據。
+請幫我找出：
+1. 表現最好的前 20% 貼文有什麼共同點（主題、格式、開頭寫法、發布時間）
+2. 表現最差的貼文有什麼共同點
+3. 下個月我應該多做什麼、少做什麼</pre></div><p>本週任務</p><div class="cklist"><label class="ck"><input type="checkbox"><span>每晚睡前圈出隔天最重要的 2 件事</span></label><label class="ck"><input type="checkbox"><span>每天早上先完成這 2 件</span></label><label class="ck"><input type="checkbox"><span>週末用 AI 分析一次你這週的待辦清單</span></label></div></div></details><details class="ch"><summary><span class="ch-n">方法 8</span><span class="ch-t">定期復盤檢討</span><span class="ch-mk"></span></summary><div class="ch-body"><p>名人故事：達利歐差點賠光，才寫出《原則》</p><p>1982 年，橋水基金創辦人瑞・達利歐（Ray Dalio）公開預測美國經濟即將崩盤，甚至上了國會作證。結果完全看錯，市場反而開始大漲。橋水幾乎賠光，員工全部離開，他還得跟父親借 4,000 美元過生活。</p><p>這次失敗改變了達利歐。他開始把每一個錯誤都寫下來、拆解原因、整理成原則。這些原則後來成為橋水的核心，也集結成暢銷書《原則》（Principles）。</p><p>他最有名的公式是：<b>痛苦 ＋ 反思 ＝ 進步。</b></p><p>為什麼有用</p><p>每個人都會犯錯。差別在於：</p><ul class="bul"><li>多數人犯錯後，難過一下就忘了，下次再犯同樣的錯</li><li>會復盤的人，每犯一次錯，就多一條原則</li></ul><p>復盤的目的是讓下一次做得更好，跟自責無關。</p><p>執行步驟</p><ol class="steps"><li><b>固定時間</b>：每週日晚上 30 分鐘，排進行事曆</li><li><b>回答 3 個問題</b>：<ul class="bul"><li>這週做對了什麼？（下週繼續）</li><li>這週做錯了什麼？原因是什麼？</li><li>下週要改變的一件事是什麼？</li></ul></li><li><b>寫成原則</b>：同一個錯誤出現 2 次以上，就把它寫成一條原則</li><li><b>每月總復盤</b>：每個月最後一週，回顧 4 次週復盤，看有沒有重複的問題</li><li><b>原則清單放在看得到的地方</b>：做決定前看一眼</li></ol><p>AI 怎麼幫你</p><p><b>Step 1：用 Claude 當你的復盤教練</b><br>👉 <a href="https://claude.ai/" target="_blank" rel="noopener">https://claude.ai</a></p><p>建議在 Claude 建一個「Project」，每週都在同一個 Project 裡復盤，Claude 就能參考你過去幾週的紀錄。</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>請你扮演我的復盤教練。以下是我這週的紀錄：
+
+本週目標：【寫下目標】
+實際完成：【寫下完成的事】
+沒完成的：【寫下沒完成的事】
+這週讓我最有感的一件事：【寫下來】
+
+請幫我：
+1. 分析我沒完成的原因，分成「可控」和「不可控」
+2. 指出我可能沒發現的盲點
+3. 如果跟我之前的復盤比較，有沒有重複出現的問題
+4. 建議下週要改變的 1 件事，要具體到可以執行</pre></div><p><b>Step 2：把重複的錯誤寫成個人原則</b></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>以下是我過去一個月的 4 次週復盤：
+【貼上 4 次紀錄】
+
+請幫我：
+1. 找出重複出現的問題或模式
+2. 把每一個問題改寫成一條「個人原則」，格式是「當……時，我會……」
+3. 原則最多 5 條，每條不超過 30 字</pre></div><p>本週任務</p><div class="cklist"><label class="ck"><input type="checkbox"><span>在行事曆排一個每週日 30 分鐘的復盤時段</span></label><label class="ck"><input type="checkbox"><span>用下方的「每週復盤模板」完成第一次復盤</span></label><label class="ck"><input type="checkbox"><span>寫下你的第一條個人原則</span></label></div></div></details><details class="ch"><summary><span class="ch-n">方法 9</span><span class="ch-t">快速轉換思維</span><span class="ch-mk"></span></summary><div class="ch-body"><p>名人故事：金凱瑞開給自己一張 1,000 萬的支票</p><p>1990 年，還沒成名、窮到常常在車上過夜的金凱瑞（Jim Carrey），開車到好萊塢山上，寫給自己一張 1,000 萬美元的支票。備註欄寫著「演出酬勞」（For Acting Services Rendered），日期填的是 1995 年感恩節。</p><p>他把這張支票放在皮夾裡，常常拿出來看。金凱瑞後來在歐普拉的節目上說，1995 年感恩節前，他得知自己演出《阿呆與阿瓜》的片酬就是 1,000 萬美元。</p><p>為什麼有用</p><p>遇到困難時，你問自己的問題，決定大腦往哪個方向想：</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>問法</th><th>大腦的反應</th></tr></thead><tbody><tr><td data-label="問法：">「好難，我做得到嗎？」</td><td data-label="大腦的反應：">開始找做不到的理由</td></tr><tr><td data-label="問法：">「如果我做到了，會怎樣？」</td><td data-label="大腦的反應：">開始想像畫面、找方法</td></tr><tr><td data-label="問法：">「要做到的話，第一步是什麼？」</td><td data-label="大腦的反應：">直接進入行動</td></tr></tbody></table></div><p>換一個問法，大腦搜尋的方向就跟著換。先相信做得到，再去找怎麼做。</p><p>執行步驟</p><ol class="steps"><li><b>抓出你的負面問句</b>：留意自己腦中出現「好難、好累、我不行」的時候</li><li><b>換成正向問句</b>：改問「如果做到了會怎樣？」「要做到的話，第一步是什麼？」</li><li><b>寫下你的「支票」</b>：像金凱瑞一樣，把一個目標寫成具體的數字和日期</li><li><b>倒推計畫</b>：從目標日往回推，每個月、每週要做到什麼</li><li><b>放在每天看得到的地方</b>：手機桌布、書桌、皮夾</li></ol><p>AI 怎麼幫你</p><p><b>Step 1：用 Claude 把負面想法轉成行動</b><br>👉 <a href="https://claude.ai/" target="_blank" rel="noopener">https://claude.ai</a></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>我現在遇到一個困難：【描述讓你卡住的事】
+我腦中一直出現的想法是：【例如：我沒時間、我不夠專業、別人做得比我好】
+
+請幫我：
+1. 把我的負面想法改寫成 3 個正向的提問
+2. 假設我已經成功了，描述 6 個月後的具體畫面
+3. 從那個畫面倒推，給我今天就能做的 1 個行動</pre></div><p><b>Step 2：用 ChatGPT 做目標倒推計畫</b><br>👉 <a href="https://chatgpt.com/" target="_blank" rel="noopener">https://chatgpt.com</a></p><div class="cp"><button class="copy-btn" type="button">複製</button><pre>我的目標是：在【日期】之前達成【具體目標，例如：IG 追蹤 1 萬人／副業月收入 3 萬】。
+我目前的狀況是：【現況】
+
+請從目標日往回倒推，幫我列出：
+1. 每個月要達成的里程碑
+2. 這個月每週要完成的具體任務
+3. 這週每天要做的事（每天不超過 1 小時）
+
+用表格呈現。</pre></div><p>本週任務</p><div class="cklist"><label class="ck"><input type="checkbox"><span>記錄 3 次你腦中出現的負面問句，並改寫成正向問句</span></label><label class="ck"><input type="checkbox"><span>寫下你的「支票」：一個具體目標＋數字＋日期</span></label><label class="ck"><input type="checkbox"><span>用 AI 做一份倒推計畫</span></label></div></div></details></div></section>
+
+<section class="sec fade" id="s4"><span class="sec-tag">Part 3</span><h2>9 週實踐計畫</h2><p>一週專心練一個習慣，前面練過的繼續維持。9 週後，這 9 個方法都會變成你的日常。</p><div class="tblwrap"><table class="tbl gen"><thead><tr><th>週次</th><th>主練習慣</th><th>本週核心動作</th><th>用到的 AI</th></tr></thead><tbody><tr><td data-label="週次：">第 1 週</td><td data-label="主練習慣：">方法 9｜快速轉換思維</td><td data-label="本週核心動作：">寫下你的「支票」，做倒推計畫</td><td data-label="用到的 AI：">Claude、ChatGPT</td></tr><tr><td data-label="週次：">第 2 週</td><td data-label="主練習慣：">方法 7｜善用二八法則</td><td data-label="本週核心動作：">每晚圈出隔天最重要的 2 件事</td><td data-label="用到的 AI：">Claude</td></tr><tr><td data-label="週次：">第 3 週</td><td data-label="主練習慣：">方法 6｜早起做高密度工作</td><td data-label="本週核心動作：">每天提早 15 分鐘，鎖定黃金時段</td><td data-label="用到的 AI：">ChatGPT、Gemini</td></tr><tr><td data-label="週次：">第 4 週</td><td data-label="主練習慣：">方法 5｜培養複利思維</td><td data-label="本週核心動作：">選定複利資產，每天打卡</td><td data-label="用到的 AI：">ChatGPT、NotebookLM</td></tr><tr><td data-label="週次：">第 5 週</td><td data-label="主練習慣：">方法 1｜模仿比你優秀的人</td><td data-label="本週核心動作：">選定模仿對象，拆解習慣</td><td data-label="用到的 AI：">Perplexity、NotebookLM</td></tr><tr><td data-label="週次：">第 6 週</td><td data-label="主練習慣：">方法 4｜瘋狂輸出知識</td><td data-label="本週核心動作：">每週輸出 1 篇學習內容</td><td data-label="用到的 AI：">NotebookLM、Claude</td></tr><tr><td data-label="週次：">第 7 週</td><td data-label="主練習慣：">方法 2｜持續鍛鍊口才</td><td data-label="本週核心動作：">每週錄音 1 次＋AI 模擬實戰</td><td data-label="用到的 AI：">ChatGPT 語音模式</td></tr><tr><td data-label="週次：">第 8 週</td><td data-label="主練習慣：">方法 3｜靈感 48 小時內動手</td><td data-label="本週核心動作：">1 個點子 48 小時內做出第一步</td><td data-label="用到的 AI：">Claude、Gemini</td></tr><tr><td data-label="週次：">第 9 週</td><td data-label="主練習慣：">方法 8｜定期復盤檢討</td><td data-label="本週核心動作：">回顧前 8 週，寫下個人原則</td><td data-label="用到的 AI：">Claude</td></tr></tbody></table></div><div class="tipline">💡 為什麼從方法 9 開始？先確定方向（目標），再學會聚焦（二八法則），接著創造時間（早起），最後才是累積與輸出。順序對了，後面會越做越輕鬆。</div></section>
+
+<section class="sec fade" id="s5"><span class="sec-tag">Part 4</span><h2>每週復盤模板</h2><p>直接複製到 Notion，每週日填一次。</p><div class="cp"><button class="copy-btn" type="button">複製</button><pre># 第【X】週復盤｜【日期】
+
+## 本週目標
+-
+
+## 實際完成
+-
+
+## 做對了什麼（下週繼續）
+1.
+2.
+3.
+
+## 做錯了什麼（原因是什麼）
+1.
+2.
+
+## 本週習慣打卡
+| 習慣 | 一 | 二 | 三 | 四 | 五 | 六 | 日 |
+|---|---|---|---|---|---|---|---|
+| 【習慣 1】 | | | | | | | |
+| 【習慣 2】 | | | | | | | |
+
+## 下週要改變的一件事
+-
+
+## 新增的個人原則（若有）
+- 當……時，我會……</pre></div></section>
+
+<section class="sec fade" id="s6"><h2>資料來源</h2><ul class="bul"><li>巴菲特 815 億美元在 65 歲後累積：摩根・豪瑟《致富心態》（The Psychology of Money）</li><li>「教人效應」研究：Nestojko, J. F., Bui, D. C., Kornell, N., &amp; Bjork, E. L. (2014). <i>Expecting to teach enhances learning and organization of knowledge in free recall of text passages.</i> Memory &amp; Cognition, 42(7), 1038–1048.</li><li>遺忘曲線：Hermann Ebbinghaus, <i>Memory: A Contribution to Experimental Psychology</i> (1885)</li><li>達利歐 1982 年的失誤與「痛苦＋反思＝進步」：瑞・達利歐《原則》（Principles）</li><li>蓋茲與巴菲特 1991 年的「Focus」晚餐：比爾・蓋茲個人部落格 Gates Notes 與多場公開訪談</li><li>金凱瑞的支票故事：金凱瑞 1997 年接受歐普拉訪談時的自述</li></ul></section>
+
+  <!-- ═════ ③ 研究所介紹（全站固定，不跟著乾貨改） ═════ -->
+  <section class="inst" id="institute">
+    <div class="kk">ABOUT · 奇點研究所 × D11</div>
+    <h2>我們是一間自媒體公司<br><span class="g">正在把工作流程搬到 AI 上</span></h2>
+
+    <p class="lead">搬好一個，就放進奇點研究所，<br class="m-br">給想做自媒體、但沒時間的人直接用。</p>
+    <div class="founder">
+      <p>企劃、寫稿、做圖、剪片，以前每一步都要有人。<br>公司的產能全排給客戶，我自己的帳號卻一直沒時間經營。</p>
+      <p>後來我們把這些判斷一件一件拆開，<br class="m-br">交給 AI。一篇輪播貼文，從4小時做到20分鐘。</p>
+    </div>
+
+    <div class="big">
+      <div class="b"><div class="bn">60天</div><div class="bl">粉絲從3,000<br>到5萬</div></div>
+      <div class="b"><div class="bn">20分鐘</div><div class="bl">一篇輪播<br>原本要4小時</div></div>
+      <div class="b"><div class="bn">164萬</div><div class="bl">一篇圖文<br>的觀看人數</div></div>
+    </div>
+
+    <!-- 【預留】實戰證明：有了學員成果、外部授課紀錄再打開。放在自己的數字後面、「研究所裡有什麼」前面
+    <h3>不只我做得到</h3>
+    <div class="proof">…學員案例／授課照片…</div>
+    -->
+
+    <h3>研究所裡有什麼</h3>
+    <div class="tools">
+      <div class="tool main"><div class="tn">輪播生成器<em>主打</em></div><div class="td">丟一個題目進去，出來是可以直接發的貼文。附教學影片，跟著做一次就會。</div></div>
+      <div class="tool"><div class="tn">人設定位</div><div class="td">40分鐘，AI 一題一題問你，產出一份它認得你的人設檔。</div></div>
+      <div class="tool"><div class="tn">AI 剪輯台</div><div class="td">原始影片丟進去，自動剪空白、上字幕。Mac、Windows 都能裝。</div></div>
+      <div class="tool main"><div class="tn">每週晚上教學直播</div><div class="td">我開直播帶你跑一次工具，有重播。</div></div>
+    </div>
+
+    <h3>你可能卡在這幾件事</h3>
+    <div class="qa">
+      <div class="q">我不會剪輯。</div>
+      <div class="a">輪播、圖文、Threads，一張圖一段字就能發。</div>
+      <div class="q">我怕鏡頭。</div>
+      <div class="a">把我帳號拉起來的那些貼文，沒有一篇需要我出鏡。</div>
+      <div class="q">我有本業，沒時間。</div>
+      <div class="a">一篇20分鐘，通勤、午休就塞得進去。</div>
+      <div class="q">我試過，沒做起來。</div>
+      <div class="a">上一輪拼誰敢站到鏡頭前，這一輪拼誰先把流程換掉。</div>
+    </div>
+
+    <h3>適合這樣的人</h3>
+    <div class="fit">
+      <div class="f">已經在做自媒體，想用 AI 省時間</div>
+      <div class="f">以前做過，因為太花時間停下來，想重新開始</div>
+      <div class="f">完全沒經驗，現在想開始</div>
+    </div>
+
+    <div class="btn-wrap">
+      <a class="skbtn" href="https://www.skool.com/d11-lab/about" target="_blank" rel="noopener">加入 奇點研究所 × D11 →</a>
+      <div class="btn-note">月費方案，詳細內容以 Skool 頁面為準</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="fa">傑森所長 @jasonxtsai</div>
+    <div class="fc">Instagram：@jasonxtsai　／　Threads：@jasonxtsai<br>※ 文中帳號數字為個人經驗，不代表每個人都能有相同結果</div>
+  </footer>
+
+</div>
+
+<script>
+// 複製：每個灰底框右上角的按鈕，複製同一框裡的文字
+document.querySelectorAll('.copy-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var txt = btn.parentElement.querySelector('pre').innerText;
+    function done(){ btn.textContent = '已複製'; setTimeout(function(){ btn.textContent = '複製'; }, 1800); }
+    function fallback(){ var t=document.createElement('textarea'); t.value=txt; document.body.appendChild(t); t.select(); try{document.execCommand('copy');}catch(e){} t.remove(); done(); }
+    if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(done, fallback); } else { fallback(); }
+  });
+});
+
+// 頁內跳轉：不靠網址的 #，直接捲過去（預覽視窗、IG 內建瀏覽器裡 # 有時不會動）
+document.querySelectorAll('a[href^="#"]').forEach(function(link){
+  link.addEventListener('click', function(e){
+    var target = document.getElementById(link.getAttribute('href').slice(1));
+    if(!target) return;
+    e.preventDefault();
+    target.classList.add('vis');
+    target.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+
+// 懸浮按鈕：研究所介紹出現在畫面上時收起，避免兩顆按鈕同時出現
+var fc = document.getElementById('float-cta');
+var inst = document.getElementById('institute');
+if(fc && inst && 'IntersectionObserver' in window){
+  new IntersectionObserver(function(es){
+    fc.classList.toggle('hide', es[0].isIntersecting);
+  }, {threshold:0.05}).observe(inst);
+}
+
+// 捲動淡入
+function reveal(){
+  var vh = window.innerHeight;
+  document.querySelectorAll('.fade:not(.vis)').forEach(function(el){
+    if(el.getBoundingClientRect().top < vh) el.classList.add('vis');
+  });
+}
+window.addEventListener('scroll', reveal, {passive:true});
+window.addEventListener('load', reveal);
+reveal();
+setTimeout(function(){ document.querySelectorAll('.fade').forEach(function(el){ el.classList.add('vis'); }); }, 2500);
+</script>
+
+<!--
+本頁由 產生落地頁.py 產生
+來源：https://app.notion.com/p/40eb498eff0183bb851381abdcbc9df9
+要改內容：改來源後重跑；要改標題與按鈕：改 產生落地頁.py 的〈頁面設定〉
+-->
+</body>
+</html>
